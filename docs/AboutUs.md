@@ -20,14 +20,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Member
 
-### Aloysius Lim Dewen
+### Lim Dewen Aloysius
 
 <img src="images/pooty3.png" width="200px">
 
 [[github](http://github.com/pooty3)]
 [[portfolio](team/pooty3.md)]
 
-* Role: Project Member
+* Role: Team Member
 
 ### Johnny Doe
 
