@@ -22,10 +22,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aloysius Lim Dewen
 
-<img src="images/iamaloysius.png" width="200px">
+<img src="images/pooty3.png" width="200px">
 
 [[github](http://github.com/pooty3)]
-[[portfolio](team/iamaloysius.md)]
+[[portfolio](team/pooty3.md)]
 
 * Role: Project Member
 
