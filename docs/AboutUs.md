@@ -20,15 +20,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Member
 
-### Jane Doe
+### Aloysius Lim Dewen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/iamaloysius.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pooty3)]
+[[portfolio](team/iamaloysius.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Project Member
 
 ### Johnny Doe
 
