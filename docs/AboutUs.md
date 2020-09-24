@@ -29,13 +29,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Member
 
-### Johnny Doe
+### Zhang Yifan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/theyifan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/theyifan)] [[portfolio](team/theyifan.md)]
 
-* Role: Developer
+* Role: Team Member
 * Responsibilities: Data
 
 ### Jean Doe
