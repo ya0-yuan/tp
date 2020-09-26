@@ -72,7 +72,7 @@ Show the user guide.
 
 Format: `help [command]`
 
-Shows all the command if `[command]` is not specified, else show the syntax for a specific command and detailed information. 
+Shows all the command if `[command]` is not specified, else show the syntax for a specific command and detailed information.
 
 ### Adding a hairdresser : `add_hairdresser`
 
