@@ -242,7 +242,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage hairstylist, client and appointment information faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -259,6 +259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | manager                                    | find persons by name           | locate a person easily                                                 |
 | `* * *`  | receptionist                               | book appointments              |        |
 | `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
+
 
 *{More to be added}*
 
