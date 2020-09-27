@@ -236,14 +236,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* managers for budding hair salons
+* has a growing number of hairstylists and clients
+* has a need to keep track of bookings, store supplies, stylist availability, and client information 
+* has a desktop at the front desk
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage hairstylist, client and appointment information faster than the traditional pen and paper
 
 ### User stories
 
@@ -259,6 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | manager                                    | find persons by name           | locate a person easily                                                 |
 | `* * *`  | receptionist                               | book appointments              |        |
 | `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
+
 
 *{More to be added}*
 
