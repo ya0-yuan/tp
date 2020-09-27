@@ -60,26 +60,35 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows the user instructions in case the receptionist forgets a command.
 
-![help message](images/helpMessage.png)
+#### User Guide:
 
-Format: `help`
+Format: `guide`
 
+Show the user guide.
 
-### Adding a person: `add`
+#### View list of commands:
 
-Adds a person to the address book.
+Format: `help [command]`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Shows all the command if `[command]` is not specified, else show the syntax for a specific command and detailed information.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Adding a hairdresser : `add_hairdresser`
+
+Adds a hairdresser to the database.
+
+Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​`
+
+### Adding a client : `add_client`
+
+Adds a client to the database.
+
+Format: `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_hairdresser n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ti/senior_stylist`
+* `add_client n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tr/perm`
 
 ### Listing all hairdressers/clients : `list`
 

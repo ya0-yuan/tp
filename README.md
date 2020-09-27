@@ -5,7 +5,7 @@
 ![Ui](docs/images/Ui.png)
 
 * This is a desktop application designed for budding hair salons. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
-* Today, many budding hair salons are still using pen and paper to keep track of appointments, client details, hairdresser details, and store supplies. 
+* Today, many budding hair salons are still using pen and paper to keep track of appointments, client details, hairdresser details, and store supplies.
  While suitable for small client base, this not sustainable in the long run as the client base increases.
  Our salon management application is designed to make this process much easier for them.
 * The features we provide include:
