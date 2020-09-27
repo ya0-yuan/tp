@@ -59,49 +59,77 @@ HairstyleX helps managers for budding neighborhood hair salons to manage clients
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows the user instructions in case the receptionist forgets a command.
 
-![help message](images/helpMessage.png)
+#### User Guide:
 
-Format: `help`
+Format: `guide`
 
+Show the user guide.
 
-### Adding a person: `add`
+#### View list of commands:
 
-Adds a person to the address book.
+Format: `help [command]`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Shows all the command if `[command]` is not specified, else show the syntax for a specific command and detailed information.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Adding a hairdresser : `add_hairdresser`
+
+Adds a hairdresser to the database.
+
+Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​`
+
+### Adding a client : `add_client`
+
+Adds a client to the database.
+
+Format: `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_hairdresser n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ti/senior_stylist`
+* `add_client n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tr/perm`
 
-### Listing all persons : `list`
+### Listing all hairdressers/clients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all hairdressers/clients in the database.
 
-Format: `list`
+Format: `list_hairdresser`
 
-### Editing a person : `edit`
+Format: `list_client`
 
-Edits an existing person in the address book.
+### Editing a hairdresser : `edit_hairdresser`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Edits an existing hairdresser in the database.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `edit_hairdresser INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`
+
+* Edits the hairdresser at the specified `INDEX`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the hairdresser will be removed i.e adding of tags is not cumulative.
+* You can remove all the hairdresser’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit_hairdresser 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st hairdresser to be `91234567` and `yy@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd hairdresser to be `Betsy Crower` and clears all existing tags.
+
+### Editing a client : `edit_client`
+
+Edits an existing client in the database.
+
+Format: `edit_client INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+    specifying any tags after it.
+
+Examples:
+*  `edit_client 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `yy@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 ### Locating hairdressers/clients by name: `find`
 
