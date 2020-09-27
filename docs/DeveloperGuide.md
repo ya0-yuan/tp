@@ -249,16 +249,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new hairdresser/client   |                                                                        |
-| `* * *`  | user                                       | view all hairdressers/clients   |                                                                        |
-| `* * *`  | user                                       | edit an existing hairdresser/client   | modify details of hairdressers/clients without entering all the information again  |
-| `* * *`  | user                                       | delete a hairdresser/client                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a hairdresser/client by name  |  locate details of hairdressers/clients without having to go through the entire list   |
-| `* * `  | user                                       | clear all hairdressers/clients   |  remove all entries easily                                         |
-| `* * `  | user                                       | exit the program   |                                                                        |
+| `* * *`  | new user                                   | see the instruction guide      | refer to instructions when I forget how to use the App                 |
+| `* * *`  | manager                                    | add a new hairdresser          |                                                                        |
+| `* * *`  | receptionist                               | add a new client               |                                   |
+| `* * *`  | manager                                    | edit a client/hairdresser      | keep my database updated |
+| `* * *`  | user                                       | exit the program               |          |
+| `* * *`  | manager                                    | find persons by name           | locate a person easily                                                 |
+| `* * *`  | receptionist                               | book appointments              |        |
+| `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
+
 
 *{More to be added}*
 
