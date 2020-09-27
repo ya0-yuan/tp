@@ -244,8 +244,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: more convenience in managing day to day activities in hair salon as compared to the traditional pen and paper
-
+**Value proposition**: manage hairstylist, client and appointment information faster than the traditional pen and paper
 
 ### User stories
 
