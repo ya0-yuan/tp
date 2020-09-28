@@ -149,7 +149,7 @@ Format: `delete_hairdresser INDEX`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the application.
 
 Format: `clear`
 
