@@ -236,42 +236,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* managers for budding hair salons
+* has a growing number of hairstylists and clients
+* has a need to keep track of bookings, store supplies, stylist availability, and client information 
+* has a desktop at the front desk
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage hairstylist, client and appointment information faster than the traditional pen and paper
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | see the instruction guide      | refer to instructions when I forget how to use the App                 |
+| `* * *`  | manager                                    | add a new hairdresser          |                                                                        |
+| `* * *`  | receptionist                               | add a new client               |                                   |
+| `* * *`  | manager                                    | edit a client/hairdresser      | keep my database updated |
+| `* * *`  | user                                       | exit the program               |          |
+| `* * *`  | manager                                    | find persons by name           | locate a person easily                                                 |
+| `* * *`  | receptionist                               | book appointments              |        |
+| `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HairStyleX` application, and the **Actor** is the `user`, unless specified otherwise)
+
+(A `person` refers to either a `hairdresser` or a `client`. If a `person` is used in any of the use cases below,
+it means that the use case can be performed similarly on both a `hairdresser` and a `client`)
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list people
+2.  HairStyleX shows a list of people
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  HairStyleX deletes the person
 
     Use case ends.
 
@@ -283,24 +290,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HairStyleX shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a specific person in the list
+2.  HairStyleX adds the person
+3.  HairStyleX shows a success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The input syntax is invalid.
+    
+    * 1a1. HairStyleX shows an error message.
+    
+      Use case resumes at step 1.
+          
+**Use case: View people**
+
+**MSS**
+
+1.  User requests to view all people in the list
+2.  HairStyleX shows all people
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    
+    Use case ends.
+    
+**Use case: Edit Person**
+
+**MSS**
+
+1.  User requests to view all people in the list
+2.  HairStyleX shows all people
+3.  User requests to edit specific person
+4.  HairStyleX displays success message with updated person details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    
+    Use case ends.
+    
+**Use case: Find Person**
+
+**MSS**
+
+1.  User requests to find all people whose name contains a specified `string`
+2.  HairStyleX shows all people that has names that contain the specified `string`
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No people has names that contain that specified `string`.
+    
+    Use case ends.
+    
+**Use case: View help**
+
+**MSS**
+
+1.  User requests to view all valid commands
+2.  HairStyleX shows all valid commands
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 hairdressers and clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  There is no need for internet connection
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Hairdresser**: A hair stylist working in the salon
+* **Client**: A customer that visits the salon
+* **Person**: Can refer to either a hairdresser or a client
+* **Appointment**: A specified time when a hairdresser services a client.
 
 --------------------------------------------------------------------------------------------------------------------
 
