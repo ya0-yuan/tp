@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueClientList;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.client.Client;
 
 /**
  * Wraps all data at the address-book level
@@ -15,7 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-
+    private final UniqueClientList clients;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        clients = new UniqueClientList();
     }
 
     public AddressBook() {}
@@ -52,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setClients(newData.getClientList());
         setPersons(newData.getPersonList());
     }
 
@@ -110,11 +114,68 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons))
+                && clients.equals(((AddressBook) other).clients);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, clients);
     }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
+    }
+
+
+    //// person-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addClient(Client p) {
+        clients.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setClient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
+
+        persons.setPerson(target, editedClient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeClient(Client key) {
+        clients.remove(key);
+    }
+
+    //// util methods
+
+
+    @Override
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
+    }
+
+
 }
