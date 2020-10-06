@@ -15,7 +15,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
+/**
+ * Adds a hairdresser to the address book.
+ */
 public class AddHairdresserCommand extends Command {
+
     public static final String COMMAND_WORD = "add_hairdresser";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a hairdresser to the address book. "

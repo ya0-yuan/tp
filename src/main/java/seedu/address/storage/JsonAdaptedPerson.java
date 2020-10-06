@@ -85,4 +85,20 @@ class JsonAdaptedPerson {
         return new Person(modelName, modelPhone, modelEmail, modelGender);
     }
 
+    protected String getName() {
+        return name;
+    }
+
+    protected String getPhone() {
+        return phone;
+    }
+
+    protected String getEmail() {
+        return getEmail();
+    }
+
+    protected String getGender() {
+        return gender;
+    }
+
 }
