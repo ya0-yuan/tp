@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Hairdresser> filteredHairdressers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredHairdressers = new FilteredList<>(this.addressBook.getHairdresserList());
     }
 
     public ModelManager() {
@@ -112,6 +115,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasHairdresser(Hairdresser person) {
+        requireNonNull(person);
+        return addressBook.hasHairdresser(person);
+    }
+
+    @Override
+    public void deleteHairdresser(Hairdresser target) {
+        addressBook.removeHairdresser(target);
+    }
+
+    @Override
+    public void addHairdresser(Hairdresser person) {
+        addressBook.addHairdresser(person);
+        updateFilteredHairdresserList(PREDICATE_SHOW_ALL_HAIRDRESSERS);
+    }
+
+    @Override
+    public void setHairdresser(Hairdresser target, Hairdresser editedHairdresser) {
+        requireAllNonNull(target, editedHairdresser);
+
+        addressBook.setHairdresser(target, editedHairdresser);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +154,21 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Hairdresser} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Hairdresser> getFilteredHairdresserList() {
+        return filteredHairdressers;
+    }
+
+    @Override
+    public void updateFilteredHairdresserList(Predicate<Hairdresser> predicate) {
+        requireNonNull(predicate);
+        filteredHairdressers.setPredicate(predicate);
     }
 
     @Override
