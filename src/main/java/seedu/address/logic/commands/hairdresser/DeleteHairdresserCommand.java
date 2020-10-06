@@ -24,7 +24,7 @@ public class DeleteHairdresserCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Hairdresser: %1$s";
+    public static final String MESSAGE_DELETE_HAIRDRESSER_SUCCESS = "Deleted Hairdresser: %1$s";
 
     private final Index targetIndex;
 
@@ -38,12 +38,12 @@ public class DeleteHairdresserCommand extends Command {
         List<Hairdresser> lastShownList = model.getFilteredHairdresserList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_HAIRDRESSER_DISPLAYED_INDEX);
         }
 
         Hairdresser hairdresserToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteHairdresser(hairdresserToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, hairdresserToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_HAIRDRESSER_SUCCESS, hairdresserToDelete));
     }
 
     @Override

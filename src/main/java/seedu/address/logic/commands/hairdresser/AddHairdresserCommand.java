@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.Command;
@@ -36,8 +35,8 @@ public class AddHairdresserCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GENDER + "M "
             + PREFIX_TITLE + "senior stylist "
-            + PREFIX_TAG + "perm "
-            + PREFIX_TAG + "dye";
+            + PREFIX_SPECIALISATION + "perm "
+            + PREFIX_SPECIALISATION + "dye";
 
     public static final String MESSAGE_SUCCESS = "New hairdresser added: %1$s";
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the address book";
