@@ -143,7 +143,9 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
-    }  
+    }
+
+    @Override
     public boolean hasHairdresser(Hairdresser person) {
         requireNonNull(person);
         return addressBook.hasHairdresser(person);

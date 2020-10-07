@@ -7,12 +7,12 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-
 import seedu.address.model.person.UniqueClientList;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueHairdresserList;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
+
 
 /**
  * Wraps all data at the address-book level
