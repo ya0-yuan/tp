@@ -19,36 +19,57 @@ public class Appointment {
     private final AppointmentDate date;
     private final AppointmentTime time;
     private final AppointmentStatus appointmentStatus;
-    private Client client;
-    private Hairdresser hairdresser;
+    private final Client client;
+    private final Hairdresser hairdresser;
 
-    /**
-     * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
-     *
-     * @param clientId      A valid personId.
-     * @param hairdresserId A valid personId.
-     * @param date          A valid appointment date
-     * @param time          A valid appointment time
-     */
-    public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-                       AppointmentTime time) {
+    ///**
+    // * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
+    // *
+    // * @param clientId      A valid personId.
+    // * @param hairdresserId A valid personId.
+    // * @param date          A valid appointment date
+    // * @param time          A valid appointment time
+    // */
+    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
+    //                   AppointmentTime time) {
+    //
+    //    this(clientId, hairdresserId, date, time, AppointmentStatus.ACTIVE);
+    //}
 
-        this(clientId, hairdresserId, date, time, AppointmentStatus.ACTIVE);
-    }
+    ///**
+    // * Constructs an {@code Appointment} with a stated status.
+    // *
+    // * @param clientId      A valid personId.
+    // * @param hairdresserId A valid personId.
+    // * @param date          A valid appointment date
+    // * @param time          A valid appointment time
+    // */
+    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
+    //                   AppointmentTime time, AppointmentStatus appointmentStatus) {
+    //    requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
+    //    this.clientId = clientId;
+    //    this.hairdresserId = hairdresserId;
+    //    this.date = date;
+    //    this.time = time;
+    //    this.appointmentStatus = appointmentStatus;
+    //}
 
     /**
      * Constructs an {@code Appointment} with a stated status.
      *
-     * @param clientId      A valid personId.
-     * @param hairdresserId A valid personId.
+     * @param client      A valid client.
+     * @param hairdresser A valid hairdresser.
      * @param date          A valid appointment date
      * @param time          A valid appointment time
+     * @param appointmentStatus A valid appointmentStatus
      */
-    public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
+    public Appointment(Client client, Hairdresser hairdresser, AppointmentDate date,
                        AppointmentTime time, AppointmentStatus appointmentStatus) {
-        requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
-        this.clientId = clientId;
-        this.hairdresserId = hairdresserId;
+        requireAllNonNull(date, time, appointmentStatus);
+        this.client = client;
+        this.hairdresser = hairdresser;
+        this.clientId = client.getId();
+        this.hairdresserId = hairdresser.getId();
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
@@ -84,16 +105,54 @@ public class Appointment {
         return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    /**
+     * Replaces the representation of the client in this appointment.
+     * @param newClient the client to replace the existing.
+     * @return a new Appointment object with client replaced by the new client.
+     */
+    public Appointment replaceClient(Client newClient) {
+        return new Appointment(
+            newClient,
+            this.hairdresser,
+            this.date,
+            this.time,
+            this.appointmentStatus
+        );
+    }
+
+    /**
+     * Deletes the representation of the client in this appointment.
+     * @return a new Appointment object with client replaced by null.
+     */
+    public Appointment deleteClient() {
+        return replaceClient(null);
     }
 
     public Hairdresser getHairdresser() {
         return hairdresser;
     }
 
-    public void setHairdresser(Hairdresser hairdresser) {
-        this.hairdresser = hairdresser;
+    /**
+     * Replaces the representation of the Hairdresser in this appointment.
+     * @param newHairdresser the Hairdresser to replace the existing.
+     * @return a new Appointment object with Hairdresser replaced by the new Hairdresser.
+     */
+    public Appointment replaceHairdresser(Hairdresser newHairdresser) {
+        return new Appointment(
+            this.client,
+            newHairdresser,
+            this.date,
+            this.time,
+            this.appointmentStatus
+        );
+    }
+
+    /**
+     * Deletes the representation of the hairdresser in this appointment.
+     * @return a new Appointment object with hairdresser replaced by null.
+     */
+    public Appointment deleteHairdresser() {
+        return replaceHairdresser(null);
     }
 
     public AppointmentDate getDate() {
