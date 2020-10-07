@@ -7,9 +7,12 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+
 import seedu.address.model.person.UniqueClientList;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueHairdresserList;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
  * Wraps all data at the address-book level
@@ -19,6 +22,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueClientList clients;
+
+    private final UniqueHairdresserList hairdressers;
+
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -28,7 +35,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+
         clients = new UniqueClientList();
+
+        hairdressers = new UniqueHairdresserList();
+
     }
 
     public AddressBook() {}
@@ -97,6 +108,44 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// hairdresser-level operations
+
+    /**
+     * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the address book.
+     */
+    public boolean hasHairdresser(Hairdresser hairdresser) {
+        requireNonNull(hairdresser);
+        return hairdressers.contains(hairdresser);
+    }
+
+    /**
+     * Adds a hairdresser to the address book.
+     * The hairdresser must not already exist in the address book.
+     */
+    public void addHairdresser(Hairdresser p) {
+        hairdressers.add(p);
+    }
+
+    /**
+     * Replaces the given hairdresser {@code target} in the list with {@code editedHairdresser}.
+     * {@code target} must exist in the address book.
+     * The hairdresser identity of {@code editedHairdresser} must not be the same as
+     * another existing hairdresser in the address book.
+     */
+    public void setHairdresser(Hairdresser target, Hairdresser editedHairdresser) {
+        requireNonNull(editedHairdresser);
+
+        hairdressers.setHairdresser(target, editedHairdresser);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeHairdresser(Hairdresser key) {
+        hairdressers.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -108,6 +157,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Hairdresser> getHairdresserList() {
+        return hairdressers.asUnmodifiableObservableList();
     }
 
     @Override

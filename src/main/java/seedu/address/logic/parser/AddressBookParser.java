@@ -19,7 +19,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListClientCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.hairdresser.AddHairdresserCommand;
+import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
+import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
+import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.hairdresser.AddHairdresserCommandParser;
+import seedu.address.logic.parser.hairdresser.DeleteHairdresserCommandParser;
+import seedu.address.logic.parser.hairdresser.EditHairdresserCommandParser;
 
 /**
  * Parses user input.
@@ -54,17 +61,30 @@ public class AddressBookParser {
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
 
+        case AddHairdresserCommand.COMMAND_WORD:
+            return new AddHairdresserCommandParser().parse(arguments);
+
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
 
+        case EditHairdresserCommand.COMMAND_WORD:
+            return new EditHairdresserCommandParser().parse(arguments);
+
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
+
+        case DeleteHairdresserCommand.COMMAND_WORD:
+            return new DeleteHairdresserCommandParser().parse(arguments);
+
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -75,8 +95,13 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();
+
+        case ListHairdresserCommand.COMMAND_WORD:
+            return new ListHairdresserCommand();
+
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

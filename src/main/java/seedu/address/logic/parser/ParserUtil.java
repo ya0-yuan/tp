@@ -14,6 +14,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
+import seedu.address.model.person.hairdresser.Title;
+import seedu.address.model.specialisation.Specialisation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,6 +89,21 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code gender} is invalid.
      */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Gender.isValidGender(trimmedTitle)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
@@ -109,6 +126,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String specialisation} into a {@code Specialisation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code spec} is invalid.
+     */
+    public static Specialisation parseSpecialisation(String spec) throws ParseException {
+        requireNonNull(spec);
+        String trimmedSpec = spec.trim();
+        if (!Specialisation.isValidSpecialisation(trimmedSpec)) {
+            throw new ParseException(Specialisation.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialisation(trimmedSpec);
+    }
+
+    /**
+     * Parses {@code Collection<String> specialisations} into a {@code Set<Specialisation>}.
+     */
+    public static Set<Specialisation> parseSpecialisations(Collection<String> specs) throws ParseException {
+        requireNonNull(specs);
+        final Set<Specialisation> specSet = new HashSet<>();
+        for (String spec : specs) {
+            specSet.add(parseSpecialisation(spec));
+        }
+        return specSet;
     }
 
     /**
