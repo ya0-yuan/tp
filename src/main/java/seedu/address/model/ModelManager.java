@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
     private final FilteredList<Hairdresser> filteredHairdressers;
 
     /**
@@ -37,7 +39,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
+
         filteredHairdressers = new FilteredList<>(this.addressBook.getHairdresserList());
+
     }
 
     public ModelManager() {
@@ -116,6 +122,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasPerson(client);
+    }
+
+    @Override
+    public void deleteClient(Client client) {
+        addressBook.removePerson(client);
+    }
+
+    @Override
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        addressBook.setClient(target, editedClient);
+    }
+
+    @Override
     public boolean hasHairdresser(Hairdresser person) {
         requireNonNull(person);
         return addressBook.hasHairdresser(person);
@@ -155,6 +185,16 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Hairdresser} backed by the internal list of
@@ -189,5 +229,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
+
+
 
 }
