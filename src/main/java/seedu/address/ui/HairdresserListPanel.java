@@ -1,4 +1,4 @@
-//package seedu.address.ui;
-//
-//public class HairdresserListPanel {
-//}
+package seedu.address.ui;
+
+public class HairdresserListPanel {
+}
