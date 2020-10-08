@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.address.model.Entity;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -12,7 +13,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 /**
  * Represents an Appointment between a client and a hairdresser.
  */
-public class Appointment {
+public class Appointment implements Entity {
 
     private final PersonId clientId;
     private final PersonId hairdresserId;
@@ -168,6 +169,11 @@ public class Appointment {
     }
 
     public boolean isSameAppointment(Appointment that) {
+        return isSame(that);
+    }
+
+    @Override
+    public boolean isSame(Entity that) {
         return this.equals(that);
     }
 
