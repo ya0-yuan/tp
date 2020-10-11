@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.model.person.hairdresser.Title;
@@ -32,13 +33,14 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedHairdresser} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedHairdresser(@JsonProperty("name") String name,
+    public JsonAdaptedHairdresser(@JsonProperty("id") String id,
+                                  @JsonProperty("name") String name,
                                   @JsonProperty("phone") String phone,
                                   @JsonProperty("email") String email,
                                   @JsonProperty("gender") String gender,
                                   @JsonProperty("title") String title,
                                   @JsonProperty("specs") List<JsonAdaptedSpecialisation> specs) {
-        super(name, phone, email, gender);
+        super(id, name, phone, email, gender);
         this.title = title;
         if (specs != null) {
             this.specs.addAll(specs);
@@ -49,7 +51,11 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
      * Converts a given {@code Hairdresser} into this class for Jackson use.
      */
     public JsonAdaptedHairdresser(Hairdresser source) {
-        super(source.getName().fullName, source.getPhone().value, source.getEmail().value, source.getGender().value);
+        super(String.valueOf(source.getId()),
+                source.getName().fullName,
+                source.getPhone().value,
+                source.getEmail().value,
+                source.getGender().value);
         title = source.getTitle().value;
         specs.addAll(source.getSpecs().stream()
                 .map(JsonAdaptedSpecialisation::new)
@@ -62,6 +68,16 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Hairdresser toModelType() throws IllegalValueException {
+        String pid = getId();
+        if (pid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonId.class.getSimpleName()));
+        }
+        if (!PersonId.isValidPersonId(pid)) {
+            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        }
+        final PersonId modelPid = new PersonId(pid);
+
         String name = getName();
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -112,6 +128,6 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
         }
         final Set<Specialisation> modelSpecs = new HashSet<>(hairdresserSpecs);
 
-        return new Hairdresser(modelName, modelPhone, modelEmail, modelGender, modelTitle, modelSpecs);
+        return new Hairdresser(modelPid, modelName, modelPhone, modelEmail, modelGender, modelTitle, modelSpecs);
     }
 }

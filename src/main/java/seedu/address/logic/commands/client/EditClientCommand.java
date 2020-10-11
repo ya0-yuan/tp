@@ -102,7 +102,8 @@ public class EditClientCommand extends Command {
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedGender, updatedAddress, updatedTags);
+        return new Client(clientToEdit.getId(), updatedName, updatedPhone,
+                updatedEmail, updatedGender, updatedAddress, updatedTags);
     }
 
     @Override
