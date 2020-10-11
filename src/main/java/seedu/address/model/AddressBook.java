@@ -67,6 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        setHairdressers(newData.getHairdresserList());
         setClients(newData.getClientList());
         setPersons(newData.getPersonList());
     }
@@ -136,6 +137,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedHairdresser);
 
         hairdressers.setHairdresser(target, editedHairdresser);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setHairdressers(List<Hairdresser> hairdressers) {
+        this.hairdressers.setHairdressers(hairdressers);
     }
 
     /**

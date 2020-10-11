@@ -92,7 +92,7 @@ public class ParserUtil {
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!Gender.isValidGender(trimmedTitle)) {
+        if (!Title.isValidTitle(trimmedTitle)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);

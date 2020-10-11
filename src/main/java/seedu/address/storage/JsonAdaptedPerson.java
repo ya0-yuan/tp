@@ -94,7 +94,7 @@ class JsonAdaptedPerson {
     }
 
     protected String getEmail() {
-        return getEmail();
+        return email;
     }
 
     protected String getGender() {
