@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         hairdresserListPanel = new HairdresserListPanel(logic.getFilteredHairdresserList());
         hairdresserListPanelPlaceholder.getChildren().add(hairdresserListPanel.getRoot());
 
-        //clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        //clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
