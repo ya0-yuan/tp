@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
 import seedu.address.model.person.client.Client;
@@ -31,13 +32,14 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedHairdresser} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("name") String name,
+    public JsonAdaptedClient(@JsonProperty("id") String id,
+                             @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("gender") String gender,
                              @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        super(name, phone, email, gender);
+        super(id, name, phone, email, gender);
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -48,7 +50,11 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
      * Converts a given {@code Hairdresser} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        super(source.getName().fullName, source.getPhone().value, source.getEmail().value, source.getGender().value);
+        super(String.valueOf(source.getId()),
+                source.getName().fullName,
+                source.getPhone().value,
+                source.getEmail().value,
+                source.getGender().value);
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -61,6 +67,16 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Client toModelType() throws IllegalValueException {
+        String pid = getId();
+        if (pid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonId.class.getSimpleName()));
+        }
+        if (!PersonId.isValidPersonId(pid)) {
+            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        }
+        final PersonId modelPid = new PersonId(pid);
+
         String name = getName();
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -111,6 +127,6 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        return new Client(modelName, modelPhone, modelEmail, modelGender, modelAddress, modelTags);
+        return new Client(modelPid, modelName, modelPhone, modelEmail, modelGender, modelAddress, modelTags);
     }
 }
