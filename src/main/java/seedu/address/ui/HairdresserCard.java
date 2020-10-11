@@ -5,14 +5,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.client.Client;
+import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
- * An UI component that displays information of a {@code Client}.
+ * An UI component that displays information of a {@code Hairdresser}.
  */
-public class ClientCard extends UiPart<Region> {
+public class HairdresserCard extends UiPart<Region> {
 
-    private static final String FXML = "ClientListCard.fxml";
+    private static final String FXML = "HairdresserListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,7 +22,7 @@ public class ClientCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Client client;
+    public final Hairdresser hairdresser;
 
     @FXML
     private HBox cardPane;
@@ -37,24 +37,24 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label address;
+    private Label title;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
+     * Creates a {@code HairdresserCode} with the given {@code Hairdresser} and index to display.
      */
-    public ClientCard(Client client, int displayedIndex) {
+    public HairdresserCard(Hairdresser hairdresser, int displayedIndex) {
         super(FXML);
-        this.client = client;
+        this.hairdresser = hairdresser;
         id.setText(displayedIndex + ". ");
-        name.setText(client.getName().fullName);
-        phone.setText(client.getPhone().value);
-        gender.setText(client.getGender().value);
-        email.setText(client.getEmail().value);
-        address.setText(client.getAddress().value);
+        name.setText(hairdresser.getName().fullName);
+        phone.setText(hairdresser.getPhone().value);
+        gender.setText(hairdresser.getGender().value);
+        email.setText(hairdresser.getEmail().value);
+        title.setText(hairdresser.getTitle().value);
 
-        //client.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //hairdresser.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -65,13 +65,13 @@ public class ClientCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ClientCard)) {
+        if (!(other instanceof HairdresserCard)) {
             return false;
         }
 
         // state check
-        ClientCard card = (ClientCard) other;
+        HairdresserCard card = (HairdresserCard) other;
         return id.getText().equals(card.id.getText())
-                && client.equals(card.client);
+                && hairdresser.equals(card.hairdresser);
     }
 }
