@@ -24,19 +24,24 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "Hairdressers list contains duplicate hairdresser(s).";
     public static final String MESSAGE_DUPLICATE_CLIENT = "Client list contains duplicate hairdresser(s).";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedHairdresser> hairdressers = new ArrayList<>();
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final JsonAdaptedPersonIdCounter personIdCounter;
+
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("hairdressers") List<JsonAdaptedHairdresser> hairdressers,
-                                       @JsonProperty("clients") List<JsonAdaptedClient> clients) {
+                                       @JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                       @JsonProperty("personIdCounter") JsonAdaptedPersonIdCounter personIdCounter) {
         this.persons.addAll(persons);
         this.hairdressers.addAll(hairdressers);
         this.clients.addAll(clients);
+        this.personIdCounter = personIdCounter;
     }
 
     /**
@@ -50,6 +55,7 @@ class JsonSerializableAddressBook {
                 .collect(Collectors.toList()));
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new)
                 .collect(Collectors.toList()));
+        personIdCounter = new JsonAdaptedPersonIdCounter(source.getPersonIdCounter().getCurrentMaxId());
     }
 
     /**
@@ -81,6 +87,9 @@ class JsonSerializableAddressBook {
             }
             addressBook.addClient(client);
         }
+
+        addressBook.setPersonIdCounter(personIdCounter.toModelType());
+
         return addressBook;
     }
 

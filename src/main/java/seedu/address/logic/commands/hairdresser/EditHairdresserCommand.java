@@ -106,7 +106,8 @@ public class EditHairdresserCommand extends Command {
         Gender updatedGender = editHairdresserDescriptor.getGender().orElse(hairdresserToEdit.getGender());
         Title updatedTitle = editHairdresserDescriptor.getTitle().orElse(hairdresserToEdit.getTitle());
         Set<Specialisation> updatedSpecs = editHairdresserDescriptor.getSpecs().orElse(hairdresserToEdit.getSpecs());
-        return new Hairdresser(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTitle, updatedSpecs);
+        return new Hairdresser(hairdresserToEdit.getId(), updatedName,
+                updatedPhone, updatedEmail, updatedGender, updatedTitle, updatedSpecs);
     }
 
     @Override

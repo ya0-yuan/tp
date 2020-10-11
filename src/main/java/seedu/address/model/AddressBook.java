@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonIdCounter;
 import seedu.address.model.person.UniqueClientList;
 import seedu.address.model.person.UniqueHairdresserList;
 import seedu.address.model.person.UniquePersonList;
@@ -23,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList<Person> persons;
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
-
+    private final PersonIdCounter personIdCounter;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -39,6 +40,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         hairdressers = new UniqueHairdresserList();
 
+        personIdCounter = PersonIdCounter.getInstance();
+
     }
 
     public AddressBook() {}
@@ -52,6 +55,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+
+    /**
+     * Replaces the content of the idCounter with {@code idCounter}.
+     * {@code appointments} must not contain duplicate appointments.
+     */
+    public void setPersonIdCounter(PersonIdCounter idCounter) {
+        this.personIdCounter.setCurrentMaxId(idCounter.getCurrentMaxId());
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -171,6 +182,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Hairdresser> getHairdresserList() {
         return hairdressers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public PersonIdCounter getPersonIdCounter() {
+        return personIdCounter;
     }
 
     @Override
