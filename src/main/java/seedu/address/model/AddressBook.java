@@ -187,8 +187,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
@@ -198,7 +198,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -206,17 +206,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
      */
     public void addClient(Client p) {
         clients.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given client {@code client} in the list with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
