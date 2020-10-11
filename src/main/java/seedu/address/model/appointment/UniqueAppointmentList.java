@@ -4,12 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import seedu.address.model.UniqueEntityList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.exception.DuplicateEntityException;
-import seedu.address.model.exception.EntityNotFoundException;
 import seedu.address.model.person.PersonId;
-import seedu.address.model.person.UniqueEntityList;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
@@ -20,27 +18,8 @@ import seedu.address.model.person.hairdresser.Hairdresser;
  */
 public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
 
-    @Override
-    public void remove(Appointment toRemove) {
-        try {
-            super.remove(toRemove);
-        } catch (EntityNotFoundException ex) {
-            throw new AppointmentNotFoundException();
-        }
-    }
 
-    /**
-     * Adds an appointment to the list.
-     * The appointment must not already exist in the list.
-     */
-    @Override
-    public void add(Appointment toAdd) {
-        try {
-            super.add(toAdd);
-        } catch (DuplicateEntityException ex) {
-            throw new DuplicateAppointmentException();
-        }
-    }
+
 
     /**
      * Replaces the appointment {@code target} in the list with {@code changedAppointment}.
@@ -49,13 +28,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      * the same as another existing appointment in the list.
      */
     public void setAppointment(Appointment target, Appointment changedAppointment) {
-        try {
-            setElement(target, changedAppointment);
-        } catch (EntityNotFoundException ex) {
-            throw new AppointmentNotFoundException();
-        } catch (DuplicateEntityException ex) {
-            throw new DuplicateAppointmentException();
-        }
+        setEntity(target, changedAppointment);
     }
 
     /**
@@ -64,7 +37,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      * @param replacement the new list to replace the current list
      */
     public void setAppointments(UniqueAppointmentList replacement) {
-        setElements(replacement);
+        setEntities(replacement);
     }
 
     /**
@@ -72,11 +45,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      * {@code appointments} must not contain duplicate appointments.
      */
     public void setAppointments(List<Appointment> appointments) {
-        try {
-            setElements(appointments);
-        } catch (DuplicateEntityException ex) {
-            throw new DuplicateAppointmentException();
-        }
+        setEntities(appointments);
     }
 
     /**
@@ -146,4 +115,13 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
     }
 
 
+    @Override
+    public DuplicateAppointmentException duplicateException() {
+        return new DuplicateAppointmentException();
+    }
+
+    @Override
+    public AppointmentNotFoundException notFoundException() {
+        return new AppointmentNotFoundException();
+    }
 }

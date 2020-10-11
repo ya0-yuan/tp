@@ -7,6 +7,7 @@ import seedu.address.model.exception.EntityNotFoundException;
  */
 public class AppointmentNotFoundException extends EntityNotFoundException {
     public AppointmentNotFoundException() {
-        super("The Appointment could not be found");
+        super("appointment");
     }
+
 }
