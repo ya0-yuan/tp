@@ -7,11 +7,11 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniqueClientList;
-import seedu.address.model.person.UniqueHairdresserList;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.UniqueClientList;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.UniqueHairdresserList;
 
 
 /**
@@ -20,7 +20,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList<Person> persons;
+    private final UniquePersonList persons;
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
 
@@ -33,7 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList<>();
+        persons = new UniquePersonList();
 
         clients = new UniqueClientList();
 
@@ -221,7 +221,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
 
-        persons.setPerson(target, editedClient);
+        clients.setClient(target, editedClient);
     }
 
     /**
