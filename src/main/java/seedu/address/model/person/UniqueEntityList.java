@@ -9,21 +9,19 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.Entity;
-import seedu.address.model.exception.DuplicateElementException;
-import seedu.address.model.exception.ElementNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.exception.DuplicateEntityException;
+import seedu.address.model.exception.EntityNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A list of entities that enforces uniqueness between its elements and does not allow nulls.
+ * A entity is considered unique by comparing using {@code Entity#isSame(Entity)}. As such, adding and updating of
+ * entities uses  Entity#isSame(Entity)) for equality so as to ensure that the entity being added or updated is
+ * unique in terms of identity in the UniqueEntityList. However, the removal of a entity uses Entity#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Entity#isSame(Entity)
  */
 public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> {
 
@@ -32,7 +30,7 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent entity as the given argument.
      */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
@@ -40,45 +38,45 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a entity to the list.
+     * The entity must not already exist in the list.
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntityException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the entity {@code entity} in the list with {@code editedEntity}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedEntity} must not be the same as another existing entity in the list.
      */
     public void setElement(T target, T editedEntity) {
         requireAllNonNull(target, editedEntity);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ElementNotFoundException();
+            throw new EntityNotFoundException();
         }
 
         if (!target.isSame(editedEntity) && contains(editedEntity)) {
-            throw new DuplicateElementException();
+            throw new DuplicateEntityException();
         }
 
         internalList.set(index, editedEntity);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent entity from the list.
+     * The entity must exist in the list.
      */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new EntityNotFoundException();
         }
     }
 
@@ -89,12 +87,12 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
 
     /**
      * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code entities} must not contain duplicate entities.
      */
     public void setElements(List<T> entities) {
         requireAllNonNull(entities);
         if (!entitiesAreUnique(entities)) {
-            throw new DuplicateElementException();
+            throw new DuplicateEntityException();
         }
 
         internalList.setAll(entities);
@@ -125,7 +123,7 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code entities} contains only unique entities.
      */
     private boolean entitiesAreUnique(List<T> entities) {
         for (int i = 0; i < entities.size() - 1; i++) {

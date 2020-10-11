@@ -11,7 +11,7 @@ public class UniqueClientList extends UniquePersonList<Client> {
     /**
      * Replaces the client {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the list.
      */
     public void setClient(Client target, Client editedClient) {
         setPerson(target, editedClient);
@@ -23,8 +23,8 @@ public class UniqueClientList extends UniquePersonList<Client> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
     public void setClients(List<Client> clients) {
         setPersons(clients);
