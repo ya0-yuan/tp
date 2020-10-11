@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     //private HairdresserListPanel hairdresserListPanel;
     //private ClientListPanel clientListPanel;
     private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
+    private HairdresserListPanel hairdresserListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,6 +47,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane clientListPanelPlaceholder;
+
+    @FXML
+    private StackPane hairdresserListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,6 +122,12 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        hairdresserListPanel = new HairdresserListPanel(logic.getFilteredHairdresserList());
+        hairdresserListPanelPlaceholder.getChildren().add(hairdresserListPanel.getRoot());
+
+        //clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        //clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
