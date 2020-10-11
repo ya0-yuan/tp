@@ -22,7 +22,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList<Person> persons;
     private final UniqueClientList clients;
-
     private final UniqueHairdresserList hairdressers;
 
 
@@ -69,6 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setHairdressers(newData.getHairdresserList());
         setClients(newData.getClientList());
+        setHairdressers(newData.getHairdresserList());
         setPersons(newData.getPersonList());
     }
 
