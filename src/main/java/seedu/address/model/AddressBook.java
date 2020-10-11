@@ -7,12 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-<<<<<<< HEAD
-=======
 import seedu.address.model.person.PersonIdCounter;
-import seedu.address.model.person.UniqueClientList;
-import seedu.address.model.person.UniqueHairdresserList;
->>>>>>> master
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.UniqueClientList;
