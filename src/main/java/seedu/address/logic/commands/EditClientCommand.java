@@ -34,8 +34,8 @@ public class EditClientCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_client";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -47,15 +47,15 @@ public class EditClientCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_CLIENT_PERSON = "This client already exists in the address book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index of the client in the filtered client list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditClientCommand(Index index, EditClientDescriptor editPersonDescriptor) {
@@ -79,12 +79,12 @@ public class EditClientCommand extends Command {
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_CLIENT_PERSON);
         }
 
         model.setPerson(clientToEdit, editedClient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedClient));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
     /**

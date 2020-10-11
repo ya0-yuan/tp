@@ -18,8 +18,8 @@ public class UniqueHairdresserList extends UniquePersonList<Hairdresser> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code hairdressers}.
+     * {@code hairdressers} must not contain duplicate hairdressers.
      */
     public void setHairdressers(List<Hairdresser> hairdressers) {
         setPersons(hairdressers);

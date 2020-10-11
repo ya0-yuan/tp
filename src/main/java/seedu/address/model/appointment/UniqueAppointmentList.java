@@ -6,8 +6,8 @@ import java.util.List;
 
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.exception.DuplicateElementException;
-import seedu.address.model.exception.ElementNotFoundException;
+import seedu.address.model.exception.DuplicateEntityException;
+import seedu.address.model.exception.EntityNotFoundException;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.UniqueEntityList;
 import seedu.address.model.person.client.Client;
@@ -24,7 +24,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
     public void remove(Appointment toRemove) {
         try {
             super.remove(toRemove);
-        } catch (ElementNotFoundException ex) {
+        } catch (EntityNotFoundException ex) {
             throw new AppointmentNotFoundException();
         }
     }
@@ -37,7 +37,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
     public void add(Appointment toAdd) {
         try {
             super.add(toAdd);
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicateAppointmentException();
         }
     }
@@ -51,9 +51,9 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
     public void setAppointment(Appointment target, Appointment changedAppointment) {
         try {
             setElement(target, changedAppointment);
-        } catch (ElementNotFoundException ex) {
+        } catch (EntityNotFoundException ex) {
             throw new AppointmentNotFoundException();
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicateAppointmentException();
         }
     }
@@ -74,7 +74,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
     public void setAppointments(List<Appointment> appointments) {
         try {
             setElements(appointments);
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicateAppointmentException();
         }
     }

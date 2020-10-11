@@ -2,23 +2,12 @@ package seedu.address.model.person;
 
 import java.util.List;
 
-import seedu.address.model.exception.DuplicateElementException;
-import seedu.address.model.exception.ElementNotFoundException;
+import seedu.address.model.exception.DuplicateEntityException;
+import seedu.address.model.exception.EntityNotFoundException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
-/**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
- * @see Person#isSamePerson(Person)
- */
 public class UniquePersonList<T extends Person> extends UniqueEntityList<T> {
 
 
@@ -30,9 +19,9 @@ public class UniquePersonList<T extends Person> extends UniqueEntityList<T> {
     public void setPerson(T target, T editedPerson) {
         try {
             setElement(target, editedPerson);
-        } catch (ElementNotFoundException ex) {
+        } catch (EntityNotFoundException ex) {
             throw new PersonNotFoundException();
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicatePersonException();
         }
     }
@@ -41,7 +30,7 @@ public class UniquePersonList<T extends Person> extends UniqueEntityList<T> {
     public void remove(T toRemove) {
         try {
             super.remove(toRemove);
-        } catch (ElementNotFoundException ex) {
+        } catch (EntityNotFoundException ex) {
             throw new PersonNotFoundException();
         }
     }
@@ -51,7 +40,7 @@ public class UniquePersonList<T extends Person> extends UniqueEntityList<T> {
     public void add(T toAdd) {
         try {
             super.add(toAdd);
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicatePersonException();
         }
     }
@@ -67,7 +56,7 @@ public class UniquePersonList<T extends Person> extends UniqueEntityList<T> {
     public void setPersons(List<T> persons) {
         try {
             setElements(persons);
-        } catch (DuplicateElementException ex) {
+        } catch (DuplicateEntityException ex) {
             throw new DuplicatePersonException();
         }
     }
