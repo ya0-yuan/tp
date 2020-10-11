@@ -2,10 +2,11 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.model.person.PersonIdCounter;
 
 public class JsonAdaptedPersonIdCounter {
-        private final int id;
+    private final int id;
 
     /**
      * Constructs a {@code JsonAdaptedPersonIdCounter} with the given {@code id}.
