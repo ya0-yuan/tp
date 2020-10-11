@@ -7,6 +7,7 @@ import seedu.address.model.exception.EntityNotFoundException;
  */
 public class PersonNotFoundException extends EntityNotFoundException {
     public PersonNotFoundException() {
-        super("The person could not be found");
+        super("person");
     }
+
 }
