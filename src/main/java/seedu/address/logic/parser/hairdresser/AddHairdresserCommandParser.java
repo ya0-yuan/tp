@@ -38,7 +38,7 @@ public class AddHairdresserCommandParser implements Parser<AddHairdresserCommand
                         PREFIX_GENDER, PREFIX_TITLE, PREFIX_SPECIALISATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER, PREFIX_TITLE, PREFIX_SPECIALISATION) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_GENDER, PREFIX_TITLE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddHairdresserCommand.MESSAGE_USAGE));
         }
