@@ -68,7 +68,11 @@ public class Hairdresser extends Person {
         }
 
         return otherHairdresser != null
-                && (otherHairdresser.getPhone().equals(getPhone()));
+                && otherHairdresser.getName().equals(getName())
+                && (otherHairdresser.getPhone().equals(getPhone())
+                || otherHairdresser.getEmail().equals(getEmail())
+                || otherHairdresser.getTitle().equals(getTitle())
+                || otherHairdresser.getGender().equals(getGender()));
     }
 
     /**

@@ -44,7 +44,8 @@ public class SampleDataUtil {
             new Client(new Name("Ivan Choo"), new Phone("84213456"), new Email("annayeoh@example.com"),
                 new Gender("M"), new Address("Blk 47 Tampines Street 20 #17-35"), getTagSet("shorthair")),
             new Client(new Name("Kimberly Lim"), new Phone("92837461"), new Email("berniceyu@example.com"),
-                    new Gender("F"), new Address("Blk 30 Lorong 3 Serangoon Gardens #07-18"), getTagSet("longhair", "preferperm"))
+                    new Gender("F"), new Address("Blk 30 Lorong 3 Serangoon Gardens #07-18"),
+                    getTagSet("longhair", "preferperm"))
         };
     }
 
