@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PersonId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID must a positive number.";
+            "ID must a positive integer.";
     public final int personId;
 
     /**

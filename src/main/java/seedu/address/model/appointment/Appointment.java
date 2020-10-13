@@ -20,40 +20,46 @@ public class Appointment implements Entity {
     private final AppointmentDate date;
     private final AppointmentTime time;
     private final AppointmentStatus appointmentStatus;
-    private final Client client;
-    private final Hairdresser hairdresser;
+    private Client client;
+    private Hairdresser hairdresser;
 
-    ///**
-    // * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
-    // *
-    // * @param clientId      A valid personId.
-    // * @param hairdresserId A valid personId.
-    // * @param date          A valid appointment date
-    // * @param time          A valid appointment time
-    // */
-    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-    //                   AppointmentTime time) {
-    //
-    //    this(clientId, hairdresserId, date, time, AppointmentStatus.ACTIVE);
-    //}
+    /**
+     * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
+     *
+     * @param clientId      A valid personId.
+     * @param hairdresserId A valid personId.
+     * @param date          A valid appointment date
+     * @param time          A valid appointment time
+     */
+    public Appointment(PersonId clientId, PersonId hairdresserId, Client client, Hairdresser hairdresser,
+                       AppointmentDate date, AppointmentTime time, AppointmentStatus appointmentStatus) {
+        requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
+        this.clientId = clientId;
+        this.hairdresserId = hairdresserId;
+        this.client = client;
+        this.hairdresser = hairdresser;
+        this.date = date;
+        this.time = time;
+        this.appointmentStatus = appointmentStatus;
+    }
 
-    ///**
-    // * Constructs an {@code Appointment} with a stated status.
-    // *
-    // * @param clientId      A valid personId.
-    // * @param hairdresserId A valid personId.
-    // * @param date          A valid appointment date
-    // * @param time          A valid appointment time
-    // */
-    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-    //                   AppointmentTime time, AppointmentStatus appointmentStatus) {
-    //    requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
-    //    this.clientId = clientId;
-    //    this.hairdresserId = hairdresserId;
-    //    this.date = date;
-    //    this.time = time;
-    //    this.appointmentStatus = appointmentStatus;
-    //}
+    /**
+     * Constructs an {@code Appointment} with a stated status.
+     *
+     * @param clientId      A valid personId.
+     * @param hairdresserId A valid personId.
+     * @param date          A valid appointment date
+     * @param time          A valid appointment time
+     */
+    public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
+                       AppointmentTime time, AppointmentStatus appointmentStatus) {
+        requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
+        this.clientId = clientId;
+        this.hairdresserId = hairdresserId;
+        this.date = date;
+        this.time = time;
+        this.appointmentStatus = appointmentStatus;
+    }
 
     /**
      * Constructs an {@code Appointment} with a stated status.
@@ -113,6 +119,8 @@ public class Appointment implements Entity {
      */
     public Appointment replaceClient(Client newClient) {
         return new Appointment(
+            this.clientId,
+            this.hairdresserId,
             newClient,
             this.hairdresser,
             this.date,
@@ -140,11 +148,13 @@ public class Appointment implements Entity {
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
         return new Appointment(
-            this.client,
-            newHairdresser,
-            this.date,
-            this.time,
-            this.appointmentStatus
+                this.clientId,
+                this.hairdresserId,
+                this.client,
+                newHairdresser,
+                this.date,
+                this.time,
+                this.appointmentStatus
         );
     }
 

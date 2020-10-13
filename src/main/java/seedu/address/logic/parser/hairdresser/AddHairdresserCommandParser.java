@@ -28,8 +28,8 @@ import seedu.address.model.specialisation.Specialisation;
 
 public class AddHairdresserCommandParser implements Parser<AddHairdresserCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddHairdresserCommand
+     * and returns an AddHairdresserCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddHairdresserCommand parse(String args) throws ParseException {

@@ -1,8 +1,14 @@
 package seedu.address.model.person.client;
 
-import java.util.List;
+import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.function.Predicate;
+
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.RecordContainsClientIdPredicate;
 import seedu.address.model.person.client.exceptions.ClientNotFoundException;
 import seedu.address.model.person.client.exceptions.DuplicateClientException;
 
@@ -32,6 +38,18 @@ public class UniqueClientList extends UniqueEntityList<Client> {
         setEntities(clients);
     }
 
+    /**
+     * Returns Patient with given PersonId.
+     */
+    public Client findClientById(PersonId idToCheck) {
+        requireNonNull(idToCheck);
+        Predicate<Client> predicate = new RecordContainsClientIdPredicate(idToCheck);
+        FilteredList<Client> clientWithId = internalList.filtered(predicate);
+        if (clientWithId.isEmpty()) {
+            return null;
+        }
+        return clientWithId.get(0);
+    }
 
     @Override
     public DuplicateClientException duplicateException() {

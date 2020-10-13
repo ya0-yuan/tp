@@ -15,4 +15,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_TITLE = new Prefix("ti/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    // prefixes for Appointment
+    public static final Prefix PREFIX_CLIENT_ID = new Prefix("cid/");
+    public static final Prefix PREFIX_HAIRDRESSER_ID = new Prefix("hid/");
+    public static final Prefix PREFIX_DATE_OF_APPT = new Prefix("d/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_APPT_STATUS = new Prefix("s/");
+    public static final Prefix PREFIX_CHRONOLOGY = new Prefix("c/");
+    public static final String PLACEHOLDER_CLIENT_ID = "CLIENT_ID";
+    public static final String PLACEHOLDER_HAIRDRESSER_ID = "HAIRDRESSER_ID";
+    public static final String PLACEHOLDER_DATE_OF_APPT = "DATE_OF_APPT";
+    public static final String PLACEHOLDER_START_TIME = "START_TIME";
 }
