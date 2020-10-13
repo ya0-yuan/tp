@@ -1,8 +1,7 @@
 package seedu.address.model.appointment;
 
 import seedu.address.model.appointment.exceptions.AppointmentNotInFutureException;
-import seedu.address.model.person.client.Client;
-import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.PersonId;
 
 /**
  * Represents an Appointment that must be created in the future compared to system time.
@@ -14,13 +13,13 @@ public class FutureAppointment extends Appointment {
     /**
      * Constructs an {@code Appointment} with a stated status.
      *
-     * @param client            A valid client.
-     * @param hairdresser       A valid hairdresser.
+     * @param clientId            A valid client.
+     * @param hairdresserId       A valid hairdresser.
      * @param date              A valid appointment date
      * @param time              A valid appointment time
      */
-    public FutureAppointment(Client client, Hairdresser hairdresser, AppointmentDate date, AppointmentTime time) {
-        super(client, hairdresser, date, time, AppointmentStatus.ACTIVE);
+    public FutureAppointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date, AppointmentTime time) {
+        super(clientId, hairdresserId, date, time, AppointmentStatus.ACTIVE);
         //TODO: Should it be !isFuture() instead?
         if (isPast()) {
             throw new AppointmentNotInFutureException();

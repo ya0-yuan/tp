@@ -14,10 +14,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.FutureAppointment;
+import seedu.address.model.appointment.Appointment;
 
 public class AddAppointmentCommand extends Command {
-    public static final String COMMAND_WORD = "add-appt";
+    public static final String COMMAND_WORD = "add_appt";
     public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_ID + "1 "
             + PREFIX_HAIRDRESSER_ID + "7 "
@@ -37,9 +37,9 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_HAIRDRESSER_NOT_NOT_FOUND =
             "Hairdresser with the ID is not found. Please enter a valid hairdresser ID.";
 
-    private final FutureAppointment appointment;
+    private Appointment appointment;
 
-    public AddAppointmentCommand(FutureAppointment appointment) {
+    public AddAppointmentCommand(Appointment appointment) {
         this.appointment = appointment;
     }
 
@@ -50,8 +50,8 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        appointment.replaceClient(model.getClientById(appointment.getClientId()));
-        appointment.replaceHairdresser(model.getHairdresserById(appointment.getHairdresserId()));
+        appointment = appointment.replaceClient(model.getClientById(appointment.getClientId()))
+                .replaceHairdresser(model.getHairdresserById(appointment.getHairdresserId()));
 
         if (appointment.getClient() == null) {
             throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
