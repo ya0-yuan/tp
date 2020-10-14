@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand.EditHairdresserDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -40,7 +39,8 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditHairdresserCommand.MESSAGE_USAGE), pe);
         }
 
         EditHairdresserDescriptor editHairdresserDescriptor = new EditHairdresserDescriptor();
@@ -65,7 +65,7 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
         }
 
         if (!editHairdresserDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditHairdresserCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditHairdresserCommand(index, editHairdresserDescriptor);

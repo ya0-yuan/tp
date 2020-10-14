@@ -8,10 +8,8 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonIdCounter;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.UniqueClientList;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -24,7 +22,6 @@ import seedu.address.model.person.hairdresser.UniqueHairdresserList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
     private final UniqueAppointmentList appointments;
@@ -38,7 +35,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
 
         clients = new UniqueClientList();
 
@@ -70,13 +66,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.personIdCounter.setCurrentMaxId(idCounter.getCurrentMaxId());
     }
 
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -86,46 +75,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         setHairdressers(newData.getHairdresserList());
         setClients(newData.getClientList());
         setHairdressers(newData.getHairdresserList());
-        setPersons(newData.getPersonList());
         setAppointments(newData.getAppointmentList());
     }
 
-    //============== person-level operations==============
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
-    }
 
     //===============hairdresser-level operations=============
 
@@ -329,14 +281,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
+
 
     @Override
     public ObservableList<Hairdresser> getHairdresserList() {
@@ -352,7 +301,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
                 && clients.equals(((AddressBook) other).clients)
                 && hairdressers.equals(((AddressBook) other).hairdressers)
                 && appointments.equals(((AddressBook) other).appointments)
@@ -361,7 +309,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, clients);
+        return Objects.hash(hairdressers, appointments, personIdCounter, clients);
     }
 
 }
