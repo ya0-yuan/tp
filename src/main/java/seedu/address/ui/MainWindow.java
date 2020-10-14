@@ -36,7 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     //private HairdresserListPanel hairdresserListPanel;
     //private ClientListPanel clientListPanel;
-    private PersonListPanel personListPanel;
     private ClientListPanel clientListPanel;
     private HairdresserListPanel hairdresserListPanel;
     private AppointmentListPanel appointmentListPanel;
@@ -184,10 +183,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

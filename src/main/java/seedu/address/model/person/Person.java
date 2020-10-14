@@ -10,7 +10,7 @@ import seedu.address.model.Entity;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person implements Entity {
+public abstract class Person implements Entity {
 
     // Identity fields
     private final Name name;
