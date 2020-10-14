@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,7 +22,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.testutil.HairdresserBuilder;
@@ -129,6 +132,16 @@ public class AddHairdresserTest {
         }
 
         @Override
+        public Client getClientById(PersonId clientId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Hairdresser getHairdresserById(PersonId hairdresserId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
@@ -210,6 +223,51 @@ public class AddHairdresserTest {
 
         @Override
         public void updateFilteredHairdresserList(Predicate<Hairdresser> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment changedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Appointment getSelectedAppointment() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyProperty<Appointment> selectedAppointmentProperty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
