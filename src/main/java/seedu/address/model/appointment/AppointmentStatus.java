@@ -14,6 +14,8 @@ public enum AppointmentStatus {
         + CANCELLED.name() + ": " + CANCELLED.message + " "
         + COMPLETED.name() + ": " + COMPLETED.message + " "
         + MISSED.name() + ": " + MISSED.message;
+    public static final String MESSAGE_CONSTRAINT_PAST = "Only appointments in the past can be marked as "
+            + COMPLETED + " or " + MISSED;
 
     /**
      * The message of the appointment status.

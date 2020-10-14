@@ -87,9 +87,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(newData.getClientList());
         setHairdressers(newData.getHairdresserList());
         setPersons(newData.getPersonList());
+        setAppointments(newData.getAppointmentList());
     }
 
-    //// person-level operations
+    //============== person-level operations==============
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -126,7 +127,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// hairdresser-level operations
+    //===============hairdresser-level operations=============
 
     /**
      * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the address book.
@@ -172,12 +173,90 @@ public class AddressBook implements ReadOnlyAddressBook {
         hairdressers.remove(key);
     }
 
+    //============client level operations=================
+
+    /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
+    }
+
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
+    }
+
+    /**
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
+     */
+    public void addClient(Client p) {
+        clients.add(p);
+    }
+
+    /**
+     * Replaces the given client {@code client} in the list with {@code editedClient}.
+     * {@code target} must exist in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     */
+    public void setClient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
+
+        clients.setClient(target, editedClient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeClient(Client key) {
+        clients.remove(key);
+    }
+
+    //// util methods
+
+    /**
+     * Return object Patient with given id
+     */
+    public Client getClientById(PersonId clientId) {
+        requireNonNull(clientId);
+        return clients.findClientById(clientId);
+    }
+
+    /**
+     * Return object Doctor with given id
+     */
+    Hairdresser getHairdresserById(PersonId hairdresserId) {
+        requireNonNull(hairdresserId);
+        return hairdressers.findHairdresserById(hairdresserId);
+    }
+    @Override
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
+    }
+
+
+    // ================Appointment level operations ==============
+
     /**
      * Replaces the contents of the appointment list with {@code appointments}.
      * {@code appointment} must not contain duplicate persons.
      */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
     }
 
     /**
@@ -284,74 +363,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return Objects.hash(persons, clients);
     }
-
-    /**
-     * Replaces the contents of the client list with {@code clients}.
-     * {@code clients} must not contain duplicate clients.
-     */
-    public void setClients(List<Client> clients) {
-        this.clients.setClients(clients);
-    }
-
-
-    //// person-level operations
-
-    /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
-     */
-    public boolean hasClient(Client client) {
-        requireNonNull(client);
-        return clients.contains(client);
-    }
-
-    /**
-     * Adds a client to the address book.
-     * The client must not already exist in the address book.
-     */
-    public void addClient(Client p) {
-        clients.add(p);
-    }
-
-    /**
-     * Replaces the given client {@code client} in the list with {@code editedClient}.
-     * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
-     */
-    public void setClient(Client target, Client editedClient) {
-        requireNonNull(editedClient);
-
-        clients.setClient(target, editedClient);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeClient(Client key) {
-        clients.remove(key);
-    }
-
-    //// util methods
-
-    /**
-     * Return object Patient with given id
-     */
-    public Client getClientById(PersonId clientId) {
-        requireNonNull(clientId);
-        return clients.findClientById(clientId);
-    }
-
-    /**
-     * Return object Doctor with given id
-     */
-    Hairdresser getHairdresserById(PersonId hairdresserId) {
-        requireNonNull(hairdresserId);
-        return hairdressers.findHairdresserById(hairdresserId);
-    }
-    @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
-    }
-
 
 }

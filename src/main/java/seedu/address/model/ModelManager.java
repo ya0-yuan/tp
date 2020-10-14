@@ -201,6 +201,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteAppointment(Appointment target) {
+        addressBook.removeAppointment(target);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
