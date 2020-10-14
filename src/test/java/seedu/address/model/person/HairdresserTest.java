@@ -1,4 +1,4 @@
-package seedu.address.model.person.hairdresser;
+package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalHairdressers.BENJAMIN;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.testutil.HairdresserBuilder;
 
 class HairdresserTest {
