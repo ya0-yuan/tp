@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 //import static seedu.address.testutil.Assert.assertThrows;
 //
 //import java.util.ArrayList;
@@ -27,18 +28,41 @@ package seedu.address.logic.commands;
 public class CommandTestUtil {
 
     // for hairdresser testings
-    public static final String VALID_NAME_ALISSA = "Amy Bee";
-    public static final String VALID_NAME_BENJAMIN = "Bob Choo";
-    public static final String VALID_PHONE_ALISSA = "11111111";
+    public static final String VALID_NAME_ALISSA = "Alissa Bee";
+    public static final String VALID_NAME_BENJAMIN = "Benjamin Choo";
+    public static final String VALID_PHONE_ALISSA = "33333333";
     public static final String VALID_PHONE_BENJAMIN = "22222222";
-    public static final String VALID_EMAIL_ALISSA = "amy@example.com";
-    public static final String VALID_EMAIL_BENJAMIN = "bob@example.com";
+    public static final String VALID_EMAIL_ALISSA = "alissa@example.com";
+    public static final String VALID_EMAIL_BENJAMIN = "benjamin@example.com";
     public static final String VALID_GENDER_ALISSA = "F";
     public static final String VALID_GENDER_BENJAMIN = "M";
     public static final String VALID_TITLE_ALISSA = "Colourist";
     public static final String VALID_TITLE_BENJAMIN = "Assistant";
     public static final String VALID_SPECIALISATION_PERM = "perm";
     public static final String VALID_SPECIALISATION_DYE = "dye";
+
+    public static final String NAME_DESC_ALISSA = " " + PREFIX_NAME + VALID_NAME_ALISSA;
+    public static final String NAME_DESC_BENJAMIN = " " + PREFIX_NAME + VALID_NAME_BENJAMIN;
+    public static final String PHONE_DESC_ALISSA = " " + PREFIX_PHONE + VALID_PHONE_ALISSA;
+    public static final String PHONE_DESC_BENJAMIN = " " + PREFIX_PHONE + VALID_PHONE_BENJAMIN;
+    public static final String EMAIL_DESC_ALISSA = " " + PREFIX_EMAIL + VALID_EMAIL_ALISSA;
+    public static final String EMAIL_DESC_BENJAMIN = " " + PREFIX_EMAIL + VALID_EMAIL_BENJAMIN;
+    public static final String TITLE_DESC_ALISSA = " " + PREFIX_TITLE + VALID_TITLE_ALISSA;
+    public static final String TITLE_DESC_BENJAMIN = " " + PREFIX_TITLE + VALID_TITLE_BENJAMIN;
+    public static final String GENDER_DESC_ALISSA = " " + PREFIX_GENDER + VALID_GENDER_ALISSA;
+    public static final String GENDER_DESC_BENJAMIN = " " + PREFIX_GENDER + VALID_GENDER_BENJAMIN;
+    public static final String SPECIALISATION_DESC_PERM = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_PERM;
+    public static final String SPECIALISATION_DESC_DYE = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_DYE;
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE; // empty string not allowed for gender
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "G"; // non-'F'/'M' not allowed for gender
+    public static final String INVALID_SPECIALISATION_DESC = " " + PREFIX_SPECIALISATION + "hubby*";
+    // '*' not allowed in specs
+
+    //for client testings
 
     //public static final String VALID_NAME_AMY = "Amy Bee";
     //public static final String VALID_NAME_BOB = "Bob Choo";
@@ -68,8 +92,8 @@ public class CommandTestUtil {
     //public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     //public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     //
-    //public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    //public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     //
     //public static final EditCommand.EditPersonDescriptor DESC_AMY;
     //public static final EditCommand.EditPersonDescriptor DESC_BOB;
