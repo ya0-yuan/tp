@@ -37,8 +37,8 @@ public class Appointment implements Entity {
         requireAllNonNull(date, time, appointmentStatus);
         this.client = client;
         this.hairdresser = hairdresser;
-        this.clientId = client.getId();
-        this.hairdresserId = hairdresser.getId();
+        this.clientId = client == null ? null : client.getId();
+        this.hairdresserId = hairdresser == null ? null : hairdresser.getId();
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
@@ -87,7 +87,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with client replaced by null.
      */
     public Appointment deleteClient() {
-        return replaceClient(null);
+        return replaceClient(this.client.setTombstone());
     }
 
     public Hairdresser getHairdresser() {
@@ -114,7 +114,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with hairdresser replaced by null.
      */
     public Appointment deleteHairdresser() {
-        return replaceHairdresser(null);
+        return replaceHairdresser(this.hairdresser.setTombstone());
     }
 
     public AppointmentDate getDate() {

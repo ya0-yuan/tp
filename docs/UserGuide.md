@@ -46,68 +46,93 @@ HairstyleX helps managers for budding neighborhood hair salons to manage clients
 
 </div>
 
-### Viewing help : `help`
+### General commands
 
-Shows the user instructions in case the receptionist forgets a command.
+#### Viewing help : `help`
 
-#### User Guide:
+Shows the link to the user guide in case the user forgets the commands.
 
-Format: `guide`
+#### Clearing all entries : `clear`
 
-Show the user guide.
+Clears all entries from the application.
 
-#### View list of commands:
+Format: `clear`
 
-Format: `help [command]`
+#### Exiting the program : `exit`
 
-Shows all the command if `[command]` is not specified, else show the syntax for a specific command and detailed information.
+Exits the program.
 
-### Adding a hairdresser : `add_hairdresser`
+Format: `exit`
 
-Adds a hairdresser to the database.
+#### Saving the data
 
-Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​`
+All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. Will be loaded upon restart of the application.
 
-### Adding a client : `add_client`
+### Appointment commands
+
+#### Adding an appointment : `add_appt`
+
+Adds an appointment to the database.
+
+Format: `add_appt cid/CLIENT_INDEX hid/HAIRDRESSER_INDEX d/DATE t/TIME`
+* `DATE` must be entered in YYYY-MM-DD format
+* `TIME` must be entered in 24 Hour HH:MM format
+
+Examples:
+* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
+
+#### Listing all appointments : `list_appt`
+
+Shows a list of all appointments in the database.
+
+Format: `list_appt`
+
+#### Editing an appointment : `edit_appt`
+
+Edits an existing appointment in the database.
+
+Format: `edit_appointment INDEX s/STATUS`
+
+* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* Only the status of the appointment can be updated.
+* All appointments are active by default.
+
+Examples:
+*  `edit_appt 1 s/CANCELLED` Edits the status of the first appointment to be CANCELLED.
+
+#### Deleting an appointment : `delete_appt`
+
+Removes a specific appointment from the database.
+
+Format: `delete_appt INDEX`
+
+* Deletes the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Client commands
+
+#### Adding a client : `add_client`
 
 Adds a client to the database.
 
-Format: `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​`
+Format: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
 
 Examples:
 * `add_hairdresser n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ti/senior_stylist`
-* `add_client n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tr/perm`
+* `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 
-### Listing all hairdressers/clients : `list`
+#### Listing all clients : `list_client`
 
-Shows a list of all hairdressers/clients in the database.
-
-Format: `list_hairdresser`
+Shows a list of all clients in the database.
 
 Format: `list_client`
 
-### Editing a hairdresser : `edit_hairdresser`
-
-Edits an existing hairdresser in the database.
-
-Format: `edit_hairdresser INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`
-
-* Edits the hairdresser at the specified `INDEX`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the hairdresser will be removed i.e adding of tags is not cumulative.
-* You can remove all the hairdresser’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit_hairdresser 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st hairdresser to be `91234567` and `yy@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd hairdresser to be `Betsy Crower` and clears all existing tags.
-
-### Editing a client : `edit_client`
+#### Editing a client : `edit_client`
 
 Edits an existing client in the database.
 
-Format: `edit_client INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`
+Format: `edit_client INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -118,15 +143,9 @@ Format: `edit_client INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tr/TREATMEN
 
 Examples:
 *  `edit_client 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `yy@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `edit_client 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating hairdressers/clients by name: `find`
-
-Finds hairdressers/clients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-### Deleting a client : `delete_client`
+#### Deleting a client : `delete_client`
 
 Removes a specific client from the database.
 
@@ -135,8 +154,42 @@ Format: `delete_client INDEX`
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* All appointments with this corresponding client will now show "DELETED" for the client placeholder
 
-### Deleting a hairdresser : `delete_hairdresser`
+### Hairdresser commands
+
+#### Adding a hairdresser : `add_hairdresser`
+
+Adds a hairdresser to the database.
+
+Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
+
+#### Listing all hairdressers : `list_hairdresser`
+
+Shows a list of all hairdressers in the database.
+
+Format: `list_hairdresser`
+
+Format: `list_client`
+
+#### Editing a hairdresser : `edit_hairdresser`
+
+Edits an existing hairdresser in the database.
+
+Format: `edit_hairdresser INDEX [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+
+* Edits the hairdresser at the specified `INDEX`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
+* You can remove all the hairdresser’s tags by typing `s/` without
+    specifying any specialisations after it.
+
+Examples:
+*  `edit_hairdresser 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st hairdresser to be `91234567` and `yy@example.com` respectively.
+*  `edit_hairdresser 2 n/Betsy Crower s/` Edits the name of the 2nd hairdresser to be `Betsy Crower` and clears all existing specialisations.
+
+#### Deleting a hairdresser : `delete_hairdresser`
 
 Removes a specific hairdresser from the database.
 
@@ -145,23 +198,7 @@ Format: `delete_hairdresser INDEX`
 * Deletes the hairdresser at the specified `INDEX`.
 * The index refers to the index number shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
-
-### Clearing all entries : `clear`
-
-Clears all entries from the application.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. Will be loaded upon restart of the application.
+* All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 
 ## FAQ
 
@@ -175,14 +212,17 @@ All hairdressers and client information will be stored automatically after any c
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
-**List Hairdressers** | `list_hairdresser`
-**List Clients** | `list_client`
-**Edit Hairdresser** | `edit_hairdresser INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
-**Edit Client** | `edit_client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.,`edit_client 2 n/James Tan p/Female Stylist`
-**Delete Hairdresser** | `delete_hairdresser INDEX`<br> e.g., `delete_hairdresser 3`
-**Delete Client** | `delete_client INDEX`<br> e.g., `delete_client 3`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Clear** | `clear`
 **Exit** | `exit`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Appointment** | `add_appt cid/CLIENT_INDEX hid/HAIRDRESSER_INDEX d/DATE t/TIME` <br> e.g., `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
+**List Hairdressers** | `list_hairdresser`
+**List Clients** | `list_client`
+**List Appointments** | `list_appt`
+**Edit Hairdresser** | `edit_hairdresser INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Client** | `edit_client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.,`edit_client 2 n/James Tan p/Female Stylist`
+**Edit Appointment** | `edit_appointment INDEX s/STATUS` <br> e.g.,`edit_appt 1 s/CANCELLED`
+**Delete Hairdresser** | `delete_hairdresser INDEX` <br> e.g., `delete_hairdresser 3`
+**Delete Client** | `delete_client INDEX` <br> e.g., `delete_client 3`
+**Delete Appointment** | `delete_appt INDEX` <br> e.g., `delete_appt 3`

@@ -59,6 +59,14 @@ public class Hairdresser extends Person {
     }
 
     /**
+     * Returns a hairdresser which has been previously deleted
+     */
+    public Hairdresser setTombstone() {
+        return new Hairdresser(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
+                this.getGender(), this.getTitle(), this.getSpecs());
+    }
+
+    /**
      * Returns true if both hairdressers of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two hairdressers.
      */

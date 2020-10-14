@@ -152,6 +152,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteClient(Client client) {
         addressBook.removeClient(client);
+        addressBook.updateAppointmentWhenClientDeleted(client.getId());
     }
 
     @Override
@@ -165,6 +166,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         addressBook.setClient(target, editedClient);
+        addressBook.updateAppointmentWhenClientIsUpdated(target.getId(), editedClient);
     }
 
     //=========== Hairdresser =============================================================
@@ -178,6 +180,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteHairdresser(Hairdresser target) {
         addressBook.removeHairdresser(target);
+        addressBook.updateAppointmentWhenHairdresserDeleted(target.getId());
     }
 
     @Override
@@ -191,6 +194,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedHairdresser);
 
         addressBook.setHairdresser(target, editedHairdresser);
+        addressBook.updateAppointmentWhenHairdresserIsUpdated(target.getId(), editedHairdresser);
     }
 
     //=========== Appointment =============================================================

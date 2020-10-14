@@ -59,6 +59,14 @@ public class Client extends Person {
     }
 
     /**
+     * Returns a client which has been previously deleted
+     */
+    public Client setTombstone() {
+        return new Client(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
+                this.getGender(), this.getAddress(), this.getTags());
+    }
+
+    /**
      * Returns true if both patients have the same phone number.
      * This defines a weaker notion of equality between two clients.
      */
