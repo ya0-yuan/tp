@@ -6,23 +6,28 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddClientCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteClientCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditClientCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListClientCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.appointment.AddAppointmentCommand;
+import seedu.address.logic.commands.appointment.DeleteAppointmentCommand;
+import seedu.address.logic.commands.appointment.EditAppointmentCommand;
+import seedu.address.logic.commands.appointment.ListAppointmentCommand;
+import seedu.address.logic.commands.client.AddClientCommand;
+import seedu.address.logic.commands.client.DeleteClientCommand;
+import seedu.address.logic.commands.client.EditClientCommand;
+import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.hairdresser.AddHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
+import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
+import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
+import seedu.address.logic.parser.appointment.EditAppointmentCommandParser;
+import seedu.address.logic.parser.client.AddClientCommandParser;
+import seedu.address.logic.parser.client.DeleteClientCommandParser;
+import seedu.address.logic.parser.client.EditClientCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.hairdresser.AddHairdresserCommandParser;
 import seedu.address.logic.parser.hairdresser.DeleteHairdresserCommandParser;
@@ -55,8 +60,6 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
@@ -64,9 +67,8 @@ public class AddressBookParser {
         case AddHairdresserCommand.COMMAND_WORD:
             return new AddHairdresserCommandParser().parse(arguments);
 
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
 
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
@@ -74,10 +76,8 @@ public class AddressBookParser {
         case EditHairdresserCommand.COMMAND_WORD:
             return new EditHairdresserCommandParser().parse(arguments);
 
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
+        case EditAppointmentCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
@@ -85,16 +85,11 @@ public class AddressBookParser {
         case DeleteHairdresserCommand.COMMAND_WORD:
             return new DeleteHairdresserCommandParser().parse(arguments);
 
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
 
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();
@@ -102,13 +97,14 @@ public class AddressBookParser {
         case ListHairdresserCommand.COMMAND_WORD:
             return new ListHairdresserCommand();
 
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

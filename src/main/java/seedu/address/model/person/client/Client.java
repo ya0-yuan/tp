@@ -37,7 +37,7 @@ public class Client extends Person {
 
     /**
      * For id counter.
-     * This is an existing patient and does not need to generate a new ID.
+     * This is an existing client and does not need to generate a new ID.
      */
     public Client(PersonId id, Name name, Phone phone, Email email, Gender gender, Address address, Set<Tag> tags) {
         super(id, name, phone, email, gender);
@@ -59,8 +59,15 @@ public class Client extends Person {
     }
 
     /**
-     * Returns true if both patients have the same phone number.
-     * This defines a weaker notion of equality between two clients.
+     * Returns a client which has been previously deleted
+     */
+    public Client setTombstone() {
+        return new Client(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
+                this.getGender(), this.getAddress(), this.getTags());
+    }
+
+    /**
+     * Returns true iff the attributes of the both clients are exactly the same.
      */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
@@ -68,7 +75,12 @@ public class Client extends Person {
         }
 
         return otherClient != null
-                && (otherClient.getPhone().equals(getPhone()));
+            && otherClient.getName().equals(getName())
+            && otherClient.getPhone().equals(getPhone())
+            && otherClient.getEmail().equals(getEmail())
+            && otherClient.getGender().equals(getGender())
+            && otherClient.getAddress().equals(getAddress())
+            && otherClient.getTags().equals(getTags());
     }
 
     /**

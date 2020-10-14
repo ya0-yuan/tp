@@ -4,11 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Entity;
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person implements Entity {
 
     // Identity fields
     private final Name name;
@@ -81,6 +83,16 @@ public class Person {
                 && (otherPerson.getPhone().equals(getPhone())
                         || otherPerson.getEmail().equals(getEmail())
                         || otherPerson.getId().equals(getId()));
+    }
+
+    @Override
+    public boolean isSame(Entity other) {
+        if (other instanceof Person) {
+            return isSamePerson((Person) other);
+        } else {
+            return false;
+        }
+
     }
 
     /**

@@ -10,7 +10,7 @@
         <padding>
             <Insets bottom="5" />
         </padding>
-        <Label styleClass="label-bright">Doctors</Label>
+        <Label styleClass="label-bright">Hairdressers</Label>
     </HBox>
     <ListView fx:id="hairdresserListView" VBox.vgrow="ALWAYS" />
 </VBox>

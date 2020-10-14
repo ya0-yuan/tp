@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.address.model.Entity;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -12,7 +13,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 /**
  * Represents an Appointment between a client and a hairdresser.
  */
-public class Appointment {
+public class Appointment implements Entity {
 
     private final PersonId clientId;
     private final PersonId hairdresserId;
@@ -21,38 +22,6 @@ public class Appointment {
     private final AppointmentStatus appointmentStatus;
     private final Client client;
     private final Hairdresser hairdresser;
-
-    ///**
-    // * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
-    // *
-    // * @param clientId      A valid personId.
-    // * @param hairdresserId A valid personId.
-    // * @param date          A valid appointment date
-    // * @param time          A valid appointment time
-    // */
-    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-    //                   AppointmentTime time) {
-    //
-    //    this(clientId, hairdresserId, date, time, AppointmentStatus.ACTIVE);
-    //}
-
-    ///**
-    // * Constructs an {@code Appointment} with a stated status.
-    // *
-    // * @param clientId      A valid personId.
-    // * @param hairdresserId A valid personId.
-    // * @param date          A valid appointment date
-    // * @param time          A valid appointment time
-    // */
-    //public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-    //                   AppointmentTime time, AppointmentStatus appointmentStatus) {
-    //    requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
-    //    this.clientId = clientId;
-    //    this.hairdresserId = hairdresserId;
-    //    this.date = date;
-    //    this.time = time;
-    //    this.appointmentStatus = appointmentStatus;
-    //}
 
     /**
      * Constructs an {@code Appointment} with a stated status.
@@ -68,19 +37,12 @@ public class Appointment {
         requireAllNonNull(date, time, appointmentStatus);
         this.client = client;
         this.hairdresser = hairdresser;
-        this.clientId = client.getId();
-        this.hairdresserId = hairdresser.getId();
+        this.clientId = client == null ? null : client.getId();
+        this.hairdresserId = hairdresser == null ? null : hairdresser.getId();
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
     }
-
-    ///**
-    // * Returns true if a given string is a valid appointment.
-    // */
-    //public static boolean isValidAppointment(String test) {
-    //    return !test.trim().isEmpty();
-    //}
 
     @Override
     public String toString() {
@@ -125,7 +87,7 @@ public class Appointment {
      * @return a new Appointment object with client replaced by null.
      */
     public Appointment deleteClient() {
-        return replaceClient(null);
+        return replaceClient(this.client.setTombstone());
     }
 
     public Hairdresser getHairdresser() {
@@ -139,11 +101,11 @@ public class Appointment {
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
         return new Appointment(
-            this.client,
-            newHairdresser,
-            this.date,
-            this.time,
-            this.appointmentStatus
+                this.client,
+                newHairdresser,
+                this.date,
+                this.time,
+                this.appointmentStatus
         );
     }
 
@@ -152,7 +114,7 @@ public class Appointment {
      * @return a new Appointment object with hairdresser replaced by null.
      */
     public Appointment deleteHairdresser() {
-        return replaceHairdresser(null);
+        return replaceHairdresser(this.hairdresser.setTombstone());
     }
 
     public AppointmentDate getDate() {
@@ -168,6 +130,11 @@ public class Appointment {
     }
 
     public boolean isSameAppointment(Appointment that) {
+        return isSame(that);
+    }
+
+    @Override
+    public boolean isSame(Entity that) {
         return this.equals(that);
     }
 

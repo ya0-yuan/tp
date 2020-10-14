@@ -106,7 +106,8 @@ public class EditHairdresserCommand extends Command {
         Gender updatedGender = editHairdresserDescriptor.getGender().orElse(hairdresserToEdit.getGender());
         Title updatedTitle = editHairdresserDescriptor.getTitle().orElse(hairdresserToEdit.getTitle());
         Set<Specialisation> updatedSpecs = editHairdresserDescriptor.getSpecs().orElse(hairdresserToEdit.getSpecs());
-        return new Hairdresser(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTitle, updatedSpecs);
+        return new Hairdresser(hairdresserToEdit.getId(), updatedName,
+                updatedPhone, updatedEmail, updatedGender, updatedTitle, updatedSpecs);
     }
 
     @Override
@@ -158,7 +159,7 @@ public class EditHairdresserCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, title, specs);
         }
 
         public void setName(Name name) {
