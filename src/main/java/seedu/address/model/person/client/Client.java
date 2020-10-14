@@ -37,7 +37,7 @@ public class Client extends Person {
 
     /**
      * For id counter.
-     * This is an existing patient and does not need to generate a new ID.
+     * This is an existing client and does not need to generate a new ID.
      */
     public Client(PersonId id, Name name, Phone phone, Email email, Gender gender, Address address, Set<Tag> tags) {
         super(id, name, phone, email, gender);
@@ -59,7 +59,7 @@ public class Client extends Person {
     }
 
     /**
-     * Returns true if both patients have the same phone number.
+     * Returns true if both clients have the same name and at least one other attribute in common.
      * This defines a weaker notion of equality between two clients.
      */
     public boolean isSameClient(Client otherClient) {
@@ -68,7 +68,12 @@ public class Client extends Person {
         }
 
         return otherClient != null
-                && (otherClient.getPhone().equals(getPhone()));
+            && otherClient.getName().equals(getName())
+            && otherClient.getPhone().equals(getPhone())
+            && otherClient.getEmail().equals(getEmail())
+            && otherClient.getGender().equals(getGender())
+            && otherClient.getAddress().equals(getAddress())
+            && otherClient.getTags().equals(getTags());
     }
 
     /**
