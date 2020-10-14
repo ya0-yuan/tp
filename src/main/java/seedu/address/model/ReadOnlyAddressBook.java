@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonIdCounter;
 import seedu.address.model.person.client.Client;
@@ -18,7 +19,10 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
-
+    /**
+     * Returns an unmodifiable view of the clients list.
+     * This list will not contain any duplicate clients.
+     */
     ObservableList<Client> getClientList();
 
     /**
@@ -26,6 +30,12 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Hairdresser> getHairdresserList();
+
+    /**
+     * Returns an unmodifiable view of the appointments list.
+     * This list will not contain any duplicate appointments.
+     */
+    ObservableList<Appointment> getAppointmentList();
 
     /**
      * Returns PersonIdCounter for hairdresser and client.

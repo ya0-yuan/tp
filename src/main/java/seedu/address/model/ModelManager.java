@@ -7,11 +7,17 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ReadOnlyProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
@@ -26,6 +32,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Hairdresser> filteredHairdressers;
+    private final FilteredList<Appointment> filteredAppointments;
+    private final SimpleObjectProperty<Appointment> selectedAppointment = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,11 +47,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
-
         filteredHairdressers = new FilteredList<>(this.addressBook.getHairdresserList());
-
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -98,6 +104,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Client getClientById(PersonId clientId) {
+        requireNonNull(clientId);
+        return addressBook.getClientById(clientId);
+    }
+
+    @Override
+    public Hairdresser getHairdresserById(PersonId hairdresserId) {
+        requireNonNull(hairdresserId);
+        return addressBook.getHairdresserById(hairdresserId);
+    }
+
+    //=========== Person =============================================================
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -121,10 +141,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Client =============================================================
+
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return addressBook.hasPerson(client);
+        return addressBook.hasClient(client);
     }
 
     @Override
@@ -144,6 +166,8 @@ public class ModelManager implements Model {
 
         addressBook.setClient(target, editedClient);
     }
+
+    //=========== Hairdresser =============================================================
 
     @Override
     public boolean hasHairdresser(Hairdresser person) {
@@ -169,6 +193,31 @@ public class ModelManager implements Model {
         addressBook.setHairdresser(target, editedHairdresser);
     }
 
+    //=========== Appointment =============================================================
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        addressBook.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        addressBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment changedAppointment) {
+        requireAllNonNull(target, changedAppointment);
+
+        addressBook.setAppointment(target, changedAppointment);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -185,6 +234,9 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    //=========== Filtered Client List Accessors =============================================================
+
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
@@ -195,6 +247,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }
+
+    //=========== Filtered Hairdresser List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Hairdresser} backed by the internal list of
@@ -209,6 +263,74 @@ public class ModelManager implements Model {
     public void updateFilteredHairdresserList(Predicate<Hairdresser> predicate) {
         requireNonNull(predicate);
         filteredHairdressers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Appointment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedDocX}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    //=========== Selected appointment ======================================================================
+
+    @Override
+    public ReadOnlyProperty<Appointment> selectedAppointmentProperty() {
+        return selectedAppointment;
+    }
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return selectedAppointment.getValue();
+    }
+
+    @Override
+    public void setSelectedAppointment(Appointment appointment) {
+        if (appointment != null && !filteredAppointments.contains(appointment)) {
+            throw new AppointmentNotFoundException();
+        }
+        selectedAppointment.setValue(appointment);
+    }
+
+    /**
+     * Ensures {@code selectedAppointment} is a valid appointment in {@code filteredAppointments}.
+     */
+    private void ensureSelectedAppointmentIsValid(ListChangeListener.Change<? extends Appointment> change) {
+        while (change.next()) {
+            if (selectedAppointment.getValue() == null) {
+                // null is always a valid selected appointment, so we do not need to check that it is valid anymore.
+                return;
+            }
+
+            boolean wasSelectedAppointmentReplaced =
+                    change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                            && change.getRemoved().contains(selectedAppointment.getValue());
+            if (wasSelectedAppointmentReplaced) {
+                // Update selectedAppointment to its new value.
+                int index = change.getRemoved().indexOf(selectedAppointment.getValue());
+                selectedAppointment.setValue(change.getAddedSubList().get(index));
+                continue;
+            }
+
+            boolean wasSelectedAppointmentRemoved = change.getRemoved().stream()
+                    .anyMatch(removedAppointment -> selectedAppointment.getValue()
+                            .isSameAppointment(removedAppointment));
+            if (wasSelectedAppointmentRemoved) {
+                // Select the appointment that came before it in the list,
+                // or clear the selection if there is no such appointment.
+                selectedAppointment.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            }
+        }
     }
 
     @Override

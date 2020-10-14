@@ -1,8 +1,14 @@
 package seedu.address.model.person.hairdresser;
 
-import java.util.List;
+import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.function.Predicate;
+
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.RecordContainsHairdresserIdPredicate;
 import seedu.address.model.person.hairdresser.exception.DuplicateHairdresserException;
 import seedu.address.model.person.hairdresser.exception.HairdresserNotFoundException;
 
@@ -25,6 +31,19 @@ public class UniqueHairdresserList extends UniqueEntityList<Hairdresser> {
      */
     public void setHairdressers(List<Hairdresser> clients) {
         setEntities(clients);
+    }
+
+    /**
+     * Returns Hairdresser with given PersonId.
+     */
+    public Hairdresser findHairdresserById(PersonId idToCheck) {
+        requireNonNull(idToCheck);
+        Predicate<Hairdresser> predicate = new RecordContainsHairdresserIdPredicate(idToCheck);
+        FilteredList<Hairdresser> hairdresserWithId = internalList.filtered(predicate);
+        if (hairdresserWithId.isEmpty()) {
+            return null;
+        }
+        return hairdresserWithId.get(0);
     }
 
     @Override

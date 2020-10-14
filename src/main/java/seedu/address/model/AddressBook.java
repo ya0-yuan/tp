@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonIdCounter;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.client.Client;
@@ -24,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
+    private final UniqueAppointmentList appointments;
     private final PersonIdCounter personIdCounter;
 
     /*
@@ -39,6 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients = new UniqueClientList();
 
         hairdressers = new UniqueHairdresserList();
+
+        appointments = new UniqueAppointmentList();
 
         personIdCounter = PersonIdCounter.getInstance();
 
@@ -81,9 +87,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(newData.getClientList());
         setHairdressers(newData.getHairdresserList());
         setPersons(newData.getPersonList());
+        setAppointments(newData.getAppointmentList());
     }
 
-    //// person-level operations
+    //============== person-level operations==============
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -120,7 +127,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// hairdresser-level operations
+    //===============hairdresser-level operations=============
 
     /**
      * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the address book.
@@ -151,8 +158,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the hairdresser list with {@code hairdressers}.
+     * {@code hairdressers} must not contain duplicate persons.
      */
     public void setHairdressers(List<Hairdresser> hairdressers) {
         this.hairdressers.setHairdressers(hairdressers);
@@ -166,41 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         hairdressers.remove(key);
     }
 
-    //// util methods
-
-    @Override
-    public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Hairdresser> getHairdresserList() {
-        return hairdressers.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public PersonIdCounter getPersonIdCounter() {
-        return personIdCounter;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && clients.equals(((AddressBook) other).clients);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(persons, clients);
-    }
+    //============client level operations=================
 
     /**
      * Replaces the contents of the client list with {@code clients}.
@@ -209,9 +182,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
     }
-
-
-    //// person-level operations
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
@@ -250,11 +220,148 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    /**
+     * Return object Patient with given id
+     */
+    public Client getClientById(PersonId clientId) {
+        requireNonNull(clientId);
+        return clients.findClientById(clientId);
+    }
 
+    /**
+     * Return object Doctor with given id
+     */
+    Hairdresser getHairdresserById(PersonId hairdresserId) {
+        requireNonNull(hairdresserId);
+        return hairdressers.findHairdresserById(hairdresserId);
+    }
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
 
+
+    // ================Appointment level operations ==============
+
+    /**
+     * Replaces the contents of the appointment list with {@code appointments}.
+     * {@code appointment} must not contain duplicate persons.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
+    /**
+     * When patient is modified, update patient info in appointment
+     */
+    public void updateAppointmentWhenClientIsUpdated(PersonId clientId, Client editedClient) {
+        requireNonNull(clientId);
+
+        appointments.updateClient(clientId, editedClient);
+    }
+
+    /**
+     * Returns true if a duplicate {@code appointment} exists in HairStyleX.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Adds an appointment.
+     * The appointment must not already exist.
+     */
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    /**
+     * Replaces the given appointment {@code target} in the list with {@code changedAppointment}.
+     * {@code target} must exist in HairStyleX.
+     * The new appointment must not be a duplicate of an existing appointment in HairStyleX.
+     */
+    public void setAppointment(Appointment target, Appointment changedAppointment) {
+        requireNonNull(changedAppointment);
+
+        appointments.setAppointment(target, changedAppointment);
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Set client in appointments to null when the client with the id is deleted
+     */
+    public void updateAppointmentWhenClientDeleted(PersonId clientId) {
+        requireNonNull(clientId);
+        appointments.setClientToNull(clientId);
+    }
+
+    /**
+     * Set hairdresser in appointments to null when the hairdresser with the id is deleted
+     */
+    public void updateAppointmentWhenHairdresserDeleted(PersonId hairdresserId) {
+        requireNonNull(hairdresserId);
+        appointments.setHairdresserToNull(hairdresserId);
+    }
+
+    /**
+     * When hairdresser is modified, update hairdresser info in appointment
+     */
+    public void updateAppointmentWhenHairdresserIsUpdated(PersonId hairdresserId, Hairdresser editedHairdresser) {
+        requireNonNull(hairdresserId);
+
+        appointments.updateHairdresser(hairdresserId, editedHairdresser);
+    }
+
+    //// util methods
+
+    @Override
+    public String toString() {
+        return persons.asUnmodifiableObservableList().size() + " persons";
+        // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Hairdresser> getHairdresserList() {
+        return hairdressers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public PersonIdCounter getPersonIdCounter() {
+        return personIdCounter;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons)
+                && clients.equals(((AddressBook) other).clients)
+                && hairdressers.equals(((AddressBook) other).hairdressers)
+                && appointments.equals(((AddressBook) other).appointments)
+                && personIdCounter.equals(((AddressBook) other).personIdCounter));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(persons, clients);
+    }
 
 }
