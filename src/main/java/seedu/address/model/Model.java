@@ -185,6 +185,12 @@ public interface Model {
     void addAppointment(Appointment appointment);
 
     /**
+     * Adds the appointment.
+     * {@code appointment} must not be a duplicate
+     */
+    void deleteAppointment(Appointment appointment);
+
+    /**
      * Replaces the given appointment {@code target} with {@code changedAppointment}.
      * {@code target} must exist in the HairStyleX.
      * The new appointment must not be the same as another existing appointment in HairStyleX.

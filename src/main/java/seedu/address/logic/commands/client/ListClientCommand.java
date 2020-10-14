@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all clients in the address book to the user.
+ * Lists all clients in HairStyleX to the user.
  */
 public class ListClientCommand extends Command {
 
