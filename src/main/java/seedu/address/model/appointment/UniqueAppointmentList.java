@@ -75,7 +75,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
         requireAllNonNull(toEdit, editedHairdresser);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
-            if (currentAppointment.getClientId().equals(toEdit)) {
+            if (currentAppointment.getHairdresserId().equals(toEdit)) {
                 Appointment newAppointment = currentAppointment.replaceHairdresser(editedHairdresser);
                 internalList.set(i, newAppointment);
             }
