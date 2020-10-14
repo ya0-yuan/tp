@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="920" minHeight="600" onCloseRequest="#handleExit">
+         title="HairStyleX" minWidth="920" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/salon_icon.png" />
   </icons>
   <scene>
     <Scene>
@@ -62,18 +62,18 @@
             <StackPane fx:id="hairdresserListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="personList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
+          <VBox fx:id="appointmentList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <StackPane fx:id="browserPlaceholder" minWidth="320" prefWidth="340">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-          </StackPane>
+<!--          <StackPane fx:id="browserPlaceholder" minWidth="320" prefWidth="340">-->
+<!--            <padding>-->
+<!--              <Insets top="10" right="10" bottom="10" left="10"/>-->
+<!--            </padding>-->
+<!--          </StackPane>-->
 
         </SplitPane>
 

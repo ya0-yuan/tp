@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.hairdresser;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,6 +6,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Hairdresser}.
@@ -39,7 +40,7 @@ public class HairdresserCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
-    private FlowPane tags;
+    private FlowPane specialisations;
 
     /**
      * Creates a {@code HairdresserCode} with the given {@code Hairdresser} and index to display.
@@ -53,8 +54,8 @@ public class HairdresserCard extends UiPart<Region> {
         gender.setText(hairdresser.getGender().value);
         email.setText(hairdresser.getEmail().value);
         title.setText(hairdresser.getTitle().value);
-
-        //hairdresser.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        hairdresser.getSpecs()
+                .forEach(specialisation -> specialisations.getChildren().add(new Label(specialisation.specialisation)));
     }
 
     @Override
