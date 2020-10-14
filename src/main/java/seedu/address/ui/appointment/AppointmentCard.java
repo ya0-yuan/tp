@@ -46,13 +46,13 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
-        status.setText(appointment.getAppointmentStatus().name().toLowerCase());
         clientName.setText(appointment.getClient().getName().fullName);
         hairdresserName.setText(appointment.getHairdresser().getName().fullName);
         date.setText(appointment.getDate().toString());
         time.setText(appointment.getTime().toString());
 
-        //appointment.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        String apptStatus = appointment.getAppointmentStatus().name().toLowerCase();
+        this.status.setText(apptStatus);
     }
 
     @Override

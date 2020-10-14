@@ -54,8 +54,8 @@ public class ClientCard extends UiPart<Region> {
         gender.setText(client.getGender().value);
         email.setText(client.getEmail().value);
         address.setText(client.getAddress().value);
-
-        //client.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        client.getTags()
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

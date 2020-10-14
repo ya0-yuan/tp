@@ -20,13 +20,11 @@
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="id" styleClass="cell_big_label"/>
-            <Label styleClass="cell_big_label"  text="Status:" />
-            <Label fx:id="status" styleClass="cell_big_label" text="\$status" />
+            <Label styleClass="cell_big_label"  text="Client name:" />
+                <Label fx:id="clientName" styleClass="cell_big_label" text="\$clientName" />
+<!--            <Label fx:id="status" styleClass="cell_big_label" text="\$status" />-->
             </HBox>
-            <HBox>
-                <Label styleClass="cell_small_label" text="Client name: " />
-                <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
-            </HBox>
+
             <HBox>
                 <Label styleClass="cell_small_label" text="Hairdresser name: " />
                 <Label fx:id="hairdresserName" styleClass="cell_small_label" text="\$hairdresserName" />
@@ -38,6 +36,9 @@
             <HBox>
                 <Label styleClass="cell_small_label" text="Time: " />
                 <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+            </HBox>
+            <HBox>
+                <Label fx:id="status" styleClass="status_label" text="\$status" />
             </HBox>
         </VBox>
     </GridPane>
