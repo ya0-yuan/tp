@@ -44,7 +44,7 @@ public class AddHairdresserCommand extends Command {
     private final Hairdresser toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Hairdresser}
      */
     public AddHairdresserCommand(Hairdresser hairdresser) {
         requireNonNull(hairdresser);

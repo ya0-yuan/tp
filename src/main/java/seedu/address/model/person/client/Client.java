@@ -59,8 +59,15 @@ public class Client extends Person {
     }
 
     /**
-     * Returns true if both clients have the same name and at least one other attribute in common.
-     * This defines a weaker notion of equality between two clients.
+     * Returns a client which has been previously deleted
+     */
+    public Client setTombstone() {
+        return new Client(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
+                this.getGender(), this.getAddress(), this.getTags());
+    }
+
+    /**
+     * Returns true iff the attributes of the both clients are exactly the same.
      */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {

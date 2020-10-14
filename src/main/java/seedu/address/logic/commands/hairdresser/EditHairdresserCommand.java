@@ -159,7 +159,7 @@ public class EditHairdresserCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, title, specs);
         }
 
         public void setName(Name name) {

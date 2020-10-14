@@ -20,46 +20,8 @@ public class Appointment implements Entity {
     private final AppointmentDate date;
     private final AppointmentTime time;
     private final AppointmentStatus appointmentStatus;
-    private Client client;
-    private Hairdresser hairdresser;
-
-    /**
-     * Constructs a new {@code Appointment}. New appointments default to ACTIVE status.
-     *
-     * @param clientId      A valid personId.
-     * @param hairdresserId A valid personId.
-     * @param date          A valid appointment date
-     * @param time          A valid appointment time
-     */
-    public Appointment(PersonId clientId, PersonId hairdresserId, Client client, Hairdresser hairdresser,
-                       AppointmentDate date, AppointmentTime time, AppointmentStatus appointmentStatus) {
-        requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
-        this.clientId = clientId;
-        this.hairdresserId = hairdresserId;
-        this.client = client;
-        this.hairdresser = hairdresser;
-        this.date = date;
-        this.time = time;
-        this.appointmentStatus = appointmentStatus;
-    }
-
-    /**
-     * Constructs an {@code Appointment} with a stated status.
-     *
-     * @param clientId      A valid personId.
-     * @param hairdresserId A valid personId.
-     * @param date          A valid appointment date
-     * @param time          A valid appointment time
-     */
-    public Appointment(PersonId clientId, PersonId hairdresserId, AppointmentDate date,
-                       AppointmentTime time, AppointmentStatus appointmentStatus) {
-        requireAllNonNull(clientId, hairdresserId, date, time, appointmentStatus);
-        this.clientId = clientId;
-        this.hairdresserId = hairdresserId;
-        this.date = date;
-        this.time = time;
-        this.appointmentStatus = appointmentStatus;
-    }
+    private final Client client;
+    private final Hairdresser hairdresser;
 
     /**
      * Constructs an {@code Appointment} with a stated status.
@@ -75,19 +37,12 @@ public class Appointment implements Entity {
         requireAllNonNull(date, time, appointmentStatus);
         this.client = client;
         this.hairdresser = hairdresser;
-        this.clientId = client.getId();
-        this.hairdresserId = hairdresser.getId();
+        this.clientId = client == null ? null : client.getId();
+        this.hairdresserId = hairdresser == null ? null : hairdresser.getId();
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
     }
-
-    ///**
-    // * Returns true if a given string is a valid appointment.
-    // */
-    //public static boolean isValidAppointment(String test) {
-    //    return !test.trim().isEmpty();
-    //}
 
     @Override
     public String toString() {
@@ -119,8 +74,6 @@ public class Appointment implements Entity {
      */
     public Appointment replaceClient(Client newClient) {
         return new Appointment(
-            this.clientId,
-            this.hairdresserId,
             newClient,
             this.hairdresser,
             this.date,
@@ -134,7 +87,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with client replaced by null.
      */
     public Appointment deleteClient() {
-        return replaceClient(null);
+        return replaceClient(this.client.setTombstone());
     }
 
     public Hairdresser getHairdresser() {
@@ -148,8 +101,6 @@ public class Appointment implements Entity {
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
         return new Appointment(
-                this.clientId,
-                this.hairdresserId,
                 this.client,
                 newHairdresser,
                 this.date,
@@ -163,7 +114,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with hairdresser replaced by null.
      */
     public Appointment deleteHairdresser() {
-        return replaceHairdresser(null);
+        return replaceHairdresser(this.hairdresser.setTombstone());
     }
 
     public AppointmentDate getDate() {
