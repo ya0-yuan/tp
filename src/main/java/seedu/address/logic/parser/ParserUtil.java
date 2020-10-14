@@ -97,7 +97,7 @@ public class ParserUtil {
         requireNonNull(title);
         String trimmedTitle = title.trim();
         if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
     }
@@ -112,7 +112,7 @@ public class ParserUtil {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
         if (!Gender.isValidGender(trimmedGender)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
     }
