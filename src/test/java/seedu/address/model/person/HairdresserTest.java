@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalHairdressers.AMELIA;
 import static seedu.address.testutil.TypicalHairdressers.BENJAMIN;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.testutil.HairdresserBuilder;
 
