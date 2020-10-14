@@ -97,7 +97,7 @@ class JsonAdaptedAppointment {
         }
         final AppointmentStatus modelAppointmentStatus = AppointmentStatus.valueOf(appointmentStatus);
 
-        return new Appointment(modelClient.getId(), modelHairdresser.getId(), modelClient, modelHairdresser,
+        return new Appointment(modelClient, modelHairdresser,
                 modelAppointmentDate, modelAppointmentTime, modelAppointmentStatus);
     }
 

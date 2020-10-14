@@ -87,8 +87,7 @@ public class EditAppointmentCommand extends Command {
 
         AppointmentStatus newStatus = changedAppointmentDescriptor.getStatus();
 
-        return new Appointment(appointmentToChange.getClientId(),
-                appointmentToChange.getHairdresserId(),
+        return new Appointment(
                 appointmentToChange.getClient(),
                 appointmentToChange.getHairdresser(),
                 appointmentToChange.getDate(),
