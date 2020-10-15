@@ -21,7 +21,7 @@ public abstract class EntityListPanel<T> extends UiPart<Region> {
     private ListView<T> entityListView;
 
     /**
-     * Creates a {@code HairdresserListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EntityListPanel} with the given {@code ObservableList}.
      */
     public EntityListPanel(ObservableList<T> entityList) {
         super(FXML);
@@ -30,7 +30,7 @@ public abstract class EntityListPanel<T> extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Hairdresser} using a {@code HairdresserCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Entity} using a {@code Card}.
      */
     class EntityListViewCell extends ListCell<T> {
         @Override
