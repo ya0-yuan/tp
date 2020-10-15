@@ -9,14 +9,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.hairdresser.AddHairdresserCommand;
+import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -26,7 +24,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.specialisation.Specialisation;
 
-public class AddHairdresserCommandParser implements Parser<AddHairdresserCommand> {
+public class AddHairdresserCommandParser extends AddCommandParser<AddHairdresserCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddHairdresserCommand
      * and returns an AddHairdresserCommand object for execution.
@@ -53,14 +51,6 @@ public class AddHairdresserCommandParser implements Parser<AddHairdresserCommand
         Hairdresser hairdresser = new Hairdresser(name, phone, email, gender, title, specList);
 
         return new AddHairdresserCommand(hairdresser);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

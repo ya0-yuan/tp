@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.hairdresser;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -8,8 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -17,7 +15,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 /**
  * Adds a hairdresser to the address book.
  */
-public class AddHairdresserCommand extends Command {
+public class AddHairdresserCommand extends AddPersonCommand<Hairdresser> {
 
     public static final String COMMAND_WORD = "add_hairdresser";
 
@@ -41,32 +39,26 @@ public class AddHairdresserCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New hairdresser added: %1$s";
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the address book";
 
-    private final Hairdresser toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Hairdresser}
      */
     public AddHairdresserCommand(Hairdresser hairdresser) {
-        requireNonNull(hairdresser);
-        toAdd = hairdresser;
+        super(hairdresser);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
 
+    @Override
+    public void addToModel(Model model) throws CommandException {
         if (model.hasHairdresser(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_HAIRDRESSER);
         }
 
         model.addHairdresser(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddHairdresserCommand // instanceof handles nulls
-                && toAdd.equals(((AddHairdresserCommand) other).toAdd));
+    public String getSuccessMessage() {
+        return MESSAGE_SUCCESS;
     }
 }
