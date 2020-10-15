@@ -87,7 +87,7 @@ public class Client extends Person {
     @Override
     public boolean isSame(Entity other) {
 
-        if (other instanceof  Client) {
+        if (other instanceof Client) {
             Client client = (Client) other;
             return isSameClient(client);
         } else {
