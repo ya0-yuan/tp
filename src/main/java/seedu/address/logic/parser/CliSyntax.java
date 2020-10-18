@@ -16,8 +16,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
     // prefixes for Appointment
-    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("cid/");
-    public static final Prefix PREFIX_HAIRDRESSER_INDEX = new Prefix("hid/");
+    public static final Prefix PREFIX_CLIENT_ID = new Prefix("cid/");
+    public static final Prefix PREFIX_HAIRDRESSER_ID = new Prefix("hid/");
     public static final Prefix PREFIX_DATE_OF_APPT = new Prefix("d/");
     public static final Prefix PREFIX_START_TIME = new Prefix("t/");
     public static final Prefix PREFIX_APPT_STATUS = new Prefix("s/");

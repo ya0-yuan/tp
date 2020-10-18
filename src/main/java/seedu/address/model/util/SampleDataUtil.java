@@ -18,7 +18,7 @@ import seedu.address.model.specialisation.Specialisation;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code HairStyleX} with sample data.
  */
 public class SampleDataUtil {
 

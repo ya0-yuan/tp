@@ -8,9 +8,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * The API of the Model component.
@@ -68,12 +69,12 @@ public interface Model {
     /**
      * Return object Client with given id
      */
-    Client getClientById(PersonId clientId);
+    Client getClientById(ClientId clientId);
 
     /**
      * Return object Hairdresser with given id
      */
-    Hairdresser getHairdresserById(PersonId hairdresserId);
+    Hairdresser getHairdresserById(HairdresserId hairdresserId);
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.

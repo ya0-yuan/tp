@@ -3,14 +3,15 @@ package seedu.address.model.person;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 
 /**
  * Tests that a {@code Client}'s {@code id} matches the given id.
  */
 public class RecordContainsClientIdPredicate implements Predicate<Client> {
-    private final PersonId id;
+    private final ClientId id;
 
-    public RecordContainsClientIdPredicate(PersonId id) {
+    public RecordContainsClientIdPredicate(ClientId id) {
         this.id = id;
     }
 

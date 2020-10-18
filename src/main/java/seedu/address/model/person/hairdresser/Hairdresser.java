@@ -9,9 +9,9 @@ import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.IdCounter;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.specialisation.Specialisation;
 
@@ -21,6 +21,7 @@ import seedu.address.model.specialisation.Specialisation;
  */
 public class Hairdresser extends Person {
 
+    private final HairdresserId id;
     // Data fields
     private final Title title;
     private final Set<Specialisation> specList = new HashSet<>();
@@ -33,17 +34,19 @@ public class Hairdresser extends Person {
         requireAllNonNull(title, specList);
         this.title = title;
         this.specList.addAll(specList);
+        this.id = IdCounter.getInstance().generateNewHairdresserId();
     }
 
     /**
      * This is an existing hairdresser and does not need to generate a new ID.
      */
-    public Hairdresser(PersonId id, Name name, Phone phone, Email email, Gender gender, Title title,
+    public Hairdresser(HairdresserId id, Name name, Phone phone, Email email, Gender gender, Title title,
                        Set<Specialisation> specList) {
-        super(id, name, phone, email, gender);
+        super(name, phone, email, gender);
         requireAllNonNull(title, specList);
         this.title = title;
         this.specList.addAll(specList);
+        this.id = id;
     }
 
     public Title getTitle() {
@@ -56,6 +59,11 @@ public class Hairdresser extends Person {
      */
     public Set<Specialisation> getSpecs() {
         return Collections.unmodifiableSet(specList);
+    }
+
+    @Override
+    public HairdresserId getId() {
+        return this.id;
     }
 
     /**

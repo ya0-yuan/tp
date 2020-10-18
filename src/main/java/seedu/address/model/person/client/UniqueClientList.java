@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.RecordContainsClientIdPredicate;
 import seedu.address.model.person.client.exceptions.ClientNotFoundException;
 import seedu.address.model.person.client.exceptions.DuplicateClientException;
@@ -41,7 +40,7 @@ public class UniqueClientList extends UniqueEntityList<Client> {
     /**
      * Returns Patient with given PersonId.
      */
-    public Client findClientById(PersonId idToCheck) {
+    public Client findClientById(ClientId idToCheck) {
         requireNonNull(idToCheck);
         Predicate<Client> predicate = new RecordContainsClientIdPredicate(idToCheck);
         FilteredList<Client> clientWithId = internalList.filtered(predicate);

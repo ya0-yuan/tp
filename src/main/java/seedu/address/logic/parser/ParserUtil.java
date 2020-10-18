@@ -15,9 +15,10 @@ import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
+import seedu.address.model.person.client.ClientId;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.specialisation.Specialisation;
 import seedu.address.model.tag.Tag;
@@ -192,13 +193,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code clientId} is invalid.
      */
-    public static PersonId parseAppointmentClientId(String clientId) throws ParseException {
+    public static ClientId parseAppointmentClientId(String clientId) throws ParseException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
-        if (!PersonId.isValidPersonId(trimmedClientId)) {
-            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
+        if (!ClientId.isValidId(trimmedClientId)) {
+            throw new ParseException(ClientId.MESSAGE_CONSTRAINTS);
         }
-        return new PersonId(trimmedClientId);
+        return new ClientId(trimmedClientId);
     }
 
     /**
@@ -207,13 +208,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code clientId} is invalid.
      */
-    public static PersonId parseAppointmentHairdresserId(String hairdresserId) throws ParseException {
+    public static HairdresserId parseAppointmentHairdresserId(String hairdresserId) throws ParseException {
         requireNonNull(hairdresserId);
         String trimmedHairdresserId = hairdresserId.trim();
-        if (!PersonId.isValidPersonId(trimmedHairdresserId)) {
-            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
+        if (!HairdresserId.isValidId(trimmedHairdresserId)) {
+            throw new ParseException(HairdresserId.MESSAGE_CONSTRAINTS);
         }
-        return new PersonId(trimmedHairdresserId);
+        return new HairdresserId(trimmedHairdresserId);
     }
 
     /**

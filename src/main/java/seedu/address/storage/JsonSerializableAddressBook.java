@@ -24,11 +24,12 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "Hairdressers list contains duplicate hairdresser(s).";
     public static final String MESSAGE_DUPLICATE_CLIENT = "Client list contains duplicate hairdresser(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
+    public static final String MISSING_ID_COUNTER_MESSAGE = "The ID counter format is corrupt!";
 
     private final List<JsonAdaptedHairdresser> hairdressers = new ArrayList<>();
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
-    private final JsonAdaptedPersonIdCounter personIdCounter;
+    private final JsonAdaptedIdCounter idCounter;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -37,11 +38,11 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("hairdressers") List<JsonAdaptedHairdresser> hairdressers,
                                        @JsonProperty("clients") List<JsonAdaptedClient> clients,
                                        @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-                                       @JsonProperty("personIdCounter") JsonAdaptedPersonIdCounter personIdCounter) {
+                                       @JsonProperty("idCounter") JsonAdaptedIdCounter idCounter) {
         this.hairdressers.addAll(hairdressers);
         this.clients.addAll(clients);
         this.appointments.addAll(appointments);
-        this.personIdCounter = personIdCounter;
+        this.idCounter = idCounter;
     }
 
     /**
@@ -56,7 +57,7 @@ class JsonSerializableAddressBook {
                 .collect(Collectors.toList()));
         appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
-        personIdCounter = new JsonAdaptedPersonIdCounter(source.getPersonIdCounter().getCurrentMaxId());
+        idCounter = new JsonAdaptedIdCounter(source.getIdCounter());
     }
 
     /**
@@ -89,8 +90,11 @@ class JsonSerializableAddressBook {
             }
             addressBook.addAppointment(appointment);
         }
+        if (idCounter == null) {
+            throw new IllegalValueException(MISSING_ID_COUNTER_MESSAGE);
+        }
 
-        addressBook.setPersonIdCounter(personIdCounter.toModelType());
+        addressBook.setIdCounter(idCounter.toModelType());
 
         return addressBook;
     }

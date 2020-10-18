@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.Entity;
-import seedu.address.model.person.PersonId;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
@@ -15,8 +15,8 @@ import seedu.address.model.person.hairdresser.Hairdresser;
  */
 public class Appointment implements Entity {
 
-    private final PersonId clientId;
-    private final PersonId hairdresserId;
+    private final Id clientId;
+    private final Id hairdresserId;
     private final AppointmentDate date;
     private final AppointmentTime time;
     private final AppointmentStatus appointmentStatus;
@@ -55,11 +55,11 @@ public class Appointment implements Entity {
         return str;
     }
 
-    public PersonId getClientId() {
+    public Id getClientId() {
         return clientId;
     }
 
-    public PersonId getHairdresserId() {
+    public Id getHairdresserId() {
         return hairdresserId;
     }
 

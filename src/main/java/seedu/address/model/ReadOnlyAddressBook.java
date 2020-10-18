@@ -2,7 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.PersonIdCounter;
+import seedu.address.model.person.IdCounter;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
@@ -32,7 +32,7 @@ public interface ReadOnlyAddressBook {
     ObservableList<Appointment> getAppointmentList();
 
     /**
-     * Returns PersonIdCounter for hairdresser and client.
+     * Returns IdCounter that keeps track of hairdressers', clients' and appointments' current max ID.
      */
-    PersonIdCounter getPersonIdCounter();
+    IdCounter getIdCounter();
 }

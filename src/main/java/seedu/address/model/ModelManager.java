@@ -16,9 +16,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -101,13 +102,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Client getClientById(PersonId clientId) {
+    public Client getClientById(ClientId clientId) {
         requireNonNull(clientId);
         return addressBook.getClientById(clientId);
     }
 
     @Override
-    public Hairdresser getHairdresserById(PersonId hairdresserId) {
+    public Hairdresser getHairdresserById(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         return addressBook.getHairdresserById(hairdresserId);
     }

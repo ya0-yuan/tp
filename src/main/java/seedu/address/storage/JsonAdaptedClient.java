@@ -13,10 +13,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.tag.Tag;
 
@@ -67,15 +67,15 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Client toModelType() throws IllegalValueException {
-        String pid = getId();
-        if (pid == null) {
+        String cid = getId();
+        if (cid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    PersonId.class.getSimpleName()));
+                    ClientId.class.getSimpleName()));
         }
-        if (!PersonId.isValidPersonId(pid)) {
-            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        if (!ClientId.isValidId(cid)) {
+            throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);
         }
-        final PersonId modelPid = new PersonId(pid);
+        final ClientId modelCid = new ClientId(cid);
 
         String name = getName();
         if (name == null) {
@@ -127,6 +127,6 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        return new Client(modelPid, modelName, modelPhone, modelEmail, modelGender, modelAddress, modelTags);
+        return new Client(modelCid, modelName, modelPhone, modelEmail, modelGender, modelAddress, modelTags);
     }
 }

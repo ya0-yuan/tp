@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.RecordContainsHairdresserIdPredicate;
 import seedu.address.model.person.hairdresser.exception.DuplicateHairdresserException;
 import seedu.address.model.person.hairdresser.exception.HairdresserNotFoundException;
@@ -36,7 +35,7 @@ public class UniqueHairdresserList extends UniqueEntityList<Hairdresser> {
     /**
      * Returns Hairdresser with given PersonId.
      */
-    public Hairdresser findHairdresserById(PersonId idToCheck) {
+    public Hairdresser findHairdresserById(HairdresserId idToCheck) {
         requireNonNull(idToCheck);
         Predicate<Hairdresser> predicate = new RecordContainsHairdresserIdPredicate(idToCheck);
         FilteredList<Hairdresser> hairdresserWithId = internalList.filtered(predicate);
