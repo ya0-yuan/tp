@@ -1,13 +1,10 @@
 package seedu.address.logic.commands.client;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.client.Client;
@@ -15,7 +12,7 @@ import seedu.address.model.person.client.Client;
 /**
  * Deletes a client identified using it's displayed index from the address book.
  */
-public class DeleteClientCommand extends Command {
+public class DeleteClientCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "delete_client";
 
@@ -26,15 +23,21 @@ public class DeleteClientCommand extends Command {
 
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
-    private final Index targetIndex;
 
     public DeleteClientCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+        super(targetIndex);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteClientCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteClientCommand) other).targetIndex)); // state check
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public String deleteFromModel(Model model) throws CommandException {
         List<Client> lastShownList = model.getFilteredClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -43,14 +46,7 @@ public class DeleteClientCommand extends Command {
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteClientCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteClientCommand) other).targetIndex)); // state check
+        return String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete);
     }
 }
 

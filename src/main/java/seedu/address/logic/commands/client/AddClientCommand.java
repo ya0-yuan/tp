@@ -1,7 +1,5 @@
 package seedu.address.logic.commands.client;
 
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -9,8 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.client.Client;
@@ -18,7 +15,7 @@ import seedu.address.model.person.client.Client;
 /**
  * Adds a client to the address book.
  */
-public class AddClientCommand extends Command {
+public class AddClientCommand extends AddPersonCommand<Client> {
 
     public static final String COMMAND_WORD = "add_client";
 
@@ -39,35 +36,31 @@ public class AddClientCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+    private static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    private static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
-    private final Client toAdd;
 
     /**
      * Creates an AddClientCommand to add the specified {@code Client}
      */
     public AddClientCommand(Client client) {
-        requireNonNull(client);
-        toAdd = client;
+        super(client);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
 
+    @Override
+    public void addToModel(Model model) throws CommandException {
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddClientCommand // instanceof handles nulls
-                && toAdd.equals(((AddClientCommand) other).toAdd));
+    public String getSuccessMessage() {
+        return MESSAGE_SUCCESS;
     }
+
+
 }

@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HAIRDRESSER_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +23,7 @@ import seedu.address.model.appointment.exceptions.AppointmentNotInFutureExceptio
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
-public class AddAppointmentCommand extends Command {
+public class AddAppointmentCommand extends AddCommand {
     public static final String COMMAND_WORD = "add_appt";
     public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_INDEX + "1 "

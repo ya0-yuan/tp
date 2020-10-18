@@ -6,20 +6,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_APPT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HAIRDRESSER_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointment.AddAppointmentCommand;
+import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDate;
 import seedu.address.model.appointment.AppointmentTime;
 
-public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
+public class AddAppointmentCommandParser extends AddCommandParser<AddAppointmentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
      * and returns an AddAppointmentCommand object for execution.
@@ -48,11 +45,5 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         return new AddAppointmentCommand(clientIndex, hairdresserIndex, date, time);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 }
