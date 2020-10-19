@@ -12,8 +12,9 @@ public class Gender {
     enum GenderEnum {
         Male, Female;
     }
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be either F or M or f or m. Auto-converts to uppercase for readability";
+        "Gender should be either F or M or f or m. Auto-converts to uppercase for readability";
     public static final String VALIDATION_REGEX = "[MFmf]";
     public static final Gender MALE_GENDER = new Gender("M");
     public static final Gender FEMALE_GENDER = new Gender("F");
@@ -27,7 +28,7 @@ public class Gender {
     public Gender(String str) {
         requireNonNull(str);
         checkArgument(isValidGender(str), MESSAGE_CONSTRAINTS);
-        switch(str){
+        switch (str) {
         case "M":
             value = GenderEnum.Male;
             break;
@@ -48,7 +49,7 @@ public class Gender {
 
     @Override
     public String toString() {
-        switch(value) {
+        switch (value) {
         case Male:
             return "M";
         case Female:
@@ -61,8 +62,8 @@ public class Gender {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Gender // instanceof handles nulls
-                && value.equals(((Gender) other).value)); // state check
+            || (other instanceof Gender // instanceof handles nulls
+            && value.equals(((Gender) other).value)); // state check
     }
 
     @Override
