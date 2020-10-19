@@ -37,7 +37,7 @@ public class HairdresserBuilder {
         gender = new Gender(DEFAULT_GENDER);
         title = new Title(DEFAULT_TITLE);
         specs = new HashSet<>();
-        specs.add(new Specialisation("perm"));
+        specs.add(new Specialisation("Perm"));
     }
 
     /**

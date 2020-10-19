@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BENJAMIN = "M";
     public static final String VALID_TITLE_ALISSA = "Colourist";
     public static final String VALID_TITLE_BENJAMIN = "Assistant";
-    public static final String VALID_SPECIALISATION_PERM = "perm";
-    public static final String VALID_SPECIALISATION_DYE = "dye";
+    public static final String VALID_SPECIALISATION_PERM = "Perm";
+    public static final String VALID_SPECIALISATION_COLOR = "Color";
 
     public static final String NAME_DESC_ALISSA = " " + PREFIX_NAME + VALID_NAME_ALISSA;
     public static final String NAME_DESC_BENJAMIN = " " + PREFIX_NAME + VALID_NAME_BENJAMIN;
@@ -54,7 +54,7 @@ public class CommandTestUtil {
     public static final String GENDER_DESC_ALISSA = " " + PREFIX_GENDER + VALID_GENDER_ALISSA;
     public static final String GENDER_DESC_BENJAMIN = " " + PREFIX_GENDER + VALID_GENDER_BENJAMIN;
     public static final String SPECIALISATION_DESC_PERM = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_PERM;
-    public static final String SPECIALISATION_DESC_DYE = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_DYE;
+    public static final String SPECIALISATION_DESC_COLOR = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_COLOR;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
