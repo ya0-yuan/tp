@@ -34,7 +34,7 @@ public class HairdresserUtil {
         sb.append(PREFIX_NAME + hairdresser.getName().fullName + " ");
         sb.append(PREFIX_PHONE + hairdresser.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + hairdresser.getEmail().value + " ");
-        sb.append(PREFIX_GENDER + hairdresser.getGender().value + " ");
+        sb.append(PREFIX_GENDER + hairdresser.getGender().toString() + " ");
         sb.append(PREFIX_TITLE + hairdresser.getTitle().value + " ");
         hairdresser.getSpecs().stream().forEach(
             s -> sb.append(PREFIX_SPECIALISATION + s.specialisation + " ")

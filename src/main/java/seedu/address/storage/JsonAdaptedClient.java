@@ -54,7 +54,7 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
                 source.getName().fullName,
                 source.getPhone().value,
                 source.getEmail().value,
-                source.getGender().value);
+                source.getGender().toString());
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

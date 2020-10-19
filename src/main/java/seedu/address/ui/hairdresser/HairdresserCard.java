@@ -51,7 +51,7 @@ public class HairdresserCard extends UiPart<Region> {
         id.setText(String.format("(hid: %s) ", hairdresser.getId()));
         name.setText(hairdresser.getName().fullName);
         phone.setText(hairdresser.getPhone().value);
-        gender.setText(hairdresser.getGender().value);
+        gender.setText(hairdresser.getGender().toString());
         email.setText(hairdresser.getEmail().value);
         title.setText(hairdresser.getTitle().value);
         hairdresser.getSpecs()
