@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDate;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.AppointmentStatus;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.person.client.Client;
@@ -19,6 +20,7 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
+    private final String id;
     private final JsonAdaptedClient client;
     private final JsonAdaptedHairdresser hairdresser;
     private final String dateOfAppt;
@@ -29,11 +31,13 @@ class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointment}.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("client") JsonAdaptedClient client,
+    public JsonAdaptedAppointment(@JsonProperty("id") String id,
+                                  @JsonProperty("client") JsonAdaptedClient client,
                                   @JsonProperty("hairdresser") JsonAdaptedHairdresser hairdresser,
                                   @JsonProperty("dateOfAppt") String dateOfAppt,
                                   @JsonProperty("timeOfAppt") String timeOfAppt,
                                   @JsonProperty("appointmentStatus") String appointmentStatus) {
+        this.id = id;
         this.client = client;
         this.hairdresser = hairdresser;
         this.dateOfAppt = dateOfAppt;
@@ -45,6 +49,7 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
+        this.id = String.valueOf(source.getId());
         this.client = new JsonAdaptedClient(source.getClient());
         this.hairdresser = new JsonAdaptedHairdresser(source.getHairdresser());
         this.dateOfAppt = source.getDate().date.toString();
@@ -58,6 +63,11 @@ class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AppointmentId.class.getSimpleName()));
+        }
+        final AppointmentId modelAid = new AppointmentId(id);
         if (client == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Client.class.getSimpleName()));
@@ -97,7 +107,7 @@ class JsonAdaptedAppointment {
         }
         final AppointmentStatus modelAppointmentStatus = AppointmentStatus.valueOf(appointmentStatus);
 
-        return new Appointment(modelClient, modelHairdresser,
+        return new Appointment(modelAid, modelClient, modelHairdresser,
                 modelAppointmentDate, modelAppointmentTime, modelAppointmentStatus);
     }
 

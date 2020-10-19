@@ -1,18 +1,21 @@
 package seedu.address.logic.parser.appointment;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointment.DeleteAppointmentCommand;
 import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentId;
 
 /**
  * Parses input arguments and creates a new DeleteAppointmentCommand object
  */
-public class DeleteAppointmentCommandParser extends DeleteCommandParser<DeleteAppointmentCommand> {
+public class DeleteAppointmentCommandParser extends DeleteCommandParser<DeleteAppointmentCommand, AppointmentId> {
 
 
     @Override
-    public DeleteAppointmentCommand getCommand(Index index) {
-        return new DeleteAppointmentCommand(index);
+    public DeleteAppointmentCommand getCommand(String args) throws ParseException {
+        AppointmentId id = ParserUtil.parseAppointmentId(args);
+        return new DeleteAppointmentCommand(id);
     }
 
     @Override

@@ -11,12 +11,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_HAIRDRESSERS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -27,6 +25,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.specialisation.Specialisation;
 
@@ -39,7 +38,7 @@ public class EditHairdresserCommand extends Command {
     public static final String COMMAND_WORD = "edit_hairdresser";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the hairdresser identified "
-            + "by the index number used in the displayed hairdresser list. "
+            + "by the hairdresser ID used in the displayed hairdresser list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -54,33 +53,31 @@ public class EditHairdresserCommand extends Command {
 
     public static final String MESSAGE_EDIT_HAIRDRESSER_SUCCESS = "Edited Hairdresser: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the HairStyleX.";
 
-    private final Index index;
+    private final HairdresserId hairdresserId;
     private final EditHairdresserDescriptor editHairdresserDescriptor;
 
     /**
-     * @param index of the hairdresser in the filtered hairdresser list to edit
+     * @param hairdresserId of the hairdresser in the filtered hairdresser list to edit
      * @param editHairdresserDescriptor details to edit the hairdresser with
      */
-    public EditHairdresserCommand(Index index, EditHairdresserDescriptor editHairdresserDescriptor) {
-        requireNonNull(index);
+    public EditHairdresserCommand(HairdresserId hairdresserId, EditHairdresserDescriptor editHairdresserDescriptor) {
+        requireNonNull(hairdresserId);
         requireNonNull(editHairdresserDescriptor);
 
-        this.index = index;
+        this.hairdresserId = hairdresserId;
         this.editHairdresserDescriptor = new EditHairdresserDescriptor(editHairdresserDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Hairdresser> lastShownList = model.getFilteredHairdresserList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_HAIRDRESSER_DISPLAYED_INDEX);
+        Hairdresser hairdresserToEdit = model.getHairdresserById(hairdresserId);
+        if (hairdresserToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HAIRDRESSER_DISPLAYED_ID);
         }
-
-        Hairdresser hairdresserToEdit = lastShownList.get(index.getZeroBased());
         Hairdresser editedHairdresser = createEditedHairdresser(hairdresserToEdit, editHairdresserDescriptor);
 
         if (!hairdresserToEdit.isSameHairdresser(editedHairdresser) && model.hasHairdresser(editedHairdresser)) {
@@ -124,7 +121,7 @@ public class EditHairdresserCommand extends Command {
 
         // state check
         EditHairdresserCommand e = (EditHairdresserCommand) other;
-        return index.equals(e.index)
+        return hairdresserId.equals(e.hairdresserId)
                 && editHairdresserDescriptor.equals(e.editHairdresserDescriptor);
     }
 

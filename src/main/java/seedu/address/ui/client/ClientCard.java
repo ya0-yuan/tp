@@ -48,7 +48,7 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.format("(cid: %s) ", client.getId()));
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         gender.setText(client.getGender().value);

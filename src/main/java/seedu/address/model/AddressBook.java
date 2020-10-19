@@ -7,12 +7,13 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.UniqueAppointmentList;
-import seedu.address.model.person.PersonId;
-import seedu.address.model.person.PersonIdCounter;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.client.UniqueClientList;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.model.person.hairdresser.UniqueHairdresserList;
 
 
@@ -25,7 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
     private final UniqueAppointmentList appointments;
-    private final PersonIdCounter personIdCounter;
+    private final IdCounter idCounter;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -42,7 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         appointments = new UniqueAppointmentList();
 
-        personIdCounter = PersonIdCounter.getInstance();
+        idCounter = IdCounter.getInstance();
 
     }
 
@@ -60,12 +61,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the content of the idCounter with {@code idCounter}.
-     * {@code appointments} must not contain duplicate appointments.
+     * {@code appointments} must not contain duplicate entities.
      */
-    public void setPersonIdCounter(PersonIdCounter idCounter) {
-        this.personIdCounter.setCurrentMaxId(idCounter.getCurrentMaxId());
+    public void setIdCounter(IdCounter idCounter) {
+        this.idCounter.setCurrentMaxClientId(idCounter.getCurrentMaxClientId());
+        this.idCounter.setCurrentMaxHairdresserId(idCounter.getCurrentMaxHairdresserId());
+        this.idCounter.setCurrentMaxAppointmentId(idCounter.getCurrentMaxAppointmentId());
     }
-
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -76,6 +78,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(newData.getClientList());
         setHairdressers(newData.getHairdresserList());
         setAppointments(newData.getAppointmentList());
+        setIdCounter(newData.getIdCounter());
     }
 
 
@@ -173,20 +176,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// util methods
 
     /**
-     * Return object Patient with given id
+     * Return object Client with given id
      */
-    public Client getClientById(PersonId clientId) {
+    public Client getClientById(ClientId clientId) {
         requireNonNull(clientId);
         return clients.findClientById(clientId);
     }
 
     /**
-     * Return object Doctor with given id
+     * Return object Hairdresser with given id
      */
-    Hairdresser getHairdresserById(PersonId hairdresserId) {
+    Hairdresser getHairdresserById(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         return hairdressers.findHairdresserById(hairdresserId);
     }
+
+    /**
+     * Return object Appointment with given id
+     */
+    Appointment getAppointmentById(AppointmentId appointmentId) {
+        requireNonNull(appointmentId);
+        return appointments.findAppointmentById(appointmentId);
+    }
+
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
@@ -214,7 +226,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * When patient is modified, update patient info in appointment
      */
-    public void updateAppointmentWhenClientIsUpdated(PersonId clientId, Client editedClient) {
+    public void updateAppointmentWhenClientIsUpdated(ClientId clientId, Client editedClient) {
         requireNonNull(clientId);
 
         appointments.updateClient(clientId, editedClient);
@@ -255,7 +267,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Set client in appointments to null when the client with the id is deleted
      */
-    public void updateAppointmentWhenClientDeleted(PersonId clientId) {
+    public void updateAppointmentWhenClientDeleted(ClientId clientId) {
         requireNonNull(clientId);
         appointments.setClientToNull(clientId);
     }
@@ -263,7 +275,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Set hairdresser in appointments to null when the hairdresser with the id is deleted
      */
-    public void updateAppointmentWhenHairdresserDeleted(PersonId hairdresserId) {
+    public void updateAppointmentWhenHairdresserDeleted(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         appointments.setHairdresserToNull(hairdresserId);
     }
@@ -271,7 +283,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * When hairdresser is modified, update hairdresser info in appointment
      */
-    public void updateAppointmentWhenHairdresserIsUpdated(PersonId hairdresserId, Hairdresser editedHairdresser) {
+    public void updateAppointmentWhenHairdresserIsUpdated(HairdresserId hairdresserId, Hairdresser editedHairdresser) {
         requireNonNull(hairdresserId);
 
         appointments.updateHairdresser(hairdresserId, editedHairdresser);
@@ -293,8 +305,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public PersonIdCounter getPersonIdCounter() {
-        return personIdCounter;
+    public IdCounter getIdCounter() {
+        return idCounter;
     }
 
     @Override
@@ -304,12 +316,12 @@ public class AddressBook implements ReadOnlyAddressBook {
                 && clients.equals(((AddressBook) other).clients)
                 && hairdressers.equals(((AddressBook) other).hairdressers)
                 && appointments.equals(((AddressBook) other).appointments)
-                && personIdCounter.equals(((AddressBook) other).personIdCounter));
+                && idCounter.equals(((AddressBook) other).idCounter));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hairdressers, appointments, personIdCounter, clients);
+        return Objects.hash(hairdressers, appointments, idCounter, clients);
     }
 
 }

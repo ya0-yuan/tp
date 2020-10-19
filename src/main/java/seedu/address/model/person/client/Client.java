@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.Entity;
+import seedu.address.model.IdCounter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class Client extends Person {
 
     // Data fields
+    private final ClientId id;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,6 +33,7 @@ public class Client extends Person {
     public Client(Name name, Phone phone, Email email, Gender gender, Address address, Set<Tag> tags) {
         super(name, phone, email, gender);
         requireAllNonNull(address, tags);
+        this.id = IdCounter.getInstance().generateNewClientId();
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -40,9 +42,10 @@ public class Client extends Person {
      * For id counter.
      * This is an existing client and does not need to generate a new ID.
      */
-    public Client(PersonId id, Name name, Phone phone, Email email, Gender gender, Address address, Set<Tag> tags) {
-        super(id, name, phone, email, gender);
+    public Client(ClientId id, Name name, Phone phone, Email email, Gender gender, Address address, Set<Tag> tags) {
+        super(name, phone, email, gender);
         requireAllNonNull(address, tags);
+        this.id = id;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -57,6 +60,11 @@ public class Client extends Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    @Override
+    public ClientId getId() {
+        return this.id;
     }
 
     /**

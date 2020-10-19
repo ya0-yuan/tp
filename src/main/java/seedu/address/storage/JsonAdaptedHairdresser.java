@@ -13,9 +13,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.specialisation.Specialisation;
 
@@ -30,7 +30,7 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
     private final List<JsonAdaptedSpecialisation> specs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedHairdresser} with the given person details.
+     * Constructs a {@code JsonAdaptedHairdresser} with the given hairdresser details.
      */
     @JsonCreator
     public JsonAdaptedHairdresser(@JsonProperty("id") String id,
@@ -68,15 +68,15 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Hairdresser toModelType() throws IllegalValueException {
-        String pid = getId();
-        if (pid == null) {
+        String hid = getId();
+        if (hid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    PersonId.class.getSimpleName()));
+                    HairdresserId.class.getSimpleName()));
         }
-        if (!PersonId.isValidPersonId(pid)) {
-            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        if (!HairdresserId.isValidId(hid)) {
+            throw new IllegalValueException(HairdresserId.MESSAGE_CONSTRAINTS);
         }
-        final PersonId modelPid = new PersonId(pid);
+        final HairdresserId modelHid = new HairdresserId(hid);
 
         String name = getName();
         if (name == null) {
@@ -128,6 +128,6 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
         }
         final Set<Specialisation> modelSpecs = new HashSet<>(hairdresserSpecs);
 
-        return new Hairdresser(modelPid, modelName, modelPhone, modelEmail, modelGender, modelTitle, modelSpecs);
+        return new Hairdresser(modelHid, modelName, modelPhone, modelEmail, modelGender, modelTitle, modelSpecs);
     }
 }

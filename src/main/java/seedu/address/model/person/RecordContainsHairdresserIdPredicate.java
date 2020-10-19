@@ -3,14 +3,15 @@ package seedu.address.model.person;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * Tests that a {@code Hairdresser}'s {@code id} matches the given id.
  */
 public class RecordContainsHairdresserIdPredicate implements Predicate<Hairdresser> {
-    private final PersonId id;
+    private final HairdresserId id;
 
-    public RecordContainsHairdresserIdPredicate(PersonId id) {
+    public RecordContainsHairdresserIdPredicate(HairdresserId id) {
         this.id = id;
     }
 

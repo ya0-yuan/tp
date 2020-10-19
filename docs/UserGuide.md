@@ -74,7 +74,7 @@ All hairdressers and client information will be stored automatically after any c
 
 Adds an appointment to the database.
 
-Format: `add_appt cid/CLIENT_INDEX hid/HAIRDRESSER_INDEX d/DATE t/TIME`
+Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * `DATE` must be entered in YYYY-MM-DD format
 * `TIME` must be entered in 24 Hour HH:MM format
 
@@ -91,9 +91,9 @@ Format: `list_appt`
 
 Edits an existing appointment in the database.
 
-Format: `edit_appointment INDEX s/STATUS`
+Format: `edit_appointment ID s/STATUS`
 
-* Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the appointment with the specified `ID`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * Only the status of the appointment can be updated.
 * All appointments are active by default.
 
@@ -104,9 +104,9 @@ Examples:
 
 Removes a specific appointment from the database.
 
-Format: `delete_appt INDEX`
+Format: `delete_appt ID`
 
-* Deletes the appointment at the specified `INDEX`.
+* Deletes the appointment with the specified `ID`.
 * The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -132,9 +132,9 @@ Format: `list_client`
 
 Edits an existing client in the database.
 
-Format: `edit_client INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
+Format: `edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client with the specified `ID`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -149,9 +149,9 @@ Examples:
 
 Removes a specific client from the database.
 
-Format: `delete_client INDEX`
+Format: `delete_client ID`
 
-* Deletes the client at the specified `INDEX`.
+* Deletes the client with the specified `ID`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
@@ -176,9 +176,9 @@ Format: `list_client`
 
 Edits an existing hairdresser in the database.
 
-Format: `edit_hairdresser INDEX [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+Format: `edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
 
-* Edits the hairdresser at the specified `INDEX`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the hairdresser with the specified `ID`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
@@ -193,9 +193,9 @@ Examples:
 
 Removes a specific hairdresser from the database.
 
-Format: `delete_hairdresser INDEX`
+Format: `delete_hairdresser ID`
 
-* Deletes the hairdresser at the specified `INDEX`.
+* Deletes the hairdresser with the specified `ID`.
 * The index refers to the index number shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
@@ -216,13 +216,13 @@ Action | Format, Examples
 **Exit** | `exit`
 **Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
 **Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
-**Add Appointment** | `add_appt cid/CLIENT_INDEX hid/HAIRDRESSER_INDEX d/DATE t/TIME` <br> e.g., `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
+**Add Appointment** | `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME` <br> e.g., `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
 **List Hairdressers** | `list_hairdresser`
 **List Clients** | `list_client`
 **List Appointments** | `list_appt`
-**Edit Hairdresser** | `edit_hairdresser INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
-**Edit Client** | `edit_client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.,`edit_client 2 n/James Tan p/Female Stylist`
-**Edit Appointment** | `edit_appointment INDEX s/STATUS` <br> e.g.,`edit_appt 1 s/CANCELLED`
-**Delete Hairdresser** | `delete_hairdresser INDEX` <br> e.g., `delete_hairdresser 3`
-**Delete Client** | `delete_client INDEX` <br> e.g., `delete_client 3`
-**Delete Appointment** | `delete_appt INDEX` <br> e.g., `delete_appt 3`
+**Edit Hairdresser** | `edit_hairdresser ID ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.,`edit_client 2 n/James Tan p/Female Stylist`
+**Edit Appointment** | `edit_appointment ID s/STATUS` <br> e.g.,`edit_appt 1 s/CANCELLED`
+**Delete Hairdresser** | `delete_hairdresser ID` <br> e.g., `delete_hairdresser 3`
+**Delete Client** | `delete_client ID` <br> e.g., `delete_client 3`
+**Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`

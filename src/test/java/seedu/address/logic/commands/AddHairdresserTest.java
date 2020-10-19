@@ -23,9 +23,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.PersonId;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.testutil.HairdresserBuilder;
 
 public class AddHairdresserTest {
@@ -131,12 +133,17 @@ public class AddHairdresserTest {
         }
 
         @Override
-        public Client getClientById(PersonId clientId) {
+        public Client getClientById(ClientId clientId) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Hairdresser getHairdresserById(PersonId hairdresserId) {
+        public Hairdresser getHairdresserById(HairdresserId hairdresserId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Appointment getAppointmentById(AppointmentId appointmentId) {
             throw new AssertionError("This method should not be called.");
         }
 

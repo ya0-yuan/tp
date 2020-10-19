@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_STATUS;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointment.EditAppointmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentId;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
@@ -26,9 +26,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_APPT_STATUS);
 
-        Index index;
+        AppointmentId appointmentId;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            appointmentId = ParserUtil.parseAppointmentId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
@@ -45,6 +45,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(EditAppointmentCommand.MESSAGE_STATUS_MISSING);
         }
 
-        return new EditAppointmentCommand(index, changedAppointmentDescriptor);
+        return new EditAppointmentCommand(appointmentId, changedAppointmentDescriptor);
     }
 }

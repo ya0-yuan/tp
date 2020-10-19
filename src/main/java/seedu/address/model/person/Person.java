@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.Entity;
+import seedu.address.model.Id;
 
 /**
  * Represents a Person in the address book.
@@ -16,7 +17,6 @@ public abstract class Person implements Entity {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final PersonId id;
 
     // Data fields
     private final Gender gender;
@@ -26,32 +26,13 @@ public abstract class Person implements Entity {
      */
     public Person(Name name, Phone phone, Email email, Gender gender) {
         requireAllNonNull(name, phone, email, gender);
-        this.id = PersonIdCounter.getInstance().generateNewId();
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.gender = gender;
     }
-
-    /**
-     * This is an existing person and does not need to generate a new ID.
-     */
-    public Person(PersonId id, Name name, Phone phone, Email email, Gender gender) {
-        requireAllNonNull(name, phone, email);
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.gender = gender;
-    }
-
-    public PersonId getId() {
-        return id;
-    }
-
-    public String getIdToString() {
-        return String.valueOf(this.id);
-    }
+    //TODO: Fix this abstraction
+    public abstract <T extends Id> T getId();
 
     public Name getName() {
         return name;

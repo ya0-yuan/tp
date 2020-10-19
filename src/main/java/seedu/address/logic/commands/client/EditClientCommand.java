@@ -11,12 +11,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -28,6 +26,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,37 +52,35 @@ public class EditClientCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_CLIENT_PERSON = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in HairStyleX.";
 
-    private final Index index;
+    private final ClientId clientId;
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the client in the filtered client list to edit
+     * @param clientId of the client in the filtered client list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditClientCommand(Index index, EditClientDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditClientCommand(ClientId clientId, EditClientDescriptor editPersonDescriptor) {
+        requireNonNull(clientId);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.clientId = clientId;
         this.editClientDescriptor = new EditClientDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Client clientToEdit = model.getClientById(clientId);
+        if (clientToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_ID);
         }
-
-        Client clientToEdit = lastShownList.get(index.getZeroBased());
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_CLIENT_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.setClient(clientToEdit, editedClient);
@@ -122,7 +119,7 @@ public class EditClientCommand extends Command {
 
         // state check
         EditClientCommand e = (EditClientCommand) other;
-        return index.equals(e.index)
+        return clientId.equals(e.clientId)
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
 

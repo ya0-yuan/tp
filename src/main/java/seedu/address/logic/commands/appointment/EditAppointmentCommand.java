@@ -3,15 +3,13 @@ package seedu.address.logic.commands.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_STATUS;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.AppointmentStatus;
 
 public class EditAppointmentCommand extends Command {
@@ -23,7 +21,7 @@ public class EditAppointmentCommand extends Command {
             + AppointmentStatus.CANCELLED.name() + ", "
             + AppointmentStatus.COMPLETED.name() + ", "
             + AppointmentStatus.MISSED.name() + "\n"
-            + "Parameters: INDEX (must be a positive integer) " + "\n"
+            + "Parameters: APPOINTMENT_ID (must be a positive integer) " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPT_STATUS + "CANCELLED";
 
@@ -32,30 +30,29 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPT = "This appointment already exists in HairStyleX.";
     public static final String MESSAGE_STATUS_UNCHANGED = "The new status is the same as the existing status.";
 
-    private final Index index;
+    private final AppointmentId appointmentId;
     private final ChangedAppointmentDescriptor changedAppointmentDescriptor;
 
     /**
-     * @param index                        of the appointment in the filtered appointment list
+     * @param appointmentId of the appointment in the filtered appointment list
      * @param changedAppointmentDescriptor details of the changed status
      */
-    public EditAppointmentCommand(Index index, ChangedAppointmentDescriptor changedAppointmentDescriptor) {
-        requireNonNull(index);
+    public EditAppointmentCommand(AppointmentId appointmentId,
+                                  ChangedAppointmentDescriptor changedAppointmentDescriptor) {
+        requireNonNull(appointmentId);
         requireNonNull(changedAppointmentDescriptor);
 
-        this.index = index;
+        this.appointmentId = appointmentId;
         this.changedAppointmentDescriptor = new ChangedAppointmentDescriptor(changedAppointmentDescriptor);
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        Appointment appointmentToChange = model.getAppointmentById(appointmentId);
+        if (appointmentId == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_ID);
         }
-
-        Appointment appointmentToChange = lastShownList.get(index.getZeroBased());
         Appointment changedAppointment = createChangedAppointment(appointmentToChange, changedAppointmentDescriptor);
 
         if (!appointmentToChange.isSameAppointment(changedAppointment) && model.hasAppointment(changedAppointment)) {
@@ -88,6 +85,7 @@ public class EditAppointmentCommand extends Command {
         AppointmentStatus newStatus = changedAppointmentDescriptor.getStatus();
 
         return new Appointment(
+                appointmentToChange.getId(),
                 appointmentToChange.getClient(),
                 appointmentToChange.getHairdresser(),
                 appointmentToChange.getDate(),
