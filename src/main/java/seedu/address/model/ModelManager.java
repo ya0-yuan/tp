@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
@@ -111,6 +112,12 @@ public class ModelManager implements Model {
     public Hairdresser getHairdresserById(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         return addressBook.getHairdresserById(hairdresserId);
+    }
+
+    @Override
+    public Appointment getAppointmentById(AppointmentId appointmentId) {
+        requireNonNull(appointmentId);
+        return addressBook.getAppointmentById(appointmentId);
     }
 
     //=========== Client =============================================================

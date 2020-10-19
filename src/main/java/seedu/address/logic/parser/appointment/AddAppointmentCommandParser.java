@@ -35,9 +35,9 @@ public class AddAppointmentCommandParser extends AddCommandParser<AddAppointment
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
         ClientId clientId = ParserUtil
-                .parseAppointmentClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+                .parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
         HairdresserId hairdresserId = ParserUtil
-                .parseAppointmentHairdresserId(argMultimap.getValue(PREFIX_HAIRDRESSER_ID).get());
+                .parseHairdresserId(argMultimap.getValue(PREFIX_HAIRDRESSER_ID).get());
         AppointmentDate date = ParserUtil
                 .parseAppointmentDate(argMultimap.getValue(PREFIX_DATE_OF_APPT).get());
         AppointmentTime time = ParserUtil

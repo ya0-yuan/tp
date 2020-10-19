@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
@@ -75,6 +76,11 @@ public interface Model {
      * Return object Hairdresser with given id
      */
     Hairdresser getHairdresserById(HairdresserId hairdresserId);
+
+    /**
+     * Return object Appointment with given id
+     */
+    Appointment getAppointmentById(AppointmentId appointmentId);
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.

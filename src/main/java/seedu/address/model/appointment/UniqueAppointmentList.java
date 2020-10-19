@@ -1,9 +1,12 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
@@ -113,6 +116,19 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
                 internalList.set(i, newAppointment);
             }
         }
+    }
+
+    /**
+     * Returns Appointment with given AppointmentId.
+     */
+    public Appointment findAppointmentById(AppointmentId idToCheck) {
+        requireNonNull(idToCheck);
+        Predicate<Appointment> predicate = new RecordContainsAppointmentIdPredicate(idToCheck);
+        FilteredList<Appointment> appointmentWithId = internalList.filtered(predicate);
+        if (appointmentWithId.isEmpty()) {
+            return null;
+        }
+        return appointmentWithId.get(0);
     }
 
 

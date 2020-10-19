@@ -1,14 +1,17 @@
 package seedu.address.logic.parser.hairdresser;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
 import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
-public class DeleteHairdresserCommandParser extends DeleteCommandParser<DeleteHairdresserCommand> {
+public class DeleteHairdresserCommandParser extends DeleteCommandParser<DeleteHairdresserCommand, HairdresserId> {
 
     @Override
-    public DeleteHairdresserCommand getCommand(Index index) {
-        return new DeleteHairdresserCommand(index);
+    public DeleteHairdresserCommand getCommand(String args) throws ParseException {
+        HairdresserId id = ParserUtil.parseHairdresserId(args);
+        return new DeleteHairdresserCommand(id);
     }
 
     @Override

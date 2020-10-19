@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand.EditHairdresserDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -17,6 +16,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * Parses input arguments and creates a new EditHairdresserCommand object
@@ -34,10 +34,10 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_GENDER, PREFIX_TITLE, PREFIX_SPECIALISATION);
 
-        Index index;
+        HairdresserId hairdresserId;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            hairdresserId = ParserUtil.parseHairdresserId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditHairdresserCommand.MESSAGE_USAGE), pe);
@@ -68,7 +68,7 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
             throw new ParseException(EditHairdresserCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditHairdresserCommand(index, editHairdresserDescriptor);
+        return new EditHairdresserCommand(hairdresserId, editHairdresserDescriptor);
     }
 
 }

@@ -63,7 +63,7 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
             throw notFoundException();
         }
 
-        if (!target.isSame(editedEntity) || contains(editedEntity)) {
+        if (!target.isSame(editedEntity) && contains(editedEntity)) {
             throw duplicateException();
         }
 

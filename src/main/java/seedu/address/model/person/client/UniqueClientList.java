@@ -38,7 +38,7 @@ public class UniqueClientList extends UniqueEntityList<Client> {
     }
 
     /**
-     * Returns Patient with given PersonId.
+     * Returns Client with given ClientId.
      */
     public Client findClientById(ClientId idToCheck) {
         requireNonNull(idToCheck);

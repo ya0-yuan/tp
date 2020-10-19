@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
@@ -175,7 +176,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// util methods
 
     /**
-     * Return object Patient with given id
+     * Return object Client with given id
      */
     public Client getClientById(ClientId clientId) {
         requireNonNull(clientId);
@@ -183,12 +184,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Return object Doctor with given id
+     * Return object Hairdresser with given id
      */
     Hairdresser getHairdresserById(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         return hairdressers.findHairdresserById(hairdresserId);
     }
+
+    /**
+     * Return object Appointment with given id
+     */
+    Appointment getAppointmentById(AppointmentId appointmentId) {
+        requireNonNull(appointmentId);
+        return appointments.findAppointmentById(appointmentId);
+    }
+
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();

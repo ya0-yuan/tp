@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an ID.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class Id {
+public abstract class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID must a positive integer.";
