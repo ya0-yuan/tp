@@ -1,6 +1,6 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.person.Id;
+import seedu.address.model.Id;
 
 public class AppointmentId extends Id {
     public static final String MESSAGE_CONSTRAINTS =

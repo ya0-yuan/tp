@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.IdCounter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.IdCounter;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;

@@ -3,7 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.model.person.IdCounter;
+import seedu.address.model.IdCounter;
 
 public class JsonAdaptedIdCounter {
     private final int clientId;

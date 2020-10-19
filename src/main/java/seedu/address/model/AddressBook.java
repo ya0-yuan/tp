@@ -8,8 +8,6 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.IdCounter;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.client.UniqueClientList;
@@ -218,7 +216,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * When patient is modified, update patient info in appointment
      */
-    public void updateAppointmentWhenClientIsUpdated(Id clientId, Client editedClient) {
+    public void updateAppointmentWhenClientIsUpdated(ClientId clientId, Client editedClient) {
         requireNonNull(clientId);
 
         appointments.updateClient(clientId, editedClient);
@@ -259,7 +257,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Set client in appointments to null when the client with the id is deleted
      */
-    public void updateAppointmentWhenClientDeleted(Id clientId) {
+    public void updateAppointmentWhenClientDeleted(ClientId clientId) {
         requireNonNull(clientId);
         appointments.setClientToNull(clientId);
     }
@@ -267,7 +265,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Set hairdresser in appointments to null when the hairdresser with the id is deleted
      */
-    public void updateAppointmentWhenHairdresserDeleted(Id hairdresserId) {
+    public void updateAppointmentWhenHairdresserDeleted(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
         appointments.setHairdresserToNull(hairdresserId);
     }
@@ -275,7 +273,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * When hairdresser is modified, update hairdresser info in appointment
      */
-    public void updateAppointmentWhenHairdresserIsUpdated(Id hairdresserId, Hairdresser editedHairdresser) {
+    public void updateAppointmentWhenHairdresserIsUpdated(HairdresserId hairdresserId, Hairdresser editedHairdresser) {
         requireNonNull(hairdresserId);
 
         appointments.updateHairdresser(hairdresserId, editedHairdresser);

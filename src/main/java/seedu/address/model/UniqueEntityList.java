@@ -53,7 +53,7 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
     /**
      * Replaces the entity {@code entity} in the list with {@code editedEntity}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedEntity} must not be the same as another existing entity in the list.
+     * The identity of {@code editedEntity} must not be the same as another existing entity in the list.
      */
     public void setEntity(T target, T editedEntity) {
         requireAllNonNull(target, editedEntity);
@@ -63,7 +63,7 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
             throw notFoundException();
         }
 
-        if (!target.isSame(editedEntity) && contains(editedEntity)) {
+        if (!target.isSame(editedEntity) || contains(editedEntity)) {
             throw duplicateException();
         }
 

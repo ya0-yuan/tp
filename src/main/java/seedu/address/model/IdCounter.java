@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model;
 
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.person.client.ClientId;

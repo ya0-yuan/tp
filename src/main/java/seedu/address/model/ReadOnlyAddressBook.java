@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.IdCounter;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 

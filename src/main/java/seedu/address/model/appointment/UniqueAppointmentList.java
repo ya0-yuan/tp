@@ -7,9 +7,10 @@ import java.util.List;
 import seedu.address.model.UniqueEntityList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.Id;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * Supports a minimal set of list operations.
@@ -54,7 +55,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      * @param toEdit       The Id of the client to be replaced.
      * @param editedClient The object representing the new client.
      */
-    public void updateClient(Id toEdit, Client editedClient) {
+    public void updateClient(ClientId toEdit, Client editedClient) {
         requireAllNonNull(toEdit, editedClient);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
@@ -71,7 +72,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      * @param toEdit            The Id of the hairdresser to be replaced.
      * @param editedHairdresser The object representing the new hairdresser.
      */
-    public void updateHairdresser(Id toEdit, Hairdresser editedHairdresser) {
+    public void updateHairdresser(HairdresserId toEdit, Hairdresser editedHairdresser) {
         requireAllNonNull(toEdit, editedHairdresser);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
@@ -87,7 +88,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      *
      * @param deleted id of the deleted client
      */
-    public void setClientToNull(Id deleted) {
+    public void setClientToNull(ClientId deleted) {
         requireAllNonNull(deleted);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
@@ -103,7 +104,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      *
      * @param deleted id of the deleted client
      */
-    public void setHairdresserToNull(Id deleted) {
+    public void setHairdresserToNull(HairdresserId deleted) {
         requireAllNonNull(deleted);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);

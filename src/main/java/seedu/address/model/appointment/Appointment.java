@@ -6,17 +6,20 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.Entity;
-import seedu.address.model.person.Id;
+import seedu.address.model.IdCounter;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 /**
  * Represents an Appointment between a client and a hairdresser.
  */
 public class Appointment implements Entity {
 
-    private final Id clientId;
-    private final Id hairdresserId;
+    private final AppointmentId id;
+    private final ClientId clientId;
+    private final HairdresserId hairdresserId;
     private final AppointmentDate date;
     private final AppointmentTime time;
     private final AppointmentStatus appointmentStatus;
@@ -34,11 +37,29 @@ public class Appointment implements Entity {
      */
     public Appointment(Client client, Hairdresser hairdresser, AppointmentDate date,
                        AppointmentTime time, AppointmentStatus appointmentStatus) {
-        requireAllNonNull(date, time, appointmentStatus);
+        requireAllNonNull(client, hairdresser, date, time, appointmentStatus);
+        this.id = IdCounter.getInstance().generateNewAppointmentId();
         this.client = client;
         this.hairdresser = hairdresser;
-        this.clientId = client == null ? null : client.getId();
-        this.hairdresserId = hairdresser == null ? null : hairdresser.getId();
+        this.clientId = client.getId();
+        this.hairdresserId = hairdresser.getId();
+        this.date = date;
+        this.time = time;
+        this.appointmentStatus = appointmentStatus;
+    }
+
+    /**
+     * For id counter.
+     * This is an existing appointment and does not need to generate a new ID.
+     */
+    public Appointment(AppointmentId id, Client client, Hairdresser hairdresser, AppointmentDate date,
+                       AppointmentTime time, AppointmentStatus appointmentStatus) {
+        requireAllNonNull(client, hairdresser, date, time, appointmentStatus);
+        this.id = id;
+        this.client = client;
+        this.hairdresser = hairdresser;
+        this.clientId = client.getId();
+        this.hairdresserId = hairdresser.getId();
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
@@ -55,11 +76,15 @@ public class Appointment implements Entity {
         return str;
     }
 
-    public Id getClientId() {
+    public AppointmentId getId() {
+        return this.id;
+    }
+
+    public ClientId getClientId() {
         return clientId;
     }
 
-    public Id getHairdresserId() {
+    public HairdresserId getHairdresserId() {
         return hairdresserId;
     }
 
@@ -74,6 +99,7 @@ public class Appointment implements Entity {
      */
     public Appointment replaceClient(Client newClient) {
         return new Appointment(
+            this.id,
             newClient,
             this.hairdresser,
             this.date,
@@ -101,6 +127,7 @@ public class Appointment implements Entity {
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
         return new Appointment(
+                this.id,
                 this.client,
                 newHairdresser,
                 this.date,
@@ -183,6 +210,6 @@ public class Appointment implements Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, hairdresserId, date, time);
+        return Objects.hash(id, clientId, hairdresserId, date, time);
     }
 }
