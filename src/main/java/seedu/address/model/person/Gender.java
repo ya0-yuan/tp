@@ -9,22 +9,35 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Gender {
 
+    enum GenderEnum {
+        Male, Female;
+    }
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be either F or M or f or m. Auto-converts to uppercase for readability";
+        "Gender should be either F or M or f or m. Auto-converts to uppercase for readability";
     public static final String VALIDATION_REGEX = "[MFmf]";
     public static final Gender MALE_GENDER = new Gender("M");
     public static final Gender FEMALE_GENDER = new Gender("F");
-    public final String value;
+    public final GenderEnum value;
 
     /**
      * Constructs a {@code Gender}.
      *
-     * @param gender A valid gender string.
+     * @param str A valid gender string.
      */
-    public Gender(String gender) {
-        requireNonNull(gender);
-        checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        value = gender.toUpperCase();
+    public Gender(String str) {
+        requireNonNull(str);
+        checkArgument(isValidGender(str), MESSAGE_CONSTRAINTS);
+        switch (str) {
+        case "M":
+            value = GenderEnum.Male;
+            break;
+        case "F":
+            value = GenderEnum.Female;
+            break;
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -36,14 +49,21 @@ public class Gender {
 
     @Override
     public String toString() {
-        return value;
+        switch (value) {
+        case Male:
+            return "M";
+        case Female:
+            return "F";
+        default:
+            throw new RuntimeException();
+        }
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Gender // instanceof handles nulls
-                && value.equals(((Gender) other).value)); // state check
+            || (other instanceof Gender // instanceof handles nulls
+            && value.equals(((Gender) other).value)); // state check
     }
 
     @Override

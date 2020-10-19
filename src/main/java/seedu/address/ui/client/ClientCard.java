@@ -51,7 +51,7 @@ public class ClientCard extends UiPart<Region> {
         id.setText(String.format("(cid: %s) ", client.getId()));
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        gender.setText(client.getGender().value);
+        gender.setText(client.getGender().toString());
         email.setText(client.getEmail().value);
         address.setText(client.getAddress().value);
         client.getTags()

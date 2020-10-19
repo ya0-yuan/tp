@@ -55,7 +55,7 @@ public class JsonAdaptedHairdresser extends JsonAdaptedPerson {
                 source.getName().fullName,
                 source.getPhone().value,
                 source.getEmail().value,
-                source.getGender().value);
+                source.getGender().toString());
         title = source.getTitle().value;
         specs.addAll(source.getSpecs().stream()
                 .map(JsonAdaptedSpecialisation::new)
