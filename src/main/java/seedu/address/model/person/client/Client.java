@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Entity;
 import seedu.address.model.IdCounter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -89,6 +90,18 @@ public class Client extends Person {
             && otherClient.getGender().equals(getGender())
             && otherClient.getAddress().equals(getAddress())
             && otherClient.getTags().equals(getTags());
+    }
+
+    @Override
+    public boolean isSame(Entity other) {
+
+        if (other instanceof Client) {
+            Client client = (Client) other;
+            return isSameClient(client);
+        } else {
+            return false;
+        }
+
     }
 
     /**
