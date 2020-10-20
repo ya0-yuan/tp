@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commandalias.CommandAliasSet;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -34,4 +35,6 @@ public interface ReadOnlyAddressBook {
      * Returns IdCounter that keeps track of hairdressers', clients' and appointments' current max ID.
      */
     IdCounter getIdCounter();
+
+    CommandAliasSet getCommandAliasSet();
 }
