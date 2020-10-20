@@ -17,7 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_ALISSA;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BENJAMIN;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.SPECIALISATION_DESC_DYE;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIALISATION_DESC_COLOR;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIALISATION_DESC_PERM;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_ALISSA;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BENJAMIN;
@@ -25,7 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENJAMIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BENJAMIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENJAMIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BENJAMIN;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_DYE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_COLOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_PERM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BENJAMIN;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -85,10 +85,10 @@ public class AddHairdresserCommandParserTest {
 
         // multiple specs - all accepted
         Hairdresser expectedHairdresserMultipleSpecs = new HairdresserBuilder(BENJAMIN)
-                .withSpecs(VALID_SPECIALISATION_PERM, VALID_SPECIALISATION_DYE).build();
+                .withSpecs(VALID_SPECIALISATION_PERM, VALID_SPECIALISATION_COLOR).build();
         assertParseSuccess(parser, NAME_DESC_BENJAMIN + PHONE_DESC_BENJAMIN
                 + EMAIL_DESC_BENJAMIN + TITLE_DESC_BENJAMIN + GENDER_DESC_BENJAMIN
-                + SPECIALISATION_DESC_DYE
+                + SPECIALISATION_DESC_COLOR
                 + SPECIALISATION_DESC_PERM, new AddHairdresserCommand(expectedHairdresserMultipleSpecs));
     }
 
@@ -135,27 +135,27 @@ public class AddHairdresserCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BENJAMIN
                 + EMAIL_DESC_BENJAMIN + TITLE_DESC_BENJAMIN + GENDER_DESC_BENJAMIN
-                + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM, Name.MESSAGE_CONSTRAINTS);
+                + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BENJAMIN + INVALID_PHONE_DESC
                 + EMAIL_DESC_BENJAMIN + TITLE_DESC_BENJAMIN + GENDER_DESC_BENJAMIN
-                + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM, Phone.MESSAGE_CONSTRAINTS);
+                + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BENJAMIN + PHONE_DESC_BENJAMIN
                 + INVALID_EMAIL_DESC + TITLE_DESC_BENJAMIN + GENDER_DESC_BENJAMIN
-                + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM, Email.MESSAGE_CONSTRAINTS);
+                + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM, Email.MESSAGE_CONSTRAINTS);
 
         // invalid title
         assertParseFailure(parser, NAME_DESC_BENJAMIN + PHONE_DESC_BENJAMIN
                 + EMAIL_DESC_BENJAMIN + INVALID_TITLE_DESC + GENDER_DESC_BENJAMIN
-                + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM, Title.MESSAGE_CONSTRAINTS);
+                + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM, Title.MESSAGE_CONSTRAINTS);
 
         // invalid gender
         assertParseFailure(parser, NAME_DESC_BENJAMIN + PHONE_DESC_BENJAMIN
                 + EMAIL_DESC_BENJAMIN + TITLE_DESC_BENJAMIN + INVALID_GENDER_DESC
-                + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM, Gender.MESSAGE_CONSTRAINTS);
+                + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid spec
         assertParseFailure(parser, NAME_DESC_BENJAMIN + PHONE_DESC_BENJAMIN
@@ -170,7 +170,7 @@ public class AddHairdresserCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BENJAMIN
                 + PHONE_DESC_BENJAMIN + EMAIL_DESC_BENJAMIN + TITLE_DESC_BENJAMIN
-                + GENDER_DESC_BENJAMIN + SPECIALISATION_DESC_DYE + SPECIALISATION_DESC_PERM,
+                + GENDER_DESC_BENJAMIN + SPECIALISATION_DESC_COLOR + SPECIALISATION_DESC_PERM,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHairdresserCommand.MESSAGE_USAGE));
     }
 }

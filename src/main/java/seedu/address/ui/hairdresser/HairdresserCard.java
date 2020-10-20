@@ -55,7 +55,8 @@ public class HairdresserCard extends UiPart<Region> {
         email.setText(hairdresser.getEmail().value);
         title.setText(hairdresser.getTitle().value);
         hairdresser.getSpecs()
-                .forEach(specialisation -> specialisations.getChildren().add(new Label(specialisation.specialisation)));
+                .forEach(specialisation -> specialisations.getChildren()
+                        .add(new Label(specialisation.getSpecInString())));
     }
 
     @Override
