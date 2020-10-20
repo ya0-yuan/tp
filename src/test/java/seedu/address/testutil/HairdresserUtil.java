@@ -37,7 +37,7 @@ public class HairdresserUtil {
         sb.append(PREFIX_GENDER + hairdresser.getGender().toString() + " ");
         sb.append(PREFIX_TITLE + hairdresser.getTitle().value + " ");
         hairdresser.getSpecs().stream().forEach(
-            s -> sb.append(PREFIX_SPECIALISATION + s.specialisation + " ")
+            s -> sb.append(PREFIX_SPECIALISATION + s.getSpecInString() + " ")
         );
         return sb.toString();
     }
@@ -57,7 +57,7 @@ public class HairdresserUtil {
             if (specialisations.isEmpty()) {
                 sb.append(PREFIX_SPECIALISATION);
             } else {
-                specialisations.forEach(s -> sb.append(PREFIX_SPECIALISATION).append(s.specialisation).append(" "));
+                specialisations.forEach(s -> sb.append(PREFIX_SPECIALISATION).append(s.getSpecInString()).append(" "));
             }
         }
         return sb.toString();

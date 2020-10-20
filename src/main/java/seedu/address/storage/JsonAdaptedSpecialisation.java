@@ -25,7 +25,7 @@ public class JsonAdaptedSpecialisation {
      * Converts a given {@code Specialisation} into this class for Jackson use.
      */
     public JsonAdaptedSpecialisation(Specialisation source) {
-        specialisation = source.specialisation;
+        specialisation = source.getSpecInString();
     }
 
     @JsonValue
