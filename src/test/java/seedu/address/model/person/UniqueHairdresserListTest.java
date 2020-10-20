@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_DYE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_COLOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BENJAMIN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalHairdressers.AMELIA;
@@ -44,7 +44,7 @@ public class UniqueHairdresserListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueHairdresserList.add(AMELIA);
         Hairdresser editedAlice = new HairdresserBuilder(AMELIA).withTitle(VALID_TITLE_BENJAMIN)
-                .withSpecs(VALID_SPECIALISATION_DYE).build();
+                .withSpecs(VALID_SPECIALISATION_COLOR).build();
         assertTrue(uniqueHairdresserList.contains(editedAlice));
     }
 
@@ -87,7 +87,7 @@ public class UniqueHairdresserListTest {
     public void setHairdresser_editedHairdresserHasSameIdentity_success() {
         uniqueHairdresserList.add(AMELIA);
         Hairdresser editedAlice = new HairdresserBuilder(AMELIA).withTitle(VALID_TITLE_BENJAMIN)
-                .withSpecs(VALID_SPECIALISATION_DYE).build();
+                .withSpecs(VALID_SPECIALISATION_COLOR).build();
         uniqueHairdresserList.setHairdresser(AMELIA, editedAlice);
         UniqueHairdresserList expectedUniqueHairdresserList = new UniqueHairdresserList();
         expectedUniqueHairdresserList.add(editedAlice);

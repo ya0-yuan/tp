@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALISSA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENJAMIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_ALISSA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BENJAMIN;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_DYE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_COLOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIALISATION_PERM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALISSA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BENJAMIN;
@@ -26,14 +26,14 @@ public class TypicalHairdressers {
         .withPhone("94351253")
         .withGender("F")
         .withTitle("Junior Stylist")
-        .withSpecs("makeup")
+        .withSpecs("Color")
         .build();
     public static final Hairdresser BENEDICT = new HairdresserBuilder().withName("Benedict Meier")
         .withEmail("johnd@example.com")
         .withPhone("98765432")
         .withGender("M")
         .withTitle("Senior Stylist")
-        .withSpecs("perm", "dye")
+        .withSpecs("Perm", "HairExtension")
         .build();
     public static final Hairdresser CALEB = new HairdresserBuilder().withName("Caleb Kurz")
         .withPhone("95352563")
@@ -46,7 +46,7 @@ public class TypicalHairdressers {
         .withEmail("cornelia@example.com")
         .withGender("M")
         .withTitle("Colourist")
-        .withSpecs("dye")
+        .withSpecs("Styling")
         .build();
     public static final Hairdresser EMMA = new HairdresserBuilder().withName("Emma Meyer")
         .withPhone("9482224")
@@ -94,7 +94,7 @@ public class TypicalHairdressers {
         .withGender(VALID_GENDER_BENJAMIN)
         .withTitle(VALID_TITLE_BENJAMIN)
         .withEmail(VALID_EMAIL_BENJAMIN)
-        .withSpecs(VALID_SPECIALISATION_PERM, VALID_SPECIALISATION_DYE)
+        .withSpecs(VALID_SPECIALISATION_PERM, VALID_SPECIALISATION_COLOR)
         .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

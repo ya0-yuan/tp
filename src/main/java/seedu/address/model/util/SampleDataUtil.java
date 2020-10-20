@@ -36,9 +36,9 @@ public class SampleDataUtil {
     public static Hairdresser[] getSampleHairdressers() {
         return new Hairdresser[] {
             new Hairdresser(new Name("Anna Yeoh"), new Phone("84213456"), new Email("annayeoh@example.com"),
-                new Gender("F"), new Title("Senior Stylist"), getSpecSet("perm", "cut")),
+                new Gender("F"), new Title("Senior Stylist"), getSpecSet("Perm", "Color")),
             new Hairdresser(new Name("Bella Yu"), new Phone("92837461"), new Email("berniceyu@example.com"),
-                    new Gender("F"), new Title("Shampooist"), getSpecSet("washhair"))
+                    new Gender("F"), new Title("Shampooist"), getSpecSet("HairLossTreatment"))
         };
     }
 

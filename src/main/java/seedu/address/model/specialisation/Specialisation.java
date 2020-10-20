@@ -8,10 +8,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Specialisation {
 
-    public static final String MESSAGE_CONSTRAINTS = "Specialisations should be alphanumeric and cannot be empty";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    enum SpecEnum {
+        Color, Perm, HairExtension, Styling, HairConditioning, Straightening, ScalpTreatment, HairLossTreatment;
+    }
 
-    public final String specialisation;
+    public static final String MESSAGE_CONSTRAINTS = "Specialisations should be one of the following options: "
+            + "Color, Perm, HairExtension, Styling, "
+            + "HairConditioning, Straightening, ScalpTreatment, HairLossTreatment.";
+    public static final String VALIDATION_REGEX =
+            "Color|Perm|HairExtension|Styling|HairConditioning|Straightening|ScalpTreatment|HairLossTreatment";
+
+    public final SpecEnum specialisation;
 
     /**
      * Constructs a {@code Specialisation}.
@@ -21,7 +28,34 @@ public class Specialisation {
     public Specialisation(String specialisation) {
         requireNonNull(specialisation);
         checkArgument(isValidSpecialisation(specialisation), MESSAGE_CONSTRAINTS);
-        this.specialisation = specialisation;
+        switch (specialisation) {
+        case "Color":
+            this.specialisation = SpecEnum.Color;
+            break;
+        case "Perm":
+            this.specialisation = SpecEnum.Perm;
+            break;
+        case "HairExtension":
+            this.specialisation = SpecEnum.HairExtension;
+            break;
+        case "Styling":
+            this.specialisation = SpecEnum.Styling;
+            break;
+        case "HairConditioning":
+            this.specialisation = SpecEnum.HairConditioning;
+            break;
+        case "Straightening":
+            this.specialisation = SpecEnum.Straightening;
+            break;
+        case "ScalpTreatment":
+            this.specialisation = SpecEnum.ScalpTreatment;
+            break;
+        case "HairLossTreatment":
+            this.specialisation = SpecEnum.HairLossTreatment;
+            break;
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -44,10 +78,36 @@ public class Specialisation {
     }
 
     /**
+     * Returns specialisation in string format.
+     */
+    public String getSpecInString() {
+        switch (specialisation) {
+        case Color:
+            return "Color";
+        case Perm:
+            return "Perm";
+        case HairExtension:
+            return "HairExtension";
+        case Styling:
+            return "Styling";
+        case HairConditioning:
+            return "HairConditioning";
+        case Straightening:
+            return "Straightening";
+        case ScalpTreatment:
+            return "ScalpTreatment";
+        case HairLossTreatment:
+            return "HairLossTreatment";
+        default:
+            throw new RuntimeException();
+        }
+    }
+
+    /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + specialisation + ']';
+        return '[' + getSpecInString() + ']';
     }
 
 }
