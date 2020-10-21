@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_client 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -217,6 +217,58 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### ID and ID Counter
+
+To ensure that every entity within the same class can be distinguished from each other, we have implemented an auto incremental ID system that automatically assigns to a new ID to every entity upon creation.
+
+#### Reasons for Implementation
+
+Initially, we intended to follow the original AddressBook-3, where each `Person` would be identified by its shown index in the list shown in the GUI. However, we came to the realisation this approach would confuse the user during this scenario:
+
+* When the user searches for an entity with filters, the filtered list would show indices that are not corresponding to the original list. As such, the user might erroneously key in the wrong index for his/her selected entity.
+
+To tackle this, we concluded that each entity should be identified by a unique ID within its own class, and that this should be displayed to the user and be the primary way of identifying entities for the purposes of editing, deleting, etc.
+
+#### Current Implementation
+
+##### ID Class
+
+* The Model package contains an abstract Id class, which is essentially a wrapper for an integer `id` variable, along with a method used to verify the validity of the `id` and error messages to be shown.
+* The classes AppointmentId, ClientId, and HairdresserId extend the abstract Id class, and reside in their respective packages
+
+![IDClassDiagram](images/IDClassDiagram.png)
+
+##### ID Counter Class
+
+* To ensure that the IDs of each entity created are unique, a final class `IDCounter` is implemented. 
+* This class is a singleton, and only one instance can exist at any one time.
+* It consists of static attributes that keep track of the next ID to be generated for the respective entities, namely, Clients, Hairdressers, and Appointments.
+
+![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
+
+#### Design Considerations
+
+* Alternative 1 (current implementation): Use 3 separate counters for `Client`s, `Hairdresser`s, `Appointment`s
+  * Pros: Good OOP Design. Error messages can be abstracted out in their respective ID classes
+  * Cons: Hassle to keep track of three separate counters, and repetitive to have three separate methods for these counters
+
+* Alternative 2: Use 1 single counter for all entities. Every entity contains an ID instance.
+  * Pros: Easy to implement, no repetitive code.
+  * Cons: Bad OOP design. Error messages would be the same for IDs created in all three classes
+  
+#### Usage Scenario
+
+Given below is the example usage scenario that highlights the generation of a new ID instance when a new Client is created:
+
+1. The user attempts to create a new client by entering the respective fields in the appropriate format, such as `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
+
+1. The AddClientCommandParser extracts the relevant fields from the user input and creates a new Client instance using the Client constructor.
+
+1. The Client constructor calls IDCounter to generate a new ClientId instance.
+
+1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
+
+![IDSequenceDiagram](images/IDSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
