@@ -6,21 +6,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commandalias.CommandAliasSet;
+import seedu.address.logic.commandalias.CommandWord;
+import seedu.address.logic.commandalias.exceptions.CommandWordException;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.appointment.AddAppointmentCommand;
-import seedu.address.logic.commands.appointment.DeleteAppointmentCommand;
-import seedu.address.logic.commands.appointment.EditAppointmentCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
-import seedu.address.logic.commands.client.AddClientCommand;
-import seedu.address.logic.commands.client.DeleteClientCommand;
-import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
-import seedu.address.logic.commands.hairdresser.AddHairdresserCommand;
-import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
-import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
 import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
@@ -56,55 +50,65 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandAlias = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        CommandWord commandWord;
+        try {
+            commandWord = CommandAliasSet.getInstance().getCommandWord(commandAlias);
+        } catch (CommandWordException ex) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+
         switch (commandWord) {
 
 
-        case AddClientCommand.COMMAND_WORD:
+        case ADD_CLIENT:
             return new AddClientCommandParser().parse(arguments);
 
-        case AddHairdresserCommand.COMMAND_WORD:
+        case ADD_HAIRDRESSER:
             return new AddHairdresserCommandParser().parse(arguments);
 
-        case AddAppointmentCommand.COMMAND_WORD:
+        case ADD_APPOINTMENT:
             return new AddAppointmentCommandParser().parse(arguments);
 
-        case EditClientCommand.COMMAND_WORD:
+        case EDIT_CLIENT:
             return new EditClientCommandParser().parse(arguments);
 
-        case EditHairdresserCommand.COMMAND_WORD:
+        case EDIT_HAIRDRESSER:
             return new EditHairdresserCommandParser().parse(arguments);
 
-        case EditAppointmentCommand.COMMAND_WORD:
+        case EDIT_APPOINTMENT:
             return new EditAppointmentCommandParser().parse(arguments);
 
-        case DeleteClientCommand.COMMAND_WORD:
+        case DELETE_CLIENT:
             return new DeleteClientCommandParser().parse(arguments);
 
-        case DeleteHairdresserCommand.COMMAND_WORD:
+        case DELETE_HAIRDRESSER:
             return new DeleteHairdresserCommandParser().parse(arguments);
 
-        case DeleteAppointmentCommand.COMMAND_WORD:
+        case DELETE_APPOINTMENT:
             return new DeleteAppointmentCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
+        case CLEAR:
             return new ClearCommand();
 
-        case ListClientCommand.COMMAND_WORD:
+        case LIST_CLIENT:
             return new ListClientCommand();
 
-        case ListHairdresserCommand.COMMAND_WORD:
+        case LIST_HAIRDRESSER:
             return new ListHairdresserCommand();
 
-        case ListAppointmentCommand.COMMAND_WORD:
+        case LIST_APPOINTMENT:
             return new ListAppointmentCommand();
 
-        case ExitCommand.COMMAND_WORD:
+        case EXIT:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
+        case HELP:
             return new HelpCommand();
+        case ADD_ALIAS:
+            return new AddAliasCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -30,7 +30,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final JsonAdaptedIdCounter idCounter;
-
+    private final JsonAdaptedCommandAliasSet aliasSet;
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
@@ -38,11 +38,13 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("hairdressers") List<JsonAdaptedHairdresser> hairdressers,
                                        @JsonProperty("clients") List<JsonAdaptedClient> clients,
                                        @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-                                       @JsonProperty("idCounter") JsonAdaptedIdCounter idCounter) {
+                                       @JsonProperty("idCounter") JsonAdaptedIdCounter idCounter,
+                                       @JsonProperty("aliasSet") JsonAdaptedCommandAliasSet aliasSet) {
         this.hairdressers.addAll(hairdressers);
         this.clients.addAll(clients);
         this.appointments.addAll(appointments);
         this.idCounter = idCounter;
+        this.aliasSet = aliasSet;
     }
 
     /**
@@ -58,6 +60,7 @@ class JsonSerializableAddressBook {
         appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
         idCounter = new JsonAdaptedIdCounter(source.getIdCounter());
+        aliasSet = new JsonAdaptedCommandAliasSet(source.getCommandAliasSet());
     }
 
     /**
@@ -95,7 +98,7 @@ class JsonSerializableAddressBook {
         }
 
         addressBook.setIdCounter(idCounter.toModelType());
-
+        addressBook.setCommandAliasSet(aliasSet.toModelType());
         return addressBook;
     }
 
