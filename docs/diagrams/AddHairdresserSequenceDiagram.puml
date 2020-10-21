@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddHairdresserCommandParser" as AddHairdresserCommandParser LOGIC_COLOR
+participant "a:AddHairdresserCommand" as AddHairdresserCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute(add_hairdresser)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(add_hairdresser)
+activate AddressBookParser
+
+create AddHairdresserCommandParser
+AddressBookParser -> AddHairdresserCommandParser
+activate AddHairdresserCommandParser
+
+AddHairdresserCommandParser --> AddressBookParser
+deactivate AddHairdresserCommandParser
+
+AddressBookParser -> AddHairdresserCommandParser
+activate AddHairdresserCommandParser
+create AddHairdresserCommand
+AddHairdresserCommandParser -> AddHairdresserCommand
+activate AddHairdresserCommand
+
+AddHairdresserCommand --> AddHairdresserCommandParser
+deactivate AddHairdresserCommand
+
+AddHairdresserCommandParser -> AddHairdresserCommand : parse(add_hairdresser)
+activate AddHairdresserCommand
+
+AddHairdresserCommand -> AddHairdresserCommandParser : a
+deactivate AddHairdresserCommand
+
+AddHairdresserCommandParser -> AddressBookParser : a
+deactivate AddHairdresserCommandParser
+
+AddressBookParser -> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddHairdresserCommand : execute()
+activate AddHairdresserCommand
+
+AddHairdresserCommand -> Model : addHairdresser(toAdd)
+activate Model
+
+Model --> AddHairdresserCommand
+deactivate Model
+
+AddHairdresserCommand --> LogicManager : result
+deactivate AddHairdresserCommand
+AddHairdresserCommand -[hidden]-> LogicManager : result
+
+LogicManager -> Storage : saveAddressBook(addressBook)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+
+destroy AddHairdresserCommand
+
+deactivate LogicManager
+@enduml
