@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commandalias.CommandAliasSet;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.UniqueAppointmentList;
@@ -27,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueHairdresserList hairdressers;
     private final UniqueAppointmentList appointments;
     private final IdCounter idCounter;
+    private final CommandAliasSet commandAliasSet;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -45,6 +47,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         idCounter = IdCounter.getInstance();
 
+        commandAliasSet = CommandAliasSet.getInstance();
     }
 
     public AddressBook() {}
@@ -67,6 +70,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.idCounter.setCurrentMaxClientId(idCounter.getCurrentMaxClientId());
         this.idCounter.setCurrentMaxHairdresserId(idCounter.getCurrentMaxHairdresserId());
         this.idCounter.setCurrentMaxAppointmentId(idCounter.getCurrentMaxAppointmentId());
+    }
+
+    public void setCommandAliasSet(CommandAliasSet aliasSet) {
+        this.commandAliasSet.setUpAliasSet(aliasSet);
     }
 
     /**
@@ -307,6 +314,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public IdCounter getIdCounter() {
         return idCounter;
+    }
+
+    @Override
+    public CommandAliasSet getCommandAliasSet() {
+        return commandAliasSet;
     }
 
     @Override
