@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the HairStyleX data in json format and read it back.
 
 ### Common classes
 
@@ -132,6 +132,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Hairdresser Management Features
+
+
 
 ### \[Proposed\] Undo/redo feature
 
