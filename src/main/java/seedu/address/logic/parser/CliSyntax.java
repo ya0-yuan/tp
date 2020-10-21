@@ -25,4 +25,8 @@ public class CliSyntax {
     public static final String PLACEHOLDER_HAIRDRESSER_INDEX = "HAIRDRESSER_INDEX";
     public static final String PLACEHOLDER_DATE_OF_APPT = "DATE_OF_APPT";
     public static final String PLACEHOLDER_START_TIME = "START_TIME";
+
+    public static final Prefix PREFIX_OLD_COMMAND = new Prefix("old/");
+    public static final Prefix PREFIX_NEW_COMMAND = new Prefix("new/");
+
 }
