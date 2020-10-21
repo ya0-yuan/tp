@@ -1,0 +1,14 @@
+@startuml
+
+skinparam arrowThickness 1.1
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class IdCounter {
+{static} - instance: IdCounter
+{static} - clientId: int
+{static} - hairdresserId: int
+{static} - appointmentId: int
+{static} + getInstance(): IdCounter
+}
+@enduml
