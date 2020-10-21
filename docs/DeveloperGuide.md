@@ -135,6 +135,44 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Hairdresser Management Features
 
+#### Overview of implementation for Hairdresser
+
+* `Hairdresser` - This is an entity class to store information regarding an appointment, such as name, phone, email, gender, title, specialisation.
+* `Specialisation` - This is class containing an enum which represents the specialisations of a hairdresser, which includes `Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.
+* `HairdresserID` - This is a class which represents the unique ID of an appointment.
+* `UniqueHairdresserList` - This is a `UniqueEntityList` which represents all hairdressers. It ensures that no duplicates of hairdresser can be added and supports add, update, delete of hairdressers.
+* `JsonAdaptedHairdresser` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+* `AddHairdresserCommandParser` - This class parses a user input string to a `HairdresserCommand` object and performs validation.
+* `AddHairdresserCommand` - This contains `execute` method which interact with model to perform the add action.
+
+#### Add Hairdresser Feature
+
+##### Current implementation
+
+The `add_hairdresser` command allows the `LogicManager` to create a new hairdresser and add it to the list of hairdressers. 
+
+The following sequence shows the sequence when the add command is execute by the `LogicManager`:
+
+![AddHairdresserSequenceDiagram](images/AddHairdresserSequenceDiagram.png)
+
+From the diagram above:
+
+1. `LogicManager`’s `execute` is called when `add_hairdresser` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+
+2. `AddressBookParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse add hairdresser command
+
+3. `parse` will be invoked and passed the parameters of the add hairdresser command.
+
+4. If all the arguments of `add_hairdresser` commands are valid, `AddHairdresserCommand` will be returned to the `LogicManager`
+
+5. `LogicManger` will then call `execute` method of `AddHairdresserCommand`
+
+6. `AddHairdresserCommand` will call `addHairdresser` passing `toAdd` as an argument to `Model` and returns a `result` to the `LogicManager`
+
+7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+
+8. A `CommandResult` will be returned at the end.
+
 
 
 ### \[Proposed\] Undo/redo feature

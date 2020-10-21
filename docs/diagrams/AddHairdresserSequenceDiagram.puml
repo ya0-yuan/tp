@@ -4,50 +4,74 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant ":AddHairdresserCommandParser" as AddHairdresserCommandParser LOGIC_COLOR
+participant "a:AddHairdresserCommand" as AddHairdresserCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute(add_hairdresser)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
+LogicManager -> AddressBookParser : parseCommand(add_hairdresser)
 activate AddressBookParser
 
-create UndoCommand
-AddressBookParser -> UndoCommand
-activate UndoCommand
+create AddHairdresserCommandParser
+AddressBookParser -> AddHairdresserCommandParser
+activate AddHairdresserCommandParser
 
-UndoCommand --> AddressBookParser
-deactivate UndoCommand
+AddHairdresserCommandParser --> AddressBookParser
+deactivate AddHairdresserCommandParser
 
-AddressBookParser --> LogicManager : u
+AddressBookParser -> AddHairdresserCommandParser
+activate AddHairdresserCommandParser
+create AddHairdresserCommand
+AddHairdresserCommandParser -> AddHairdresserCommand
+activate AddHairdresserCommand
+
+AddHairdresserCommand --> AddHairdresserCommandParser
+deactivate AddHairdresserCommand
+
+AddHairdresserCommandParser -> AddHairdresserCommand : parse(add_hairdresser)
+activate AddHairdresserCommand
+
+AddHairdresserCommand -> AddHairdresserCommandParser : a
+deactivate AddHairdresserCommand
+
+AddHairdresserCommandParser -> AddressBookParser : a
+deactivate AddHairdresserCommandParser
+
+AddressBookParser -> LogicManager : a
 deactivate AddressBookParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+LogicManager -> AddHairdresserCommand : execute()
+activate AddHairdresserCommand
 
-UndoCommand -> Model : undoAddressBook()
+AddHairdresserCommand -> Model : addHairdresser(toAdd)
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
-
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
-
-Model --> UndoCommand
+Model --> AddHairdresserCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+AddHairdresserCommand --> LogicManager : result
+deactivate AddHairdresserCommand
+AddHairdresserCommand -[hidden]-> LogicManager : result
+
+LogicManager -> Storage : saveAddressBook(addressBook)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
 
 [<--LogicManager
+
+destroy AddHairdresserCommand
+
 deactivate LogicManager
 @enduml
