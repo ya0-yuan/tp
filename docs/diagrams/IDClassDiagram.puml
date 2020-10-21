@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Abstract Class Id {
 - id: int
-{static} + MESSAGE_CONSTRAINTS: String 
+{static} + MESSAGE_CONSTRAINTS: String
 + isValidId(): boolean
 }
 
