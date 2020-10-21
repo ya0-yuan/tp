@@ -11,6 +11,7 @@ Interface AddressBookStorage <<Interface>>
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
+Class "{abstract}\nJsonAdaptedPerson" as JsonAdaptedPerson
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
@@ -19,6 +20,13 @@ StorageManager o--> AddressBookStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonSerializableAddressBookStorage ..> JsonAdaptedHairdresser
+JsonSerializableAddressBookStorage ..> JsonAdaptedClient
+JsonSerializableAddressBookStorage ..> JsonAdaptedAppointment
+JsonSerializableAddressBookStorage ..> JsonAdaptedIdCounter
+JsonAdaptedClient ..> JsonAdaptedTag
+JsonAdaptedHairdresser ..> JsonAdaptedSpecialisation
+JsonAdaptedHairdresser -right[hidden]- JsonAdaptedClient
+JsonAdaptedHairdresser -left|> JsonAdaptedPerson
+JsonAdaptedClient -left|> JsonAdaptedPerson
 @enduml
