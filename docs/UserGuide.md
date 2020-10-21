@@ -200,6 +200,21 @@ Format: `delete_hairdresser ID`
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 
+### Alias commands
+
+#### Adding a command alias : `add_alias`
+
+Adds a new command alias to the database.
+
+Format: `add_alias old/OLD_ALIAS new/NEW_ALIAS`
+
+
+#### Deleting a command_alias : `delete_alias`
+
+Removes a command alias from the database.
+
+Format: `delete_alias ALIAS`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>

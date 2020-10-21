@@ -16,7 +16,7 @@ public class JsonAdaptedCommandAlias {
     private final List<String> aliases;
 
     /**
-     * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointment}.
+     * Constructs a {@code JsonAdaptedCommandAlias} with the given {@code String and @code List<String>}.
      */
     @JsonCreator
     public JsonAdaptedCommandAlias(@JsonProperty("word") String commandWord,
@@ -26,7 +26,7 @@ public class JsonAdaptedCommandAlias {
     }
 
     /**
-     * Converts a given {@code Appointment} into this class for Jackson use.
+     * Converts a given {@code CommandAlias} into this class for Jackson use.
      */
     public JsonAdaptedCommandAlias(CommandAlias source) {
         this.commandWord = source.getCommandWord().getDefaultWord();
@@ -34,9 +34,9 @@ public class JsonAdaptedCommandAlias {
     }
 
     /**
-     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
+     * Converts this Jackson-friendly adapted commandAlias object into the model's {@code CommandAlias} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted commandAlias.
      */
     public CommandAlias toModelType() throws IllegalValueException {
         if (commandWord == null) {
