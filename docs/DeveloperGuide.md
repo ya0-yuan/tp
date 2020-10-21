@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the HairStyleX data in json format and read it back.
 
 ### Common classes
 
@@ -132,6 +132,77 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Hairdresser Management Features
+
+#### Overview of implementation for Hairdresser
+
+* `Hairdresser` - This is an entity class to store information regarding an appointment, such as name, phone, email, gender, title, specialisation.
+* `Specialisation` - This is class containing an enum which represents the specialisations of a hairdresser, which includes `Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.
+* `HairdresserID` - This is a class which represents the unique ID of an appointment.
+* `UniqueHairdresserList` - This is a `UniqueEntityList` which represents all hairdressers. It ensures that no duplicates of hairdresser can be added and supports add, update, delete of hairdressers.
+* `JsonAdaptedHairdresser` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+* `AddHairdresserCommandParser` - This class parses a user input string to a `HairdresserCommand` object and performs validation.
+* `AddHairdresserCommand` - This contains `execute` method which interact with model to perform the add action.
+
+#### Add Hairdresser Feature
+
+##### Current implementation
+
+The `add_hairdresser` command allows the `LogicManager` to create a new hairdresser and add it to the list of hairdressers. 
+
+The following sequence shows the sequence when the add command is execute by the `LogicManager`:
+
+![AddHairdresserSequenceDiagram](images/AddHairdresserSequenceDiagram.png)
+
+From the diagram above:
+
+1. `LogicManager`’s `execute` is called when `add_hairdresser` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+
+2. `AddressBookParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse add hairdresser command
+
+3. `parse` will be invoked and passed the parameters of the add hairdresser command.
+
+4. If all the arguments of `add_hairdresser` commands are valid, `AddHairdresserCommand` will be returned to the `LogicManager`
+
+5. `LogicManger` will then call `execute` method of `AddHairdresserCommand`
+
+6. `AddHairdresserCommand` will call `addHairdresser` passing `toAdd` as an argument to `Model` and returns a `result` to the `LogicManager`
+
+7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+
+8. A `CommandResult` will be returned at the end.
+
+
+### Appointment feature
+This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
+
+#### Current Implementation
+
+* `Appointment` - This is an entity class to store information regarding an appointment, such as hairdresser, client, hairdresser ID, client ID, date, time and status.
+                       
+* `FutureAppointment` - This is an entity class which extends Appointment. This class ensures that a newly created appointment is always in the future compared to the system time.
+* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `cancelled`, `completed`, or `missed`.
+* `AppointmentID` - This is a class which represents the unique ID of an appointment.
+* `UniqueAppointmentList` - This is a `UniqueEntityList` which represents all appointments. It implements features including ensuring that no duplicate appointments can be added. It allows for clients or hairdressers to be replaced or deleted, and updates the relevant appointments.
+*`JsonAdaptedAppointment` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+*`AddAppointmentCommandParser` - This class parses a user input string to an AppointmentCommand object. Validation for inputs that do not require access to the model is performed here.                                                                  
+*`AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
+
+Steps:
+
+1. The user enters an add appointment command, the input is first validated by AddAppointmentCommandParser. Inputs that do not require access to the model is validated, for example validating the format of hairdresser ID, client ID, date, and time. It ensures that the date/time is valid and is in the future, but does not check whether the hairdresser/client ID corresponds to an actual hairdresser/client (this is validated when the command is executed). A new AddAppointmentCommand object is created.
+
+1. The Logic layer then executes the AddAppointmentCommand. This checks if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
+
+1. The model adds the appointment to its internal list `UniqueAppointmentList`. This list is an `javafx.collections.ObservableList` and the UI layer is notified and updated through a `ListChangeListener`. This follows the observer pattern.
+
+1. The Logic layer will be notified that the model has been modified through an `InvalidationListener`. This triggers storing information to non-volatile memory using the Storage layer, and the process is detailed there.
+
+#### Proposed improvements
+1. Currently, validation or updating of appointments based on client/hairdresser ID requires iterating through all appointments to check if they involve the relevant client/hairdresser. Hence this process is slow and runs in O(n) time. It can be improved by implementing two `HashMaps` of appointments keyed by `ClientId`/`HairdresserId`  respectively. This will allow for the search to be done in O(1) time. We did not implement this feature as it would introduce unnecessary complexity, and the current solution meets the non-functional requirements regarding performance.
+
+1. Currently, the order of appointments in the `UniqueAppointmentList` is not ordered by time. Hence, sorting appointments by appointment time requires O(n log(n)) time. By maintaining a `TreeMap` of appointments keyed by time, a list of appointments ordered by appointment time can be generated in O(n), while the next k appointments after a given appointment can be found in O(k log(n)) time. We did not implement this feature as it would introduce unnecessary complexity, and the current solution meets the non-functional requirements regarding performance.
 
 ### \[Proposed\] Undo/redo feature
 
