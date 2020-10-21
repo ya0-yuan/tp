@@ -18,7 +18,7 @@ public class JsonAdaptedCommandAliasSet {
     private final List<JsonAdaptedCommandAlias> aliasList;
 
     /**
-     * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointment}.
+     * Constructs a {@code JsonAdaptedCommandAliasSet} with the given {@code List<JsonAdaptedCommandAlias>}.
      */
     @JsonCreator
     public JsonAdaptedCommandAliasSet(@JsonProperty("aliasList") List<JsonAdaptedCommandAlias> aliasList) {
@@ -26,7 +26,7 @@ public class JsonAdaptedCommandAliasSet {
     }
 
     /**
-     * Converts a given {@code Appointment} into this class for Jackson use.
+     * Converts a given {@code CommandAliasSet} into this class for Jackson use.
      */
     public JsonAdaptedCommandAliasSet(CommandAliasSet source) {
         this.aliasList = source.getListOfAliases().stream()
@@ -34,9 +34,9 @@ public class JsonAdaptedCommandAliasSet {
     }
 
     /**
-     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
+     * Converts this Jackson-friendly adapted CommandAliasSet object into the model's {@code CommandAliasSet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted commandAliasSet.
      */
     public CommandAliasSet toModelType() throws IllegalValueException {
         if (aliasList == null) {
