@@ -1,4 +1,5 @@
 @startuml
+@startuml
 !include style.puml
 
 Actor User as user USER_COLOR
