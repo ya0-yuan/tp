@@ -22,10 +22,12 @@ import seedu.address.logic.parser.appointment.EditAppointmentCommandParser;
 import seedu.address.logic.parser.client.AddClientCommandParser;
 import seedu.address.logic.parser.client.DeleteClientCommandParser;
 import seedu.address.logic.parser.client.EditClientCommandParser;
+import seedu.address.logic.parser.client.FilterClientCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.hairdresser.AddHairdresserCommandParser;
 import seedu.address.logic.parser.hairdresser.DeleteHairdresserCommandParser;
 import seedu.address.logic.parser.hairdresser.EditHairdresserCommandParser;
+import seedu.address.logic.parser.hairdresser.FilterHairdresserCommandParser;
 
 /**
  * Parses user input.
@@ -89,6 +91,12 @@ public class AddressBookParser {
 
         case DELETE_APPOINTMENT:
             return new DeleteAppointmentCommandParser().parse(arguments);
+
+        case FILTER_HAIRDRESSER:
+            return new FilterHairdresserCommandParser().parse(arguments);
+
+        case FILTER_CLIENT:
+            return new FilterClientCommandParser().parse(arguments);
 
         case CLEAR:
             return new ClearCommand();
