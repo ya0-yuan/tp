@@ -160,12 +160,16 @@ public class ModelManager implements Model {
     public void deleteHairdresser(Hairdresser target) {
         addressBook.removeHairdresser(target);
         addressBook.updateAppointmentWhenHairdresserDeleted(target.getId());
+
+        logger.info("Model: Deleted Hairdresser " + target.getId());
     }
 
     @Override
     public void addHairdresser(Hairdresser person) {
         addressBook.addHairdresser(person);
         updateFilteredHairdresserList(PREDICATE_SHOW_ALL_HAIRDRESSERS);
+
+        logger.info("Model: Added Hairdresser " + person.getId());
     }
 
     @Override
@@ -174,6 +178,8 @@ public class ModelManager implements Model {
 
         addressBook.setHairdresser(target, editedHairdresser);
         addressBook.updateAppointmentWhenHairdresserIsUpdated(target.getId(), editedHairdresser);
+
+        logger.info("Model: Edited Hairdresser " + editedHairdresser.getId());
     }
 
     //=========== Appointment =============================================================
