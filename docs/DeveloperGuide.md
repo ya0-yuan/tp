@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Command Aliasing feature
 This feature allows users to define their own aliases for commands that make it easier for them to type.
-#### CurrentImplementation
+#### Current Implementation
 ![Structure of the Alias Command Feature](images/CommandAliasClassDiagram.png)
 
 This shows the general structure used to implement the Command Alias.
@@ -284,6 +284,51 @@ Given below is the example usage scenario that highlights the generation of a ne
 1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
 
 ![IDSequenceDiagram](images/IDSequenceDiagram.png)
+
+### Find Feature
+
+Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily find an entity within a class or filter a list of entities.
+
+#### Reasons for implementation
+
+The find appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
+or filter out a list of all appointments in a certain day, it avoids creating conflicting appointments and provides a more efficient way of scheduling appointments.
+
+#### Use cases
+
+1. a hairdresser or a list of hairdressers can be filtered by their name
+
+2. a client or a list of clients can be filtered by their name
+
+2. an appointment or a list of appointments can be filtered by either hairdresser included, client included, or date.
+
+#### Usage Scenario
+
+Given below is the example usage scenario of finding a client:
+
+The `find_client` command allows the `LogicManager` to create one or a list of clients. 
+
+The following sequence shows the sequence when the find command is execute by the `LogicManager`:
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+From the diagram above:
+
+1. `LogicManager`’s `execute` is called when `find_client` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+
+2. `AddressBookParser` will initialize `FindClientCommandParser` and invoke the method `parse` to further parse find client command
+
+3. `parse` will be invoked and passed the parameters of the find client command.
+
+4. If all the arguments of `find_client` commands are valid, `FindClientCommand` will be returned to the `LogicManager`
+
+5. `LogicManger` will then call `execute` method of `FindClientCommand`
+
+6. `FindClientCommand` will call `updateFilteredClientList` passing `predicate` as an argument to `Model` and returns a `result` to the `LogicManager`
+
+7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+
+8. A `CommandResult` will be returned at the end.
 
 ### \[Proposed\] Undo/redo feature
 
