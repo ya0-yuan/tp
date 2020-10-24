@@ -22,9 +22,6 @@ import seedu.address.model.person.hairdresser.HairdresserId;
  */
 public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
 
-
-
-
     /**
      * Replaces the appointment {@code target} in the list with {@code changedAppointment}.
      * {@code target} must exist in the list.
@@ -130,7 +127,6 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
         }
         return appointmentWithId.get(0);
     }
-
 
     @Override
     public DuplicateAppointmentException duplicateException() {

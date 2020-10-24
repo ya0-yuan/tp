@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_client 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +86,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_client 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -103,7 +103,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Hairdresser>`, `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the HairStyleX data in json format and read it back.
 
 ### Common classes
 
@@ -132,6 +132,203 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Command Aliasing feature
+This feature allows users to define their own aliases for commands that make it easier for them to type.
+#### Current Implementation
+![Structure of the Alias Command Feature](images/CommandAliasClassDiagram.png)
+
+This shows the general structure used to implement the Command Alias.
+* `Command Word` - This is an enumeration that corresponds to each command in the application.
+* `CommandAlias` - This is a class which stores the hashset of strings that correspond to a particular word. This strings 
+are the command word's aliases.
+* `CommandAliasSet` - This is a singleton class which stores all the commandAlias in the application.
+It is responsible for finding the command word associated with a given input string and to validate whether the 
+new aliases are allowed to be saved into the system.
+
+Steps: 
+1. User input a command to the system. It is parsed regularly as before. The string representing the command is extracted.
+2. `AddressBookParser` will pass the string to `CommandAliasSet` to retrieve the corresponding `CommandWord`.
+3. Then, the `CommandWord` is processed as usual.
+
+Steps when adding a new alias:
+1. User inputs an `add_alias` command together with the new alias, and the command it is associated with.
+2. Upon execution, `CommndAliasSet` will do validation to check if the validity of the new alias. 
+3. Finally, `CommandAliasSet` adds the new alias to the `CommandAlias` it is matched to.
+
+#### Saving the Alias
+
+`JsonAdapatedAdressBook` saves `CommandAliasSet` as a `JsonAdapatedCommandAliasSet` together with its `JsonAdaptedAlias`.
+Upon starting the application,  `JsonAdaptedAddressBook` is used to set the singleton `CommandAliasSet`.
+
+### Hairdresser Management Features
+
+#### Overview of implementation for Hairdresser
+
+* `Hairdresser` - This is an entity class to store information regarding an appointment, such as name, phone, email, gender, title, specialisation.
+* `Specialisation` - This is class containing an enum which represents the specialisations of a hairdresser, which includes `Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.
+* `HairdresserID` - This is a class which represents the unique ID of an appointment.
+* `UniqueHairdresserList` - This is a `UniqueEntityList` which represents all hairdressers. It ensures that no duplicates of hairdresser can be added and supports add, update, delete of hairdressers.
+* `JsonAdaptedHairdresser` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+* `AddHairdresserCommandParser` - This class parses a user input string to a `HairdresserCommand` object and performs validation.
+* `AddHairdresserCommand` - This contains `execute` method which interact with model to perform the add action.
+
+#### Add Hairdresser Feature
+
+##### Current implementation
+
+The `add_hairdresser` command allows the `LogicManager` to create a new hairdresser and add it to the list of hairdressers. 
+
+The following sequence shows the sequence when the add command is execute by the `LogicManager`:
+
+![AddHairdresserSequenceDiagram](images/AddHairdresserSequenceDiagram.png)
+
+From the diagram above:
+
+1. `LogicManager`’s `execute` is called when `add_hairdresser` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+
+2. `AddressBookParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse add hairdresser command
+
+3. `parse` will be invoked and passed the parameters of the add hairdresser command.
+
+4. If all the arguments of `add_hairdresser` commands are valid, `AddHairdresserCommand` will be returned to the `LogicManager`
+
+5. `LogicManger` will then call `execute` method of `AddHairdresserCommand`
+
+6. `AddHairdresserCommand` will call `addHairdresser` passing `toAdd` as an argument to `Model` and returns a `result` to the `LogicManager`
+
+7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+
+8. A `CommandResult` will be returned at the end.
+
+
+### Appointment feature
+This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
+
+#### Current Implementation
+
+* `Appointment` - This is an entity class to store information regarding an appointment, such as hairdresser, client, hairdresser ID, client ID, date, time and status.
+                       
+* `FutureAppointment` - This is an entity class which extends Appointment. This class ensures that a newly created appointment is always in the future compared to the system time.
+* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `cancelled`, `completed`, or `missed`.
+* `AppointmentID` - This is a class which represents the unique ID of an appointment.
+* `UniqueAppointmentList` - This is a `UniqueEntityList` which represents all appointments. It implements features including ensuring that no duplicate appointments can be added. It allows for clients or hairdressers to be replaced or deleted, and updates the relevant appointments.
+*`JsonAdaptedAppointment` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+*`AddAppointmentCommandParser` - This class parses a user input string to an AppointmentCommand object. Validation for inputs that do not require access to the model is performed here.                                                                  
+*`AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
+
+Steps:
+
+1. The user enters an add appointment command, the input is first validated by AddAppointmentCommandParser. Inputs that do not require access to the model is validated, for example validating the format of hairdresser ID, client ID, date, and time. It ensures that the date/time is valid and is in the future, but does not check whether the hairdresser/client ID corresponds to an actual hairdresser/client (this is validated when the command is executed). A new AddAppointmentCommand object is created.
+
+1. The Logic layer then executes the AddAppointmentCommand. This checks if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
+
+1. The model adds the appointment to its internal list `UniqueAppointmentList`. This list is an `javafx.collections.ObservableList` and the UI layer is notified and updated through a `ListChangeListener`. This follows the observer pattern.
+
+1. The Logic layer will be notified that the model has been modified through an `InvalidationListener`. This triggers storing information to non-volatile memory using the Storage layer, and the process is detailed there.
+
+#### Proposed improvements
+1. Currently, validation or updating of appointments based on client/hairdresser ID requires iterating through all appointments to check if they involve the relevant client/hairdresser. Hence this process is slow and runs in O(n) time. It can be improved by implementing two `HashMaps` of appointments keyed by `ClientId`/`HairdresserId`  respectively. This will allow for the search to be done in O(1) time. We did not implement this feature as it would introduce unnecessary complexity, and the current solution meets the non-functional requirements regarding performance.
+
+1. Currently, the order of appointments in the `UniqueAppointmentList` is not ordered by time. Hence, sorting appointments by appointment time requires O(n log(n)) time. By maintaining a `TreeMap` of appointments keyed by time, a list of appointments ordered by appointment time can be generated in O(n), while the next k appointments after a given appointment can be found in O(k log(n)) time. We did not implement this feature as it would introduce unnecessary complexity, and the current solution meets the non-functional requirements regarding performance.
+
+### ID and ID Counter
+
+To ensure that every entity within the same class can be distinguished from each other, we have implemented an auto incremental ID system that automatically assigns to a new ID to every entity upon creation.
+
+#### Reasons for Implementation
+
+Initially, we intended to follow the original AddressBook-3, where each `Person` would be identified by its shown index in the list shown in the GUI. However, we came to the realisation this approach would confuse the user during this scenario:
+
+* When the user searches for an entity with filters, the filtered list would show indices that are not corresponding to the original list. As such, the user might erroneously key in the wrong index for his/her selected entity.
+
+To tackle this, we concluded that each entity should be identified by a unique ID within its own class, and that this should be displayed to the user and be the primary way of identifying entities for the purposes of editing, deleting, etc.
+
+#### Current Implementation
+
+##### ID Class
+
+* The Model package contains an abstract Id class, which is essentially a wrapper for an integer `id` variable, along with a method used to verify the validity of the `id` and error messages to be shown.
+* The classes AppointmentId, ClientId, and HairdresserId extend the abstract Id class, and reside in their respective packages
+
+![IDClassDiagram](images/IDClassDiagram.png)
+
+##### ID Counter Class
+
+* To ensure that the IDs of each entity created are unique, a final class `IDCounter` is implemented. 
+* This class is a singleton, and only one instance can exist at any one time.
+* It consists of static attributes that keep track of the next ID to be generated for the respective entities, namely, Clients, Hairdressers, and Appointments.
+
+![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
+
+#### Design Considerations
+
+* Alternative 1 (current implementation): Use 3 separate counters for `Client`s, `Hairdresser`s, `Appointment`s
+  * Pros: Good OOP Design. Error messages can be abstracted out in their respective ID classes
+  * Cons: Hassle to keep track of three separate counters, and repetitive to have three separate methods for these counters
+
+* Alternative 2: Use 1 single counter for all entities. Every entity contains an ID instance.
+  * Pros: Easy to implement, no repetitive code.
+  * Cons: Bad OOP design. Error messages would be the same for IDs created in all three classes
+  
+#### Usage Scenario
+
+Given below is the example usage scenario that highlights the generation of a new ID instance when a new Client is created:
+
+1. The user attempts to create a new client by entering the respective fields in the appropriate format, such as `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
+
+1. The AddClientCommandParser extracts the relevant fields from the user input and creates a new Client instance using the Client constructor.
+
+1. The Client constructor calls IDCounter to generate a new ClientId instance.
+
+1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
+
+![IDSequenceDiagram](images/IDSequenceDiagram.png)
+
+### Find Feature
+
+Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily find an entity within a class or filter a list of entities.
+
+#### Reasons for implementation
+
+The find appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
+or filter out a list of all appointments in a certain day, it avoids creating conflicting appointments and provides a more efficient way of scheduling appointments.
+
+#### Use cases
+
+1. a hairdresser or a list of hairdressers can be filtered by their name
+
+2. a client or a list of clients can be filtered by their name
+
+2. an appointment or a list of appointments can be filtered by either hairdresser included, client included, or date.
+
+#### Usage Scenario
+
+Given below is the example usage scenario of finding a client:
+
+The `find_client` command allows the `LogicManager` to create one or a list of clients. 
+
+The following sequence shows the sequence when the find command is execute by the `LogicManager`:
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+From the diagram above:
+
+1. `LogicManager`’s `execute` is called when `find_client` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+
+2. `AddressBookParser` will initialize `FindClientCommandParser` and invoke the method `parse` to further parse find client command
+
+3. `parse` will be invoked and passed the parameters of the find client command.
+
+4. If all the arguments of `find_client` commands are valid, `FindClientCommand` will be returned to the `LogicManager`
+
+5. `LogicManger` will then call `execute` method of `FindClientCommand`
+
+6. `FindClientCommand` will call `updateFilteredClientList` passing `predicate` as an argument to `Model` and returns a `result` to the `LogicManager`
+
+7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+
+8. A `CommandResult` will be returned at the end.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -216,7 +413,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -367,7 +563,29 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 2.  HairStyleX shows all valid commands
 
     Use case ends.
+    
+**Use case: Add an alias*
 
+**MSS**
+
+1.  User requests to add an alias
+2.  HairStyleX adds his requested alias
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The alias already exists.
+    
+    * 1a1. HairStyleX shows an error message.
+
+      Use case ends.
+
+* 1b. The user does not specify the correct old alias.
+
+    * 1b1. HairStyleX shows an error message.
+
+      Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements

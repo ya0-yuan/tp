@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -197,11 +198,16 @@ public class ModelManager implements Model {
     @Override
     public void setAppointment(Appointment target, Appointment changedAppointment) {
         requireAllNonNull(target, changedAppointment);
-
         addressBook.setAppointment(target, changedAppointment);
     }
 
-
+    /**
+     * Returns an unmodifiable view of the appointments list.
+     * This list will not contain any duplicate appointments.
+     */
+    public List<Appointment> getAppointmentList() {
+        return addressBook.getAppointmentList();
+    }
 
     //=========== Filtered Client List Accessors =============================================================
 
