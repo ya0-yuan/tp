@@ -2,6 +2,10 @@ package seedu.address.model.appointment;
 
 import seedu.address.model.Id;
 
+/**
+ * Represents an appointment's ID.
+ * Guarantees: immutable
+ */
 public class AppointmentId extends Id {
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment ID must a positive integer.";
