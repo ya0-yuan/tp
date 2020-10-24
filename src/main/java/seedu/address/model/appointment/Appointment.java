@@ -25,14 +25,15 @@ public class Appointment implements Entity {
     private final AppointmentStatus appointmentStatus;
     private final Client client;
     private final Hairdresser hairdresser;
+    private final AppointmentDuration duration;
 
     /**
      * Constructs an {@code Appointment} with a stated status.
      *
-     * @param client      A valid client.
-     * @param hairdresser A valid hairdresser.
-     * @param date          A valid appointment date
-     * @param time          A valid appointment time
+     * @param client            A valid client.
+     * @param hairdresser       A valid hairdresser.
+     * @param date              A valid appointment date
+     * @param time              A valid appointment time
      * @param appointmentStatus A valid appointmentStatus
      */
     public Appointment(Client client, Hairdresser hairdresser, AppointmentDate date,
@@ -46,6 +47,7 @@ public class Appointment implements Entity {
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
+        this.duration = new AppointmentDuration();
     }
 
     /**
@@ -63,6 +65,7 @@ public class Appointment implements Entity {
         this.date = date;
         this.time = time;
         this.appointmentStatus = appointmentStatus;
+        this.duration = new AppointmentDuration();
     }
 
     @Override
@@ -94,22 +97,24 @@ public class Appointment implements Entity {
 
     /**
      * Replaces the representation of the client in this appointment.
+     *
      * @param newClient the client to replace the existing.
      * @return a new Appointment object with client replaced by the new client.
      */
     public Appointment replaceClient(Client newClient) {
         return new Appointment(
-            this.id,
-            newClient,
-            this.hairdresser,
-            this.date,
-            this.time,
-            this.appointmentStatus
+                this.id,
+                newClient,
+                this.hairdresser,
+                this.date,
+                this.time,
+                this.appointmentStatus
         );
     }
 
     /**
      * Deletes the representation of the client in this appointment.
+     *
      * @return a new Appointment object with client replaced by null.
      */
     public Appointment deleteClient() {
@@ -122,6 +127,7 @@ public class Appointment implements Entity {
 
     /**
      * Replaces the representation of the Hairdresser in this appointment.
+     *
      * @param newHairdresser the Hairdresser to replace the existing.
      * @return a new Appointment object with Hairdresser replaced by the new Hairdresser.
      */
@@ -138,6 +144,7 @@ public class Appointment implements Entity {
 
     /**
      * Deletes the representation of the hairdresser in this appointment.
+     *
      * @return a new Appointment object with hairdresser replaced by null.
      */
     public Appointment deleteHairdresser() {
@@ -156,6 +163,14 @@ public class Appointment implements Entity {
         return appointmentStatus;
     }
 
+    public LocalDateTime startDateTime() {
+        return LocalDateTime.of(date.date, time.time);
+    }
+
+    public LocalDateTime endDateTime() {
+        return startDateTime().plusMinutes(duration.getNumMinutes());
+    }
+
     public boolean isSameAppointment(Appointment that) {
         return isSame(that);
     }
@@ -166,15 +181,33 @@ public class Appointment implements Entity {
     }
 
     /**
-     * Checks if an appointment is in the past compared to system time.
+     * Checks if this appointment is in the past compared to system time.
      *
      * @return true if the appointment is in the past.
      */
     public boolean isPast() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime appointmentDateTime = LocalDateTime.of(date.date, time.time);
+        LocalDateTime appointmentDateTime = startDateTime();
 
         return appointmentDateTime.isBefore(currentDateTime);
+    }
+
+    /**
+     * Checks if another appointment clashes with this appointment
+     *
+     * @return true if they clash.
+     */
+    public boolean isClash(Appointment that) {
+        // There is a clash IFF the start time of either is in between the start and end time of the other
+        if (this.startDateTime().isAfter(that.startDateTime())
+                && this.startDateTime().isBefore(that.endDateTime())) {
+            return true;
+        } else if (that.startDateTime().isAfter(this.startDateTime())
+                && that.startDateTime().isBefore(this.endDateTime())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

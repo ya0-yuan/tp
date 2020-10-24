@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ReadOnlyProperty;
@@ -174,6 +175,7 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment changedAppointment);
 
+    List<Appointment> getAppointmentList();
     /**
      * Returns an unmodifiable view of the filtered appointment list
      */
