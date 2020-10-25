@@ -158,6 +158,8 @@ Format: `delete_client ID`
 
 ### 4.3 Hairdresser Management
 
+(contributed by Zhang Yifan)
+
 This feature allows you to manage the information of hairdressers in your salon. You can record the following information about hairdressers: 
 * Name
 * Title
