@@ -68,48 +68,6 @@ Format: `exit`
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. Will be loaded upon restart of the application.
 
-### Appointment commands
-
-#### Adding an appointment : `add_appt`
-
-Adds an appointment to the database.
-
-Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
-* `DATE` must be entered in YYYY-MM-DD format
-* `TIME` must be entered in 24 Hour HH:MM format
-
-Examples:
-* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
-
-#### Listing all appointments : `list_appt`
-
-Shows a list of all appointments in the database.
-
-Format: `list_appt`
-
-#### Editing an appointment : `edit_appt`
-
-Edits an existing appointment in the database.
-
-Format: `edit_appointment ID s/STATUS`
-
-* Edits the appointment with the specified `ID`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
-* Only the status of the appointment can be updated.
-* All appointments are active by default.
-
-Examples:
-*  `edit_appt 1 s/CANCELLED` Edits the status of the first appointment to be CANCELLED.
-
-#### Deleting an appointment : `delete_appt`
-
-Removes a specific appointment from the database.
-
-Format: `delete_appt ID`
-
-* Deletes the appointment with the specified `ID`.
-* The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
 ### Client commands
 
 #### Adding a client : `add_client`
@@ -360,6 +318,97 @@ Outcome: <br>
 ![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
 *Figure 6. Outcome of a successful `filter_hairdresser` command*
 
+
+### Appointment Management
+
+(contributed by Nicholas Toh)
+
+This feature allows you to manage appointments between hairdressers and clients. You can record the following information about appointment: 
+* Client
+* Hairdresser
+* Date
+* Time
+* Status
+
+#### Appointment Management Command Parameters
+Parameter Name | Description
+--------|------------------
+`CLIENT_ID` | The ID of the client `cid`
+`HAIRDRESSER_ID` | The ID of the hairdresser `cid`
+`DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
+`TIME` | The time of the appointment.<br><br> It must be in the format of HH:MM.<br><br> E.g. `17:30` This example means 5.30 pm.
+`STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
+`ID` | The appointment ID `aid` that represents the appointment.
+
+#### Adding an appointment : `add_appt`
+
+Adds an appointment to the database.
+
+Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
+* `CLIENT_ID` must be a valid client ID (cid)
+* `HAIRDRESSER_ID` must be a valid hairdresser ID (hid)
+* `DATE` must be entered in YYYY-MM-DD format
+* `TIME` must be entered in 24 Hour HH:MM format
+
+<div markdown="block" class="alert alert-info">  
+
+**:information_source: Notes about creating appointments**  
+
+* All appointments are active by default.  
+
+* All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time.  
+
+* Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
+
+* Appointments should only be created in the future.  
+
+* Appointment IDs may not be in order.
+</div>
+
+Example:
+* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
+
+![create_appointment](images/appointment/create_appointment.png)
+
+#### Listing appointments : `list_appt`
+
+Shows a list of appointments.
+
+Format: `list_appt`
+
+#### Editing an appointment : `edit_appt`
+
+Edits an existing appointment.
+
+Format: `edit_appt ID s/STATUS`
+
+* Edits the appointment with the specified `ID`. 
+
+* `CLIENT_ID` must be a valid appointment ID (aid)
+
+* Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
+
+Examples:
+*  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
+
+![edit_appointment](images/appointment/edit_appointment.png)
+
+#### Deleting an appointment : `delete_appt`
+
+Removes a specific appointment from the database.
+
+Format: `delete_appt ID`
+
+* Deletes the appointment with the specified `ID`.
+
+* The index refers to the index number shown in the displayed appointment list.
+
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `delete_appt 2` Deletes appointment with `aid` 2.
+
+![delete_appointment](images/appointment/delete_appointment.png)
 
 ### Alias commands
 (Contributed by Aloysius)
