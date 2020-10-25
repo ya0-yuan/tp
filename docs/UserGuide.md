@@ -180,48 +180,6 @@ Format: `exit`
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
 
-### Appointment commands
-
-#### Adding an appointment : `add_appt`
-
-Adds an appointment to the database.
-
-Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
-* `DATE` must be entered in YYYY-MM-DD format
-* `TIME` must be entered in 24 Hour HH:MM format
-
-Examples:
-* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
-
-#### Listing all appointments : `list_appt`
-
-Shows a list of all appointments in the database.
-
-Format: `list_appt`
-
-#### Editing an appointment : `edit_appt`
-
-Edits an existing appointment in the database.
-
-Format: `edit_appointment ID s/STATUS`
-
-* Edits the appointment with the specified `ID`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
-* Only the status of the appointment can be updated.
-* All appointments are active by default.
-
-Examples:
-*  `edit_appt 1 s/CANCELLED` Edits the status of the first appointment to be CANCELLED.
-
-#### Deleting an appointment : `delete_appt`
-
-Removes a specific appointment from the database.
-
-Format: `delete_appt ID`
-
-* Deletes the appointment with the specified `ID`.
-* The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
 ### Client commands
 
 #### Adding a client : `add_client`
@@ -268,64 +226,387 @@ Format: `delete_client ID`
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
 
-### Hairdresser commands
+### 4.3 Hairdresser Management
 
-#### Adding a hairdresser : `add_hairdresser`
+(contributed by Zhang Yifan)
 
-Adds a hairdresser to the database.
+This feature allows you to manage the information of hairdressers in your salon. You can record the following information about hairdressers: 
+* Name
+* Title
+* Gender
+* Phone
+* Email
+* Specialisations
 
-Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
+#### 4.3.1 Hairdresser Management Command Parameters
 
-#### Listing all hairdressers : `list_hairdresser`
+Parameter Name | Description
+--------|------------------
+`NAME` | The name of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
+`TITLE` | The title of the hairdresser.<br>It should not be blank.<br>E.g. `Senior Stylist`
+`GENDER` | The gender of the hairdresser.<br>Gender should be either F or M or f or m.<br>E.g. `F`
+`PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
+`EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
+`SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
+`ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
+`KEYWORD` | Keyword for `filter_hairdresser`. <br>It should only contain alphanumeric characters. 
 
-Shows a list of all hairdressers in the database.
+#### 4.3.2 Adding a hairdresser : `add_hairdresser`
 
-Format: `list_hairdresser`
+You can use this command to add a hairdresser to the database.
 
-Format: `list_client`
+**Format:**
 
-#### Editing a hairdresser : `edit_hairdresser`
+`add_hairdresser n/NAME p/PHONE e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
 
-Edits an existing hairdresser in the database.
+<div markdown="block" class="alert alert-info">
 
-Format: `edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+:information_source: Refer to Section 4.3.1 for more details on each parameter.
 
-* Edits the hairdresser with the specified `ID`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
+**Example:**
+
+In the example below, you will register a female Senior Stylist called **Helen Lim** with phone number **82716252**, email **helenlim@example.com**, who is specialised in **Perm** and **Color**, into the HairstyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new hairdresser: <br>
+
+1. Type `add_hairdresser n/Helen Lim p/82716252 e/helenlim@example.com g/F ti/Senior Stylist s/Perm s/Color` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see the hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
+*Figure 3. Outcome of a successful `add_hairdresser` command*
+
+
+#### 4.3.3 Listing all hairdressers : `list_hairdresser`
+
+You can use this command to show a list of all hairdressers in the database. This command is especially useful if you used `filter_hairdresser` command to search for hairdressers- `list_hairdresser` will restore the full list to view. 
+
+**Format:**
+
+`list_hairdresser`
+
+**Example:**
+
+<div markdown="block" class="alert alert-white">
+
+Listing all hairdressers: <br>
+
+1. Type `list_hairdresser` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see a list of all hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+#### 4.3.4 Editing a hairdresser : `edit_hairdresser`
+
+You can use this command to edit an existing hairdresser in the database.
+
+**Format:** 
+
+`edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* Edits the hairdresser with the specified `ID`. The index refers to the index number `hid` shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
 * You can remove all the hairdresser’s tags by typing `s/` without
     specifying any specialisations after it.
+* Refer to Section 4.3.1 for more details on each parameter.
 
-Examples:
-*  `edit_hairdresser 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st hairdresser to be `91234567` and `yy@example.com` respectively.
-*  `edit_hairdresser 2 n/Betsy Crower s/` Edits the name of the 2nd hairdresser to be `Betsy Crower` and clears all existing specialisations.
+</div>
 
-#### Deleting a hairdresser : `delete_hairdresser`
+**Example:**
+
+Assume that the hairdresser with ID `4` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new hairdresser: <br>
+
+1. Type `edit_hairdresser 4 p/91234567 e/yy@example.com` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see the updated hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
+*Figure 4. Outcome of a successful `edit_hairdresser` command*
+
+#### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
 Removes a specific hairdresser from the database.
 
-Format: `delete_hairdresser ID`
+**Format:**
 
+ `delete_hairdresser ID`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
 * Deletes the hairdresser with the specified `ID`.
-* The index refers to the index number shown in the displayed hairdresser list.
+* The index refers to the index number `hid` shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
+</div>
+
+**Example:**
+
+Assume that the hairdresser with ID `3` left the salon and you wish to delete him/her from the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Delete hairdresser: <br>
+
+1. Type `delete_hairdresser 3` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+
+</div>
+
+![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
+*Figure 5. Outcome of a successful `delete_hairdresser` command*
+
+#### 4.3.6 Filtering hairdressers : `filter_hairdresser`
+
+You can filter the list of hairdressers in the database by keyword search that match their names.
+
+**Format:**
+
+ `filter_hairdresser KEYWORD...`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* The search is case-insensitive. e.g `anna`, `aNNa` will match `Anna`.
+* The order of the keywords does not matter. e.g. `Anna Yeoh` will match `Yeoh Anna`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Ann` will not match `Anna`.
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Anna Yeoh` will return `Anna Cheung`, `David Yeoh`.
+
+</div>
+
+**Example:**
+
+You wish to find the hairdresser **Helen** from the database and check her full name and specialisations. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter hairdresser: <br>
+
+1. Type `filter_hairdresser helen` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered hairdresser's information in the *Hairdressers Panel*, with hairdressers named `helen` displayed in the list.
+
+</div>
+
+![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
+*Figure 6. Outcome of a successful `filter_hairdresser` command*
+
+
+### Appointment Management
+
+(contributed by Nicholas Toh)
+
+This feature allows you to manage appointments between hairdressers and clients. You can record the following information about appointment: 
+* Client
+* Hairdresser
+* Date
+* Time
+* Status
+
+#### Appointment Management Command Parameters
+Parameter Name | Description
+--------|------------------
+`CLIENT_ID` | The ID of the client `cid`
+`HAIRDRESSER_ID` | The ID of the hairdresser `cid`
+`DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
+`TIME` | The time of the appointment.<br><br> It must be in the format of HH:MM.<br><br> E.g. `17:30` This example means 5.30 pm.
+`STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
+`ID` | The appointment ID `aid` that represents the appointment.
+
+#### Adding an appointment : `add_appt`
+
+Adds an appointment to the database.
+
+Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
+* `CLIENT_ID` must be a valid client ID (cid)
+* `HAIRDRESSER_ID` must be a valid hairdresser ID (hid)
+* `DATE` must be entered in YYYY-MM-DD format
+* `TIME` must be entered in 24 Hour HH:MM format
+
+<div markdown="block" class="alert alert-info">  
+
+**:information_source: Notes about creating appointments**  
+
+* All appointments are active by default.  
+
+* All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time.  
+
+* Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
+
+* Appointments should only be created in the future.  
+
+* Appointment IDs may not be in order.
+</div>
+
+Example:
+* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
+
+![create_appointment](images/appointment/create_appointment.png)
+
+#### Listing appointments : `list_appt`
+
+Shows a list of appointments.
+
+Format: `list_appt`
+
+#### Editing an appointment : `edit_appt`
+
+Edits an existing appointment.
+
+Format: `edit_appt ID s/STATUS`
+
+* Edits the appointment with the specified `ID`. 
+
+* `CLIENT_ID` must be a valid appointment ID (aid)
+
+* Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
+
+Examples:
+*  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
+
+![edit_appointment](images/appointment/edit_appointment.png)
+
+#### Deleting an appointment : `delete_appt`
+
+Removes a specific appointment from the database.
+
+Format: `delete_appt ID`
+
+* Deletes the appointment with the specified `ID`.
+
+* The index refers to the index number shown in the displayed appointment list.
+
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `delete_appt 2` Deletes appointment with `aid` 2.
+
+![delete_appointment](images/appointment/delete_appointment.png)
 
 ### Alias commands
+(Contributed by Aloysius)
 
-#### Adding a command alias : `add_alias`
-
-Adds a new command alias to the database.
-
-Format: `add_alias old/OLD_ALIAS new/NEW_ALIAS`
+This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
+longer commands.
 
 
-#### Deleting a command_alias : `delete_alias`
 
-Removes a command alias from the database.
+#### Add a new alias : `add_alias`
 
-Format: `delete_alias ALIAS`
+You can use this command to add a new alias to the program.
+
+*Format:*
+
+`add_alias old/OLD_ALIAS new/NEW_ALIAS`
+
+*Example:*
+
+You want to create an alias `aa` for `add_alias`. 
+
+****
+Creating a new alias:
+
+. Type `add_alias old/add_alias new/aa` into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The _Result Display_ will show a success message.
+. You can now see your new alias
+****
+
+.Outcome of a successful `add_alias` command
+![Ui](images/add_alias_success.png)
+
+***
+
+You can now use the alias
+![Ui](images/use_new_alias.png)
+
+***
+
+And it works!
+![Ui](images/new_alias.png)
+
+** :information_source: You cannot add duplicate aliases or default command words as aliases**<br>
+
+#### Delete an alias : `delete_alias`
+
+You can use this command to delete an alias to the program.
+
+*Format:*
+
+`delete_alias ALIAS`
+
+*Example:*
+
+You want to delete an alias `aa`. 
+
+****
+Deleting an alias:
+
+. Type `delete_alias aa` into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The _Result Display_ will show a success message.
+****
+
+.Outcome of a successful `delete_alias` command
+![Ui](images/deletealias.png)
+
+***
+
+
+####  List all alias : `listalias`
+
+You can use this command to list all your aliases.
+
+*Format:*
+
+`list_alias`
+
+[Coming soon]
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)

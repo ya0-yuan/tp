@@ -42,6 +42,6 @@ public class AddAliasCommand extends AddCommand {
             throw new CommandException(ex.getMessage());
         }
         return new CommandResult("Success! Added "
-                + newAlias + " as alias for " + "newAlias");
+                + newAlias + " as alias for " + defaultWord);
     }
 }

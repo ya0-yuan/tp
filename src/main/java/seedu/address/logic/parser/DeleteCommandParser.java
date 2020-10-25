@@ -4,12 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Id;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public abstract class DeleteCommandParser<T extends DeleteCommand<U>, U extends Id> implements Parser<T> {
+public abstract class DeleteCommandParser<T extends DeleteCommand> implements Parser<T> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
