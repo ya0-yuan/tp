@@ -9,7 +9,7 @@ import seedu.address.model.appointment.AppointmentId;
 /**
  * Parses input arguments and creates a new DeleteAppointmentCommand object
  */
-public class DeleteAppointmentCommandParser extends DeleteCommandParser<DeleteAppointmentCommand, AppointmentId> {
+public class DeleteAppointmentCommandParser extends DeleteCommandParser<DeleteAppointmentCommand> {
 
 
     @Override
