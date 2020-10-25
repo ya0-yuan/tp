@@ -20,8 +20,8 @@
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="id" styleClass="cell_big_label"/>
-            <Label styleClass="cell_big_label"  text="Client name:" />
-                <Label fx:id="clientName" styleClass="cell_big_label" text="\$clientName" />
+            <Label styleClass="cell_small_label"  text="Client name:" />
+                <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
 <!--            <Label fx:id="status" styleClass="cell_big_label" text="\$status" />-->
             </HBox>
 

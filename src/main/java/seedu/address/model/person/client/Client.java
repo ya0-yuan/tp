@@ -76,7 +76,9 @@ public class Client extends Person {
     }
 
     /**
-     * Returns true iff the attributes of the both clients are exactly the same.
+     * This defines a weaker notion of equality between two clients.
+     * @param otherClient the client to compare to
+     * @return true if both clients have the same name and phone number.
      */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
@@ -85,11 +87,7 @@ public class Client extends Person {
 
         return otherClient != null
             && otherClient.getName().equals(getName())
-            && otherClient.getPhone().equals(getPhone())
-            && otherClient.getEmail().equals(getEmail())
-            && otherClient.getGender().equals(getGender())
-            && otherClient.getAddress().equals(getAddress())
-            && otherClient.getTags().equals(getTags());
+            && otherClient.getPhone().equals(getPhone());
     }
 
     @Override
