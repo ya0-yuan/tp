@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.appointment;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEntityCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -10,7 +10,7 @@ import seedu.address.model.appointment.AppointmentId;
 /**
  * Deletes an appointment identified using it's displayed index from the HairStyleX.
  */
-public class DeleteAppointmentCommand extends DeleteCommand<AppointmentId> {
+public class DeleteAppointmentCommand extends DeleteEntityCommand<AppointmentId> {
     public static final String COMMAND_WORD = "delete_appt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
