@@ -6,7 +6,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.hairdresser.HairdresserId;
 
-public class DeleteHairdresserCommandParser extends DeleteCommandParser<DeleteHairdresserCommand, HairdresserId> {
+public class DeleteHairdresserCommandParser extends DeleteCommandParser<DeleteHairdresserCommand> {
 
     @Override
     public DeleteHairdresserCommand getCommand(String args) throws ParseException {

@@ -11,6 +11,7 @@ import seedu.address.logic.commandalias.CommandWord;
 import seedu.address.logic.commandalias.exceptions.CommandWordException;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
@@ -121,6 +122,9 @@ public class AddressBookParser {
             return new HelpCommand();
         case ADD_ALIAS:
             return new AddAliasCommandParser().parse(arguments);
+
+        case DELETE_ALIAS:
+            return new DeleteAliasCommand(arguments.trim());
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

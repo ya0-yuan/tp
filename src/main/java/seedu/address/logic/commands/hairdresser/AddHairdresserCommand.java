@@ -32,9 +32,9 @@ public class AddHairdresserCommand extends AddPersonCommand<Hairdresser> {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GENDER + "M "
-            + PREFIX_TITLE + "senior stylist "
-            + PREFIX_SPECIALISATION + "perm "
-            + PREFIX_SPECIALISATION + "dye";
+            + PREFIX_TITLE + "Senior Stylist "
+            + PREFIX_SPECIALISATION + "Perm "
+            + PREFIX_SPECIALISATION + "Color";
 
     public static final String MESSAGE_SUCCESS = "New hairdresser added: %1$s";
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the address book";
