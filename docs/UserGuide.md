@@ -443,6 +443,7 @@ This feature allows you to manage appointments between hairdressers and clients.
 * Status
 
 #### Appointment Management Command Parameters
+
 Parameter Name | Description
 --------|------------------
 `CLIENT_ID` | The ID of the client `cid`
