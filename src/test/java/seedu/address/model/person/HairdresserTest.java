@@ -54,12 +54,12 @@ class HairdresserTest {
             .build();
         assertTrue(AMELIA.isSameHairdresser(editedAmelia));
 
-        // same name, same email, different attributes -> returns true
+        // same name, same email, different attributes -> returns False
         editedAmelia = new HairdresserBuilder(AMELIA).withPhone(VALID_PHONE_BENJAMIN)
             .withTitle(VALID_TITLE_BENJAMIN)
             .withSpecs(VALID_SPECIALISATION_PERM)
             .build();
-        assertTrue(AMELIA.isSameHairdresser(editedAmelia));
+        assertFalse(AMELIA.isSameHairdresser(editedAmelia));
 
         // same name, same phone, same email, different attributes -> returns true
         editedAmelia = new HairdresserBuilder(AMELIA).withTitle(VALID_TITLE_BENJAMIN)
