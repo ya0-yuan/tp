@@ -358,26 +358,92 @@ Outcome: <br>
 ![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
 *Figure 6. Outcome of a successful `filter_hairdresser` command*
 
+
 ### Alias commands
+(Contributed by Aloysius)
 
-#### Adding a command alias : `add_alias`
-
-Adds a new command alias to the database.
-
-Format: `add_alias old/OLD_ALIAS new/NEW_ALIAS`
+This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
+longer commands.
 
 
-#### Deleting a command_alias : `delete_alias`
 
-Removes a command alias from the database.
+#### Add a new alias : `add_alias`
 
-Format: `delete_alias ALIAS`
+You can use this command to add a new alias to the program.
 
-## FAQ
+*Format:*
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HairstyleX home folder.
+`add_alias old/OLD_ALIAS new/NEW_ALIAS`
 
+*Example:*
+
+You want to create an alias `aa` for `add_alias`. 
+
+****
+Creating a new alias:
+
+. Type `add_alias old/add_alias new/aa` into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The _Result Display_ will show a success message.
+. You can now see your new alias
+****
+
+.Outcome of a successful `add_alias` command
+![Ui](images/add_alias_success.png)
+
+***
+
+You can now use the alias
+![Ui](images/use_new_alias.png)
+
+***
+
+And it works!
+![Ui](images/new_alias.png)
+
+** :information_source: You cannot add duplicate aliases or default command words as aliases**<br>
+
+#### Delete an alias : `delete_alias`
+
+You can use this command to delete an alias to the program.
+
+*Format:*
+
+`delete_alias ALIAS`
+
+*Example:*
+
+You want to delete an alias `aa`. 
+
+****
+Deleting an alias:
+
+. Type `delete_alias aa` into the _Command Box_.
+. Press `Enter` to execute.
+
+Outcome:
+
+. The _Result Display_ will show a success message.
+****
+
+.Outcome of a successful `delete_alias` command
+![Ui](images/deletealias.png)
+
+***
+
+
+####  List all alias : `listalias`
+
+You can use this command to list all your aliases.
+
+*Format:*
+
+`list_alias`
+
+[Coming soon]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

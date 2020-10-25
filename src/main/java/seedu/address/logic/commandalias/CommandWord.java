@@ -22,7 +22,8 @@ public enum CommandWord {
     CLEAR("clear"),
     EXIT("exit"),
     HELP("help"),
-    ADD_ALIAS("add_alias");
+    ADD_ALIAS("add_alias"),
+    DELETE_ALIAS("delete_alias");
 
     private String defaultWord;
 

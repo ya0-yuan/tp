@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEntityCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.client.Client;
@@ -10,7 +10,7 @@ import seedu.address.model.person.client.ClientId;
 /**
  * Deletes a client identified using it's displayed client ID in HairStyleX.
  */
-public class DeleteClientCommand extends DeleteCommand<ClientId> {
+public class DeleteClientCommand extends DeleteEntityCommand<ClientId> {
 
     public static final String COMMAND_WORD = "delete_client";
 
