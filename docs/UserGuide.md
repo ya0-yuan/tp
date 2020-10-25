@@ -176,6 +176,7 @@ Parameter Name | Description
 `PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
 `EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
 `SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
+`ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 
 #### 4.3.2 Adding a hairdresser : `add_hairdresser`
 
@@ -200,7 +201,7 @@ In the example below, you will register a female Senior Stylist called **Helen L
 Adding a new hairdresser: <br>
 
 1. Type `add_hairdresser n/Helen Lim p/82716252 e/helenlim@example.com g/F ti/Senior Stylist s/Perm s/Color` into the *Command Box*.
-1. Press `Enter` to execute. 
+1. Press `Enter` to execute.
 
 Outcome: <br>
 
@@ -213,30 +214,70 @@ Outcome: <br>
 *Figure 3. Outcome of a successful `add_hairdresser` command*
 
 
-#### Listing all hairdressers : `list_hairdresser`
+#### 4.3.3 Listing all hairdressers : `list_hairdresser`
 
-Shows a list of all hairdressers in the database.
+You can use this command to show a list of all hairdressers in the database. This command is especially useful if you used `filter_hairdresser` command to search for hairdressers- `list_hairdresser` will restore the full list to view. 
 
-Format: `list_hairdresser`
+**Format:**
 
-Format: `list_client`
+`list_hairdresser`
 
-#### Editing a hairdresser : `edit_hairdresser`
+**Example:**
 
-Edits an existing hairdresser in the database.
+<div markdown="block" class="alert alert-white">
 
-Format: `edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+Listing all hairdressers: <br>
 
-* Edits the hairdresser with the specified `ID`. The index refers to the index number shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
+1. Type `list_hairdresser` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see a list of all hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+#### 4.3.4 Editing a hairdresser : `edit_hairdresser`
+
+You can use this command to edit an existing hairdresser in the database.
+
+**Format:** 
+
+`edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* Edits the hairdresser with the specified `ID`. The index refers to the index number `hid` shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
 * You can remove all the hairdresser’s tags by typing `s/` without
     specifying any specialisations after it.
+* Refer to Section 4.3.1 for more details on each parameter.
 
-Examples:
-*  `edit_hairdresser 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st hairdresser to be `91234567` and `yy@example.com` respectively.
-*  `edit_hairdresser 2 n/Betsy Crower s/` Edits the name of the 2nd hairdresser to be `Betsy Crower` and clears all existing specialisations.
+</div>
+
+**Example:**
+Assume that the hairdresser with ID `4` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new hairdresser: <br>
+
+1. Type `edit_hairdresser 4 p/91234567 e/yy@example.com` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see the updated hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
+*Figure 4. Outcome of a successful `edit_hairdresser` command*
 
 #### Deleting a hairdresser : `delete_hairdresser`
 
@@ -245,7 +286,7 @@ Removes a specific hairdresser from the database.
 Format: `delete_hairdresser ID`
 
 * Deletes the hairdresser with the specified `ID`.
-* The index refers to the index number shown in the displayed hairdresser list.
+* The index refers to the index number `hid` shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 
