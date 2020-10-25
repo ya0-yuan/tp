@@ -319,7 +319,26 @@ Outcome: <br>
 *Figure 6. Outcome of a successful `filter_hairdresser` command*
 
 
-### Appointment commands
+### Appointment Management
+
+(contributed by Nicholas Toh)
+
+This feature allows you to manage appointments between hairdressers and clients. You can record the following information about appointment: 
+* Client
+* Hairdresser
+* Date
+* Time
+* Status
+
+#### Appointment Management Command Parameters
+Parameter Name | Description
+--------|------------------
+`CLIENT_ID` | The ID of the client `cid`
+`HAIRDRESSER_ID` | The ID of the hairdresser `cid`
+`DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
+`TIME` | The time of the appointment.<br><br> It must be in the format of HH:MM.<br><br> E.g. `17:30` This example means 5.30 pm.
+`STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
+`ID` | The appointment ID `aid` that represents the appointment.
 
 #### Adding an appointment : `add_appt`
 
