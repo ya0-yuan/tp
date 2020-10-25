@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_APPT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HAIRDRESSER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
+import java.util.List;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,23 +29,25 @@ import seedu.address.model.person.hairdresser.HairdresserId;
 public class AddAppointmentCommand extends AddCommand {
     public static final String COMMAND_WORD = "add_appt";
     public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " "
-            + PREFIX_CLIENT_ID + "1 "
-            + PREFIX_HAIRDRESSER_ID + "1 "
-            + PREFIX_DATE_OF_APPT + "2021-06-01 "
-            + PREFIX_START_TIME + "09:00 ";
+        + PREFIX_CLIENT_ID + "1 "
+        + PREFIX_HAIRDRESSER_ID + "1 "
+        + PREFIX_DATE_OF_APPT + "2021-06-01 "
+        + PREFIX_START_TIME + "09:00 ";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new appointment to HairStyleX. "
-            + "Parameters: "
-            + PREFIX_CLIENT_ID + PLACEHOLDER_CLIENT_INDEX + " "
-            + PREFIX_HAIRDRESSER_ID + PLACEHOLDER_HAIRDRESSER_INDEX + " "
-            + PREFIX_DATE_OF_APPT + PLACEHOLDER_DATE_OF_APPT + " "
-            + PREFIX_START_TIME + PLACEHOLDER_START_TIME + " " + "\n"
-            + COMMAND_EXAMPLE;
+        + "Parameters: "
+        + PREFIX_CLIENT_ID + PLACEHOLDER_CLIENT_INDEX + " "
+        + PREFIX_HAIRDRESSER_ID + PLACEHOLDER_HAIRDRESSER_INDEX + " "
+        + PREFIX_DATE_OF_APPT + PLACEHOLDER_DATE_OF_APPT + " "
+        + PREFIX_START_TIME + PLACEHOLDER_START_TIME + " " + "\n"
+        + COMMAND_EXAMPLE;
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in HairStyleX";
     public static final String MESSAGE_CLIENT_NOT_FOUND =
-            "Client with this ID is not found. Please enter a valid client ID.";
+        "Client with this ID is not found. Please enter a valid client ID.";
     public static final String MESSAGE_HAIRDRESSER_NOT_NOT_FOUND =
-            "Hairdresser with this ID is not found. Please enter a valid hairdresser ID.";
+        "Hairdresser with this ID is not found. Please enter a valid hairdresser ID.";
+    public static final String MESSAGE_CLASHING_APPOINTMENT =
+        "This appointment clashes with another. The other appointment's ID is %d.";
 
     private final ClientId clientId;
     private final HairdresserId hairdresserId;
@@ -53,10 +57,11 @@ public class AddAppointmentCommand extends AddCommand {
     /**
      * Creates an AddAppointmentCommand to add the specified {@code appointment} created from {@code clientIndex},
      * {@code hairdresserIndex}, {@code date} and {@code time}.
-     * @param clientId Client's Id
+     *
+     * @param clientId      Client's Id
      * @param hairdresserId Hairdresser's Id
-     * @param date Date of appointment
-     * @param time TIme of appointment
+     * @param date          Date of appointment
+     * @param time          TIme of appointment
      */
     public AddAppointmentCommand(ClientId clientId, HairdresserId hairdresserId, AppointmentDate date,
                                  AppointmentTime time) {
@@ -87,6 +92,21 @@ public class AddAppointmentCommand extends AddCommand {
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
+
+        // check if the new appointment clashes with any existing ones with the same client or haidresser
+        List<Appointment> appointments = model.getAppointmentList();
+        for (Appointment appt : appointments) {
+            if (appt.getHairdresserId().equals(this.hairdresserId)
+                || appt.getClientId().equals(this.clientId)) {
+                if (appointment.isClash(appt)) {
+                    throw new CommandException(String.format(MESSAGE_CLASHING_APPOINTMENT, appt.getId().id));
+                }
+            }
+        }
+        //List<Appointment> sameHairdresser = appointments.stream()
+        //    .filter(appt -> appt.getHairdresserId().equals(this.hairdresserId)).collect(Collectors.toList());
+        //List<Appointment> sameClient = appointments.stream()
+        //    .filter(appt -> appt.getClientId().equals(this.clientId)).collect(Collectors.toList());
 
         model.addAppointment(appointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));

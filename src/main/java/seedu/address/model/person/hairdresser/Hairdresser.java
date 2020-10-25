@@ -76,8 +76,9 @@ public class Hairdresser extends Person {
     }
 
     /**
-     * Returns true if both hairdressers of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two hairdressers.
+     * @param otherHairdresser the client to compare to
+     * @return true if both hairdressers have the same name and phone number.
      */
     public boolean isSameHairdresser(Hairdresser otherHairdresser) {
         if (otherHairdresser == this) {
@@ -86,10 +87,7 @@ public class Hairdresser extends Person {
 
         return otherHairdresser != null
                 && otherHairdresser.getName().equals(getName())
-                && (otherHairdresser.getPhone().equals(getPhone())
-                || otherHairdresser.getEmail().equals(getEmail())
-                || otherHairdresser.getTitle().equals(getTitle())
-                || otherHairdresser.getGender().equals(getGender()));
+                && otherHairdresser.getPhone().equals(getPhone());
     }
 
     @Override

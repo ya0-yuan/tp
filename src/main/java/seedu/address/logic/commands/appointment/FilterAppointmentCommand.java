@@ -30,7 +30,7 @@ import seedu.address.model.person.hairdresser.HairdresserId;
 
 
 /**
- * Filters all appointments in docX to the user.
+ * Filters all appointments in HairStyleX to the user.
  */
 public class FilterAppointmentCommand extends Command {
 
