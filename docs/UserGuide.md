@@ -209,8 +209,6 @@ longer commands.
 
 
 
-
-
 #### Add a new alias : `add_alias`
 
 You can use this command to add a new alias to the program.
@@ -248,11 +246,7 @@ You can now use the alias
 And it works!
 ![Ui](images/new_alias.png)
 
-[NOTE]
-====
-You cannot add duplicate aliases or default command words as aliases
-====
-
+** :information_source: You cannot add duplicate aliases or default command words as aliases**<br>
 
 #### Delete an alias : `delete_alias`
 
@@ -283,7 +277,7 @@ Outcome:
 ***
 
 
-####  Delete an alias : `listalias`
+####  List all alias : `listalias`
 
 You can use this command to list all your aliases.
 
