@@ -156,13 +156,62 @@ Format: `delete_client ID`
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
 
-### Hairdresser commands
+### 4.3 Hairdresser Management
 
-#### Adding a hairdresser : `add_hairdresser`
+This feature allows you to manage the information of hairdressers in your salon. You can record the following information about hairdressers: 
+* Name
+* Title
+* Gender
+* Phone
+* Email
+* Specialisations
 
-Adds a hairdresser to the database.
+#### 4.3.1 Hairdresser Management Command Parameters
 
-Format: `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
+Parameter Name | Description
+--------|------------------
+`NAME` | The name of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
+`TITLE` | The title of the hairdresser.<br>It should not be blank.<br>E.g. `Senior Stylist`
+`GENDER` | The gender of the hairdresser.<br>Gender should be either F or M or f or m.<br>E.g. `F`
+`PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
+`EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
+`SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
+
+#### 4.3.2 Adding a hairdresser : `add_hairdresser`
+
+You can use this command to add a hairdresser to the database.
+
+**Format:**
+
+`add_hairdresser n/NAME p/PHONE e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Refer to Section 4.3.1 for more details on each parameter.
+
+</div>
+
+**Example:**
+
+In the example below, you will register a female Senior Stylist called **Helen Lim** with phone number **82716252**, email **helenlim@example.com**, who is specialised in **Perm** and **Color**, into the HairstyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new hairdresser: <br>
+
+1. Type `add_hairdresser n/Helen Lim p/82716252 e/helenlim@example.com g/F ti/Senior Stylist s/Perm s/Color` into the *Command Box*.
+1. Press `Enter` to execute. 
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see the hairdresser's information in the *Hairdressers Panel*.
+
+</div>
+
+![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
+*Figure 3. Outcome of a successful `add_hairdresser` command*
+
 
 #### Listing all hairdressers : `list_hairdresser`
 
