@@ -9,7 +9,7 @@ import seedu.address.model.person.client.ClientId;
 /**
  * Parses input arguments and creates a new DeleteClientCommand object
  */
-public class DeleteClientCommandParser extends DeleteCommandParser<DeleteClientCommand, ClientId> {
+public class DeleteClientCommandParser extends DeleteCommandParser<DeleteClientCommand> {
 
     @Override
     public DeleteClientCommand getCommand(String args) throws ParseException {

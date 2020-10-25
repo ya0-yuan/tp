@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.hairdresser;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEntityCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -10,7 +10,7 @@ import seedu.address.model.person.hairdresser.HairdresserId;
 /**
  * Deletes a hairdresser identified using it's displayed index from docX.
  */
-public class DeleteHairdresserCommand extends DeleteCommand<HairdresserId> {
+public class DeleteHairdresserCommand extends DeleteEntityCommand<HairdresserId> {
 
     public static final String COMMAND_WORD = "delete_hairdresser";
 
