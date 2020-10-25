@@ -177,6 +177,7 @@ Parameter Name | Description
 `EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
 `SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
 `ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
+`KEYWORD` | Keyword for `filter_hairdresser`. <br>It should only contain alphanumeric characters. 
 
 #### 4.3.2 Adding a hairdresser : `add_hairdresser`
 
@@ -260,6 +261,7 @@ You can use this command to edit an existing hairdresser in the database.
 </div>
 
 **Example:**
+
 Assume that the hairdresser with ID `4` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
 
 <div markdown="block" class="alert alert-white">
@@ -279,16 +281,82 @@ Outcome: <br>
 ![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
 *Figure 4. Outcome of a successful `edit_hairdresser` command*
 
-#### Deleting a hairdresser : `delete_hairdresser`
+#### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
 Removes a specific hairdresser from the database.
 
-Format: `delete_hairdresser ID`
+**Format:**
 
+ `delete_hairdresser ID`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
 * Deletes the hairdresser with the specified `ID`.
 * The index refers to the index number `hid` shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
+</div>
+
+**Example:**
+
+Assume that the hairdresser with ID `3` left the salon and you wish to delete him/her from the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Delete hairdresser: <br>
+
+1. Type `delete_hairdresser 3` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+
+</div>
+
+![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
+*Figure 5. Outcome of a successful `delete_hairdresser` command*
+
+#### 4.3.6 Filtering hairdressers : `filter_hairdresser`
+
+You can filter the list of hairdressers in the database by keyword search that match their names.
+
+**Format:**
+
+ `filter_hairdresser KEYWORD...`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* The search is case-insensitive. e.g `anna`, `aNNa` will match `Anna`.
+* The order of the keywords does not matter. e.g. `Anna Yeoh` will match `Yeoh Anna`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Ann` will not match `Anna`.
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Anna Yeoh` will return `Anna Cheung`, `David Yeoh`.
+
+</div>
+
+**Example:**
+
+You wish to find the hairdresser **Helen** from the database and check her full name and specialisations. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter hairdresser: <br>
+
+1. Type `filter_hairdresser helen` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered hairdresser's information in the *Hairdressers Panel*, with hairdressers named `helen` displayed in the list.
+
+</div>
+
+![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
+*Figure 6. Outcome of a successful `filter_hairdresser` command*
 
 ### Alias commands
 
