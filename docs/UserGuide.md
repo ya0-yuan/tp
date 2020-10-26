@@ -616,7 +616,7 @@ Parameter Name | Description
 
 Adds an appointment to the database.
 
-Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
+**Format**: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * `CLIENT_ID` must be a valid client ID (cid)
 * `HAIRDRESSER_ID` must be a valid hairdresser ID (hid)
 * `DATE` must be entered in YYYY-MM-DD format
@@ -637,7 +637,7 @@ Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * Appointment IDs may not be in order.
 </div>
 
-Example:
+**Example**:
 * `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
 
 ![create_appointment](images/appointment/create_appointment.png)
@@ -646,13 +646,13 @@ Example:
 
 Shows a list of appointments.
 
-Format: `list_appt`
+**Format**: `list_appt`
 
 #### Editing an appointment : `edit_appt`
 
 Edits an existing appointment.
 
-Format: `edit_appt ID s/STATUS`
+**Format**: `edit_appt ID s/STATUS`
 
 * Edits the appointment with the specified `ID`. 
 
@@ -660,7 +660,7 @@ Format: `edit_appt ID s/STATUS`
 
 * Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
 
-Examples:
+**Example**:
 *  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
 
 ![edit_appointment](images/appointment/edit_appointment.png)
@@ -669,7 +669,7 @@ Examples:
 
 Removes a specific appointment from the database.
 
-Format: `delete_appt ID`
+##Format##: `delete_appt ID`
 
 * Deletes the appointment with the specified `ID`.
 
@@ -677,7 +677,7 @@ Format: `delete_appt ID`
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+##Example##:
 *  `delete_appt 2` Deletes appointment with `aid` 2.
 
 ![delete_appointment](images/appointment/delete_appointment.png)
@@ -774,13 +774,13 @@ You can use this command to list all your aliases.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HairstyleX home folder.
 
-**Q**: Why aren’t I allowed to edit my date or time for the appointment?
+**Q**: Why aren’t I allowed to edit my date or time for the appointment?<br>
 **A**: Editing the date or time may cause conflicts in your schedule if the change results in two appointments with the same hairdresser occuring concurrently. However, we are working on a feature that will allow you to resolve these conflicts in the upcoming version of **HairStyleX**.
 
-**Q**: What do I do if I want to change my appointment’s date or time since I cannot edit them?
+**Q**: What do I do if I want to change my appointment’s date or time since I cannot edit them?<br>
 **A**: Unfortunately, you have to delete the appointment and create a new one.
 
-**Q**: What happens if I schedule 2 of my appointments with the same hairdresser on the same date and time? Will **HairStyleX** detect it?
+**Q**: What happens if I schedule 2 of my appointments with the same hairdresser on the same date and time? Will **HairStyleX** detect it?<br>
 **A**: Yes, **HairStyleX** will detect such cases and prevent you from creating such an appointment.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -789,7 +789,7 @@ You can use this command to list all your aliases.
 
 (Contributed by Tan Yu Li, James)
 
-## 6.1 General Commands
+### 6.1 General Commands
 
 Action | Format, Examples
 --------|------------------
@@ -797,7 +797,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Exit** | `exit`
 
-## 6.2 Client Commands
+### 6.2 Client Commands
 
 Action | Format, Examples
 --------|------------------
@@ -807,7 +807,7 @@ Action | Format, Examples
 **Delete Client** | `delete_client ID` <br> e.g., `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
-## 6.3 Hairdresser Commands
+### 6.3 Hairdresser Commands
 
 Action | Format, Examples
 --------|------------------
@@ -816,7 +816,7 @@ Action | Format, Examples
 **Edit Hairdresser** | `edit_hairdresser ID ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
-## 6.4 Appointment Commands
+### 6.4 Appointment Commands
 
 Action | Format, Examples
 --------|------------------
@@ -824,7 +824,7 @@ Action | Format, Examples
 **List Appointments** | `list_appt`
 **Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
 
-## 6.5 Alias Commands
+### 6.5 Alias Commands
 
 Action | Format, Examples
 --------|------------------
