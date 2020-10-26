@@ -402,7 +402,7 @@ This feature allows you to manage the information of hairdressers in your salon.
 Parameter Name | Description
 --------|------------------
 `NAME` | The name of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
-`TITLE` | The title of the hairdresser.<br>It should not be blank.<br>E.g. `Senior Stylist`
+`TITLE` | The title of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Senior Stylist`
 `GENDER` | The gender of the hairdresser.<br>Gender should be either F or M or f or m.<br>E.g. `F`
 `PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
 `EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
