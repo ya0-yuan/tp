@@ -590,7 +590,7 @@ Outcome: <br>
 *Figure 6. Outcome of a successful `filter_hairdresser` command*
 
 
-### Appointment Management
+### 4.4 Appointment Management
 
 (contributed by Nicholas Toh)
 
@@ -601,7 +601,7 @@ This feature allows you to manage appointments between hairdressers and clients.
 * Time
 * Status
 
-#### Appointment Management Command Parameters
+#### 4.4.1 Appointment Management Command Parameters
 
 Parameter Name | Description
 --------|------------------
@@ -612,7 +612,7 @@ Parameter Name | Description
 `STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
 `ID` | The appointment ID `aid` that represents the appointment.
 
-#### Adding an appointment : `add_appt`
+#### 4.4.2 Adding an appointment : `add_appt`
 
 Adds an appointment to the database.
 
@@ -642,13 +642,13 @@ Adds an appointment to the database.
 
 ![create_appointment](images/appointment/create_appointment.png)
 
-#### Listing appointments : `list_appt`
+#### 4.4.3 Listing appointments : `list_appt`
 
 Shows a list of appointments.
 
 **Format**: `list_appt`
 
-#### Editing an appointment : `edit_appt`
+#### 4.4.4 Editing an appointment : `edit_appt`
 
 Edits an existing appointment.
 
@@ -665,7 +665,7 @@ Edits an existing appointment.
 
 ![edit_appointment](images/appointment/edit_appointment.png)
 
-#### Deleting an appointment : `delete_appt`
+#### 4.4.5 Deleting an appointment : `delete_appt`
 
 Removes a specific appointment from the database.
 
@@ -682,7 +682,7 @@ Removes a specific appointment from the database.
 
 ![delete_appointment](images/appointment/delete_appointment.png)
 
-### Alias commands
+### 4.5 Alias commands
 (Contributed by Aloysius)
 
 This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
@@ -690,46 +690,48 @@ longer commands.
 
 
 
-#### Add a new alias : `add_alias`
+#### 4.5.1 Add a new alias : `add_alias`
 
 You can use this command to add a new alias to the program.
 
-*Format:*
+**Format:**
 
 `add_alias old/OLD_ALIAS new/NEW_ALIAS`
 
-*Example:*
+**Example:**
 
 You want to create an alias `aa` for `add_alias`. 
 
-****
 Creating a new alias:
 
-. Type `add_alias old/add_alias new/aa` into the _Command Box_.
-. Press `Enter` to execute.
+* Type `add_alias old/add_alias new/aa` into the _Command Box_.
+
+* Press `Enter` to execute.
 
 Outcome:
 
-. The _Result Display_ will show a success message.
-. You can now see your new alias
-****
+* The _Result Display_ will show a success message.
+* You can now see your new alias.
 
-.Outcome of a successful `add_alias` command
 ![Ui](images/add_alias_success.png)
+*Figure 9. Outcome of a successful `add_alias` command*
 
-***
 
 You can now use the alias
 ![Ui](images/use_new_alias.png)
+*Figure 10. Usage of new alias*
 
-***
 
 And it works!
 ![Ui](images/new_alias.png)
+*Figure 11. Success confirmation from using new alias command*
 
-** :information_source: You cannot add duplicate aliases or default command words as aliases**<br>
+<div markdown="block" class="alert alert-info">  
+**:information_source: You cannot add duplicate aliases or default command words as aliases**<br>
 
-#### Delete an alias : `delete_alias`
+</div>
+
+#### 4.5.2 Delete an alias: `delete_alias`
 
 You can use this command to delete an alias to the program.
 
@@ -758,7 +760,7 @@ Outcome:
 ***
 
 
-####  List all alias : `listalias`
+#### 4.5.3 List all alias: `listalias`
 
 You can use this command to list all your aliases.
 
