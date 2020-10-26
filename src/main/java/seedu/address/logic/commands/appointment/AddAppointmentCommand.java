@@ -47,7 +47,8 @@ public class AddAppointmentCommand extends AddCommand {
     public static final String MESSAGE_HAIRDRESSER_NOT_NOT_FOUND =
         "Hairdresser with this ID is not found. Please enter a valid hairdresser ID.";
     public static final String MESSAGE_CLASHING_APPOINTMENT =
-        "This appointment clashes with another. The other appointment's ID is %d.";
+        "This appointment you are attempting to add clashes with another appointment. "
+            + "The other appointment's ID is %d.";
 
     private final ClientId clientId;
     private final HairdresserId hairdresserId;
@@ -96,11 +97,8 @@ public class AddAppointmentCommand extends AddCommand {
         // check if the new appointment clashes with any existing ones with the same client or haidresser
         List<Appointment> appointments = model.getAppointmentList();
         for (Appointment appt : appointments) {
-            if (appt.getHairdresserId().equals(this.hairdresserId)
-                || appt.getClientId().equals(this.clientId)) {
-                if (appointment.isClash(appt)) {
-                    throw new CommandException(String.format(MESSAGE_CLASHING_APPOINTMENT, appt.getId().id));
-                }
+            if (appointment.isClash(appt)) {
+                throw new CommandException(String.format(MESSAGE_CLASHING_APPOINTMENT, appt.getId().id));
             }
         }
         //List<Appointment> sameHairdresser = appointments.stream()
