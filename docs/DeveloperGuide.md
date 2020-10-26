@@ -133,33 +133,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Command Aliasing feature
-This feature allows users to define their own aliases for commands that make it easier for them to type.
+### Command Shortcut feature
+This feature allows users to define their own shortcuts for commands that make it easier for them to type.
 #### Current Implementation
-![Structure of the Alias Command Feature](images/CommandAliasClassDiagram.png)
+![Structure of the Shortcut Command Feature](images/CommandShortcutClassDiagram.png)
 
 This shows the general structure used to implement the Command Alias.
 * `Command Word` - This is an enumeration that corresponds to each command in the application.
-* `CommandAlias` - This is a class which stores the hashset of strings that correspond to a particular word. This strings 
-are the command word's aliases.
-* `CommandAliasSet` - This is a singleton class which stores all the commandAlias in the application.
+* `CommandShortcut` - This is a class which stores the hashset of strings that correspond to a particular word. These strings 
+are the command word's shortcuts.
+* `CommandShortcutSet` - This is a singleton class which stores all the commandShortcut in the application.
 It is responsible for finding the command word associated with a given input string and to validate whether the 
-new aliases are allowed to be saved into the system.
+new shortcuts are allowed to be saved into the system.
 
 Steps: 
-1. User input a command to the system. It is parsed regularly as before. The string representing the command is extracted.
-2. `AddressBookParser` will pass the string to `CommandAliasSet` to retrieve the corresponding `CommandWord`.
+1. User input a command to the system. It is parsed regularly as before, extracting the string.
+2. `AddressBookParser` will pass the string to `CommandShortcutSet` to retrieve the corresponding `CommandWord`.
 3. Then, the `CommandWord` is processed as usual.
 
 Steps when adding a new alias:
-1. User inputs an `add_alias` command together with the new alias, and the command it is associated with.
-2. Upon execution, `CommndAliasSet` will do validation to check if the validity of the new alias. 
-3. Finally, `CommandAliasSet` adds the new alias to the `CommandAlias` it is matched to.
+1. User inputs an `add_shortcut` command together with the new shortcut, and the command it is associated with.
+2. Upon execution, `CommndShortcutSet` will do validation to check if the validity of the new shortcut. 
+3. Finally, `CommandShortcutSet` adds the new shortcut to the `CommandShortcut` it is matched to.
 
-#### Saving the Alias
+#### Saving the Shortcut
 
-`JsonAdapatedAdressBook` saves `CommandAliasSet` as a `JsonAdapatedCommandAliasSet` together with its `JsonAdaptedAlias`.
-Upon starting the application,  `JsonAdaptedAddressBook` is used to set the singleton `CommandAliasSet`.
+`JsonAdapatedAdressBook` saves `CommandShortcutSet` as a `JsonAdapatedCommandShortcutSet` together with its `JsonAdaptedShortcut`.
+Upon starting the application,  `JsonAdaptedAddressBook` is used to set the singleton `CommandShortcutSet`.
 
 ### Hairdresser Management Features
 

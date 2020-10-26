@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commandalias.CommandAliasSet;
+import seedu.address.logic.commandshortcut.CommandShortcutSet;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -36,5 +36,5 @@ public interface ReadOnlyAddressBook {
      */
     IdCounter getIdCounter();
 
-    CommandAliasSet getCommandAliasSet();
+    CommandShortcutSet getCommandAliasSet();
 }

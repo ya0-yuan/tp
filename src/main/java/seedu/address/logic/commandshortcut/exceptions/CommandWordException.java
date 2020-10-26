@@ -1,4 +1,4 @@
-package seedu.address.logic.commandalias.exceptions;
+package seedu.address.logic.commandshortcut.exceptions;
 
 public class CommandWordException extends Exception {
     public CommandWordException(String error) {
