@@ -21,7 +21,7 @@ Today, many budding hair salons still resort to using pen and paper to keep trac
 
 This application uses a Command Line Interface (CLI); this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your appointments faster than other Graphical User Interface (GUI) applications; GUI applications allow users to interact with the application through graphical icons such as buttons.
 
-The purpose of this user guide is to provide you with an in-depth documentation on how to install and use our application. What are you waiting for? Head on to [Section 2, “Quick Start”](#quick-start) .
+The purpose of this user guide is to provide you with an in-depth documentation on how to install and use our application. What are you waiting for? Head on to [Section 2, “Quick Start”](#2-quick-start) .
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ To get started with using **HairStyleX**, you can follow these steps:
 
 1. At the top of the screen, type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-1. Refer to [Section 3.2.3, "Command Syntax and Usage"](#command-syntax-and-usage) on how to use commands and [Section 4, "Features"](#features) below for details of each command.
+1. Refer to [Section 3.2.3, "Command Syntax and Usage"](#323-command-syntax-and-usage) on how to use commands and [Section 4, "Features"](#4-features) below for details of each command.
 
 ![Ui](images/Ui.png)
 *Figure 1. GUI of **HairStyleX***
@@ -51,7 +51,7 @@ To get started with using **HairStyleX**, you can follow these steps:
 
 ### 3.1 Structure of this document
 
-There are many things you can do with **HairStyleX**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, [Section 3.2, “Reading this Document”](#reading-this-document), you will find useful tips on reading this document. It is then followed by [Section 4, “Features”](#features) where the four main features of **HairStyleX** and their commands are documented:
+There are many things you can do with **HairStyleX**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, [Section 3.2, “Reading this Document”](#32-reading-this-document), you will find useful tips on reading this document. It is then followed by [Section 4, “Features”](#4-features) where the four main features of **HairStyleX** and their commands are documented:
 
 * Client Management
 
@@ -104,7 +104,7 @@ Parameters - `NAME`, `PHONE`, `EMAIL`
 
 Prefix - `n/`, `p/`, `e/`
 
-The following four points explain how you can use a command with the provided format. More examples will be provided for each command in [Section 4, “Features”](#features).
+The following four points explain how you can use a command with the provided format. More examples will be provided for each command in [Section 4, “Features”](#4-features).
 
 1. Words in the upper case are the parameters which are required.
 
@@ -134,17 +134,17 @@ The following four points explain how you can use a command with the provided fo
     
     * Acceptable input 2 (different order as given format): `add_client p/98765432 e/johnd@example.com n/John Doe g/M a/311, Clementi Ave 2, #02-25 t/friends`
     
-With the above information, you can now move on to [Section 4, Features](#features) to learn all the features of the application and start using the commands.
+With the above information, you can now move on to [Section 4, Features](#4-features) to learn all the features of the application and start using the commands.
     
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4 Features
 
 This section contains all the information you need to know about the features of **HairStyleX**. To use each feature or sub-feature, you will need to enter the command into the Command Box.
 
 <div markdown="block" class="alert alert-warning">
 
-**:Warning: Warning about the use of features:**<br>
+**:warning: Warning about the use of features:**<br>
 
 As you use our features, other files will be created and stored in the folder that contains **HairStyleX.jar**. These files are created with the purpose of storing your data. Please do not alter or delete any of them, as this might result in permanent loss of data.
 
@@ -158,73 +158,232 @@ If this is your first time using **HairStyleX**, you might notice that this appl
 
 </div>
 
-### General commands
+### 4.1 General commands
 
-#### Viewing help : `help`
+#### 4.1.1 Viewing help : `help`
 
 Shows the link to the user guide in case the user forgets the commands.
 
-#### Clearing all entries : `clear`
+#### 4.1.2 Clearing all entries : `clear`
 
 Clears all entries from the application.
 
 Format: `clear`
 
-#### Exiting the program : `exit`
+#### 4.1.3 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### Saving the data
+#### 4.1.4 Saving the data
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
 
-### Client commands
+### 4.2 Client Management
+(Contributed by Yao Yuan)
 
-#### Adding a client : `add_client`
+This feature allows you to manage the information of clients in your salon. You can record the following information about clients:
 
-Adds a client to the database.
+* Name
+* Gender
+* Phone
+* Email
+* Address
+* Tags
 
-Format: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
+#### 4.2.1 Client Management Command Parameters
+Before you jump right into using this feature, you may want to learn about all the common command parameters used in this feature. The table below shows the list of common command parameters that will be used for this feature.
 
-Examples:
-* `add_hairdresser n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ti/senior_stylist`
-* `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
+Parameter Name | Description
+---------------|-------------
+`NAME` | The name of the client. <br>It should only contain alphanumeric characters and spaces, and it should not be blank. <br> E.g. `Yao Yuan`
+`PHONE` | The phone number of the client. <br> It should only contain numbers, and it should be at least 3 digits long <br> E.g. `96757525`
+`EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `yaoyuan@example.com`
+`GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
+`ADDRESS` | The address of the client. <br>  E.g. `6 College Avenue East #12-01D`
+`TAG` | The tag of the client. <br> It should only contain alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
+`ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
+`KEYWORD` | Keyword for `filter_client`. <br>It should only contain alphanumeric characters. 
 
-#### Listing all clients : `list_client`
+#### 4.2.2 Adding a client: `add_client`
 
-Shows a list of all clients in the database.
+You can use this command to add a client to the database.
 
-Format: `list_client`
+**Format:**
 
-#### Editing a client : `edit_client`
+`add_client n/NAME p/PHONE e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
 
-Edits an existing client in the database.
+<div markdown="block" class="alert alert-info">
 
-Format: `edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
+:information_source: Refer to Section 4.2.1 for more details on each parameter.
 
-* Edits the client with the specified `ID`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
+**Examples:**
+
+In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owns the salon money, into the HairstyleX.
+
+* `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney`
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new client: <br>
+
+1. Type `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message. 
+1. You can now see the client's information in the *Clients Panel*.
+
+</div>
+
+![AddClientOutcome](images/AddClientOutcome.png)
+*Figure 1. Outcome of a successful `add_client` command*
+
+#### 4.2.3 Listing all clients : `list_client`
+
+You can use this command to show a list of all clients in the database. This command is especially useful if you used `filter_client` command to search for clients- `list_client` will restore the full list to view. 
+
+**Format:**
+
+`list_client`
+
+**Example:**
+
+<div markdown="block" class="alert alert-white">
+
+Listing all your clients:
+
+1. Type `list_client` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The Result Display will show a success message.
+1. You can now see all your clients in the *Client Panel*.
+</div>
+
+#### 4.2.4 Editing a client : `edit_client`
+
+You can use this command to edit an existing client in the database.
+
+**Format:**
+ 
+`edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* Edits the client with the specified `ID`. The index refers to the index number `cid` shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
+* Refer to Section 4.2.1 for more details on each parameter.
+</div>
 
-Examples:
-*  `edit_client 1 p/91234567 e/yy@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `yy@example.com` respectively.
-*  `edit_client 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+**Examples:**
 
-#### Deleting a client : `delete_client`
+Assume that the client with ID `1` changed his/her email and you wish to update it in the database. You will perform the following steps:
 
-Removes a specific client from the database.
+<div markdown="block" class="alert alert-white">
 
-Format: `delete_client ID`
+Adding a new client:
 
+1. Type `edit_client 1 p/91234567 e/yy@example.com` into the *Command box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message. 
+1. You can now see the updated client's information in the *Clients Panel*.
+
+</div>
+
+![EditClientOutcome](images/EditClientOutcome.png)
+*Figure 2. Outcome of a successful `edit_client` command*
+
+#### 4.2.5 Deleting a client : `delete_client`
+
+You can use this command to remove a specific client from the database.
+
+**Format:**
+
+`delete_client ID`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
 * Deletes the client with the specified `ID`.
-* The index refers to the index number shown in the displayed client list.
+* The index refers to the index number `cid` shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
+</div>
+
+**Example:**
+
+Assume that the information of client with ID `2` is no longer needed and you wish to delete him/her from the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Delete client: <br>
+
+1. Type `delete_client 2` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+
+</div>
+
+![DeleteClientOutcome](images/DeleteClientOutcome.png)
+*Figure 3. Outcome of a successful `delete_Client` command*
+
+#### 4.2.6 Filtering clients : `filter_client`
+
+You can filter the list of clients in the database by keyword search that match their names.
+
+**Format:**
+
+ `filter_client KEYWORD...`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* The search is case-insensitive. e.g `anna`, `aNNa` will match `Anna`.
+* The order of the keywords does not matter. e.g. `Anna Yeoh` will match `Yeoh Anna`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Ann` will not match `Anna`.
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Anna Yeoh` will return `Anna Cheung`, `David Yeoh`.
+
+</div>
+
+**Example:**
+
+You wish to find the client **Ivan** from the database and check his phone number. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter clients: <br>
+
+1. Type `filter_client ivan` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered client's information in the *Clients Panel*, with clients named `Ivan` displayed in the list.
+
+</div>
+
+![FilterClientOutcome](images/FilterClientOutcome.png)
+*Figure 4. Outcome of a successful `filter_client` command*
+
 
 ### 4.3 Hairdresser Management
 
@@ -457,7 +616,7 @@ Parameter Name | Description
 
 Adds an appointment to the database.
 
-Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
+**Format**: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * `CLIENT_ID` must be a valid client ID (cid)
 * `HAIRDRESSER_ID` must be a valid hairdresser ID (hid)
 * `DATE` must be entered in YYYY-MM-DD format
@@ -478,7 +637,7 @@ Format: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * Appointment IDs may not be in order.
 </div>
 
-Example:
+**Example**:
 * `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
 
 ![create_appointment](images/appointment/create_appointment.png)
@@ -487,13 +646,13 @@ Example:
 
 Shows a list of appointments.
 
-Format: `list_appt`
+**Format**: `list_appt`
 
 #### Editing an appointment : `edit_appt`
 
 Edits an existing appointment.
 
-Format: `edit_appt ID s/STATUS`
+**Format**: `edit_appt ID s/STATUS`
 
 * Edits the appointment with the specified `ID`. 
 
@@ -501,7 +660,7 @@ Format: `edit_appt ID s/STATUS`
 
 * Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
 
-Examples:
+**Example**:
 *  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
 
 ![edit_appointment](images/appointment/edit_appointment.png)
@@ -510,7 +669,7 @@ Examples:
 
 Removes a specific appointment from the database.
 
-Format: `delete_appt ID`
+##Format##: `delete_appt ID`
 
 * Deletes the appointment with the specified `ID`.
 
@@ -518,7 +677,7 @@ Format: `delete_appt ID`
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+##Example##:
 *  `delete_appt 2` Deletes appointment with `aid` 2.
 
 ![delete_appointment](images/appointment/delete_appointment.png)
@@ -615,13 +774,13 @@ You can use this command to list all your aliases.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HairstyleX home folder.
 
-**Q**: Why aren’t I allowed to edit my date or time for the appointment?
+**Q**: Why aren’t I allowed to edit my date or time for the appointment?<br>
 **A**: Editing the date or time may cause conflicts in your schedule if the change results in two appointments with the same hairdresser occuring concurrently. However, we are working on a feature that will allow you to resolve these conflicts in the upcoming version of **HairStyleX**.
 
-**Q**: What do I do if I want to change my appointment’s date or time since I cannot edit them?
+**Q**: What do I do if I want to change my appointment’s date or time since I cannot edit them?<br>
 **A**: Unfortunately, you have to delete the appointment and create a new one.
 
-**Q**: What happens if I schedule 2 of my appointments with the same hairdresser on the same date and time? Will **HairStyleX** detect it?
+**Q**: What happens if I schedule 2 of my appointments with the same hairdresser on the same date and time? Will **HairStyleX** detect it?<br>
 **A**: Yes, **HairStyleX** will detect such cases and prevent you from creating such an appointment.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -630,7 +789,7 @@ You can use this command to list all your aliases.
 
 (Contributed by Tan Yu Li, James)
 
-## 6.1 General Commands
+### 6.1 General Commands
 
 Action | Format, Examples
 --------|------------------
@@ -638,7 +797,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Exit** | `exit`
 
-## 6.2 Client Commands
+### 6.2 Client Commands
 
 Action | Format, Examples
 --------|------------------
@@ -648,7 +807,7 @@ Action | Format, Examples
 **Delete Client** | `delete_client ID` <br> e.g., `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
-## 6.3 Hairdresser Commands
+### 6.3 Hairdresser Commands
 
 Action | Format, Examples
 --------|------------------
@@ -657,7 +816,7 @@ Action | Format, Examples
 **Edit Hairdresser** | `edit_hairdresser ID ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
-## 6.4 Appointment Commands
+### 6.4 Appointment Commands
 
 Action | Format, Examples
 --------|------------------
@@ -665,7 +824,7 @@ Action | Format, Examples
 **List Appointments** | `list_appt`
 **Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
 
-## 6.5 Alias Commands
+### 6.5 Alias Commands
 
 Action | Format, Examples
 --------|------------------
