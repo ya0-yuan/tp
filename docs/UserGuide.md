@@ -204,41 +204,41 @@ Format: `delete_hairdresser ID`
 ### Alias commands
 (Contributed by Aloysius)
 
-This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
+This feature allows you to customise shortcuts. You can add, delete and list shortcuts for 
 longer commands.
 
 
 
-#### Add a new alias : `add_alias`
+#### Add a new alias : `add_shortcut`
 
-You can use this command to add a new alias to the program.
+You can use this command to add a new shortcut to the program.
 
 *Format:*
 
-`add_alias old/OLD_ALIAS new/NEW_ALIAS`
+`add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT`
 
 *Example:*
 
-You want to create an alias `aa` for `add_alias`. 
+You want to create an alias `aa` for `add_shortcut`. 
 
 ****
 Creating a new alias:
 
-. Type `add_alias old/add_alias new/aa` into the _Command Box_.
+. Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
 . Press `Enter` to execute.
 
 Outcome:
 
 . The _Result Display_ will show a success message.
-. You can now see your new alias
+. You can now see your new shortcut
 ****
 
-.Outcome of a successful `add_alias` command
+.Outcome of a successful `add_shortcut` command
 ![Ui](images/add_alias_success.png)
 
 ***
 
-You can now use the alias
+You can now use the shortcut
 ![Ui](images/use_new_alias.png)
 
 ***
@@ -246,24 +246,24 @@ You can now use the alias
 And it works!
 ![Ui](images/new_alias.png)
 
-** :information_source: You cannot add duplicate aliases or default command words as aliases**<br>
+** :information_source: You cannot add duplicate shortcuts or default command words as shortcuts**<br>
 
-#### Delete an alias : `delete_alias`
+#### Delete an alias : `delete_shortcut`
 
-You can use this command to delete an alias to the program.
+You can use this command to delete an shortcut to the program.
 
 *Format:*
 
-`delete_alias ALIAS`
+`delete_shortcut SHORTCUT`
 
 *Example:*
 
-You want to delete an alias `aa`. 
+You want to delete a shortcut `aa`. 
 
 ****
 Deleting an alias:
 
-. Type `delete_alias aa` into the _Command Box_.
+. Type `delete_shortcut aa` into the _Command Box_.
 . Press `Enter` to execute.
 
 Outcome:
@@ -271,19 +271,19 @@ Outcome:
 . The _Result Display_ will show a success message.
 ****
 
-.Outcome of a successful `delete_alias` command
+.Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
 ***
 
 
-####  List all alias : `listalias`
+####  List all alias : `listshortcut`
 
-You can use this command to list all your aliases.
+You can use this command to list all your shortcuts.
 
 *Format:*
 
-`list_alias`
+`list_shortcut`
 
 [Coming soon]
 --------------------------------------------------------------------------------------------------------------------

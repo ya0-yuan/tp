@@ -1,4 +1,4 @@
-package seedu.address.logic.commandalias;
+package seedu.address.logic.commandshortcut;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -22,13 +22,13 @@ public enum CommandWord {
     CLEAR("clear"),
     EXIT("exit"),
     HELP("help"),
-    ADD_ALIAS("add_alias"),
-    DELETE_ALIAS("delete_alias");
+    ADD_SHORTCUT("add_shortcut"),
+    DELETE_SHORTCUT("delete_shortcut");
 
     private String defaultWord;
 
-    CommandWord(String defaultAlias) {
-        this.defaultWord = defaultAlias;
+    CommandWord(String defaultCommand) {
+        this.defaultWord = defaultCommand;
     }
 
     public String getDefaultWord() {
