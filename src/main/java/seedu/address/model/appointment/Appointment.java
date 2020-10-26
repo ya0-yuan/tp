@@ -103,12 +103,12 @@ public class Appointment implements Entity {
      */
     public Appointment replaceClient(Client newClient) {
         return new Appointment(
-                this.id,
-                newClient,
-                this.hairdresser,
-                this.date,
-                this.time,
-                this.appointmentStatus
+            this.id,
+            newClient,
+            this.hairdresser,
+            this.date,
+            this.time,
+            this.appointmentStatus
         );
     }
 
@@ -133,12 +133,12 @@ public class Appointment implements Entity {
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
         return new Appointment(
-                this.id,
-                this.client,
-                newHairdresser,
-                this.date,
-                this.time,
-                this.appointmentStatus
+            this.id,
+            this.client,
+            newHairdresser,
+            this.date,
+            this.time,
+            this.appointmentStatus
         );
     }
 
@@ -193,17 +193,27 @@ public class Appointment implements Entity {
     }
 
     /**
-     * Checks if another appointment clashes with this appointment
+     * Checks if another appointment clashes with this appointment.
+     * Two appointments are defined to clash if they contain either the same
+     * hairdresser or client, and they overlap in time.
      *
-     * @return true if they clash.
+     * @return true if the other appointment clashes with this.
      */
     public boolean isClash(Appointment that) {
-        // There is a clash IFF the start time of either is in between the start and end time of the other
+        // There is a clash IFF the start time of either is in between the start and end time of the
+        // other, or their start times are the same
+        if (!that.getHairdresserId().equals(this.hairdresserId)
+            && !that.getClientId().equals(this.clientId)) {
+            // Neither the hairdresser nor the client are the same
+            return false;
+        }
         if (this.startDateTime().isAfter(that.startDateTime())
-                && this.startDateTime().isBefore(that.endDateTime())) {
+            && this.startDateTime().isBefore(that.endDateTime())) {
             return true;
         } else if (that.startDateTime().isAfter(this.startDateTime())
-                && that.startDateTime().isBefore(this.endDateTime())) {
+            && that.startDateTime().isBefore(this.endDateTime())) {
+            return true;
+        } else if (that.startDateTime().isEqual(this.startDateTime())) {
             return true;
         } else {
             return false;
