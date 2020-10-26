@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_COMMAND;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commandshortcut.CommandShortcutSet;
 import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 

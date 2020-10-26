@@ -56,8 +56,9 @@ public class CommandShortcutSet {
 
     }
 
-    public CommandWord getCommandWord(String alias) throws CommandWordException {
-        Optional<CommandShortcut> command = commandShortcuts.stream().filter(commandShortcut -> commandShortcut.shortcutExist(alias))
+    public CommandWord getCommandWord(String shortcut) throws CommandWordException {
+        Optional<CommandShortcut> command = commandShortcuts.stream()
+                .filter(commandShortcut -> commandShortcut.shortcutExist(shortcut))
                 .findFirst();
         if (command.isEmpty()) {
             throw new CommandWordException("Command does not exists!");
@@ -72,7 +73,8 @@ public class CommandShortcutSet {
      * @throws CommandWordException if the shortcut does not exist
      */
     public void deleteShortcut(String shortcut) throws CommandWordException {
-        Optional<CommandShortcut> command = commandShortcuts.stream().filter(commandShortcut -> commandShortcut.shortcutExist(shortcut))
+        Optional<CommandShortcut> command = commandShortcuts.stream()
+                .filter(commandShortcut -> commandShortcut.shortcutExist(shortcut))
                 .findFirst();
         if (command.isEmpty()) {
             throw new CommandWordException("Alias does not exists!");

@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commandshortcut.CommandShortcutSet;
 import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 public class DeleteShortcutCommand extends DeleteCommand {
