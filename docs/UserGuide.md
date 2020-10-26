@@ -180,6 +180,12 @@ Format: `exit`
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
 
+#### 4.1.5 Exporting entries to CSV: `print`
+
+Exports all hairdressers, clients and appointments from the application to CSV files.
+
+Format: `print`
+
 ### 4.2 Client Management
 (Contributed by Yao Yuan)
 
