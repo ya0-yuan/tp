@@ -21,7 +21,7 @@ Today, many budding hair salons still resort to using pen and paper to keep trac
 
 This application uses a Command Line Interface (CLI); this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your appointments faster than other Graphical User Interface (GUI) applications; GUI applications allow users to interact with the application through graphical icons such as buttons.
 
-The purpose of this user guide is to provide you with an in-depth documentation on how to install and use our application. What are you waiting for? Head on to [Section 2, “Quick Start”](#quick-start) .
+The purpose of this user guide is to provide you with an in-depth documentation on how to install and use our application. What are you waiting for? Head on to [Section 2, “Quick Start”](#2-quick-start) .
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ To get started with using **HairStyleX**, you can follow these steps:
 
 1. At the top of the screen, type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-1. Refer to [Section 3.2.3, "Command Syntax and Usage"](#command-syntax-and-usage) on how to use commands and [Section 4, "Features"](#features) below for details of each command.
+1. Refer to [Section 3.2.3, "Command Syntax and Usage"](#323-command-syntax-and-usage) on how to use commands and [Section 4, "Features"](#4-features) below for details of each command.
 
 ![Ui](images/Ui.png)
 *Figure 1. GUI of **HairStyleX***
@@ -51,7 +51,7 @@ To get started with using **HairStyleX**, you can follow these steps:
 
 ### 3.1 Structure of this document
 
-There are many things you can do with **HairStyleX**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, [Section 3.2, “Reading this Document”](#reading-this-document), you will find useful tips on reading this document. It is then followed by [Section 4, “Features”](#features) where the four main features of **HairStyleX** and their commands are documented:
+There are many things you can do with **HairStyleX**. Thus, we have structured this User Guide in such a way that you can easily find what you need. In the next subsection, [Section 3.2, “Reading this Document”](#32-reading-this-document), you will find useful tips on reading this document. It is then followed by [Section 4, “Features”](#4-features) where the four main features of **HairStyleX** and their commands are documented:
 
 * Client Management
 
@@ -104,7 +104,7 @@ Parameters - `NAME`, `PHONE`, `EMAIL`
 
 Prefix - `n/`, `p/`, `e/`
 
-The following four points explain how you can use a command with the provided format. More examples will be provided for each command in [Section 4, “Features”](#features).
+The following four points explain how you can use a command with the provided format. More examples will be provided for each command in [Section 4, “Features”](#4-features).
 
 1. Words in the upper case are the parameters which are required.
 
@@ -134,17 +134,17 @@ The following four points explain how you can use a command with the provided fo
     
     * Acceptable input 2 (different order as given format): `add_client p/98765432 e/johnd@example.com n/John Doe g/M a/311, Clementi Ave 2, #02-25 t/friends`
     
-With the above information, you can now move on to [Section 4, Features](#features) to learn all the features of the application and start using the commands.
+With the above information, you can now move on to [Section 4, Features](#4-features) to learn all the features of the application and start using the commands.
     
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4 Features
 
 This section contains all the information you need to know about the features of **HairStyleX**. To use each feature or sub-feature, you will need to enter the command into the Command Box.
 
 <div markdown="block" class="alert alert-warning">
 
-**:Warning: Warning about the use of features:**<br>
+**:warning: Warning about the use of features:**<br>
 
 As you use our features, other files will be created and stored in the folder that contains **HairStyleX.jar**. These files are created with the purpose of storing your data. Please do not alter or delete any of them, as this might result in permanent loss of data.
 
@@ -158,25 +158,25 @@ If this is your first time using **HairStyleX**, you might notice that this appl
 
 </div>
 
-### General commands
+### 4.1 General commands
 
-#### Viewing help : `help`
+#### 4.1.1 Viewing help : `help`
 
 Shows the link to the user guide in case the user forgets the commands.
 
-#### Clearing all entries : `clear`
+#### 4.1.2 Clearing all entries : `clear`
 
 Clears all entries from the application.
 
 Format: `clear`
 
-#### Exiting the program : `exit`
+#### 4.1.3 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### Saving the data
+#### 4.1.4 Saving the data
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
 
