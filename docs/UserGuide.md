@@ -3,12 +3,12 @@ layout: page
 title: User Guide
 ---
 
-HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
-
 <div markdown="block" class="alert alert-secondary">
 * Table of Contents
 {:toc}
 </div>
+
+HairstyleX helps managers from budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for Command Line Interface (CLI) users so that frequent tasks can be done faster by typing in commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -228,7 +228,7 @@ You can use this command to add a client to the database.
 
 **Examples:**
 
-In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owns the salon money, into the HairstyleX.
+In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owes the salon money, into the HairstyleX.
 
 * `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney`
 
