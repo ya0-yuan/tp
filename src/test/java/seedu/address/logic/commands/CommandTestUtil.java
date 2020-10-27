@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.parser.CliSyntax.*;
 //import static seedu.address.testutil.Assert.assertThrows;
 //
 //import java.util.ArrayList;
@@ -90,9 +90,40 @@ public class CommandTestUtil {
 
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    //
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // for testing appointment
+    public static final String VALID_CLIENT_ID = "1";
+    public static final String INVALID_APPT_CLIENT_ID = "-1";
+    public static final String VALID_HAIRDRESSER_ID = "2";
+    public static final String INVALID_APPT_HAIRDRESSER_ID = "-2";
+    public static final LocalDateTime FUTURE_DATE_TIME = LocalDateTime.now().withHour(9).withMinute(0).plusDays(1);
+    public static final String VALID_DATE_OF_APPT = FUTURE_DATE_TIME.toLocalDate().toString();
+    public static final String INVALID_DATE_OF_APPT = "20190833";
+    public static final String VALID_START_TIME = FUTURE_DATE_TIME.toLocalTime()
+            .format(DateTimeFormatter.ofPattern("HH:mm"));
+    public static final String INVALID_START_TIME = "9";
+    public static final String VALID_STATUS = "ACTIVE";
+    public static final String INVALID_STATUS = "ASDF";
+    public static final String VALID_MARK_APPT_INDEX = "1";
+    public static final String INVALID_MARK_APPT_INDEX = "-1";
+    public static final String DESC_VALID_CLIENT_ID = " " + PREFIX_CLIENT_ID + VALID_CLIENT_ID;
+    public static final String DESC_INVALID_CLIENT_ID = " " + PREFIX_CLIENT_ID + INVALID_APPT_CLIENT_ID;
+    public static final String DESC_VALID_HAIRDRESSER_ID = " " + PREFIX_HAIRDRESSER_ID + VALID_HAIRDRESSER_ID;
+    public static final String DESC_INVALID_HAIRDRESSER_ID = " " + PREFIX_HAIRDRESSER_ID + INVALID_APPT_HAIRDRESSER_ID;
+    public static final String DESC_VALID_DATE_OF_APPT = " " + PREFIX_DATE_OF_APPT + VALID_DATE_OF_APPT;
+    public static final String DESC_INVALID_DATE_OF_APPT = " " + PREFIX_DATE_OF_APPT + INVALID_DATE_OF_APPT;
+    public static final String DESC_VALID_START_TIME = " " + PREFIX_START_TIME + VALID_START_TIME;
+    public static final String DESC_INVALID_START_TIME = " " + PREFIX_START_TIME + INVALID_START_TIME;
+    public static final String DESC_VALID_STATUS = " " + PREFIX_APPT_STATUS + VALID_STATUS;
+    public static final String DESC_INVALID_STATUS = " " + PREFIX_APPT_STATUS + INVALID_STATUS;
+    public static final String DESC_VALID_MARK_APPT = " " + VALID_MARK_APPT_INDEX + " " + PREFIX_APPT_STATUS
+            + VALID_STATUS;
+    public static final String DESC_INVALID_MARK_APPT_INDEX = " " + INVALID_MARK_APPT_INDEX + " " + DESC_VALID_STATUS;
+    public static final String DESC_INVALID_MARK_APPT_STATUS = " " + VALID_MARK_APPT_INDEX + " " + DESC_INVALID_STATUS;
+
     //
     //public static final EditCommand.EditPersonDescriptor DESC_AMY;
     //public static final EditCommand.EditPersonDescriptor DESC_BOB;
@@ -106,31 +137,31 @@ public class CommandTestUtil {
     //            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     //}
     //
-    ///**
-    // * Executes the given {@code command}, confirms that <br>
-    // * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-    // * - the {@code actualModel} matches {@code expectedModel}
-    // */
-    //public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-    //        Model expectedModel) {
-    //    try {
-    //        CommandResult result = command.execute(actualModel);
-    //        assertEquals(expectedCommandResult, result);
-    //        assertEquals(expectedModel, actualModel);
-    //    } catch (CommandException ce) {
-    //        throw new AssertionError("Execution of command should not fail.", ce);
-    //    }
-    //}
-    //
-    ///**
-    // * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-    // * that takes a string {@code expectedMessage}.
-    // */
-    //public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-    //        Model expectedModel) {
-    //    CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-    //    assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
-    //}
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
     //
     ///**
     // * Executes the given {@code command}, confirms that <br>
