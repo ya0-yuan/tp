@@ -116,7 +116,7 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Title.isValidTitle(address)) {
+        if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);

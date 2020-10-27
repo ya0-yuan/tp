@@ -14,6 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.PrintCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
@@ -120,6 +121,10 @@ public class AddressBookParser {
 
         case HELP:
             return new HelpCommand();
+
+        case PRINT:
+            return new PrintCommand();
+
         case ADD_ALIAS:
             return new AddAliasCommandParser().parse(arguments);
 

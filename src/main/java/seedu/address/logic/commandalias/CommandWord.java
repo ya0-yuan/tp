@@ -22,6 +22,7 @@ public enum CommandWord {
     CLEAR("clear"),
     EXIT("exit"),
     HELP("help"),
+    PRINT("print"),
     ADD_ALIAS("add_alias"),
     DELETE_ALIAS("delete_alias");
 
