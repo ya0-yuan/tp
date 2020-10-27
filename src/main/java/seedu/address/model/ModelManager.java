@@ -226,6 +226,7 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+        logger.info("Client list gets filtered");
     }
 
     //=========== Filtered Hairdresser List Accessors =============================================================
@@ -243,6 +244,7 @@ public class ModelManager implements Model {
     public void updateFilteredHairdresserList(Predicate<Hairdresser> predicate) {
         requireNonNull(predicate);
         filteredHairdressers.setPredicate(predicate);
+        logger.info("Hairdresser list gets filtered");
     }
 
     //=========== Filtered Appointment List Accessors =============================================================
@@ -260,6 +262,7 @@ public class ModelManager implements Model {
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+        logger.info("Appointment list gets filtered");
     }
 
     //=========== Selected appointment ======================================================================
