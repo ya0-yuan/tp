@@ -1,17 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_INVALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INVALID_DATE_OF_APPT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INVALID_HAIRDRESSER_ID;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_INVALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INVALID_STATUS;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_VALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_VALID_DATE_OF_APPT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_VALID_HAIRDRESSER_ID;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_VALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_VALID_STATUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_OF_APPT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HAIRDRESSER_ID;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ID;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS;
 import static seedu.address.logic.commands.appointment.FilterAppointmentCommand.MESSAGE_NOT_STATED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -19,13 +18,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.appointment.FilterAppointmentCommand;
 import seedu.address.logic.parser.appointment.FilterAppointmentCommandParser;
 import seedu.address.model.appointment.AppointmentDate;
-import seedu.address.model.person.hairdresser.HairdresserId;
-import seedu.address.model.person.client.ClientId;
 import seedu.address.model.appointment.AppointmentStatus;
+import seedu.address.model.person.client.ClientId;
+import seedu.address.model.person.hairdresser.HairdresserId;
 
 public class FilterAppointmentCommandParserTest {
     private FilterAppointmentCommandParser parser = new FilterAppointmentCommandParser();

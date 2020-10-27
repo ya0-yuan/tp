@@ -18,14 +18,16 @@ public class FilterHairdresserCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterHairdresserCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterHairdresserCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFilterHairdresserCommand() {
         // no leading and trailing whitespaces
         FilterHairdresserCommand expectedFilterHairdresserCommand =
-                new FilterHairdresserCommand(new HairdresserNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FilterHairdresserCommand(
+                        new HairdresserNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFilterHairdresserCommand);
 
         // multiple whitespaces between keywords
