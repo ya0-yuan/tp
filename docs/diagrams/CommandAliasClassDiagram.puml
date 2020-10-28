@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Enum "<<Enumeration>> \nCommandWord" as CommandWord
-Class CommandAlias
-Class CommandAliasSet
+Class CommandShortcut
+Class CommandShortcutSet
 
-CommandAlias *-right-> "1" CommandWord
-CommandAliasSet o-right-> "*" CommandAlias
+CommandShortcut *-right-> "1" CommandWord
+CommandShortcutSet o-right-> "*" CommandShortcut
 
 @enduml

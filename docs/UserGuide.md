@@ -691,42 +691,45 @@ Removes a specific appointment from the database.
 ![delete_appointment](images/appointment/delete_appointment.png)
 *Figure 13. Outcome of a successful `delete_appt` command*
 
-### 4.5 Alias commands
+### 4.5 Shortcut commands
 (Contributed by Aloysius)
 
-This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
+This feature allows you to customise shortcuts. You can add, delete and list shortcuts for 
 longer commands.
 
 
 
-#### 4.5.1 Add a new alias : `add_alias`
+#### 4.5.1 Add a new shortcut : `add_shortcut`
 
-You can use this command to add a new alias to the program.
+
+You can use this command to add a new shortcut to the program.
 
 **Format:**
 
-`add_alias old/OLD_ALIAS new/NEW_ALIAS`
+`add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT`
 
 **Example:**
 
-You want to create an alias `aa` for `add_alias`. 
+You want to create a shortcut `aa` for `add_shortcut`. 
 
-Creating a new alias:
+Creating a new shortcut:
 
-* Type `add_alias old/add_alias new/aa` into the _Command Box_.
-
-* Press `Enter` to execute.
+. Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
+. Press `Enter` to execute.
 
 Outcome:
 
-* The _Result Display_ will show a success message.
-* You can now see your new alias.
+. The _Result Display_ will show a success message.
+. You can now see your new shortcut
+****
+
+.Outcome of a successful `add_shortcut` command
 
 ![Ui](images/add_alias_success.png)
-*Figure 9. Outcome of a successful `add_alias` command*
+*Figure 9. Outcome of a successful `add_shortcut` command*
 
 
-You can now use the alias
+You can now use the shortcut
 ![Ui](images/use_new_alias.png)
 *Figure 10. Usage of new alias*
 
@@ -736,26 +739,28 @@ And it works!
 *Figure 11. Success confirmation from using new alias command*
 
 <div markdown="block" class="alert alert-info">  
-**:information_source: You cannot add duplicate aliases or default command words as aliases**<br>
+
+** :information_source: You cannot add duplicate shortcuts or default command words as shortcuts**<br>
+
+#### 4.5.2 Delete a shortcut : `delete_shortcut`
 
 </div>
 
-#### 4.5.2 Delete an alias: `delete_alias`
 
-You can use this command to delete an alias to the program.
+You can use this command to delete a shortcut to the program.
 
 *Format:*
 
-`delete_alias ALIAS`
+`delete_shortcut SHORTCUT`
 
 *Example:*
 
-You want to delete an alias `aa`. 
+You want to delete a shortcut `aa`. 
 
 ****
 Deleting an alias:
 
-. Type `delete_alias aa` into the _Command Box_.
+. Type `delete_shortcut aa` into the _Command Box_.
 . Press `Enter` to execute.
 
 Outcome:
@@ -763,19 +768,19 @@ Outcome:
 . The _Result Display_ will show a success message.
 ****
 
-.Outcome of a successful `delete_alias` command
+.Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
 ***
 
 
-#### 4.5.3 List all alias: `listalias`
+#### 4.5.3 List all alias : `listshortcut`
 
-You can use this command to list all your aliases.
+You can use this command to list all your shortcuts.
 
 *Format:*
 
-`list_alias`
+`list_shortcut`
 
 [Coming soon]
 
