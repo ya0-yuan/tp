@@ -71,6 +71,7 @@ public class FilterAppointmentCommand extends Command {
             if (model.getClientById(id) == null) {
                 throw new CommandException(AddAppointmentCommand.MESSAGE_CLIENT_NOT_FOUND);
             }
+            assert id != null : "client id cannot be null";
             predicates.add(appointment -> {
                 return appointment.getClientId().equals(id);
             });
@@ -83,6 +84,7 @@ public class FilterAppointmentCommand extends Command {
             if (model.getHairdresserById(id) == null) {
                 throw new CommandException(AddAppointmentCommand.MESSAGE_HAIRDRESSER_NOT_NOT_FOUND);
             }
+            assert id != null : "hairdresser id cannot be null";
             predicates.add(appointment -> {
                 return appointment.getHairdresserId().equals(id);
             });
