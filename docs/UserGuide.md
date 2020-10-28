@@ -220,7 +220,7 @@ You can use this command to add a client to the database.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to Section 4.2.1 for more details on each parameter.
+:information_source: Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
 
 </div>
 
@@ -287,7 +287,7 @@ You can use this command to edit an existing client in the database.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
-* Refer to Section 4.2.1 for more details on each parameter.
+* Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
 </div>
 
 **Examples:**
@@ -424,7 +424,7 @@ You can use this command to add a hairdresser to the database.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to Section 4.3.1 for more details on each parameter.
+:information_source: Refer to [Section 4.3.1](#431-hairdresser-management-command-parameters) for more details on each parameter.
 
 </div>
 
@@ -491,7 +491,7 @@ You can use this command to edit an existing hairdresser in the database.
 * When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
 * You can remove all the hairdresser’s tags by typing `s/` without
     specifying any specialisations after it.
-* Refer to Section 4.3.1 for more details on each parameter.
+* Refer to [Section 4.3.1](#431-hairdresser-management-command-parameters) for more details on each parameter.
 
 </div>
 
