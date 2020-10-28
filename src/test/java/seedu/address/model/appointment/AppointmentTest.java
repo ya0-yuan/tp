@@ -68,18 +68,38 @@ class AppointmentTest {
 
     @Test
     void getClientId() {
-    }
-
-    @Test
-    void testToString() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getClientId(), ALICE.getId());
     }
 
     @Test
     void getHairdresserId() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getHairdresserId(), BENEDICT.getId());
     }
 
     @Test
     void getClient() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getClient(), ALICE);
     }
 
     @Test
@@ -92,6 +112,14 @@ class AppointmentTest {
 
     @Test
     void getHairdresser() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getHairdresser(), BENEDICT);
     }
 
     @Test
@@ -104,14 +132,46 @@ class AppointmentTest {
 
     @Test
     void getDate() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getDate(), TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE);
     }
 
     @Test
     void getTime() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getTime(), TypicalAppointmentTimes.VALID_APPOINTMENT_TIME);
     }
 
     @Test
     void getAppointmentStatus() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(appt.getAppointmentStatus(), AppointmentStatus.ACTIVE);
+        appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+            TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+            AppointmentStatus.CANCELLED
+        );
+        Assertions.assertEquals(appt.getAppointmentStatus(), AppointmentStatus.CANCELLED);
     }
 
     @Test
