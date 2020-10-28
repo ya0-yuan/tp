@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.address.logic.commandalias.exceptions.CommandWordException;
 
 public class CommandAlias {
+    private static int MAX_LENGTH = 20;
     private CommandWord commandWord;
     private HashSet<String> aliasSet = new HashSet<>();
 
@@ -41,6 +42,10 @@ public class CommandAlias {
 
         if (alias.matches(".*\\s.*")) {
             throw new CommandWordException("Alias cannot contain white spaces!");
+        }
+
+        if (alias.length() > MAX_LENGTH) {
+            throw new CommandWordException("Alias cannot be more than 20 characters!");
         }
 
         aliasSet.add(alias);
