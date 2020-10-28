@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteShortcutCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.PrintCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
@@ -120,8 +121,12 @@ public class AddressBookParser {
 
         case HELP:
             return new HelpCommand();
+
         case ADD_SHORTCUT:
             return new AddShortcutCommandParser().parse(arguments);
+
+        case PRINT:
+            return new PrintCommand();
 
         case DELETE_SHORTCUT:
             return new DeleteShortcutCommand(arguments.trim());

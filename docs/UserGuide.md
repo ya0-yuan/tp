@@ -3,12 +3,12 @@ layout: page
 title: User Guide
 ---
 
-HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands.
-
 <div markdown="block" class="alert alert-secondary">
 * Table of Contents
 {:toc}
 </div>
+
+HairstyleX helps managers from budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for Command Line Interface (CLI) users so that frequent tasks can be done faster by typing in commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ With the above information, you can now move on to [Section 4, Features](#4-feat
     
 --------------------------------------------------------------------------------------------------------------------
 
-## 4 Features
+## 4. Features
 
 This section contains all the information you need to know about the features of **HairStyleX**. To use each feature or sub-feature, you will need to enter the command into the Command Box.
 
@@ -179,6 +179,12 @@ Format: `exit`
 #### 4.1.4 Saving the data
 
 All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
+
+#### 4.1.5 Exporting entries to CSV: `print`
+
+Exports all hairdressers, clients and appointments from the application to CSV files.
+
+Format: `print`
 
 ### 4.2 Client Management
 (Contributed by Yao Yuan)
@@ -222,7 +228,7 @@ You can use this command to add a client to the database.
 
 **Examples:**
 
-In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owns the salon money, into the HairstyleX.
+In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owes the salon money, into the HairstyleX.
 
 * `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney`
 
@@ -241,7 +247,7 @@ Outcome: <br>
 </div>
 
 ![AddClientOutcome](images/AddClientOutcome.png)
-*Figure 1. Outcome of a successful `add_client` command*
+*Figure 3. Outcome of a successful `add_client` command*
 
 #### 4.2.3 Listing all clients : `list_client`
 
@@ -305,7 +311,7 @@ Outcome:
 </div>
 
 ![EditClientOutcome](images/EditClientOutcome.png)
-*Figure 2. Outcome of a successful `edit_client` command*
+*Figure 4. Outcome of a successful `edit_client` command*
 
 #### 4.2.5 Deleting a client : `delete_client`
 
@@ -342,7 +348,7 @@ Outcome: <br>
 </div>
 
 ![DeleteClientOutcome](images/DeleteClientOutcome.png)
-*Figure 3. Outcome of a successful `delete_Client` command*
+*Figure 5. Outcome of a successful `delete_Client` command*
 
 #### 4.2.6 Filtering clients : `filter_client`
 
@@ -382,7 +388,7 @@ Outcome: <br>
 </div>
 
 ![FilterClientOutcome](images/FilterClientOutcome.png)
-*Figure 4. Outcome of a successful `filter_client` command*
+*Figure 6. Outcome of a successful `filter_client` command*
 
 
 ### 4.3 Hairdresser Management
@@ -402,11 +408,11 @@ This feature allows you to manage the information of hairdressers in your salon.
 Parameter Name | Description
 --------|------------------
 `NAME` | The name of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
-`TITLE` | The title of the hairdresser.<br>It should not be blank.<br>E.g. `Senior Stylist`
+`TITLE` | The title of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Senior Stylist`
 `GENDER` | The gender of the hairdresser.<br>Gender should be either F or M or f or m.<br>E.g. `F`
 `PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
 `EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
-`SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
+`SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options and are case-sensitive: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
 `ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_hairdresser`. <br>It should only contain alphanumeric characters. 
 
@@ -443,7 +449,7 @@ Outcome: <br>
 </div>
 
 ![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
-*Figure 3. Outcome of a successful `add_hairdresser` command*
+*Figure 7. Outcome of a successful `add_hairdresser` command*
 
 
 #### 4.3.3 Listing all hairdressers : `list_hairdresser`
@@ -510,7 +516,7 @@ Outcome: <br>
 </div>
 
 ![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
-*Figure 4. Outcome of a successful `edit_hairdresser` command*
+*Figure 8. Outcome of a successful `edit_hairdresser` command*
 
 #### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
@@ -547,7 +553,7 @@ Outcome: <br>
 </div>
 
 ![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
-*Figure 5. Outcome of a successful `delete_hairdresser` command*
+*Figure 9. Outcome of a successful `delete_hairdresser` command*
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
@@ -587,7 +593,7 @@ Outcome: <br>
 </div>
 
 ![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
-*Figure 6. Outcome of a successful `filter_hairdresser` command*
+*Figure 10. Outcome of a successful `filter_hairdresser` command*
 
 
 ### 4.4 Appointment Management
@@ -641,6 +647,7 @@ Adds an appointment to the database.
 * `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
 
 ![create_appointment](images/appointment/create_appointment.png)
+*Figure 11. Outcome of a successful `add_appt` command*
 
 #### 4.4.3 Listing appointments : `list_appt`
 
@@ -664,6 +671,7 @@ Edits an existing appointment.
 *  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
 
 ![edit_appointment](images/appointment/edit_appointment.png)
+*Figure 12. Outcome of a successful `edit_appt` command*
 
 #### 4.4.5 Deleting an appointment : `delete_appt`
 
@@ -681,6 +689,7 @@ Removes a specific appointment from the database.
 *  `delete_appt 2` Deletes appointment with `aid` 2.
 
 ![delete_appointment](images/appointment/delete_appointment.png)
+*Figure 13. Outcome of a successful `delete_appt` command*
 
 ### 4.5 Shortcut commands
 (Contributed by Aloysius)
