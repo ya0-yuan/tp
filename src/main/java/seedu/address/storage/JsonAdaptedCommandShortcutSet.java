@@ -40,7 +40,7 @@ public class JsonAdaptedCommandShortcutSet {
      */
     public CommandShortcutSet toModelType() throws IllegalValueException {
         if (shortcutList == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Shortcut"));
         }
         List<CommandShortcut> alias = new ArrayList<>();
         for (JsonAdaptedCommandShortcut jsonAdaptedCommandShortcut : shortcutList) {

@@ -692,7 +692,7 @@ Removes a specific appointment from the database.
 ### 4.5 Shortcut commands
 (Contributed by Aloysius)
 
-This feature allows you to customise aliases. You can add, delete and list aliases which are shortcuts for 
+This feature allows you to customise command shortcuts. You can add, delete and list shortcuts for 
 longer commands.
 
 #### 4.5.1 Shortcut Command Parameters
@@ -754,7 +754,7 @@ You can use this command to delete a shortcut to the program.
 
 You want to delete a shortcut `aa`. 
 
-Deleting an alias:
+Deleting a shortcut:
 
 * Type `delete_shortcut aa` into the _Command Box_.
 *  Press `Enter` to execute.
@@ -766,7 +766,7 @@ Outcome:
 .Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
-#### 4.5.3 List all alias : `listshortcut`
+#### 4.5.3 List all shortcuts : `listshortcut`
 
 You can use this command to list all your shortcuts.
 
@@ -832,10 +832,10 @@ Action | Format, Examples
 **List Appointments** | `list_appt`
 **Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
 
-### 6.5 Alias Commands
+### 6.5 Shortcut Commands
 
 Action | Format, Examples
 --------|------------------
-**Add Alias** | `add_alias old/OLD_ALIAS new/NEW_ALIAS` <br> e.g., `add_alias old/add_alias new/aa`
-**Delete Alias** | `delete_alias ALIAS` <br> e.g., `delete_alias aa`
-**List Alias** | `list_alias`
+**Add Shortcut** | `add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT` <br> e.g., `add_shortcut old/add_shortcut new/aa`
+**Delete Shortcut** | `delete_shortcut SHORTCUT` <br> e.g., `delete_shortcut aa`
+**List Shortcut** | `list_shortcut`

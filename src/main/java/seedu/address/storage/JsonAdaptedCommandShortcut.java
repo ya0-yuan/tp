@@ -40,11 +40,11 @@ public class JsonAdaptedCommandShortcut {
      */
     public CommandShortcut toModelType() throws IllegalValueException {
         if (commandWord == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Command Word"));
         }
         CommandWord word = CommandWord.getCommandWord(commandWord);
         if (word == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Command Word"));
         }
 
 
