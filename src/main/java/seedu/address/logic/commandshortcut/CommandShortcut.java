@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
 
 public class CommandShortcut {
+    private static final int MAX_LENGTH = 10;
     private CommandWord commandWord;
     private HashSet<String> shortcutSet = new HashSet<>();
 
@@ -41,6 +42,10 @@ public class CommandShortcut {
 
         if (shortcut.matches(".*\\s.*")) {
             throw new CommandWordException("Shortcut cannot contain white spaces!");
+        }
+
+        if (shortcut.length() > MAX_LENGTH) {
+            throw new CommandWordException("Shortcut cannot be more than 10 characters!");
         }
 
         shortcutSet.add(shortcut);

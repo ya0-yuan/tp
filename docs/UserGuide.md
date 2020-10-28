@@ -8,8 +8,6 @@ title: User Guide
 {:toc}
 </div>
 
-HairstyleX helps managers from budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for Command Line Interface (CLI) users so that frequent tasks can be done faster by typing in commands.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
@@ -203,12 +201,12 @@ Before you jump right into using this feature, you may want to learn about all t
 
 Parameter Name | Description
 ---------------|-------------
-`NAME` | The name of the client. <br>It should only contain alphanumeric characters and spaces, and it should not be blank. <br> E.g. `Yao Yuan`
-`PHONE` | The phone number of the client. <br> It should only contain numbers, and it should be at least 3 digits long <br> E.g. `96757525`
-`EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `yaoyuan@example.com`
+`NAME` | The name of the client. <br>It should only contain at most alphanumeric characters and spaces, and it should not be blank. <br> E.g. `Yao Yuan`
+`PHONE` | The phone number of the client. <br> It should only contain numbers, should be at least 3 digits long, and should be at most 15 digits <br> E.g. `96757525`
+`EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `yaoyuan@example.com`
 `GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
-`ADDRESS` | The address of the client. <br>  E.g. `6 College Avenue East #12-01D`
-`TAG` | The tag of the client. <br> It should only contain alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
+`ADDRESS` | The address of the client. It should only contain a maximum of 50 characters <br>  E.g. `6 College Avenue East #12-01D`
+`TAG` | The tag of the client. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
 `ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_client`. <br>It should only contain alphanumeric characters. 
 
@@ -407,11 +405,11 @@ This feature allows you to manage the information of hairdressers in your salon.
 
 Parameter Name | Description
 --------|------------------
-`NAME` | The name of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
-`TITLE` | The title of the hairdresser.<br>It should only contain alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Senior Stylist`
+`NAME` | The name of the hairdresser.<br>It should only contain at most 50 alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Anna Sue`
+`TITLE` | The title of the hairdresser.<br>It should only contain at most 20 alphanumeric characters and spaces, and it should not be blank.<br>E.g. `Senior Stylist`
 `GENDER` | The gender of the hairdresser.<br>Gender should be either F or M or f or m.<br>E.g. `F`
-`PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, and it should be at least 3 digits long.<br>E.g. `81526354`
-`EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.<br>E.g. `johnd@example.com`
+`PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, should be at least 3 digits long, and should be at most 15 digits long.<br>E.g. `81526354`
+`EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `johnd@example.com`
 `SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options and are case-sensitive: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
 `ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_hairdresser`. <br>It should only contain alphanumeric characters. 
@@ -677,7 +675,7 @@ Edits an existing appointment.
 
 Removes a specific appointment from the database.
 
-##Format##: `delete_appt ID`
+**Format**: `delete_appt ID`
 
 * Deletes the appointment with the specified `ID`.
 
@@ -685,7 +683,7 @@ Removes a specific appointment from the database.
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-##Example##:
+**Example**:
 *  `delete_appt 2` Deletes appointment with `aid` 2.
 
 ![delete_appointment](images/appointment/delete_appointment.png)
@@ -694,13 +692,17 @@ Removes a specific appointment from the database.
 ### 4.5 Shortcut commands
 (Contributed by Aloysius)
 
-This feature allows you to customise shortcuts. You can add, delete and list shortcuts for 
+This feature allows you to customise command shortcuts. You can add, delete and list shortcuts for 
 longer commands.
 
+#### 4.5.1 Shortcut Command Parameters
 
+Parameter Name | Description
+--------|------------------
+`OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
+`NEWSHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 10 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
-#### 4.5.1 Add a new shortcut : `add_shortcut`
-
+#### 4.5.2 Add a new shortcut : `add_shortcut`
 
 You can use this command to add a new shortcut to the program.
 
@@ -714,16 +716,13 @@ You want to create a shortcut `aa` for `add_shortcut`.
 
 Creating a new shortcut:
 
-. Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
-. Press `Enter` to execute.
+* Type `add_shortcut old/add_shortcut new/aa` into the _Command Box_.
+* Press `Enter` to execute.
 
 Outcome:
 
-. The _Result Display_ will show a success message.
-. You can now see your new shortcut
-****
-
-.Outcome of a successful `add_shortcut` command
+* The _Result Display_ will show a success message.
+* You can now see your new shortcut.
 
 ![Ui](images/add_alias_success.png)
 *Figure 9. Outcome of a successful `add_shortcut` command*
@@ -739,42 +738,35 @@ And it works!
 *Figure 11. Success confirmation from using new alias command*
 
 <div markdown="block" class="alert alert-info">  
-
-** :information_source: You cannot add duplicate shortcuts or default command words as shortcuts**<br>
-
-#### 4.5.2 Delete a shortcut : `delete_shortcut`
+**:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
 
 </div>
 
+#### 4.5.2 Delete a shortcut: `delete_shortcut`
 
 You can use this command to delete a shortcut to the program.
 
-*Format:*
+**Format:**
 
 `delete_shortcut SHORTCUT`
 
-*Example:*
+**Example:**
 
 You want to delete a shortcut `aa`. 
 
-****
-Deleting an alias:
+Deleting a shortcut:
 
-. Type `delete_shortcut aa` into the _Command Box_.
-. Press `Enter` to execute.
+* Type `delete_shortcut aa` into the _Command Box_.
+*  Press `Enter` to execute.
 
 Outcome:
 
-. The _Result Display_ will show a success message.
-****
+* The _Result Display_ will show a success message.
 
 .Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
-***
-
-
-#### 4.5.3 List all alias : `listshortcut`
+#### 4.5.3 List all shortcuts : `listshortcut`
 
 You can use this command to list all your shortcuts.
 
@@ -840,10 +832,10 @@ Action | Format, Examples
 **List Appointments** | `list_appt`
 **Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
 
-### 6.5 Alias Commands
+### 6.5 Shortcut Commands
 
 Action | Format, Examples
 --------|------------------
-**Add Alias** | `add_alias old/OLD_ALIAS new/NEW_ALIAS` <br> e.g., `add_alias old/add_alias new/aa`
-**Delete Alias** | `delete_alias ALIAS` <br> e.g., `delete_alias aa`
-**List Alias** | `list_alias`
+**Add Shortcut** | `add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT` <br> e.g., `add_shortcut old/add_shortcut new/aa`
+**Delete Shortcut** | `delete_shortcut SHORTCUT` <br> e.g., `delete_shortcut aa`
+**List Shortcut** | `list_shortcut`

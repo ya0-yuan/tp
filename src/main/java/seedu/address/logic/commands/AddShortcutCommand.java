@@ -16,7 +16,7 @@ public class AddShortcutCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an shortcut to the address book. "
             + "Parameters: "
             + PREFIX_OLD_COMMAND + " ORIGINAL COMMAND"
-            + PREFIX_NEW_COMMAND + " NEW COMMAND "
+            + PREFIX_NEW_COMMAND + " NEW COMMAND\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OLD_COMMAND + " add_hairdresser "
             + PREFIX_NEW_COMMAND + " a_h ";
