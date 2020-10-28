@@ -1,19 +1,18 @@
 package seedu.address.model.appointment;
 
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointmentTimes.getValidTime;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalHairdressers.BENEDICT;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalAppointmentDates;
 import seedu.address.testutil.TypicalAppointmentTimes;
 
 class AppointmentTest {
     @Test
-    public void testValidConstructor(){
+    public void testValidConstructor() {
         Assertions.assertDoesNotThrow(() -> new Appointment(
             ALICE,
             BENEDICT,
@@ -64,6 +63,15 @@ class AppointmentTest {
 
     @Test
     void getId() {
+        Assertions.assertDoesNotThrow(() -> {
+            new Appointment(
+                ALICE,
+                BENEDICT,
+                TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
+                TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
+                AppointmentStatus.ACTIVE
+            ).getId();
+        });
     }
 
     @Test
