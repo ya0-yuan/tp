@@ -6,18 +6,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commandalias.CommandAliasSet;
-import seedu.address.logic.commandalias.CommandWord;
-import seedu.address.logic.commandalias.exceptions.CommandWordException;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteAliasCommand;
+import seedu.address.logic.commands.DeleteShortcutCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PrintCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.hairdresser.ListHairdresserCommand;
+import seedu.address.logic.commandshortcut.CommandShortcutSet;
+import seedu.address.logic.commandshortcut.CommandWord;
+import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
 import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.EditAppointmentCommandParser;
@@ -60,7 +60,7 @@ public class AddressBookParser {
 
         CommandWord commandWord;
         try {
-            commandWord = CommandAliasSet.getInstance().getCommandWord(commandAlias);
+            commandWord = CommandShortcutSet.getInstance().getCommandWord(commandAlias);
         } catch (CommandWordException ex) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -122,14 +122,14 @@ public class AddressBookParser {
         case HELP:
             return new HelpCommand();
 
+        case ADD_SHORTCUT:
+            return new AddShortcutCommandParser().parse(arguments);
+
         case PRINT:
             return new PrintCommand();
 
-        case ADD_ALIAS:
-            return new AddAliasCommandParser().parse(arguments);
-
-        case DELETE_ALIAS:
-            return new DeleteAliasCommand(arguments.trim());
+        case DELETE_SHORTCUT:
+            return new DeleteShortcutCommand(arguments.trim());
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
