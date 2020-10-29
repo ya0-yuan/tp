@@ -598,7 +598,7 @@ Outcome: <br>
 
 (contributed by Nicholas Toh)
 
-This feature allows you to manage appointments between hairdressers and clients. You can record the following information about appointment: 
+This feature allows you to manage appointments between hairdressers and clients. You can record the following information about appointments: 
 * Client
 * Hairdresser
 * Date
@@ -612,13 +612,13 @@ Parameter Name | Description
 `CLIENT_ID` | The ID of the client `cid`
 `HAIRDRESSER_ID` | The ID of the hairdresser `cid`
 `DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
-`TIME` | The time of the appointment.<br><br> It must be in the format of HH:MM.<br><br> E.g. `17:30` This example means 5.30 pm.
+`TIME` | The time of the appointment.<br><br> It must be in the format of `HH:MM`.<br><br> E.g. `17:30` This example means 5.30 pm.
 `STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
 `ID` | The appointment ID `aid` that represents the appointment.
 
 #### 4.4.2 Adding an appointment : `add_appt`
 
-Adds an appointment to the database.
+You can use this command to add an appointment to the database.
 
 **Format**: `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME`
 * `CLIENT_ID` must be a valid client ID (cid)
@@ -642,22 +642,59 @@ Adds an appointment to the database.
 </div>
 
 **Example**:
-* `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` creates an new appointment with the specified details.
+In the example below, you will create an appointment between **client 1** and **hairdresser 1** on **12th December 2020** at **5.30pm**. (This assumes that the client and hairdresser currently exist.) You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Adding a new appointment: <br>
+
+1. Type `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see information about the added appointment in the *Appointments Panel*.  
+    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+
+</div>
 
 ![create_appointment](images/appointment/create_appointment.png)
 *Figure 11. Outcome of a successful `add_appt` command*
 
 #### 4.4.3 Listing appointments : `list_appt`
 
-Shows a list of appointments.
+You can use this command to show a list of all hairdressers in the database. This command is especially useful if you used `filter_appt` command to search for appointments - `list_appt` will restore the full list to view. 
 
-**Format**: `list_appt`
+**Format:**
+
+`list_appt`
+
+Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
+**Example:**
+
+<div markdown="block" class="alert alert-white">
+
+Listing all appointments: <br>
+
+1. Type `list_appt` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see all appointments in the *Appointments Panel*.
+
+</div>
+
 
 #### 4.4.4 Editing an appointment : `edit_appt`
 
-Edits an existing appointment.
+You can use this command to edit an existing appointment in the database.
 
-**Format**: `edit_appt ID s/STATUS`
+**Format**: 
+
+`edit_appt ID s/STATUS`
 
 * Edits the appointment with the specified `ID`. 
 
@@ -665,8 +702,30 @@ Edits an existing appointment.
 
 * Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
 
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* Edits the appointment with the specified `ID`. This refers to the appointment ID `aid` shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* The current status will be updated to reflect the new status.
+</div>
+
 **Example**:
-*  `edit_appt 2 s/CANCELLED` Edits the status of the first appointment, changing it to `CANCELLED`.
+Assume that a client has contacted the hair salon to cancel the appointment with ID `2`. You wish to update the database to reflect this appointment as cancelled.  You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Editing an appointment:
+
+1. Type `edit_appt 2 s/CANCELLED` into the *Command box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message. 
+1. You can now see the updated appointment information in the *Appointments Panel*.  
+    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+
+</div>
 
 ![edit_appointment](images/appointment/edit_appointment.png)
 *Figure 12. Outcome of a successful `edit_appt` command*
@@ -675,16 +734,37 @@ Edits an existing appointment.
 
 Removes a specific appointment from the database.
 
-**Format**: `delete_appt ID`
+**Format**: 
 
+ `delete_appt ID`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
 * Deletes the appointment with the specified `ID`.
-
-* The index refers to the index number shown in the displayed appointment list.
-
-* The index **must be a positive integer** 1, 2, 3, …​
+* The ID refers to the appointment ID `aid` shown in the displayed appointment list.
+* The ID **must be a positive integer** 1, 2, 3, …​
+* All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
+</div>
 
 **Example**:
-*  `delete_appt 2` Deletes appointment with `aid` 2.
+
+Assume that you wish to delete the appointment with ID `2` so that you may reschedule it.  You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Delete hairdresser: <br>
+
+1. Type `delete_appt 2` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. The appointment will be removed from the *Appointments Panel*.  
+    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+
+</div>
 
 ![delete_appointment](images/appointment/delete_appointment.png)
 *Figure 13. Outcome of a successful `delete_appt` command*
