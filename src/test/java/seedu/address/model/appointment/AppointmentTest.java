@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.client.Client;
+import seedu.address.model.person.hairdresser.Hairdresser;
+
 class AppointmentTest {
     @Test
     public void testValidConstructor() {
@@ -129,18 +132,21 @@ class AppointmentTest {
         Assertions.assertEquals(appt.getClient(), CARL);
     }
 
-    //@Test
-    //void deleteClient() {
-    //    Appointment appt = new Appointment(
-    //        ALICE,
-    //        BENEDICT,
-    //        TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE,
-    //        TypicalAppointmentTimes.VALID_APPOINTMENT_TIME,
-    //        AppointmentStatus.ACTIVE
-    //    );
-    //    appt = appt.deleteClient();
-    //    Assertions.assertEquals(appt.getClient(), CARL);
-    //}
+    @Test
+    void deleteClient() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            FUTURE_APPOINTMENT_DATE,
+            VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        appt = appt.deleteClient();
+        Client deletedClient = appt.getClient();
+        Assertions.assertEquals(deletedClient.getName().toString(), "DELETED NAME FIELD");
+        Assertions.assertEquals(deletedClient.getPhone().toString(), "DELETED PHONE FIELD");
+        Assertions.assertEquals(deletedClient.getEmail().toString(), "DELETED EMAIL FIELD");
+    }
 
     @Test
     void getHairdresser() {
@@ -169,6 +175,18 @@ class AppointmentTest {
 
     @Test
     void deleteHairdresser() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            FUTURE_APPOINTMENT_DATE,
+            VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        appt = appt.deleteHairdresser();
+        Hairdresser deletedHairdresser = appt.getHairdresser();
+        Assertions.assertEquals(deletedHairdresser.getName().toString(), "DELETED NAME FIELD");
+        Assertions.assertEquals(deletedHairdresser.getPhone().toString(), "DELETED PHONE FIELD");
+        Assertions.assertEquals(deletedHairdresser.getEmail().toString(), "DELETED EMAIL FIELD");
     }
 
     @Test
@@ -613,5 +631,19 @@ class AppointmentTest {
                 VALID_APPOINTMENT_TIME_2,
                 AppointmentStatus.ACTIVE
             )));
+    }
+
+    @Test
+    void testToString() {
+        Appointment appt = new Appointment(
+            ALICE,
+            BENEDICT,
+            FUTURE_APPOINTMENT_DATE,
+            VALID_APPOINTMENT_TIME,
+            AppointmentStatus.ACTIVE
+        );
+        Assertions.assertEquals(
+            "Appointment - Client ID: 1 Hairdresser ID: 2 Date: 2022-01-01 Time: 09:00",
+            appt.toString());
     }
 }
