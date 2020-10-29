@@ -655,7 +655,7 @@ Outcome: <br>
 
 1. The `Result Display` will show a success message.
 1. You can now see information about the added appointment in the *Appointments Panel*.  
-    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+    * If you had previously filtered appointments (refer to [Section 4.4.6](#446-filtering-appointments--filter_appt)), the filter may be removed.
 
 </div>
 
@@ -723,7 +723,7 @@ Outcome:
 
 1. The `Result Display` will show a success message. 
 1. You can now see the updated appointment information in the *Appointments Panel*.  
-    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+    * If you had previously filtered appointments (refer to [Section 4.4.6](#446-filtering-appointments--filter_appt)), the filter may be removed.
 
 </div>
 
@@ -762,14 +762,14 @@ Outcome: <br>
 
 1. The `Result Display` will show a success message.
 1. The appointment will be removed from the *Appointments Panel*.  
-    * If you had previously filtered appointments (refer to [Section 4.2.6](#446-filtering-appointments--filter_appt), the filter may be removed.
+    * If you had previously filtered appointments (refer to [Section 4.4.6](#446-filtering-appointments--filter_appt)), the filter may be removed.
 
 </div>
 
 ![delete_appointment](images/appointment/delete_appointment.png)
 *Figure 13. Outcome of a successful `delete_appt` command*
 
-#### 4.3.6 Filtering hairdressers : `filter_hairdresser`
+#### 4.4.6 Filtering hairdressers : `filter_hairdresser`
 
 You can filter the list of appointments in the database by keyword search that match their names.
 
@@ -787,23 +787,7 @@ cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS
 * `DATE_OF_APPT` and `APPT_STATUS` must be valid e.g. `2020-01-1` is not a valid `DATE` because it does not follow the format of `YYYY-MM-DD`.
 </div>
 
-**Examples:**
-
-You wish to find appointments with hairdresser ID `` in the database. You will perform the following steps:
-
-<div markdown="block" class="alert alert-white">
-
-Filter appointments: <br>
-
-1. Type `filter_appt hid/` into the *Command Box*.
-1. Press `Enter` to execute.
-
-Outcome: <br>
-
-1. The `Result Display` will show a success message.
-1. You can now see the filtered appointments information in the *Appointments Panel*.
-
-</div>
+**Example 1:**
 
 You wish to find appointments with status `MISSED` in the database. You will perform the following steps:
 
@@ -817,9 +801,31 @@ Filter appointments: <br>
 Outcome: <br>
 
 1. The `Result Display` will show a success message.
-1. You can now see the filtered appointments information in the *Appointments Panel*.
+1. You can now see the filtered appointments in the *Appointments Panel*.
 
 </div>
+
+![delete_appointment](images/appointment/filter_appointment_1.png)
+
+**Example 2:**
+
+You wish to find appointments with date `2021-06-02` in the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter appointments: <br>
+
+1. Type `filter_appt d/2021-06-02` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered appointments in the *Appointments Panel*.
+
+</div>
+
+![delete_appointment](images/appointment/filter_appointment_2.png)
 
 ### 4.5 Shortcut commands
 (Contributed by Aloysius)
