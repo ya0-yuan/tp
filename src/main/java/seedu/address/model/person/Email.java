@@ -10,6 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Email {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+    private static final int MAX_LENGTH = 50;
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
@@ -44,7 +45,14 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isWithinLengthLimit(test);
+    }
+
+    /**
+     * Returns if a given string is a valid email.
+     */
+    private static boolean isWithinLengthLimit(String test) {
+        return test.length() < MAX_LENGTH;
     }
 
     @Override
