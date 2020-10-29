@@ -18,12 +18,11 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of an existing appointment. "
             + "The status that can be set are: "
             + AppointmentStatus.ACTIVE.name() + ", "
-            + AppointmentStatus.CANCELLED.name() + ", "
             + AppointmentStatus.COMPLETED.name() + ", "
             + AppointmentStatus.MISSED.name() + "\n"
             + "Parameters: APPOINTMENT_ID (must be a positive integer) " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPT_STATUS + "CANCELLED";
+            + PREFIX_APPT_STATUS + "COMPLETED";
 
     public static final String MESSAGE_MARK_APPT_SUCCESS = "Changed status of Appointment: %1$s";
     public static final String MESSAGE_STATUS_MISSING = "The new appointment status must be provided.";

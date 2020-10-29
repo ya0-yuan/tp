@@ -133,6 +133,7 @@ public class ModelManager implements Model {
     public void deleteClient(Client client) {
         addressBook.removeClient(client);
         addressBook.updateAppointmentWhenClientDeleted(client.getId());
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
@@ -194,6 +195,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
