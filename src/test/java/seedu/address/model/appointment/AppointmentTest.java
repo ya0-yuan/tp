@@ -228,9 +228,9 @@ class AppointmentTest {
             BENEDICT,
             FUTURE_APPOINTMENT_DATE,
             VALID_APPOINTMENT_TIME,
-            AppointmentStatus.CANCELLED
+            AppointmentStatus.COMPLETED
         );
-        Assertions.assertEquals(appt.getAppointmentStatus(), AppointmentStatus.CANCELLED);
+        Assertions.assertEquals(appt.getAppointmentStatus(), AppointmentStatus.COMPLETED);
     }
 
     @Test

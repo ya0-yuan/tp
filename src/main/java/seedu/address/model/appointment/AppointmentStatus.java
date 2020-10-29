@@ -5,14 +5,12 @@ package seedu.address.model.appointment;
  */
 public enum AppointmentStatus {
     ACTIVE("The appointment is active."),
-    CANCELLED("The appointment was cancelled."),
     COMPLETED("The appointment was completed."),
     MISSED("The appointment was missed.");
 
     public static final String MESSAGE_CONSTRAINTS = "Appointment status can only be the following:\n"
-        + ACTIVE.name() + ": " + ACTIVE.message + " "
-        + CANCELLED.name() + ": " + CANCELLED.message + " "
-        + COMPLETED.name() + ": " + COMPLETED.message + " "
+        + ACTIVE.name() + ": " + ACTIVE.message + " \n"
+        + COMPLETED.name() + ": " + COMPLETED.message + " \n"
         + MISSED.name() + ": " + MISSED.message;
     public static final String MESSAGE_CONSTRAINT_PAST = "Only appointments in the past can be marked as "
             + COMPLETED + " or " + MISSED;
