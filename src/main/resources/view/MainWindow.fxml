@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="HairStyleX" minWidth="920" minHeight="600" onCloseRequest="#handleExit">
+         title="HairStyleX" minWidth="1070" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/salon_icon.png" />
   </icons>
@@ -48,21 +48,21 @@
 
         <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
 
-          <VBox fx:id="clientList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
+          <VBox fx:id="clientList" minWidth="350" prefWidth="350" SplitPane.resizableWithParent="false">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="hairdresserList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
+          <VBox fx:id="hairdresserList" minWidth="350" prefWidth="350" SplitPane.resizableWithParent="false">
             <padding >
               <Insets top="10" right="10" bottom="10"/>
             </padding>
             <StackPane fx:id="hairdresserListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="appointmentList" minWidth="300" prefWidth="300" SplitPane.resizableWithParent="false">
+          <VBox fx:id="appointmentList" minWidth="350" prefWidth="350" SplitPane.resizableWithParent="false">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

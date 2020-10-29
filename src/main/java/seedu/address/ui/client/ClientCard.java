@@ -1,6 +1,7 @@
 package seedu.address.ui.client;
 
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -54,6 +55,7 @@ public class ClientCard extends UiPart<Region> {
         gender.setText(client.getGender().toString());
         email.setText(client.getEmail().value);
         address.setText(client.getAddress().value);
+
         client.getTags()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
