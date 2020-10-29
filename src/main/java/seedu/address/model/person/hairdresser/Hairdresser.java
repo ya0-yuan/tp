@@ -14,6 +14,9 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.deletedfields.DeletedEmail;
+import seedu.address.model.person.deletedfields.DeletedName;
+import seedu.address.model.person.deletedfields.DeletedPhone;
 import seedu.address.model.specialisation.Specialisation;
 
 /**
@@ -71,8 +74,8 @@ public class Hairdresser extends Person {
      * Returns a hairdresser which has been previously deleted
      */
     public Hairdresser setTombstone() {
-        return new Hairdresser(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
-                this.getGender(), this.getTitle(), this.getSpecs());
+        return new Hairdresser(this.getId(), DeletedName.getInstance(), DeletedPhone.getInstance(),
+                DeletedEmail.getInstance(), this.getGender(), this.getTitle(), this.getSpecs());
     }
 
     /**
