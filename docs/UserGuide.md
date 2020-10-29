@@ -613,7 +613,7 @@ Parameter Name | Description
 `HAIRDRESSER_ID` | The ID of the hairdresser `cid`
 `DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
 `TIME` | The time of the appointment.<br><br> It must be in the format of `HH:MM`.<br><br> E.g. `17:30` This example means 5.30 pm.
-`STATUS` | The status of the appointment, which can be `ACTIVE`, `CANCELLED`, `COMPLETED`, or `MISSED`
+`STATUS` | The status of the appointment, which can be `ACTIVE`, `COMPLETED`, or `MISSED`
 `ID` | The appointment ID `aid` that represents the appointment.
 
 #### 4.4.2 Adding an appointment : `add_appt`
@@ -710,13 +710,13 @@ You can use this command to edit an existing appointment in the database.
 </div>
 
 **Example**:
-Assume that a client has contacted the hair salon to cancel the appointment with ID `2`. You wish to update the database to reflect this appointment as cancelled.  You will perform the following steps:
+Assume that an appointment with ID `2` was successfully completed. You wish to update the database to reflect this appointment as `COMPLETED`.  You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
 Editing an appointment:
 
-1. Type `edit_appt 2 s/CANCELLED` into the *Command box*.
+1. Type `edit_appt 2 s/COMPLETED` into the *Command box*.
 1. Press `Enter` to execute.
 
 Outcome:
@@ -749,11 +749,11 @@ Removes a specific appointment from the database.
 
 **Example**:
 
-Assume that you wish to delete the appointment with ID `2` so that you may reschedule it.  You will perform the following steps:
+Assume that a client has contacted the salon to cancel the appointment with ID `2` so you wish to delete it. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
-Delete hairdresser: <br>
+Delete appointment: <br>
 
 1. Type `delete_appt 2` into the *Command Box*.
 1. Press `Enter` to execute.
@@ -768,6 +768,58 @@ Outcome: <br>
 
 ![delete_appointment](images/appointment/delete_appointment.png)
 *Figure 13. Outcome of a successful `delete_appt` command*
+
+#### 4.3.6 Filtering hairdressers : `filter_hairdresser`
+
+You can filter the list of appointments in the database by keyword search that match their names.
+
+cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS
+
+**Format:**
+
+ `filter_appt KEYWORD...`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+* The search is case-insensitive. e.g `active`, `aCtIVe` will match `ACTIVE`.
+* Only full words will be matched e.g. `ACTIV` will not match `ACTIVE`.
+* `DATE_OF_APPT` and `APPT_STATUS` must be valid e.g. `2020-01-1` is not a valid `DATE` because it does not follow the format of `YYYY-MM-DD`.
+</div>
+
+**Examples:**
+
+You wish to find appointments with hairdresser ID `` in the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter appointments: <br>
+
+1. Type `filter_appt hid/` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered appointments information in the *Appointments Panel*.
+
+</div>
+
+You wish to find appointments with status `MISSED` in the database. You will perform the following steps:
+
+<div markdown="block" class="alert alert-white">
+
+Filter appointments: <br>
+
+1. Type `filter_appt s/missed` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome: <br>
+
+1. The `Result Display` will show a success message.
+1. You can now see the filtered appointments information in the *Appointments Panel*.
+
+</div>
 
 ### 4.5 Shortcut commands
 (Contributed by Aloysius)
