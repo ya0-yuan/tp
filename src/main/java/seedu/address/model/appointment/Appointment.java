@@ -220,6 +220,14 @@ public class Appointment implements Entity {
         }
     }
 
+    /**
+     * Defines equality between appointments based on hairdresserID,
+     * clientID, date, and time. Does not consider status.
+     *
+     * @param o            The object to compare to.
+     * @return true if the other appointment has the same hairdresserID,
+     * clientID, date, and time.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
