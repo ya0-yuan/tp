@@ -14,6 +14,10 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.deletedfields.DeletedAddress;
+import seedu.address.model.person.deletedfields.DeletedEmail;
+import seedu.address.model.person.deletedfields.DeletedName;
+import seedu.address.model.person.deletedfields.DeletedPhone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,8 +75,8 @@ public class Client extends Person {
      * Returns a client which has been previously deleted
      */
     public Client setTombstone() {
-        return new Client(this.getId(), new Name("DELETED"), this.getPhone(), this.getEmail(),
-                this.getGender(), this.getAddress(), this.getTags());
+        return new Client(this.getId(), DeletedName.getInstance(), DeletedPhone.getInstance(),
+                DeletedEmail.getInstance(), this.getGender(), DeletedAddress.getInstance(), this.getTags());
     }
 
     /**

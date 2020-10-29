@@ -201,7 +201,7 @@ Before you jump right into using this feature, you may want to learn about all t
 
 Parameter Name | Description
 ---------------|-------------
-`NAME` | The name of the client. <br>It should only contain at most alphanumeric characters and spaces, and it should not be blank. <br> E.g. `Yao Yuan`
+`NAME` | The name of the client. <br>It should only contain at most 50 alphanumeric characters and spaces, and it should not be blank. <br> E.g. `Yao Yuan`
 `PHONE` | The phone number of the client. <br> It should only contain numbers, should be at least 3 digits long, and should be at most 15 digits <br> E.g. `96757525`
 `EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `yaoyuan@example.com`
 `GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
@@ -700,7 +700,7 @@ longer commands.
 Parameter Name | Description
 --------|------------------
 `OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
-`NEWSHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 10 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
+`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 10 ASCII characters.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
 #### 4.5.2 Add a new shortcut : `add_shortcut`
 
