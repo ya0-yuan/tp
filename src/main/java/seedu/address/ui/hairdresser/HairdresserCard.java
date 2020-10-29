@@ -48,7 +48,7 @@ public class HairdresserCard extends UiPart<Region> {
     public HairdresserCard(Hairdresser hairdresser, int displayedIndex) {
         super(FXML);
         this.hairdresser = hairdresser;
-        id.setText(String.format("(hid: %s) ", hairdresser.getId()));
+        id.setText(String.format("hid: %s ", hairdresser.getId()));
         name.setText(hairdresser.getName().fullName);
         phone.setText(hairdresser.getPhone().value);
         gender.setText(hairdresser.getGender().toString());

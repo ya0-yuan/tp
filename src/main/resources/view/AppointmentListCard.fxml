@@ -18,8 +18,12 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
+            <HBox>
+                <Label styleClass="cell_small_label" />
+                <Label fx:id="id" styleClass="cell_big_label"/>
+            </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
-            <Label fx:id="id" styleClass="cell_big_label"/>
+
             <Label styleClass="cell_small_label"  text="Client name:" />
                 <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
 <!--            <Label fx:id="status" styleClass="cell_big_label" text="\$status" />-->

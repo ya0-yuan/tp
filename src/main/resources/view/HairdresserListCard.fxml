@@ -19,14 +19,16 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+<!--                <Label fx:id="id" styleClass="cell_big_label">-->
+<!--                    <minWidth>-->
+<!--                        &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+<!--                        <Region fx:constant="USE_PREF_SIZE" />-->
+<!--                    </minWidth>-->
+<!--                </Label>-->
+                <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
+
             </HBox>
+            <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
             <FlowPane fx:id="specialisations" />
             <Label fx:id="title" styleClass="cell_small_label" text="\$title" />
             <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />

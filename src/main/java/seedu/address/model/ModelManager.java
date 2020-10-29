@@ -161,6 +161,7 @@ public class ModelManager implements Model {
     public void deleteHairdresser(Hairdresser target) {
         addressBook.removeHairdresser(target);
         addressBook.updateAppointmentWhenHairdresserDeleted(target.getId());
+        updateFilteredHairdresserList(PREDICATE_SHOW_ALL_HAIRDRESSERS);
 
         logger.info("Model: Deleted Hairdresser " + target.getId());
     }
