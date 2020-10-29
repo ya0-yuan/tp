@@ -21,6 +21,6 @@ public final class DeletedPhone extends Phone {
 
     @Override
     public String toString() {
-        return "DELETED PHONE FILED";
+        return "DELETED PHONE FIELD";
     }
 }
