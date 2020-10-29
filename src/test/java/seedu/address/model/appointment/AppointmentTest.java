@@ -643,7 +643,9 @@ class AppointmentTest {
             AppointmentStatus.ACTIVE
         );
         Assertions.assertEquals(
-            "Appointment - Client ID: 1 Hairdresser ID: 2 Date: 2022-01-01 Time: 09:00",
+            "Appointment - Client ID: "
+                + ALICE.getId().toString() + " Hairdresser ID: "
+                + BENEDICT.getId().toString() + " Date: 2022-01-01 Time: 09:00",
             appt.toString());
     }
 }
