@@ -292,11 +292,11 @@ You can use this command to edit an existing client in the database.
 
 **Examples:**
 
-Assume that the client with ID `1` changed his/her email and you wish to update it in the database. You will perform the following steps:
+Assume that the client with ID `1` changed his/her phone number and email and you wish to update it in the database. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
-Adding a new client:
+Editing a new client:
 
 1. Type `edit_client 1 p/91234567 e/yy@example.com` into the *Command box*.
 1. Press `Enter` to execute.
@@ -501,7 +501,7 @@ Assume that the hairdresser with ID `4` changed his/her contact details and you 
 
 <div markdown="block" class="alert alert-white">
 
-Adding a new hairdresser: <br>
+Editing a new hairdresser: <br>
 
 1. Type `edit_hairdresser 4 p/91234567 e/yy@example.com` into the *Command Box*.
 1. Press `Enter` to execute.
