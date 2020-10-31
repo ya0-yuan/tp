@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.Region?>
 <BorderPane id="borderPane" fx:id="borderPane" maxHeight="125" maxWidth="350" minHeight="100" minWidth="200" prefHeight="125" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="hairdresser_card">
     <padding>
         <Insets bottom="5" left="20" right="20" top="5" />
