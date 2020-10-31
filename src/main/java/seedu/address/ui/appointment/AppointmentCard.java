@@ -45,7 +45,7 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
-        id.setText(String.format("(aid: %s) ", appointment.getId()));
+        id.setText(String.format("aid: %s", appointment.getId()));
         clientName.setText(appointment.getClient().getName().fullName);
         hairdresserName.setText(appointment.getHairdresser().getName().fullName);
         date.setText(appointment.getDate().toString());

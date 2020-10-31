@@ -2,27 +2,36 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+<BorderPane id="borderPane" fx:id="borderPane" maxHeight="125" maxWidth="350" minHeight="100" minWidth="200" prefHeight="125" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="appt_card">
+    <padding>
+        <Insets bottom="5" left="20" right="20" top="5" />
+    </padding>
+    <left>
+        <ImageView fitHeight="64" fitWidth="64" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <image>
+                <Image url="@../images/appt.png" />
+            </image>
+        </ImageView>
+    </left>
+    <center>
+        <VBox alignment="CENTER_LEFT" minHeight="105">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
+            <HBox>
+                <Label styleClass="cell_small_label" />
+                <Label fx:id="id" styleClass="cell_big_label"/>
+            </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
-            <Label fx:id="id" styleClass="cell_big_label"/>
-            <Label styleClass="cell_small_label"  text="Client name:" />
+
+                <Label styleClass="cell_small_label"  text="Client name:" />
                 <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
-<!--            <Label fx:id="status" styleClass="cell_big_label" text="\$status" />-->
             </HBox>
 
             <HBox>
@@ -41,5 +50,5 @@
                 <Label fx:id="status" styleClass="status_label" text="\$status" />
             </HBox>
         </VBox>
-    </GridPane>
-</HBox>
+    </center>
+</BorderPane>

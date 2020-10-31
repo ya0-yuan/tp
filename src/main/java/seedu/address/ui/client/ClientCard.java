@@ -48,12 +48,13 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        id.setText(String.format("(cid: %s) ", client.getId()));
+        id.setText(String.format("cid: %s", client.getId()));
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         gender.setText(client.getGender().toString());
         email.setText(client.getEmail().value);
         address.setText(client.getAddress().value);
+
         client.getTags()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
