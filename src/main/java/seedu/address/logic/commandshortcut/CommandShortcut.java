@@ -91,7 +91,7 @@ public class CommandShortcut {
         str.append(commandWord.toString());
         str.append(": ");
         Iterator<String> it = shortcutSet.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             str.append(it.next());
             if (it.hasNext()) {
                 str.append(", ");
