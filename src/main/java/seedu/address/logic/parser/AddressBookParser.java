@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteShortcutCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListShortcutCommand;
 import seedu.address.logic.commands.PrintCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
@@ -130,6 +131,10 @@ public class AddressBookParser {
 
         case DELETE_SHORTCUT:
             return new DeleteShortcutCommand(arguments.trim());
+
+        case LIST_SHORTCUT:
+            return new ListShortcutCommand();
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
