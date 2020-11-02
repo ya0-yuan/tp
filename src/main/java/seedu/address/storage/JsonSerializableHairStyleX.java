@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.HairStyleX;
+import seedu.address.model.ReadOnlyHairStyleX;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.hairdresser.Hairdresser;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable HairStyleX that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "hairstylex")
+class JsonSerializableHairStyleX {
 
     public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "Hairdressers list contains duplicate hairdresser(s).";
     public static final String MESSAGE_DUPLICATE_CLIENT = "Client list contains duplicate hairdresser(s).";
@@ -32,14 +32,14 @@ class JsonSerializableAddressBook {
     private final JsonAdaptedIdCounter idCounter;
     private final JsonAdaptedCommandShortcutSet aliasSet;
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHairStyleX} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("hairdressers") List<JsonAdaptedHairdresser> hairdressers,
-                                       @JsonProperty("clients") List<JsonAdaptedClient> clients,
-                                       @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-                                       @JsonProperty("idCounter") JsonAdaptedIdCounter idCounter,
-                                       @JsonProperty("aliasSet") JsonAdaptedCommandShortcutSet aliasSet) {
+    public JsonSerializableHairStyleX(@JsonProperty("hairdressers") List<JsonAdaptedHairdresser> hairdressers,
+                                      @JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                      @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+                                      @JsonProperty("idCounter") JsonAdaptedIdCounter idCounter,
+                                      @JsonProperty("aliasSet") JsonAdaptedCommandShortcutSet aliasSet) {
         this.hairdressers.addAll(hairdressers);
         this.clients.addAll(clients);
         this.appointments.addAll(appointments);
@@ -48,11 +48,11 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyHairStyleX} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableHairStyleX}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableHairStyleX(ReadOnlyHairStyleX source) {
         hairdressers.addAll(source.getHairdresserList().stream().map(JsonAdaptedHairdresser::new)
                 .collect(Collectors.toList()));
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new)
@@ -64,42 +64,42 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this HairStyleX into the model's {@code HairStyleX} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public HairStyleX toModelType() throws IllegalValueException {
+        HairStyleX hairStyleX = new HairStyleX();
         for (JsonAdaptedHairdresser jsonAdaptedHairdresser : hairdressers) {
             Hairdresser hairdresser = jsonAdaptedHairdresser.toModelType();
-            if (addressBook.hasHairdresser(hairdresser)) {
+            if (hairStyleX.hasHairdresser(hairdresser)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_HAIRDRESSER);
             }
-            addressBook.addHairdresser(hairdresser);
+            hairStyleX.addHairdresser(hairdresser);
         }
 
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
-            if (addressBook.hasClient(client)) {
+            if (hairStyleX.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            addressBook.addClient(client);
+            hairStyleX.addClient(client);
         }
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
-            if (addressBook.hasAppointment(appointment)) {
+            if (hairStyleX.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
-            addressBook.addAppointment(appointment);
+            hairStyleX.addAppointment(appointment);
         }
         if (idCounter == null) {
             throw new IllegalValueException(MISSING_ID_COUNTER_MESSAGE);
         }
 
-        addressBook.setIdCounter(idCounter.toModelType());
-        addressBook.setCommandAliasSet(aliasSet.toModelType());
-        return addressBook;
+        hairStyleX.setIdCounter(idCounter.toModelType());
+        hairStyleX.setCommandAliasSet(aliasSet.toModelType());
+        return hairStyleX;
     }
 
 }

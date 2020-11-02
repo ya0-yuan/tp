@@ -8,9 +8,9 @@ import seedu.address.model.person.hairdresser.Hairdresser;
 
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a HairStyleX
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyHairStyleX {
 
 
     /**

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.HairStyleX;
+import seedu.address.model.ReadOnlyHairStyleX;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -42,8 +42,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyHairStyleX getSampleHairStyleX() {
+        HairStyleX sampleAb = new HairStyleX();
 
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
