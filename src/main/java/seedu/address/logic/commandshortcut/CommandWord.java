@@ -24,6 +24,7 @@ public enum CommandWord {
     HELP("help"),
     ADD_SHORTCUT("add_shortcut"),
     DELETE_SHORTCUT("delete_shortcut"),
+    LIST_SHORTCUT("list_shortcut"),
     PRINT("print");
 
     private String defaultWord;
