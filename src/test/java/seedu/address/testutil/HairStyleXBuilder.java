@@ -7,16 +7,16 @@ import seedu.address.model.HairStyleX;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class HairStyleXBuilder {
 
-    private HairStyleX addressBook;
+    private HairStyleX hairStyleX;
 
-    public AddressBookBuilder() {
-        addressBook = new HairStyleX();
+    public HairStyleXBuilder() {
+        hairStyleX = new HairStyleX();
     }
 
-    public AddressBookBuilder(HairStyleX addressBook) {
-        this.addressBook = addressBook;
+    public HairStyleXBuilder(HairStyleX hairStyleX) {
+        this.hairStyleX = hairStyleX;
     }
 
     //    /**
@@ -28,6 +28,6 @@ public class AddressBookBuilder {
     //    }
 
     public HairStyleX build() {
-        return addressBook;
+        return hairStyleX;
     }
 }

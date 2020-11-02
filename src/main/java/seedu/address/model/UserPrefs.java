@@ -51,9 +51,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-    public void setHairStyleXFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setHairStyleXFilePath(Path hairStyleXFilePath) {
+        requireNonNull(hairStyleXFilePath);
+        this.addressBookFilePath = hairStyleXFilePath;
     }
 
     @Override
