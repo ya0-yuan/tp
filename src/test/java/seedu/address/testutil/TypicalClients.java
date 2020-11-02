@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HairStyleX;
 import seedu.address.model.person.client.Client;
 
 /**
@@ -104,8 +104,8 @@ public class TypicalClients {
     /**
      * Returns an {@code AddressBook} with all the typical clients.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static HairStyleX getTypicalAddressBook() {
+        HairStyleX ab = new HairStyleX();
         for (Client client : getTypicalClients()) {
             ab.addClient(client);
         }

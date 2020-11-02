@@ -51,22 +51,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' hairStyleX file path.
      */
-    Path getAddressBookFilePath();
+    Path getHairStyleXFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' hairStyleX file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHairStyleXFilePath(Path hairStyleXFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces hairStyleX data with the data in {@code hairStyleX}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHairStyleX(ReadOnlyHairStyleX hairStyleX);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HairStyleX */
+    ReadOnlyHairStyleX getHairStyleX();
 
     /**
      * Return object Client with given id
@@ -84,26 +84,26 @@ public interface Model {
     Appointment getAppointmentById(AppointmentId appointmentId);
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the hairStyleX.
      */
     boolean hasClient(Client client);
 
     /**
      * Deletes the given client.
-     * The client must exist in the address book.
+     * The client must exist in the hairStyleX.
      */
     void deleteClient(Client client);
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the address book.
+     * {@code client} must not already exist in the hairStyleX.
      */
     void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedClient} must not be the same as another existing client in the address book.
+     * {@code target} must exist in the hairStyleX.
+     * The person identity of {@code editedClient} must not be the same as another existing client in the hairStyleX.
      */
     void setClient(Client target, Client editedClient);
 
@@ -118,27 +118,27 @@ public interface Model {
 
 
     /**
-     * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the address book.
+     * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the hairStyleX.
      */
     boolean hasHairdresser(Hairdresser hairdresser);
 
     /**
      * Deletes the given hairdresser.
-     * The hairdresser must exist in the address book.
+     * The hairdresser must exist in the hairStyleX.
      */
     void deleteHairdresser(Hairdresser target);
 
     /**
      * Adds the given hairdresser.
-     * {@code hairdresser} must not already exist in the address book.
+     * {@code hairdresser} must not already exist in the hairStyleX.
      */
     void addHairdresser(Hairdresser hairdresser);
 
     /**
      * Replaces the given hairdresser {@code target} with {@code editedHairdresser}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the hairStyleX.
      * The hairdresser identity of {@code editedHairdresser} must not be
-     * the same as another existing hairdresser in the address book.
+     * the same as another existing hairdresser in the hairStyleX.
      */
     void setHairdresser(Hairdresser target, Hairdresser editedHairdresser);
 
