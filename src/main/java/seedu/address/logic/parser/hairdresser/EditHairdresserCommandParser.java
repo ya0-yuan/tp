@@ -9,6 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand.EditHairdresserDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -17,6 +22,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.hairdresser.HairdresserId;
+import seedu.address.model.specialisation.Specialisation;
 
 /**
  * Parses input arguments and creates a new EditHairdresserCommand object
@@ -59,10 +65,7 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editHairdresserDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_SPECIALISATION).isPresent()) {
-            editHairdresserDescriptor.setSpecs(ParserUtil
-                    .parseSpecialisations(argMultimap.getAllValues(PREFIX_SPECIALISATION)));
-        }
+        parseSpecsForEdit(argMultimap.getAllValues(PREFIX_SPECIALISATION)).ifPresent(editHairdresserDescriptor::setSpecs);
 
         if (!editHairdresserDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditHairdresserCommand.MESSAGE_NOT_EDITED);
@@ -70,5 +73,20 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
 
         return new EditHairdresserCommand(hairdresserId, editHairdresserDescriptor);
     }
+    /**
+     * Parses {@code Collection<String> specs} into a {@code Set<Specialisation>} if {@code specs} is non-empty.
+     * If {@code specs} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Specialisation>} containing zero specs.
+     */
+    private Optional<Set<Specialisation>> parseSpecsForEdit(Collection<String> specs) throws ParseException {
+        assert specs != null;
+
+        if (specs.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> specSet = specs.size() == 1 && specs.contains("") ? Collections.emptySet() : specs;
+        return Optional.of(ParserUtil.parseSpecialisations(specSet));
+    }
+
 
 }
