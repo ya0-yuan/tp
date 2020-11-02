@@ -46,9 +46,9 @@ public class PrintCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        hairdresserList = model.getAddressBook().getHairdresserList();
-        clientList = model.getAddressBook().getClientList();
-        appointmentList = model.getAddressBook().getAppointmentList();
+        hairdresserList = model.getHairStyleX().getHairdresserList();
+        clientList = model.getHairStyleX().getClientList();
+        appointmentList = model.getHairStyleX().getAppointmentList();
 
         writeToCsv(ExportType.appointment);
         writeToCsv(ExportType.client);

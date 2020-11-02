@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HairStyleX;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -9,13 +9,13 @@ import seedu.address.model.AddressBook;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private HairStyleX addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new HairStyleX();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(HairStyleX addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -27,7 +27,7 @@ public class AddressBookBuilder {
     //        return this;
     //    }
 
-    public AddressBook build() {
+    public HairStyleX build() {
         return addressBook;
     }
 }

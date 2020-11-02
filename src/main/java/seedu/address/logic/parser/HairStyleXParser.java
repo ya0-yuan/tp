@@ -35,7 +35,7 @@ import seedu.address.logic.parser.hairdresser.FilterHairdresserCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class HairStyleXParser {
 
     /**
      * Used for initial separation of command word and args.
