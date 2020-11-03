@@ -53,6 +53,8 @@ public class EditClientCommand extends Command {
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in HairStyleX.";
+    private static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This person already exists in HairStyleX, "
+            + "and is a Hairdresser";
 
     private final ClientId clientId;
     private final EditClientDescriptor editClientDescriptor;
@@ -79,8 +81,14 @@ public class EditClientCommand extends Command {
         }
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
-        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+        //if the edited client already exists in the current client list
+        if (!clientToEdit.isSame(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        //if the edited hairdresser already exists in the current hairdresser list
+        if (!clientToEdit.isSame(editedClient) && model.hasPerson(editedClient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_HAIRDRESSER);
         }
 
         model.setClient(clientToEdit, editedClient);
