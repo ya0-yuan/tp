@@ -146,15 +146,26 @@ are the command word's shortcuts.
 It is responsible for finding the command word associated with a given input string and to validate whether the 
 new shortcuts are allowed to be saved into the system.
 
+####Add Shortcuts
 Steps: 
 1. User input a command to the system. It is parsed regularly as before, extracting the string.
 2. `AddressBookParser` will pass the string to `CommandShortcutSet` to retrieve the corresponding `CommandWord`.
 3. Then, the `CommandWord` is processed as usual.
 
-Steps when adding a new alias:
+Steps when adding a new shortcut:
 1. User inputs an `add_shortcut` command together with the new shortcut, and the command it is associated with.
 2. Upon execution, `CommndShortcutSet` will do validation to check if the validity of the new shortcut. 
 3. Finally, `CommandShortcutSet` adds the new shortcut to the `CommandShortcut` it is matched to.
+
+Steps when deleting a new shortcut
+1. User inputs an `delete_shortcut` command together with the shortcut to be deleted.
+2. Upon execution, `CommndShortcutSet` will check if the shortcut to be deleted exists and find its corresponding `CommandShortcut`. 
+3. Finally, `CommandShortcutSet` deletes the shortcut from the `CommandShortcut`.
+
+Steps when listing all shortcuts
+1. User inputs an `list_shortcut` command.
+2. Upon execution, `CommndShortcutSet` will retrieve the string representation of all its `CommandShortcut` and combine them into one string.
+3. Finally, `CommandShortcutSet` returns the string representation of all its shortcuts.
 
 #### Saving the Shortcut
 
@@ -568,20 +579,20 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 
 **MSS**
 
-1.  User requests to add an alias
-2.  HairStyleX adds his requested alias
+1.  User requests to add a shortcut
+2.  HairStyleX adds his requested shortcut
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The alias already exists.
+* 1a. The shortcut already exists.
     
     * 1a1. HairStyleX shows an error message.
 
       Use case ends.
 
-* 1b. The user does not specify the correct old alias.
+* 1b. The user does not specify the correct old command.
 
     * 1b1. HairStyleX shows an error message.
 

@@ -17,7 +17,7 @@ Class ReadOnlyUserPrefs
 
 Package Entity {
 Interface Entity <<Interface>>
-Abstract Class "{abstract} \nId" as Id
+
 
 Package EntityList {
 Abstract Class "{abstract} \nUniqueEntityList" as UniqueEntityList
@@ -28,48 +28,23 @@ Class UniqueAppointmentList
 
 Package Person {
 Abstract Class "{abstract} \nPerson" as Person
-Class Email
-Class Name
-Class Phone
-Class Gender
 
-Package Client {
+
 Class Client
-Class Address
-Class Tag
-Class ClientId
-}
 
-Package Hairdresser{
 Class Hairdresser
-Class Specialisation
-Class Title
-Class HairdresserId
-}
+
 
 }
-Package Appointment {
+
 Class Appointment
-Class AppointmentDate
-Class AppointmentId
-Enum "<<Enumeration>> \nAppointmentStatus" as AppointmentStatus
-Class AppointmentTime
-Class FutureAppointment
-}
-
-}
 
 
 }
-
+}
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-Appointment .down.|> FutureAppointment
-Appointment *-down-> AppointmentDate
-Appointment *-down-> AppointmentStatus
-Appointment *-down-> AppointmentTime
-Appointment *-down-> AppointmentId
 
 
 AddressBook .up.|> ReadOnlyAddressBook
@@ -81,9 +56,7 @@ Client ..|> Person
 UniqueAppointmentList .up.|> UniqueEntityList
 UniqueClientList .up.|> UniqueEntityList
 UniqueHairdresserList .up.|> UniqueEntityList
-ClientId .down.|> Id
-HairdresserId .down.|> Id
-AppointmentId .down.|> Id
+
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -95,26 +68,14 @@ AddressBook *-down-> "1" UniqueAppointmentList
 AddressBook *-down-> "1" UniqueClientList
 AddressBook *-down-> "1" UniqueHairdresserList
 UniqueAppointmentList o-down-> "*" Appointment
-UniqueEntityList o-down-> "*" Entity
+
 UniqueClientList o-down-> "*" Client
 UniqueHairdresserList o-down-> "*" Hairdresser
 
-Person *-down-> Name
-Person *-down-> Phone
-Person *-down-> Email
-Person *-down-> Gender
-Client *-down-> Address
-Client *-down-> ClientId
-Client *-down-> "*" Tag
-Hairdresser *-down-> "*" Specialisation
-Hairdresser *-down-> Title
-Hairdresser *-down-> HairdresserId
+
 
 ModelManager -[hidden]down-> EntityList
-Client -[hidden]down-> Hairdresser
-Person -[hidden]left-> Client
 
-ModelManager -->"1" Client: filtered list
-ModelManager -->"1" Hairdresser : filtered list
-ModelManager -->"1" Appointment : filtered list
+
+
 @enduml
