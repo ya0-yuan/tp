@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="borderPane" fx:id="borderPane" maxHeight="125" maxWidth="350" minHeight="100" minWidth="200" prefHeight="125" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="hairdresser_card">
+<?import javafx.scene.layout.Region?>
+<BorderPane id="borderPane" fx:id="borderPane" maxHeight="170" maxWidth="Infinity" minHeight="100" minWidth="200" prefHeight="160" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="hairdresser_card">
     <padding>
         <Insets bottom="5" left="20" right="20" top="5" />
     </padding>
@@ -29,12 +30,20 @@
                 <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
 
             </HBox>
-            <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
+            <Label fx:id="name" text="\$name" styleClass="cell_big_label" wrapText="true">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+            </Label>
             <FlowPane fx:id="specialisations" />
             <Label fx:id="title" styleClass="cell_small_label" text="\$title" />
             <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+            </Label>
         </VBox>
     </center>
 </BorderPane>
