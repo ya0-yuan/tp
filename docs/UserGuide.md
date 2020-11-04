@@ -904,7 +904,7 @@ Outcome:
 .Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
-#### 4.5.3 List all shortcuts : `listshortcut`
+#### 4.5.3 List all shortcuts : `list_shortcut`
 
 You can use this command to list all your shortcuts.
 
@@ -912,7 +912,9 @@ You can use this command to list all your shortcuts.
 
 `list_shortcut`
 
-[Coming soon]
+You can use this command to show all your shortcuts.
+
+![Ui](images/list_shortcut.png)
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)
