@@ -65,7 +65,8 @@ public class EditHairdresserCommandParser implements Parser<EditHairdresserComma
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editHairdresserDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
-        parseSpecsForEdit(argMultimap.getAllValues(PREFIX_SPECIALISATION)).ifPresent(editHairdresserDescriptor::setSpecs);
+        parseSpecsForEdit(argMultimap.getAllValues(PREFIX_SPECIALISATION))
+                .ifPresent(editHairdresserDescriptor::setSpecs);
 
         if (!editHairdresserDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditHairdresserCommand.MESSAGE_NOT_EDITED);
