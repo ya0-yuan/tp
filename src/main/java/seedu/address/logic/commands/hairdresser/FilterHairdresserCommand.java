@@ -5,14 +5,17 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FilterEntityCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.hairdresser.HairdresserNameContainsKeywordsPredicate;
+
+import java.awt.event.HierarchyBoundsAdapter;
 
 /**
  * Filters and lists all hairdressers whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterHairdresserCommand extends Command {
+public class FilterHairdresserCommand extends FilterEntityCommand<HairdresserNameContainsKeywordsPredicate> {
 
     public static final String COMMAND_WORD = "filter_hairdresser";
 
@@ -21,10 +24,8 @@ public class FilterHairdresserCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final HairdresserNameContainsKeywordsPredicate predicate;
-
     public FilterHairdresserCommand(HairdresserNameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+        super(predicate);
     }
 
     @Override
