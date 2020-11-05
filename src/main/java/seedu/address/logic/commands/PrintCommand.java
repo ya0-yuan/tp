@@ -86,22 +86,22 @@ public class PrintCommand extends Command {
     private void appendToWriter(BufferedWriter writer, ExportType type) throws IOException {
         switch (type) {
         case hairdresser:
-            writer.append(makeFileCreationTime("Hairdresser"));
-            writer.append(makeHairdresserHeader());
+            writer.append(printCreationTime("Hairdresser"));
+            writer.append(printHairdresserHeader());
             for (Hairdresser hairdresser : hairdresserList) {
                 writer.append(printHairdresser(hairdresser));
             }
             break;
         case appointment:
-            writer.append(makeFileCreationTime("Appointment"));
-            writer.append(makeAppointmentHeader());
+            writer.append(printCreationTime("Appointment"));
+            writer.append(printAppointmentHeader());
             for (Appointment appt : appointmentList) {
                 writer.append(printAppointment(appt));
             }
             break;
         case client:
-            writer.append(makeFileCreationTime("Client"));
-            writer.append(makeClientHeader());
+            writer.append(printCreationTime("Client"));
+            writer.append(printClientHeader());
             for (Client client : clientList) {
                 writer.append(printClient(client));
             }
@@ -119,29 +119,25 @@ public class PrintCommand extends Command {
                 .map(Specialisation::toString)
                 .collect(Collectors.joining());
 
-        return new StringBuilder()
-                .append(hairdresser.getId()).append(CSV_SEPARATOR)
-                .append(hairdresser.getName()).append(CSV_SEPARATOR)
-                .append(hairdresser.getTitle()).append(CSV_SEPARATOR)
-                .append(hairdresser.getGender()).append(CSV_SEPARATOR)
-                .append(hairdresser.getPhone()).append(CSV_SEPARATOR)
-                .append(hairdresser.getEmail()).append(CSV_SEPARATOR)
-                .append(specialisations).append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+        return String.valueOf(hairdresser.getId()) + CSV_SEPARATOR +
+                hairdresser.getName() + CSV_SEPARATOR +
+                hairdresser.getTitle() + CSV_SEPARATOR +
+                hairdresser.getGender() + CSV_SEPARATOR +
+                hairdresser.getPhone() + CSV_SEPARATOR +
+                hairdresser.getEmail() + CSV_SEPARATOR +
+                specialisations + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
-    private String makeHairdresserHeader() {
-        return new StringBuilder()
-                .append("ID").append(CSV_SEPARATOR)
-                .append("Name").append(CSV_SEPARATOR)
-                .append("Title").append(CSV_SEPARATOR)
-                .append("Gender").append(CSV_SEPARATOR)
-                .append("Phone").append(CSV_SEPARATOR)
-                .append("Email").append(CSV_SEPARATOR)
-                .append("Specialisations").append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+    private String printHairdresserHeader() {
+        return "ID" + CSV_SEPARATOR +
+                "Name" + CSV_SEPARATOR +
+                "Title" + CSV_SEPARATOR +
+                "Gender" + CSV_SEPARATOR +
+                "Phone" + CSV_SEPARATOR +
+                "Email" + CSV_SEPARATOR +
+                "Specialisations" + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
     private String printClient(Client client) {
@@ -150,66 +146,56 @@ public class PrintCommand extends Command {
                 .map(Tag::toString)
                 .collect(Collectors.joining());
 
-        return new StringBuilder()
-                .append(client.getId()).append(CSV_SEPARATOR)
-                .append(client.getName()).append(CSV_SEPARATOR)
-                .append(client.getGender()).append(CSV_SEPARATOR)
-                .append(client.getPhone()).append(CSV_SEPARATOR)
-                .append(client.getEmail()).append(CSV_SEPARATOR)
-                .append(removeCommaConflict(client.getAddress().toString())).append(CSV_SEPARATOR)
-                .append(tags).append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+        return String.valueOf(client.getId()) + CSV_SEPARATOR +
+                client.getName() + CSV_SEPARATOR +
+                client.getGender() + CSV_SEPARATOR +
+                client.getPhone() + CSV_SEPARATOR +
+                client.getEmail() + CSV_SEPARATOR +
+                removeCommaConflict(client.getAddress().toString()) + CSV_SEPARATOR +
+                tags + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
-    private String makeClientHeader() {
-        return new StringBuilder()
-                .append("ID").append(CSV_SEPARATOR)
-                .append("Name").append(CSV_SEPARATOR)
-                .append("Gender").append(CSV_SEPARATOR)
-                .append("Phone").append(CSV_SEPARATOR)
-                .append("Email").append(CSV_SEPARATOR)
-                .append("Address").append(CSV_SEPARATOR)
-                .append("Tags").append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+    private String printClientHeader() {
+        return "ID" + CSV_SEPARATOR +
+                "Name" + CSV_SEPARATOR +
+                "Gender" + CSV_SEPARATOR +
+                "Phone" + CSV_SEPARATOR +
+                "Email" + CSV_SEPARATOR +
+                "Address" + CSV_SEPARATOR +
+                "Tags" + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
     private String printAppointment(Appointment appointment) {
-        return new StringBuilder()
-                .append(appointment.getId()).append(CSV_SEPARATOR)
-                .append(appointment.getClient().getName()).append(CSV_SEPARATOR)
-                .append(appointment.getHairdresser().getName()).append(CSV_SEPARATOR)
-                .append(appointment.getDate()).append(CSV_SEPARATOR)
-                .append(appointment.getTime()).append(CSV_SEPARATOR)
-                .append(appointment.getAppointmentStatus().name().toLowerCase()).append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+        return String.valueOf(appointment.getId()) + CSV_SEPARATOR +
+                appointment.getClient().getName() + CSV_SEPARATOR +
+                appointment.getHairdresser().getName() + CSV_SEPARATOR +
+                appointment.getDate() + CSV_SEPARATOR +
+                appointment.getTime() + CSV_SEPARATOR +
+                appointment.getAppointmentStatus().name().toLowerCase() + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
-    private String makeAppointmentHeader() {
-        return new StringBuilder()
-                .append("ID").append(CSV_SEPARATOR)
-                .append("Client Name").append(CSV_SEPARATOR)
-                .append("Hairdresser Name").append(CSV_SEPARATOR)
-                .append("Date").append(CSV_SEPARATOR)
-                .append("Time").append(CSV_SEPARATOR)
-                .append("Status").append(CSV_SEPARATOR)
-                .append(System.lineSeparator())
-                .toString();
+    private String printAppointmentHeader() {
+        return "ID" + CSV_SEPARATOR +
+                "Client Name" + CSV_SEPARATOR +
+                "Hairdresser Name" + CSV_SEPARATOR +
+                "Date" + CSV_SEPARATOR +
+                "Time" + CSV_SEPARATOR +
+                "Status" + CSV_SEPARATOR +
+                System.lineSeparator();
     }
 
-    private String makeFileCreationTime(String type) {
+    private String printCreationTime(String type) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm:ss.");
         Date date = new Date(System.currentTimeMillis());
 
-        return new StringBuilder()
-                .append(type)
-                .append(" list updated as of: ")
-                .append(formatter.format(date))
-                .append(System.lineSeparator())
-                .append(System.lineSeparator())
-                .toString();
+        return type +
+                " list updated as of: " +
+                formatter.format(date) +
+                System.lineSeparator() +
+                System.lineSeparator();
     }
 
     private String removeCommaConflict(String input) {
