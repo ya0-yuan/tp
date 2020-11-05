@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exception.DuplicateEntityException;
 import seedu.address.model.exception.EntityNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of entities that enforces uniqueness between its elements and does not allow nulls.
@@ -34,6 +35,14 @@ public abstract class UniqueEntityList<T extends Entity> implements Iterable<T> 
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck :: isSame);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent Person as the given argument.
+     */
+    public boolean containsPerson(Person person) {
+        requireNonNull(person);
+        return internalList.stream().anyMatch(person :: isSame);
     }
 
     public abstract DuplicateEntityException duplicateException();

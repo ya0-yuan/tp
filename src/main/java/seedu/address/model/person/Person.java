@@ -51,29 +51,22 @@ public abstract class Person implements Entity {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both persons have the same name and same phone number.
      * This defines a weaker notion of equality between two persons.
+     * @param other the person to compare to.
+     * @return true if both persons have the same name and phone number.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone())
-                        || otherPerson.getEmail().equals(getEmail())
-                        || otherPerson.getId().equals(getId()));
-    }
-
     @Override
     public boolean isSame(Entity other) {
-        if (other instanceof Person) {
-            return isSamePerson((Person) other);
+        if (other == this) {
+            return true;
+        } else if (other instanceof Person) {
+            Person otherPerson = (Person) other;
+            return otherPerson.getName().equals(getName())
+                    && otherPerson.getPhone().equals(getPhone());
         } else {
             return false;
         }
-
     }
 
     /**

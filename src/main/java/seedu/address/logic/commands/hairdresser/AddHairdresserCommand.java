@@ -37,7 +37,9 @@ public class AddHairdresserCommand extends AddPersonCommand<Hairdresser> {
             + PREFIX_SPECIALISATION + "Color";
 
     public static final String MESSAGE_SUCCESS = "New hairdresser added: %1$s";
-    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in HairStyleX";
+    private static final String MESSAGE_DUPLICATE_CLIENT = "This person already exists in HairStyleX, "
+            + "and is a Client";
 
 
     /**
@@ -52,6 +54,9 @@ public class AddHairdresserCommand extends AddPersonCommand<Hairdresser> {
     public void addToModel(Model model) throws CommandException {
         if (model.hasHairdresser(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_HAIRDRESSER);
+        }
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.addHairdresser(toAdd);

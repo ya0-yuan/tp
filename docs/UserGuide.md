@@ -224,6 +224,18 @@ You can use this command to add a client to the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to enter duplicates into HairStyleX.
+
+</div>
+
 **Examples:**
 
 In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owes the salon money, into the HairstyleX.
@@ -288,6 +300,18 @@ You can use this command to edit an existing client in the database.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to edit a client such that their updated information results in duplicates in HairStyleX.
+
 </div>
 
 **Examples:**
@@ -428,6 +452,18 @@ You can use this command to add a hairdresser to the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to enter duplicates in HairStyleX.
+
+</div>
+
 **Example:**
 
 In the example below, you will register a female Senior Stylist called **Helen Lim** with phone number **82716252**, email **helenlim@example.com**, who is specialised in **Perm** and **Color**, into the HairstyleX.
@@ -492,6 +528,18 @@ You can use this command to edit an existing hairdresser in the database.
 * You can remove all the hairdresser’s tags by typing `s/` without
     specifying any specialisations after it.
 * Refer to [Section 4.3.1](#431-hairdresser-management-command-parameters) for more details on each parameter.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to edit a hairdresser such that their updated information results in duplicates in HairStyleX.
 
 </div>
 

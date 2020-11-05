@@ -10,6 +10,7 @@ import seedu.address.logic.commandshortcut.CommandShortcutSet;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.UniqueAppointmentList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.client.UniqueClientList;
@@ -88,6 +89,14 @@ public class HairStyleX implements ReadOnlyHairStyleX {
         setIdCounter(newData.getIdCounter());
     }
 
+    /**
+     * Returns true if a person with the same identity as any
+     * {@code hairdresser} or {@code client} exists in the hairStyleX.
+     */
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return hairdressers.containsPerson(person) || clients.containsPerson(person);
+    }
 
     //===============hairdresser-level operations=============
 

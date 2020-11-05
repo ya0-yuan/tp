@@ -37,7 +37,9 @@ public class AddClientCommand extends AddPersonCommand<Client> {
             + PREFIX_TAG + "owesMoney";
 
     private static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    private static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+    private static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in HairStyleX";
+    private static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This person already exists in HairStyleX, "
+            + "and is a Hairdresser";
 
 
     /**
@@ -53,7 +55,9 @@ public class AddClientCommand extends AddPersonCommand<Client> {
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
-
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_HAIRDRESSER);
+        }
         model.addClient(toAdd);
     }
 
