@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyHairStyleX;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -149,6 +150,11 @@ public class AddHairdresserTest {
         }
 
         @Override
+        public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
@@ -268,7 +274,7 @@ public class AddHairdresserTest {
         @Override
         public boolean hasHairdresser(Hairdresser hairdresser) {
             requireNonNull(hairdresser);
-            return this.hairdresser.isSameHairdresser(hairdresser);
+            return this.hairdresser.isSame(hairdresser);
         }
     }
 
@@ -279,9 +285,15 @@ public class AddHairdresserTest {
         final ArrayList<Hairdresser> hairdressersAdded = new ArrayList<>();
 
         @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return hairdressersAdded.stream().anyMatch(person::isSame);
+        }
+
+        @Override
         public boolean hasHairdresser(Hairdresser hairdresser) {
             requireNonNull(hairdresser);
-            return hairdressersAdded.stream().anyMatch(hairdresser::isSameHairdresser);
+            return hairdressersAdded.stream().anyMatch(hairdresser::isSame);
         }
 
         @Override

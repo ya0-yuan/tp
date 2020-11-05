@@ -53,7 +53,9 @@ public class EditHairdresserCommand extends Command {
 
     public static final String MESSAGE_EDIT_HAIRDRESSER_SUCCESS = "Edited Hairdresser: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in the HairStyleX.";
+    public static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This hairdresser already exists in HairStyleX.";
+    private static final String MESSAGE_DUPLICATE_CLIENT = "This person already exists in HairStyleX, "
+            + "and is a Client";
 
     private final HairdresserId hairdresserId;
     private final EditHairdresserDescriptor editHairdresserDescriptor;
@@ -80,8 +82,12 @@ public class EditHairdresserCommand extends Command {
         }
         Hairdresser editedHairdresser = createEditedHairdresser(hairdresserToEdit, editHairdresserDescriptor);
 
-        if (!hairdresserToEdit.isSameHairdresser(editedHairdresser) && model.hasHairdresser(editedHairdresser)) {
+        if (!hairdresserToEdit.isSame(editedHairdresser) && model.hasHairdresser(editedHairdresser)) {
             throw new CommandException(MESSAGE_DUPLICATE_HAIRDRESSER);
+        }
+
+        if (!hairdresserToEdit.isSame(editedHairdresser) && model.hasPerson(editedHairdresser)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.setHairdresser(hairdresserToEdit, editedHairdresser);

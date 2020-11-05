@@ -26,23 +26,23 @@ public class ClientTest {
     }
 
     @Test
-    public void isSameClient() {
+    public void isSame() {
         // same object -> returns true
-        assertTrue(ALICE.isSameClient(ALICE));
+        assertTrue(ALICE.isSame(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameClient(null));
+        assertFalse(ALICE.isSame(null));
 
         // different phone and email -> returns false
         Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .build();
-        assertFalse(ALICE.isSameClient(editedAlice));
+        assertFalse(ALICE.isSame(editedAlice));
 
         // different name -> returns false
         editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB)
             .build();
-        assertFalse(ALICE.isSameClient(editedAlice));
+        assertFalse(ALICE.isSame(editedAlice));
 
         //// same name, same phone, different attributes -> returns true
         //editedAlice = new ClientBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
