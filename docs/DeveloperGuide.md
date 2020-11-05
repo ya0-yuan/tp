@@ -343,7 +343,7 @@ From the diagram above:
 
 ### Print Feature
 
-`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to `.csv` format. 
+`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to `.csv` format.
 
 #### Current Implementation
 
@@ -351,18 +351,18 @@ From the diagram above:
 
 Some key methods:
 
-- `ExportType` - a private enum that encapsulates the type of information to be exported. Contains `ExportType.Hairdresser`, `ExportType.Client`, `ExportType.Appointment`. 
+- `ExportType` - a private enum that encapsulates the type of information to be exported. Contains `ExportType.Hairdresser`, `ExportType.Client`, `ExportType.Appointment`.
 - `PrintCommand#writeToCsv()` - initialises a `.csv` file for hairdresser, client or appointment depending on the `ExportType` enum given and then writes to it.
-- `PrintCommand#appendToWriter()` - calls the respective functions that converts data to string and appends the returned string to the `.csv` files. 
-- `PrintCommand#removeCommaConflict()` - escapes the strings containing commas to avoid formatting error when writing to `.csv` files. 
+- `PrintCommand#appendToWriter()` - calls the respective functions that converts data to string and appends the returned string to the `.csv` files.
+- `PrintCommand#removeCommaConflict()` - escapes the strings containing commas to avoid formatting error when writing to `.csv` files.
 
 #### Steps
 
 1. `LogicManager`’s `execute` is called when `print` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
 
-1. `PrintCommand` will be returned to the `LogicManager` and `LogicManger` will then call `execute` method of `PrintCommand`. 
+1. `PrintCommand` will be returned to the `LogicManager` and `LogicManger` will then call `execute` method of `PrintCommand`.
 
-1. `execute` method retrieves the three `ObservableList`: `hairdresserList`, `clientList`, `appointmentList` from the model. 
+1. `execute` method retrieves the three `ObservableList`: `hairdresserList`, `clientList`, `appointmentList` from the model.
 
 1. `execute` method will then call `writeToCsv` 3 times in parallel while passing in `ExportType.Hairdresser`, `ExportType.Client`, `ExportType.Appointment` for each.
 
@@ -370,11 +370,11 @@ Some key methods:
 
 1. `appendToWriter` calls the respective functions that converts data to string according to `ExportType`:
 
-    - For `ExportType.Hairdresser`: `makeFileCreationTime`, `makeHairdresserHeader` are called, and `printHairdresser` is called for each in `hairdresserList`. 
-    - For `ExportType.Client`: `makeFileCreationTime`, `makeClientHeader` are called, and `printClient` is called for each in `clientList`. 
-    - For `ExportType.Appointment`: `makeFileCreationTime`, `makeAppointmentHeader` are called, and `printAppointment` is called for each in `appointmentList`. 
+    - For `ExportType.Hairdresser`: `makeFileCreationTime`, `makeHairdresserHeader` are called, and `printHairdresser` is called for each in `hairdresserList`.
+    - For `ExportType.Client`: `makeFileCreationTime`, `makeClientHeader` are called, and `printClient` is called for each in `clientList`.
+    - For `ExportType.Appointment`: `makeFileCreationTime`, `makeAppointmentHeader` are called, and `printAppointment` is called for each in `appointmentList`.
 
-    Each of the methods called by `appendToWriter` returns a string that is one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed. 
+    Each of the methods called by `appendToWriter` returns a string that is one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed.
 
 1. A `CommandResult` will be returned at the end.
 
@@ -384,12 +384,12 @@ Some key methods:
 #### Design Considerations
 
 * Alternative 1 (current implementation): Run `writeToCsv` concurrently
-  * Pros: Shorter overall runtime as the functions are run in parallel. 
+  * Pros: Shorter overall runtime as the functions are run in parallel.
   * Cons: More overhead for the program as there are multi-threads created.
 
 * Alternative 2: Run `writeToCsv` sequentially
   * Pros: Easy to implement, less overhead.
-  * Cons: Longer runtime as the I/O operations are ran one by one even if it is I/O to different files. 
+  * Cons: Longer runtime as the I/O operations are ran one by one even if it is I/O to different files.
 
 --------------------------------------------------------------------------------------------------------------------
 
