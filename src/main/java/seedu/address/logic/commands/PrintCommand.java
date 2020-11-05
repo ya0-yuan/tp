@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -43,6 +48,8 @@ public class PrintCommand extends Command {
         hairdresser, client, appointment;
     }
 
+    // Solution below adapted from https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/143/files
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -50,9 +57,35 @@ public class PrintCommand extends Command {
         clientList = model.getHairStyleX().getClientList();
         appointmentList = model.getHairStyleX().getAppointmentList();
 
-        writeToCsv(ExportType.appointment);
-        writeToCsv(ExportType.client);
-        writeToCsv(ExportType.hairdresser);
+        Callable<Void> writeAppt = () -> {
+            writeToCsv(ExportType.appointment);
+            return null;
+        };
+
+        Callable<Void> writeClient = () -> {
+            writeToCsv(ExportType.client);
+            return null;
+        };
+
+        Callable<Void> writeHairdresser = () -> {
+            writeToCsv(ExportType.hairdresser);
+            return null;
+        };
+
+        List<Callable<Void>> taskList = new ArrayList<>();
+        taskList.add(writeAppt);
+        taskList.add(writeClient);
+        taskList.add(writeHairdresser);
+
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        try {
+            executor.invokeAll(taskList);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
+        executor.shutdown();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
@@ -119,25 +152,25 @@ public class PrintCommand extends Command {
                 .map(Specialisation::toString)
                 .collect(Collectors.joining());
 
-        return String.valueOf(hairdresser.getId()) + CSV_SEPARATOR +
-                hairdresser.getName() + CSV_SEPARATOR +
-                hairdresser.getTitle() + CSV_SEPARATOR +
-                hairdresser.getGender() + CSV_SEPARATOR +
-                hairdresser.getPhone() + CSV_SEPARATOR +
-                hairdresser.getEmail() + CSV_SEPARATOR +
-                specialisations + CSV_SEPARATOR +
-                System.lineSeparator();
+        return String.valueOf(hairdresser.getId()) + CSV_SEPARATOR
+                + hairdresser.getName() + CSV_SEPARATOR
+                + hairdresser.getTitle() + CSV_SEPARATOR
+                + hairdresser.getGender() + CSV_SEPARATOR
+                + hairdresser.getPhone() + CSV_SEPARATOR
+                + hairdresser.getEmail() + CSV_SEPARATOR
+                + specialisations + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printHairdresserHeader() {
-        return "ID" + CSV_SEPARATOR +
-                "Name" + CSV_SEPARATOR +
-                "Title" + CSV_SEPARATOR +
-                "Gender" + CSV_SEPARATOR +
-                "Phone" + CSV_SEPARATOR +
-                "Email" + CSV_SEPARATOR +
-                "Specialisations" + CSV_SEPARATOR +
-                System.lineSeparator();
+        return "ID" + CSV_SEPARATOR
+                + "Name" + CSV_SEPARATOR
+                + "Title" + CSV_SEPARATOR
+                + "Gender" + CSV_SEPARATOR
+                + "Phone" + CSV_SEPARATOR
+                + "Email" + CSV_SEPARATOR
+                + "Specialisations" + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printClient(Client client) {
@@ -146,56 +179,53 @@ public class PrintCommand extends Command {
                 .map(Tag::toString)
                 .collect(Collectors.joining());
 
-        return String.valueOf(client.getId()) + CSV_SEPARATOR +
-                client.getName() + CSV_SEPARATOR +
-                client.getGender() + CSV_SEPARATOR +
-                client.getPhone() + CSV_SEPARATOR +
-                client.getEmail() + CSV_SEPARATOR +
-                removeCommaConflict(client.getAddress().toString()) + CSV_SEPARATOR +
-                tags + CSV_SEPARATOR +
-                System.lineSeparator();
+        return String.valueOf(client.getId()) + CSV_SEPARATOR
+                + client.getName() + CSV_SEPARATOR
+                + client.getGender() + CSV_SEPARATOR
+                + client.getPhone() + CSV_SEPARATOR
+                + client.getEmail() + CSV_SEPARATOR
+                + removeCommaConflict(client.getAddress().toString()) + CSV_SEPARATOR
+                + tags + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printClientHeader() {
-        return "ID" + CSV_SEPARATOR +
-                "Name" + CSV_SEPARATOR +
-                "Gender" + CSV_SEPARATOR +
-                "Phone" + CSV_SEPARATOR +
-                "Email" + CSV_SEPARATOR +
-                "Address" + CSV_SEPARATOR +
-                "Tags" + CSV_SEPARATOR +
-                System.lineSeparator();
+        return "ID" + CSV_SEPARATOR
+                + "Name" + CSV_SEPARATOR
+                + "Gender" + CSV_SEPARATOR
+                + "Phone" + CSV_SEPARATOR
+                + "Email" + CSV_SEPARATOR
+                + "Address" + CSV_SEPARATOR
+                + "Tags" + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printAppointment(Appointment appointment) {
-        return String.valueOf(appointment.getId()) + CSV_SEPARATOR +
-                appointment.getClient().getName() + CSV_SEPARATOR +
-                appointment.getHairdresser().getName() + CSV_SEPARATOR +
-                appointment.getDate() + CSV_SEPARATOR +
-                appointment.getTime() + CSV_SEPARATOR +
-                appointment.getAppointmentStatus().name().toLowerCase() + CSV_SEPARATOR +
-                System.lineSeparator();
+        return String.valueOf(appointment.getId()) + CSV_SEPARATOR
+                + appointment.getClient().getName() + CSV_SEPARATOR
+                + appointment.getHairdresser().getName() + CSV_SEPARATOR
+                + appointment.getDate() + CSV_SEPARATOR
+                + appointment.getTime() + CSV_SEPARATOR
+                + appointment.getAppointmentStatus().name().toLowerCase() + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printAppointmentHeader() {
-        return "ID" + CSV_SEPARATOR +
-                "Client Name" + CSV_SEPARATOR +
-                "Hairdresser Name" + CSV_SEPARATOR +
-                "Date" + CSV_SEPARATOR +
-                "Time" + CSV_SEPARATOR +
-                "Status" + CSV_SEPARATOR +
-                System.lineSeparator();
+        return "ID" + CSV_SEPARATOR
+                + "Client Name" + CSV_SEPARATOR
+                + "Hairdresser Name" + CSV_SEPARATOR
+                + "Date" + CSV_SEPARATOR
+                + "Time" + CSV_SEPARATOR
+                + "Status" + CSV_SEPARATOR
+                + System.lineSeparator();
     }
 
     private String printCreationTime(String type) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm:ss.");
         Date date = new Date(System.currentTimeMillis());
 
-        return type +
-                " list updated as of: " +
-                formatter.format(date) +
-                System.lineSeparator() +
-                System.lineSeparator();
+        return type + " list updated as of " + formatter.format(date)
+                + System.lineSeparator() + System.lineSeparator();
     }
 
     private String removeCommaConflict(String input) {
