@@ -148,6 +148,14 @@ As you use our features, other files will be created and stored in the folder th
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Saving the data**
+
+All information will be stored automatically after any command that changes the data. There is no need to save manually. This data be automatically loaded upon restart of the application.
+
+</div>
+
 <div markdown="block" class="alert alert-light">
 
 **:bulb: Tips for first time users**<br>
@@ -157,32 +165,152 @@ If this is your first time using **HairStyleX**, you might notice that this appl
 </div>
 
 ### 4.1 General commands
+(Contributed by Tan Yu Li, James)
+
+The commands in this section allow you to perform operations on the entire system. They include:
+
+* Viewing help
+* Clearing all entries
+* Exiting from the application
+* Exporting entries to CSV
 
 #### 4.1.1 Viewing help : `help`
 
-Shows the link to the user guide in case the user forgets the commands.
+You can use this command to view the user guide, which contains information about all the instructions in HairStyleX.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Ensure that you have a stable internet connection and have a web browser on your computer in order to access the user guide.
+
+</div>
+
+**Format:**
+
+`help`
+
+**Example:**
+
+In this example, you want to view the user guide to get information about the various commands in HairStyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Requesting for help:
+
+1. Type `help` into the *Command Box*.
+1. Press `Enter` to execute.
+1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the HairStyleX user guide.
+![HelpOutcome](images/general-command/Help.png)
+1. Open your preferred web browser on your computer and paste the link into the address bar.
+1. Press `Enter` to load the website
+
+Outcome:
+
+1. Your browser will show the user guide
+1. You can now access all the commands via the browser
+
+</div>
 
 #### 4.1.2 Clearing all entries : `clear`
 
-Clears all entries from the application.
+You can use this command to clear all entries in HairStyleX.
 
-Format: `clear`
+<div markdown="block" class="alert alert-warning">
 
-#### 4.1.3 Exiting the program : `exit`
+**:warning: This command will delete all data in HairStyleX permanently. Please proceed with caution.**
 
-Exits the program.
+</div>
 
-Format: `exit`
+**Format:**
 
-#### 4.1.4 Saving the data
+`clear`
 
-All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
+**Example:**
 
-#### 4.1.5 Exporting entries to CSV: `print`
+In this example, you want to clear all current data and start with an empty HairStyleX.
 
-Exports all hairdressers, clients and appointments from the application to CSV files.
+<div markdown="block" class="alert alert-white">
 
-Format: `print`
+Clearing the data:
+
+1. Type `clear` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message.
+1. You will now see that the *Clients Panel*, *Hairdressers Panel*, and *Appointments Panel* are empty.
+
+</div>
+
+![ClearOutcome](images/general-command/Clear.png)
+
+#### 4.1.3 Exiting from the application: `exit`
+
+You can use this command to exit HairStyleX.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: This command will exit the application immediately. All data is saved automatically and will be reloaded upon restart of the application **
+
+</div>
+
+**Format:**
+
+`exit`
+
+**Example:**
+
+In this example, you want to exit HairStyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Exiting the application:
+
+1. Type `exit` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The **HairStyleX** application window is now closed.
+
+</div>
+
+#### 4.1.4 Exporting entries to CSV: `print`
+
+You can use this command to export all hairdressers, clients and appointments from the application to CSV files.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Modifying the CSV files generated will not result in changes to the data in HairStyleX**
+
+</div>
+
+**Format:**
+
+`print`
+
+**Example:**
+
+In this example, you want to export all current data into CSV files.
+
+<div markdown="block" class="alert alert-white">
+
+Exporting to CSV:
+
+1. Type `print` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message.
+1. You can now access the CSV files in the same folder that contains **HairStyleX.jar**.
+1. There should be three CSV files generated. Namely, *appointments.csv*, *client.csv*, *hairdressers.csv*.
+1. These files contain the information for `Appointment`s, `Client`s, and `Hairdresser`s respectively. 
+
+</div>
+
+![PrintOutcome](images/general-command/Print.png)
+
 
 ### 4.2 Client Management
 (Contributed by Yao Yuan)
