@@ -10,6 +10,7 @@ import seedu.address.logic.commandshortcut.CommandShortcutSet;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.UniqueAppointmentList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.client.UniqueClientList;
@@ -19,10 +20,10 @@ import seedu.address.model.person.hairdresser.UniqueHairdresserList;
 
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the hairStyleX level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class HairStyleX implements ReadOnlyHairStyleX {
 
     private final UniqueClientList clients;
     private final UniqueHairdresserList hairdressers;
@@ -50,12 +51,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         commandShortcutSet = CommandShortcutSet.getInstance();
     }
 
-    public AddressBook() {}
+    public HairStyleX() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an HairStyleX using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public HairStyleX(ReadOnlyHairStyleX toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -77,9 +78,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code HairStyleX} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyHairStyleX newData) {
         requireNonNull(newData);
         setHairdressers(newData.getHairdresserList());
         setClients(newData.getClientList());
@@ -88,11 +89,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         setIdCounter(newData.getIdCounter());
     }
 
+    /**
+     * Returns true if a person with the same identity as any
+     * {@code hairdresser} or {@code client} exists in the hairStyleX.
+     */
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return hairdressers.containsPerson(person) || clients.containsPerson(person);
+    }
 
     //===============hairdresser-level operations=============
 
     /**
-     * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the address book.
+     * Returns true if a hairdresser with the same identity as {@code hairdresser} exists in the hairStyleX.
      */
     public boolean hasHairdresser(Hairdresser hairdresser) {
         requireNonNull(hairdresser);
@@ -100,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a hairdresser to the address book.
-     * The hairdresser must not already exist in the address book.
+     * Adds a hairdresser to the hairStyleX.
+     * The hairdresser must not already exist in the hairStyleX.
      */
     public void addHairdresser(Hairdresser p) {
         hairdressers.add(p);
@@ -109,9 +118,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given hairdresser {@code target} in the list with {@code editedHairdresser}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the hairStyleX.
      * The hairdresser identity of {@code editedHairdresser} must not be the same as
-     * another existing hairdresser in the address book.
+     * another existing hairdresser in the hairStyleX.
      */
     public void setHairdresser(Hairdresser target, Hairdresser editedHairdresser) {
         requireNonNull(editedHairdresser);
@@ -128,8 +137,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HairStyleX}.
+     * {@code key} must exist in the hairStyleX.
      */
     public void removeHairdresser(Hairdresser key) {
         hairdressers.remove(key);
@@ -146,7 +155,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the hairStyleX.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -154,8 +163,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a client to the address book.
-     * The client must not already exist in the address book.
+     * Adds a client to the hairStyleX.
+     * The client must not already exist in the hairStyleX.
      */
     public void addClient(Client p) {
         clients.add(p);
@@ -163,8 +172,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given client {@code client} in the list with {@code editedClient}.
-     * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     * {@code target} must exist in the hairStyleX.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the hairStyleX.
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
@@ -173,8 +182,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HairStyleX}.
+     * {@code key} must exist in the hairStyleX.
      */
     public void removeClient(Client key) {
         clients.remove(key);
@@ -223,8 +232,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HairStyleX}.
+     * {@code key} must exist in the hairStyleX.
      */
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
@@ -324,11 +333,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && clients.equals(((AddressBook) other).clients)
-                && hairdressers.equals(((AddressBook) other).hairdressers)
-                && appointments.equals(((AddressBook) other).appointments)
-                && idCounter.equals(((AddressBook) other).idCounter));
+                || (other instanceof HairStyleX // instanceof handles nulls
+                && clients.equals(((HairStyleX) other).clients)
+                && hairdressers.equals(((HairStyleX) other).hairdressers)
+                && appointments.equals(((HairStyleX) other).appointments)
+                && idCounter.equals(((HairStyleX) other).idCounter));
     }
 
     @Override

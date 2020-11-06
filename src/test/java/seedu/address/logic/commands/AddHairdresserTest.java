@@ -19,12 +19,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.hairdresser.AddHairdresserCommand;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HairStyleX;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHairStyleX;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -109,12 +110,12 @@ public class AddHairdresserTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getHairStyleXFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setHairStyleXFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +125,12 @@ public class AddHairdresserTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setHairStyleX(ReadOnlyHairStyleX newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyHairStyleX getHairStyleX() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,6 +146,11 @@ public class AddHairdresserTest {
 
         @Override
         public Appointment getAppointmentById(AppointmentId appointmentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -268,7 +274,7 @@ public class AddHairdresserTest {
         @Override
         public boolean hasHairdresser(Hairdresser hairdresser) {
             requireNonNull(hairdresser);
-            return this.hairdresser.isSameHairdresser(hairdresser);
+            return this.hairdresser.isSame(hairdresser);
         }
     }
 
@@ -279,9 +285,15 @@ public class AddHairdresserTest {
         final ArrayList<Hairdresser> hairdressersAdded = new ArrayList<>();
 
         @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return hairdressersAdded.stream().anyMatch(person::isSame);
+        }
+
+        @Override
         public boolean hasHairdresser(Hairdresser hairdresser) {
             requireNonNull(hairdresser);
-            return hairdressersAdded.stream().anyMatch(hairdresser::isSameHairdresser);
+            return hairdressersAdded.stream().anyMatch(hairdresser::isSame);
         }
 
         @Override
@@ -291,8 +303,8 @@ public class AddHairdresserTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyHairStyleX getHairStyleX() {
+            return new HairStyleX();
         }
     }
 

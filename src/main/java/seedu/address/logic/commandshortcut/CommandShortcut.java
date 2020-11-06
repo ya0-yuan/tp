@@ -2,13 +2,14 @@ package seedu.address.logic.commandshortcut;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
 
 public class CommandShortcut {
-    private static final int MAX_LENGTH = 10;
+    private static final int MAX_LENGTH = 20;
     private CommandWord commandWord;
     private HashSet<String> shortcutSet = new HashSet<>();
 
@@ -84,4 +85,18 @@ public class CommandShortcut {
         return new ArrayList<>(shortcutSet);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append(commandWord.toString());
+        str.append(": ");
+        Iterator<String> it = shortcutSet.iterator();
+        while (it.hasNext()) {
+            str.append(it.next());
+            if (it.hasNext()) {
+                str.append(", ");
+            }
+        }
+        return str.toString();
+    }
 }

@@ -224,6 +224,18 @@ You can use this command to add a client to the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to enter duplicates into HairStyleX.
+
+</div>
+
 **Examples:**
 
 In the example below, you will register a male client called **John Doe** with phone number **98765432**, email **johnd@example.com**, address **311, Clementi Ave 2, #02-25**, who has short hair and owes the salon money, into the HairstyleX.
@@ -288,6 +300,18 @@ You can use this command to edit an existing client in the database.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to edit a client such that their updated information results in duplicates in HairStyleX.
+
 </div>
 
 **Examples:**
@@ -428,6 +452,18 @@ You can use this command to add a hairdresser to the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to enter duplicates in HairStyleX.
+
+</div>
+
 **Example:**
 
 In the example below, you will register a female Senior Stylist called **Helen Lim** with phone number **82716252**, email **helenlim@example.com**, who is specialised in **Perm** and **Color**, into the HairstyleX.
@@ -446,8 +482,8 @@ Outcome: <br>
 
 </div>
 
-![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
-*Figure 7. Outcome of a successful `add_hairdresser` command*
+![AddHairdresserOutcome](images/hairdresser/AddHairdresserOutcome.png)
+*Outcome of a successful `add_hairdresser` command*
 
 
 #### 4.3.3 Listing all hairdressers : `list_hairdresser`
@@ -495,6 +531,18 @@ You can use this command to edit an existing hairdresser in the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to edit a hairdresser such that their updated information results in duplicates in HairStyleX.
+
+</div>
+
 **Example:**
 
 Assume that the hairdresser with ID `4` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
@@ -513,8 +561,8 @@ Outcome: <br>
 
 </div>
 
-![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
-*Figure 8. Outcome of a successful `edit_hairdresser` command*
+![EditHairdresserOutcome](images/hairdresser/EditHairdresserOutcome.png)
+*Outcome of a successful `edit_hairdresser` command*
 
 #### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
@@ -550,8 +598,8 @@ Outcome: <br>
 
 </div>
 
-![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
-*Figure 9. Outcome of a successful `delete_hairdresser` command*
+![DeleteHairdresserOutcome](images/hairdresser/DeleteHairdresserOutcome.png)
+*Outcome of a successful `delete_hairdresser` command*
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
@@ -590,8 +638,8 @@ Outcome: <br>
 
 </div>
 
-![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
-*Figure 10. Outcome of a successful `filter_hairdresser` command*
+![FilterHairdresserOutcome](images/hairdresser/FilterHairdresserOutcome.png)
+*Outcome of a successful `filter_hairdresser` command*
 
 
 ### 4.4 Appointment Management
@@ -632,7 +680,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time.  
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time.  
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -904,7 +952,7 @@ Outcome:
 .Outcome of a successful `delete_shortcut` command
 ![Ui](images/deletealias.png)
 
-#### 4.5.3 List all shortcuts : `listshortcut`
+#### 4.5.3 List all shortcuts : `list_shortcut`
 
 You can use this command to list all your shortcuts.
 
@@ -912,7 +960,9 @@ You can use this command to list all your shortcuts.
 
 `list_shortcut`
 
-[Coming soon]
+You can use this command to show all your shortcuts.
+
+![Ui](images/list_shortcut.png)
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)

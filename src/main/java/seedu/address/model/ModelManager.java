@@ -18,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentId;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.client.Client;
 import seedu.address.model.person.client.ClientId;
 import seedu.address.model.person.hairdresser.Hairdresser;
@@ -29,7 +30,7 @@ import seedu.address.model.person.hairdresser.HairdresserId;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final HairStyleX hairStyleX;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Hairdresser> filteredHairdressers;
@@ -39,21 +40,21 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyHairStyleX hairStyleX, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(hairStyleX, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + hairStyleX + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.hairStyleX = new HairStyleX(hairStyleX);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.addressBook.getClientList());
-        filteredHairdressers = new FilteredList<>(this.addressBook.getHairdresserList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        filteredClients = new FilteredList<>(this.hairStyleX.getClientList());
+        filteredHairdressers = new FilteredList<>(this.hairStyleX.getHairdresserList());
+        filteredAppointments = new FilteredList<>(this.hairStyleX.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new HairStyleX(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -81,44 +82,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getHairStyleXFilePath() {
+        return userPrefs.getHairStyleXFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setHairStyleXFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setHairStyleXFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== HairStyleX ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setHairStyleX(ReadOnlyHairStyleX hairStyleX) {
+        this.hairStyleX.resetData(hairStyleX);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyHairStyleX getHairStyleX() {
+        return hairStyleX;
     }
 
     @Override
     public Client getClientById(ClientId clientId) {
         requireNonNull(clientId);
-        return addressBook.getClientById(clientId);
+        return hairStyleX.getClientById(clientId);
     }
 
     @Override
     public Hairdresser getHairdresserById(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
-        return addressBook.getHairdresserById(hairdresserId);
+        return hairStyleX.getHairdresserById(hairdresserId);
     }
 
     @Override
     public Appointment getAppointmentById(AppointmentId appointmentId) {
         requireNonNull(appointmentId);
-        return addressBook.getAppointmentById(appointmentId);
+        return hairStyleX.getAppointmentById(appointmentId);
+    }
+
+    @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return hairStyleX.hasPerson(person);
     }
 
     //=========== Client =============================================================
@@ -126,19 +133,19 @@ public class ModelManager implements Model {
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return addressBook.hasClient(client);
+        return hairStyleX.hasClient(client);
     }
 
     @Override
     public void deleteClient(Client client) {
-        addressBook.removeClient(client);
-        addressBook.updateAppointmentWhenClientDeleted(client.getId());
+        hairStyleX.removeClient(client);
+        hairStyleX.updateAppointmentWhenClientDeleted(client.getId());
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
     public void addClient(Client client) {
-        addressBook.addClient(client);
+        hairStyleX.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
@@ -146,8 +153,8 @@ public class ModelManager implements Model {
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        addressBook.setClient(target, editedClient);
-        addressBook.updateAppointmentWhenClientIsUpdated(target.getId(), editedClient);
+        hairStyleX.setClient(target, editedClient);
+        hairStyleX.updateAppointmentWhenClientIsUpdated(target.getId(), editedClient);
     }
 
     //=========== Hairdresser =============================================================
@@ -155,13 +162,13 @@ public class ModelManager implements Model {
     @Override
     public boolean hasHairdresser(Hairdresser person) {
         requireNonNull(person);
-        return addressBook.hasHairdresser(person);
+        return hairStyleX.hasHairdresser(person);
     }
 
     @Override
     public void deleteHairdresser(Hairdresser target) {
-        addressBook.removeHairdresser(target);
-        addressBook.updateAppointmentWhenHairdresserDeleted(target.getId());
+        hairStyleX.removeHairdresser(target);
+        hairStyleX.updateAppointmentWhenHairdresserDeleted(target.getId());
         updateFilteredHairdresserList(PREDICATE_SHOW_ALL_HAIRDRESSERS);
 
         logger.info("Model: Deleted Hairdresser " + target.getId());
@@ -169,7 +176,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addHairdresser(Hairdresser person) {
-        addressBook.addHairdresser(person);
+        hairStyleX.addHairdresser(person);
         updateFilteredHairdresserList(PREDICATE_SHOW_ALL_HAIRDRESSERS);
 
         logger.info("Model: Added Hairdresser " + person.getId());
@@ -179,8 +186,8 @@ public class ModelManager implements Model {
     public void setHairdresser(Hairdresser target, Hairdresser editedHairdresser) {
         requireAllNonNull(target, editedHairdresser);
 
-        addressBook.setHairdresser(target, editedHairdresser);
-        addressBook.updateAppointmentWhenHairdresserIsUpdated(target.getId(), editedHairdresser);
+        hairStyleX.setHairdresser(target, editedHairdresser);
+        hairStyleX.updateAppointmentWhenHairdresserIsUpdated(target.getId(), editedHairdresser);
 
         logger.info("Model: Edited Hairdresser " + editedHairdresser.getId());
     }
@@ -189,25 +196,25 @@ public class ModelManager implements Model {
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.hasAppointment(appointment);
+        return hairStyleX.hasAppointment(appointment);
     }
 
     @Override
     public void deleteAppointment(Appointment target) {
-        addressBook.removeAppointment(target);
+        hairStyleX.removeAppointment(target);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
-        addressBook.addAppointment(appointment);
+        hairStyleX.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
     public void setAppointment(Appointment target, Appointment changedAppointment) {
         requireAllNonNull(target, changedAppointment);
-        addressBook.setAppointment(target, changedAppointment);
+        hairStyleX.setAppointment(target, changedAppointment);
     }
 
     /**
@@ -215,7 +222,7 @@ public class ModelManager implements Model {
      * This list will not contain any duplicate appointments.
      */
     public List<Appointment> getAppointmentList() {
-        return addressBook.getAppointmentList();
+        return hairStyleX.getAppointmentList();
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -236,7 +243,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Hairdresser} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedHairStyleX}
      */
     @Override
     public ObservableList<Hairdresser> getFilteredHairdresserList() {
@@ -333,7 +340,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return hairStyleX.equals(other.hairStyleX)
                 && userPrefs.equals(other.userPrefs);
     }
 

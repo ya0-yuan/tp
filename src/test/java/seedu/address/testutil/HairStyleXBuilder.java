@@ -1,22 +1,22 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HairStyleX;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class HairStyleXBuilder {
 
-    private AddressBook addressBook;
+    private HairStyleX hairStyleX;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public HairStyleXBuilder() {
+        hairStyleX = new HairStyleX();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public HairStyleXBuilder(HairStyleX hairStyleX) {
+        this.hairStyleX = hairStyleX;
     }
 
     //    /**
@@ -27,7 +27,7 @@ public class AddressBookBuilder {
     //        return this;
     //    }
 
-    public AddressBook build() {
-        return addressBook;
+    public HairStyleX build() {
+        return hairStyleX;
     }
 }

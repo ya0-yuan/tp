@@ -25,6 +25,10 @@ public class CommandShortcutSet {
         return instance;
     }
 
+    public static void reset() {
+        instance = new CommandShortcutSet();
+    }
+
     /**
      * Insert a new shortcut
      * @param word The word associated with the shortcut
@@ -102,6 +106,17 @@ public class CommandShortcutSet {
 
     public void setUpAliasSet(CommandShortcutSet aliasSet) {
         commandShortcuts = aliasSet.getListOfShortcuts();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Showing all shortcuts:\n");
+        for (CommandShortcut cmd : commandShortcuts) {
+            str.append(cmd.toString());
+            str.append("\n");
+        }
+        return str.toString();
     }
 }
 
