@@ -610,8 +610,8 @@ Outcome: <br>
 
 </div>
 
-![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
-*Figure 7. Outcome of a successful `add_hairdresser` command*
+![AddHairdresserOutcome](images/hairdresser/AddHairdresserOutcome.png)
+*Outcome of a successful `add_hairdresser` command*
 
 
 #### 4.3.3 Listing all hairdressers : `list_hairdresser`
@@ -689,8 +689,8 @@ Outcome: <br>
 
 </div>
 
-![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
-*Figure 8. Outcome of a successful `edit_hairdresser` command*
+![EditHairdresserOutcome](images/hairdresser/EditHairdresserOutcome.png)
+*Outcome of a successful `edit_hairdresser` command*
 
 #### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
@@ -726,8 +726,8 @@ Outcome: <br>
 
 </div>
 
-![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
-*Figure 9. Outcome of a successful `delete_hairdresser` command*
+![DeleteHairdresserOutcome](images/hairdresser/DeleteHairdresserOutcome.png)
+*Outcome of a successful `delete_hairdresser` command*
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
@@ -766,8 +766,8 @@ Outcome: <br>
 
 </div>
 
-![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
-*Figure 10. Outcome of a successful `filter_hairdresser` command*
+![FilterHairdresserOutcome](images/hairdresser/FilterHairdresserOutcome.png)
+*Outcome of a successful `filter_hairdresser` command*
 
 
 ### 4.4 Appointment Management
@@ -808,7 +808,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time.  
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time.  
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
