@@ -10,13 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.Region?>
-<BorderPane VBox.vgrow="ALWAYS" id="borderPane" fx:id="borderPane" maxWidth="Infinity" maxHeight="Infinity" minWidth="300" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="client_card">
+<BorderPane VBox.vgrow="ALWAYS" id="borderPane" fx:id="borderPane" maxWidth="Infinity" maxHeight="800" minWidth="400" prefWidth="400" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="client_card">
     <minHeight>
         <Region fx:constant="USE_COMPUTED_SIZE"></Region>
     </minHeight>
     <prefHeight>
         <Region fx:constant="USE_COMPUTED_SIZE"></Region>
     </prefHeight>
+    <maxHeight>
+        <Region fx:constant="USE_COMPUTED_SIZE"></Region>
+    </maxHeight>
     <padding>
         <Insets bottom="5" left="20" right="20" top="5" />
     </padding>
@@ -38,7 +41,7 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
             </HBox>
-            <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" VBox.vgrow="ALWAYS">
+            <Label fx:id="name" text="\$name" styleClass="cell_big_label" wrapText="true" VBox.vgrow="ALWAYS">
                 <minHeight>
                     <Region fx:constant="USE_PREF_SIZE"></Region>
                 </minHeight>
@@ -46,7 +49,11 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" VBox.vgrow="ALWAYS">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+            </Label>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" VBox.vgrow="ALWAYS">
                 <minHeight>
                     <Region fx:constant="USE_PREF_SIZE"></Region>
