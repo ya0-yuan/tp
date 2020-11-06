@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HairStyleXParser" as HairStyleXParser LOGIC_COLOR
 participant ":AddHairdresserCommandParser" as AddHairdresserCommandParser LOGIC_COLOR
 participant "a:AddHairdresserCommand" as AddHairdresserCommand LOGIC_COLOR
 end box
@@ -19,17 +19,17 @@ end box
 [-> LogicManager : execute(add_hairdresser)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(add_hairdresser)
-activate AddressBookParser
+LogicManager -> HairStyleXParser : parseCommand(add_hairdresser)
+activate HairStyleXParser
 
 create AddHairdresserCommandParser
-AddressBookParser -> AddHairdresserCommandParser
+HairStyleXParser -> AddHairdresserCommandParser
 activate AddHairdresserCommandParser
 
-AddHairdresserCommandParser --> AddressBookParser
+AddHairdresserCommandParser --> HairStyleXParser
 deactivate AddHairdresserCommandParser
 
-AddressBookParser -> AddHairdresserCommandParser
+HairStyleXParser -> AddHairdresserCommandParser
 activate AddHairdresserCommandParser
 create AddHairdresserCommand
 AddHairdresserCommandParser -> AddHairdresserCommand
@@ -44,11 +44,11 @@ activate AddHairdresserCommand
 AddHairdresserCommand -> AddHairdresserCommandParser : a
 deactivate AddHairdresserCommand
 
-AddHairdresserCommandParser -> AddressBookParser : a
+AddHairdresserCommandParser -> HairStyleXParser : a
 deactivate AddHairdresserCommandParser
 
-AddressBookParser -> LogicManager : a
-deactivate AddressBookParser
+HairStyleXParser -> LogicManager : a
+deactivate HairStyleXParser
 
 LogicManager -> AddHairdresserCommand : execute()
 activate AddHairdresserCommand
@@ -63,7 +63,7 @@ AddHairdresserCommand --> LogicManager : result
 deactivate AddHairdresserCommand
 AddHairdresserCommand -[hidden]-> LogicManager : result
 
-LogicManager -> Storage : saveAddressBook(addressBook)
+LogicManager -> Storage : saveHairStyleX(hairStyleX)
 activate Storage
 
 Storage --> LogicManager
