@@ -2,15 +2,14 @@
 
 !include style.puml
 
-
-Participant ":AddressBookParser" as logic LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+Participant ":HairStyleXParser" as logic LOGIC_COLOR
 Participant ":AddClientCommandParser" as parser LOGIC_COLOR
 Participant "c:Client" as client LOGIC_COLOR
-Participant ":IDCounter" as idCounter LOGIC_COLOR
+Participant ":IdCounter" as idCounter LOGIC_COLOR
 Participant ":ClientId" as Id LOGIC_COLOR
-box
 Participant ":AddClientCommand" as command LOGIC_COLOR
-endbox
+end box
 
 activate logic
 logic -[USER_COLOR]> parser : parse("add_client n/John Doe p/98765432 ...")
