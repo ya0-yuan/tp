@@ -930,15 +930,13 @@ Outcome: <br>
 
 ![delete_appointment](images/appointment/delete_appointment.png)
 
-#### 4.4.6 Filtering hairdressers : `filter_hairdresser`
+#### 4.4.6 Filtering appointments : `filter_appt`
 
 You can filter the list of appointments in the database by keyword search that match their names.
 
-cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS
-
 **Format:**
 
- `filter_appt KEYWORD...`
+ `filter_appt [cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS]`
 
 <div markdown="block" class="alert alert-info">
 
