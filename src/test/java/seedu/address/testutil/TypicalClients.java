@@ -69,19 +69,21 @@ public class TypicalClients {
         .withGender("M")
         .build();
 
-    //
-    //// Manually added
-    //public static final Client HOON = new ClientBuilder().withName("Hoon Meier")
-    //    .withPhone("8482424")
-    //    .withEmail("stefan@example.com")
-    //    .withAddress("little india")
-    //    .build();
-    //public static final Client IDA = new ClientBuilder().withName("Ida Mueller")
-    //    .withPhone("8482131")
-    //    .withEmail("hans@example.com")
-    //    .withAddress("chicago ave")
-    //    .build();
-    //
+
+    // Manually added
+    public static final Client HOON = new ClientBuilder().withName("Hoon Meier")
+        .withPhone("8482424")
+        .withEmail("stefan@example.com")
+        .withAddress("little india")
+        .withGender("M")
+        .build();
+    public static final Client IDA = new ClientBuilder().withName("Ida Mueller")
+        .withPhone("8482131")
+        .withEmail("hans@example.com")
+        .withAddress("chicago ave")
+        .withGender("F")
+        .build();
+
     //// Manually added - Client's details found in {@code CommandTestUtil}
     //public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY)
     //    .withPhone(VALID_PHONE_AMY)
@@ -102,9 +104,9 @@ public class TypicalClients {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical clients.
+     * Returns a {@code HairStyleX} with all the typical clients.
      */
-    public static HairStyleX getTypicalAddressBook() {
+    public static HairStyleX getTypicalHairStyleX() {
         HairStyleX ab = new HairStyleX();
         for (Client client : getTypicalClients()) {
             ab.addClient(client);
