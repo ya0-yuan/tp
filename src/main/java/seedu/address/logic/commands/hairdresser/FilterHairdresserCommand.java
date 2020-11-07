@@ -3,13 +3,10 @@ package seedu.address.logic.commands.hairdresser;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FilterEntityCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.hairdresser.HairdresserNameContainsKeywordsPredicate;
-
-import java.awt.event.HierarchyBoundsAdapter;
 
 /**
  * Filters and lists all hairdressers whose name contains any of the argument keywords.

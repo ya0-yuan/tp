@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
 import java.util.function.Predicate;
+
+import seedu.address.model.Model;
 
 public abstract class FilterEntityCommand<T extends Predicate> extends Command {
     protected final T predicate;
