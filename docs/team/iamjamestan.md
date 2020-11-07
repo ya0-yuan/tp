@@ -56,6 +56,10 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 * Refactored all instances of `AddressBook` to `HairStyleX` (Pull request [\#255](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/255))
 * Upload screenshots for v1.3 demo
 
-#### Review/mentoring contributions:
+#### Review/mentoring contributions
 
 * PRs reviewed (with non-trivial review comments): [\#184](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/184)
+
+#### Contributions beyond the project team
+
+* Reported [6 bugs](https://github.com/iamjamestan/ped/issues) in group F13-4's tP during mock PE
