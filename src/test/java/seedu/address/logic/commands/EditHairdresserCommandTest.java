@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand.EditHairdresserDescriptor;
+import seedu.address.model.IdCounter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,6 +36,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         Hairdresser editedHairdresser = new HairdresserBuilder().build(ID_FIRST_HAIRDRESSER);
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder(editedHairdresser).build();
@@ -43,6 +45,7 @@ public class EditHairdresserCommandTest {
         String expectedMessage = String.format(EditHairdresserCommand.MESSAGE_EDIT_HAIRDRESSER_SUCCESS,
                 editedHairdresser);
 
+        IdCounter.reset();
         Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         expectedModel.setHairdresser(model.getHairdresserById(ID_FIRST_HAIRDRESSER), editedHairdresser);
 
@@ -51,6 +54,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         HairdresserId indexSecondHairdresser = ID_SECOND_HAIRDRESSER;
         Hairdresser secondHairdresser = model.getHairdresserById(indexSecondHairdresser);
@@ -66,6 +70,7 @@ public class EditHairdresserCommandTest {
         String expectedMessage = String.format(EditHairdresserCommand.MESSAGE_EDIT_HAIRDRESSER_SUCCESS,
                 editedHairdresser);
 
+        IdCounter.reset();
         Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         expectedModel.setHairdresser(secondHairdresser, editedHairdresser);
 
@@ -74,6 +79,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         EditHairdresserCommand editCommand = new EditHairdresserCommand(ID_FIRST_HAIRDRESSER,
                 new EditHairdresserDescriptor());
@@ -82,6 +88,7 @@ public class EditHairdresserCommandTest {
         String expectedMessage = String.format(EditHairdresserCommand.MESSAGE_EDIT_HAIRDRESSER_SUCCESS,
                 editedHairdresser);
 
+        IdCounter.reset();
         Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -89,6 +96,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
@@ -101,6 +109,7 @@ public class EditHairdresserCommandTest {
         String expectedMessage = String.format(EditHairdresserCommand.MESSAGE_EDIT_HAIRDRESSER_SUCCESS,
                 editedHairdresser);
 
+        IdCounter.reset();
         Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         expectedModel.setHairdresser(model.getHairdresserById(ID_FIRST_HAIRDRESSER), editedHairdresser);
 
@@ -109,6 +118,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_duplicateHairdresserUnfilteredList_failure() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         Hairdresser firstHairdresser = model.getHairdresserById(ID_FIRST_HAIRDRESSER);;
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder(firstHairdresser).build();
@@ -119,6 +129,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_duplicateHairdresserFilteredList_failure() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
@@ -132,6 +143,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_invalidHairdresserIndexUnfilteredList_failure() {
+        IdCounter.reset();
         Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
         HairdresserId outOfBoundIndex = new HairdresserId(String.valueOf(model
                 .getFilteredHairdresserList().size() + 1));
