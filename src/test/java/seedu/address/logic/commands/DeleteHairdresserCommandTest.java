@@ -28,7 +28,7 @@ public class DeleteHairdresserCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Hairdresser personToDelete = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
+        Hairdresser personToDelete = model.getHairdresserById(ID_FIRST_HAIRDRESSER);
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(ID_FIRST_HAIRDRESSER);
 
         String expectedMessage = String.format(DeleteHairdresserCommand.MESSAGE_DELETE_HAIRDRESSER_SUCCESS,
@@ -55,7 +55,7 @@ public class DeleteHairdresserCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
-        Hairdresser personToDelete = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
+        Hairdresser personToDelete = model.getHairdresserById(ID_FIRST_HAIRDRESSER);
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(ID_FIRST_HAIRDRESSER);
 
         String expectedMessage = String.format(DeleteHairdresserCommand.MESSAGE_DELETE_HAIRDRESSER_SUCCESS,
