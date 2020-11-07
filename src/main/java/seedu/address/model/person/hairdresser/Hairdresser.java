@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.Entity;
 import seedu.address.model.IdCounter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -76,32 +75,6 @@ public class Hairdresser extends Person {
     public Hairdresser setTombstone() {
         return new Hairdresser(this.getId(), DeletedName.getInstance(), DeletedPhone.getInstance(),
                 DeletedEmail.getInstance(), this.getGender(), this.getTitle(), this.getSpecs());
-    }
-
-    /**
-     * This defines a weaker notion of equality between two hairdressers.
-     * @param otherHairdresser the client to compare to
-     * @return true if both hairdressers have the same name and phone number.
-     */
-    public boolean isSameHairdresser(Hairdresser otherHairdresser) {
-        if (otherHairdresser == this) {
-            return true;
-        }
-
-        return otherHairdresser != null
-                && otherHairdresser.getName().equals(getName())
-                && otherHairdresser.getPhone().equals(getPhone());
-    }
-
-    @Override
-    public boolean isSame(Entity other) {
-        if (other instanceof Hairdresser) {
-            Hairdresser hairdresser = (Hairdresser) other;
-            return isSameHairdresser(hairdresser);
-        } else {
-            return false;
-        }
-
     }
 
     /**

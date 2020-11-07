@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.logic.commandshortcut.exceptions.CommandWordException;
 
 public class CommandShortcut {
-    private static final int MAX_LENGTH = 10;
+    private static final int MAX_LENGTH = 20;
     private CommandWord commandWord;
     private HashSet<String> shortcutSet = new HashSet<>();
 

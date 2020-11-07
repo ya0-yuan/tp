@@ -25,6 +25,10 @@ public class CommandShortcutSet {
         return instance;
     }
 
+    public static void reset() {
+        instance = new CommandShortcutSet();
+    }
+
     /**
      * Insert a new shortcut
      * @param word The word associated with the shortcut

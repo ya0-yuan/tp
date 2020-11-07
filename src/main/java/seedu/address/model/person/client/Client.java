@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.Entity;
 import seedu.address.model.IdCounter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -77,33 +76,6 @@ public class Client extends Person {
     public Client setTombstone() {
         return new Client(this.getId(), DeletedName.getInstance(), DeletedPhone.getInstance(),
                 DeletedEmail.getInstance(), this.getGender(), DeletedAddress.getInstance(), this.getTags());
-    }
-
-    /**
-     * This defines a weaker notion of equality between two clients.
-     * @param otherClient the client to compare to
-     * @return true if both clients have the same name and phone number.
-     */
-    public boolean isSameClient(Client otherClient) {
-        if (otherClient == this) {
-            return true;
-        }
-
-        return otherClient != null
-            && otherClient.getName().equals(getName())
-            && otherClient.getPhone().equals(getPhone());
-    }
-
-    @Override
-    public boolean isSame(Entity other) {
-
-        if (other instanceof Client) {
-            Client client = (Client) other;
-            return isSameClient(client);
-        } else {
-            return false;
-        }
-
     }
 
     /**

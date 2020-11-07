@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="borderPane" fx:id="borderPane" maxHeight="125" maxWidth="350" minHeight="100" minWidth="200" prefHeight="125" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="appt_card">
+<?import javafx.scene.layout.Region?>
+<BorderPane id="borderPane" fx:id="borderPane" maxHeight="175" maxWidth="Infinity" minHeight="100" minWidth="300" prefHeight="160" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" styleClass="appt_card">
     <padding>
-        <Insets bottom="5" left="20" right="20" top="5" />
+        <Insets bottom="5" left="5" right="5" top="5" />
     </padding>
     <left>
         <ImageView fitHeight="64" fitWidth="64" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -29,14 +30,28 @@
                 <Label fx:id="id" styleClass="cell_big_label"/>
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
 
-                <Label styleClass="cell_small_label"  text="Client name:" />
-                <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" />
+                <Label styleClass="cell_small_label"  text="Client name:" wrapText="true">
+                    <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE"></Region>
+                    </minWidth>
+                </Label>
+                <Label fx:id="clientName" styleClass="cell_small_label" text="\$clientName" wrapText="true"/>
             </HBox>
 
             <HBox>
-                <Label styleClass="cell_small_label" text="Hairdresser name: " />
-                <Label fx:id="hairdresserName" styleClass="cell_small_label" text="\$hairdresserName" />
+                <minHeight>
+                    <Region fx:constant="USE_PREF_SIZE"></Region>
+                </minHeight>
+                <Label styleClass="cell_small_label" text="Hairdresser name: " wrapText="true">
+                    <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE"></Region>
+                    </minWidth>
+                </Label>
+                <Label fx:id="hairdresserName" styleClass="cell_small_label" text="\$hairdresserName" wrapText="true"/>
             </HBox>
             <HBox>
                 <Label styleClass="cell_small_label" text="Date: " />

@@ -33,14 +33,14 @@ To get started with using **HairStyleX**, you can follow these steps:
 
 1. Copy the file to the folder you want to use as the _home folder_ for **HairStyleX**.
 
-1. Double-click the file to start the app. The GUI similar to the one shown in <u>Figure 1</u> should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
 
 1. At the top of the screen, type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 1. Refer to [Section 3.2.3, "Command Syntax and Usage"](#323-command-syntax-and-usage) on how to use commands and [Section 4, "Features"](#4-features) below for details of each command.
 
 ![Ui](images/Ui.png)
-*Figure 1. GUI of **HairStyleX***
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About
@@ -68,7 +68,6 @@ Before moving on to the next section, you may want to familiarise yourself with 
 The following figure shows the GUI of **HairStyleX**. It is annotated with the name of the GUI components.
 
 ![UiAnnotation](images/UiAnnotation.png)
-*Figure 2. Annotated GUI of **HairStyleX***
 
 #### 3.2.2 General Symbols and Syntax
 
@@ -148,6 +147,14 @@ As you use our features, other files will be created and stored in the folder th
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Saving the data**
+
+All information will be stored automatically after any command that changes the data. There is no need to save manually. This data be automatically loaded upon restart of the application.
+
+</div>
+
 <div markdown="block" class="alert alert-light">
 
 **:bulb: Tips for first time users**<br>
@@ -157,32 +164,152 @@ If this is your first time using **HairStyleX**, you might notice that this appl
 </div>
 
 ### 4.1 General commands
+(Contributed by Tan Yu Li, James)
+
+The commands in this section allow you to perform operations on the entire system. They include:
+
+* Viewing help
+* Clearing all entries
+* Exiting from the application
+* Exporting entries to CSV
 
 #### 4.1.1 Viewing help : `help`
 
-Shows the link to the user guide in case the user forgets the commands.
+You can use this command to view the user guide, which contains information about all the instructions in HairStyleX.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Ensure that you have a stable internet connection and have a web browser on your computer in order to access the user guide.
+
+</div>
+
+**Format:**
+
+`help`
+
+**Example:**
+
+In this example, you want to view the user guide to get information about the various commands in HairStyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Requesting for help:
+
+1. Type `help` into the *Command Box*.
+1. Press `Enter` to execute.
+1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the HairStyleX user guide.
+![HelpOutcome](images/general-command/Help.png)
+1. Open your preferred web browser on your computer and paste the link into the address bar.
+1. Press `Enter` to load the website
+
+Outcome:
+
+1. Your browser will show the user guide
+1. You can now access information about all commands in HairStyleX via the browser
+
+</div>
 
 #### 4.1.2 Clearing all entries : `clear`
 
-Clears all entries from the application.
+You can use this command to clear all entries in HairStyleX.
 
-Format: `clear`
+<div markdown="block" class="alert alert-warning">
 
-#### 4.1.3 Exiting the program : `exit`
+**:warning: This command will delete all data in HairStyleX permanently. Please proceed with caution.**
 
-Exits the program.
+</div>
 
-Format: `exit`
+**Format:**
 
-#### 4.1.4 Saving the data
+`clear`
 
-All hairdressers and client information will be stored automatically after any command that changes the data. There is no need to save manually. This data be loaded upon restart of the application.
+**Example:**
 
-#### 4.1.5 Exporting entries to CSV: `print`
+In this example, you want to clear all current data and start with an empty HairStyleX.
 
-Exports all hairdressers, clients and appointments from the application to CSV files.
+<div markdown="block" class="alert alert-white">
 
-Format: `print`
+Clearing the data:
+
+1. Type `clear` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message.
+1. You will now see that the *Clients Panel*, *Hairdressers Panel*, and *Appointments Panel* are empty.
+
+</div>
+
+![ClearOutcome](images/general-command/Clear.png)
+
+#### 4.1.3 Exiting from the application: `exit`
+
+You can use this command to exit HairStyleX.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: This command will exit the application immediately. All data is saved automatically and will be reloaded upon restart of the application **
+
+</div>
+
+**Format:**
+
+`exit`
+
+**Example:**
+
+In this example, you want to exit HairStyleX.
+
+<div markdown="block" class="alert alert-white">
+
+Exiting the application:
+
+1. Type `exit` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The **HairStyleX** application window is now closed.
+
+</div>
+
+#### 4.1.4 Exporting entries to CSV: `print`
+
+You can use this command to export all hairdressers, clients and appointments from the application to CSV files.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Modifying the CSV files generated will not result in changes to the data in HairStyleX**
+
+</div>
+
+**Format:**
+
+`print`
+
+**Example:**
+
+In this example, you want to export all current data into CSV files.
+
+<div markdown="block" class="alert alert-white">
+
+Exporting to CSV:
+
+1. Type `print` into the *Command Box*.
+1. Press `Enter` to execute.
+
+Outcome:
+
+1. The `Result Display` will show a success message.
+1. You can now access the CSV files in the same folder that contains **HairStyleX.jar**.
+1. There should be three CSV files generated. Namely, *appointments.csv*, *client.csv*, *hairdressers.csv*.
+1. These files contain the information for `Appointment`s, `Client`s, and `Hairdresser`s respectively. 
+
+</div>
+
+![PrintOutcome](images/general-command/Print.png)
+
 
 ### 4.2 Client Management
 (Contributed by Yao Yuan)
@@ -206,7 +333,11 @@ Parameter Name | Description
 `EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `yaoyuan@example.com`
 `GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
 `ADDRESS` | The address of the client. It should only contain a maximum of 50 characters <br>  E.g. `6 College Avenue East #12-01D`
+<<<<<<< HEAD
 `TAG` | The tag of the client. <br> A tag can only be one word with no space in between. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
+=======
+`TAG` | The tag of the client. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than 4 tags for each client.  <br>E.g. `shortHair`
+>>>>>>> master
 `ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_client`. <br>It should only contain alphanumeric characters. 
 
@@ -221,6 +352,18 @@ You can use this command to add a client to the database.
 <div markdown="block" class="alert alert-info">
 
 :information_source: Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to enter duplicates into HairStyleX.
 
 </div>
 
@@ -244,8 +387,7 @@ Outcome: <br>
 
 </div>
 
-![AddClientOutcome](images/AddClientOutcome.png)
-*Figure 3. Outcome of a successful `add_client` command*
+![AddClientOutcome](images/client/AddClientOutcome.png)
 
 #### 4.2.3 Listing all clients : `list_client`
 
@@ -290,6 +432,18 @@ You can use this command to edit an existing client in the database.
 * Refer to [Section 4.2.1](#421-client-management-command-parameters) for more details on each parameter.
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Clients with the same name and phone number are considered as duplicates.
+
+* Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
+
+* You are not allowed to edit a client such that their updated information results in duplicates in HairStyleX.
+
+</div>
+
 **Examples:**
 
 Assume that the client with ID `1` changed his/her phone number and email and you wish to update it in the database. You will perform the following steps:
@@ -308,8 +462,7 @@ Outcome:
 
 </div>
 
-![EditClientOutcome](images/EditClientOutcome.png)
-*Figure 4. Outcome of a successful `edit_client` command*
+![EditClientOutcome](images/client/EditClientOutcome.png)
 
 #### 4.2.5 Deleting a client : `delete_client`
 
@@ -345,8 +498,7 @@ Outcome: <br>
 
 </div>
 
-![DeleteClientOutcome](images/DeleteClientOutcome.png)
-*Figure 5. Outcome of a successful `delete_Client` command*
+![DeleteClientOutcome](images/client/DeleteClientOutcome.png)
 
 #### 4.2.6 Filtering clients : `filter_client`
 
@@ -385,9 +537,7 @@ Outcome: <br>
 
 </div>
 
-![FilterClientOutcome](images/FilterClientOutcome.png)
-*Figure 6. Outcome of a successful `filter_client` command*
-
+![FilterClientOutcome](images/client/FilterClientOutcome.png)
 
 ### 4.3 Hairdresser Management
 
@@ -428,6 +578,18 @@ You can use this command to add a hairdresser to the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to enter duplicates in HairStyleX.
+
+</div>
+
 **Example:**
 
 In the example below, you will register a female Senior Stylist called **Helen Lim** with phone number **82716252**, email **helenlim@example.com**, who is specialised in **Perm** and **Color**, into the HairstyleX.
@@ -446,9 +608,7 @@ Outcome: <br>
 
 </div>
 
-![AddHairdresserOutcome](images/AddHairdresserOutcome.png)
-*Figure 7. Outcome of a successful `add_hairdresser` command*
-
+![AddHairdresserOutcome](images/hairdresser/AddHairdresserOutcome.png)
 
 #### 4.3.3 Listing all hairdressers : `list_hairdresser`
 
@@ -495,15 +655,27 @@ You can use this command to edit an existing hairdresser in the database.
 
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+:warning:
+
+* Hairdressers with the same name and phone number are considered as duplicates.
+
+* Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
+
+* You are not allowed to edit a hairdresser such that their updated information results in duplicates in HairStyleX.
+
+</div>
+
 **Example:**
 
-Assume that the hairdresser with ID `4` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
+Assume that the hairdresser with ID `3` changed his/her contact details and you wish to change them in the database. You will perform the following steps: 
 
 <div markdown="block" class="alert alert-white">
 
 Editing a new hairdresser: <br>
 
-1. Type `edit_hairdresser 4 p/91234567 e/yy@example.com` into the *Command Box*.
+1. Type `edit_hairdresser 3 p/91234567 e/yy@example.com` into the *Command Box*.
 1. Press `Enter` to execute.
 
 Outcome: <br>
@@ -513,8 +685,7 @@ Outcome: <br>
 
 </div>
 
-![EditHairdresserOutcome](images/EditHairdresserOutcome.png)
-*Figure 8. Outcome of a successful `edit_hairdresser` command*
+![EditHairdresserOutcome](images/hairdresser/EditHairdresserOutcome.png)
 
 #### 4.3.5 Deleting a hairdresser : `delete_hairdresser`
 
@@ -550,8 +721,7 @@ Outcome: <br>
 
 </div>
 
-![DeleteHairdresserOutcome](images/DeleteHairdresserOutcome.png)
-*Figure 9. Outcome of a successful `delete_hairdresser` command*
+![DeleteHairdresserOutcome](images/hairdresser/DeleteHairdresserOutcome.png)
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
@@ -574,25 +744,23 @@ You can filter the list of hairdressers in the database by keyword search that m
 
 **Example:**
 
-You wish to find the hairdresser **Helen** from the database and check her full name and specialisations. You will perform the following steps:
+You wish to find the hairdresser **Bella** from the database and check her full name and specialisations. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
 Filter hairdresser: <br>
 
-1. Type `filter_hairdresser helen` into the *Command Box*.
+1. Type `filter_hairdresser bella` into the *Command Box*.
 1. Press `Enter` to execute.
 
 Outcome: <br>
 
 1. The `Result Display` will show a success message.
-1. You can now see the filtered hairdresser's information in the *Hairdressers Panel*, with hairdressers named `helen` displayed in the list.
+1. You can now see the filtered hairdresser's information in the *Hairdressers Panel*, with hairdressers named `bella` displayed in the list.
 
 </div>
 
-![FilterHairdresserOutcome](images/FilterHairdresserOutcome.png)
-*Figure 10. Outcome of a successful `filter_hairdresser` command*
-
+![FilterHairdresserOutcome](images/hairdresser/FilterHairdresserOutcome.png)
 
 ### 4.4 Appointment Management
 
@@ -632,7 +800,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time.  
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time.  
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -648,7 +816,7 @@ In the example below, you will create an appointment between **client 1** and **
 
 Adding a new appointment: <br>
 
-1. Type `add_appt cid/1 hid/1 d/2020-12-12 t/17:30` into the *Command Box*.
+1. Type `add_appt cid/1 hid/2 d/2020-12-12 t/17:30` into the *Command Box*.
 1. Press `Enter` to execute.
 
 Outcome: <br>
@@ -660,7 +828,6 @@ Outcome: <br>
 </div>
 
 ![create_appointment](images/appointment/create_appointment.png)
-*Figure 11. Outcome of a successful `add_appt` command*
 
 #### 4.4.3 Listing appointments : `list_appt`
 
@@ -728,7 +895,6 @@ Outcome:
 </div>
 
 ![edit_appointment](images/appointment/edit_appointment.png)
-*Figure 12. Outcome of a successful `edit_appt` command*
 
 #### 4.4.5 Deleting an appointment : `delete_appt`
 
@@ -767,7 +933,6 @@ Outcome: <br>
 </div>
 
 ![delete_appointment](images/appointment/delete_appointment.png)
-*Figure 13. Outcome of a successful `delete_appt` command*
 
 #### 4.4.6 Filtering hairdressers : `filter_hairdresser`
 
@@ -805,7 +970,7 @@ Outcome: <br>
 
 </div>
 
-![delete_appointment](images/appointment/filter_appointment_1.png)
+![filter_appointment_1](images/appointment/filter_appointment_1.png)
 
 **Example 2:**
 
@@ -862,18 +1027,13 @@ Outcome:
 * The _Result Display_ will show a success message.
 * You can now see your new shortcut.
 
-![Ui](images/add_alias_success.png)
-*Figure 9. Outcome of a successful `add_shortcut` command*
-
+![Ui](images/shortcut/add_alias_success.png)
 
 You can now use the shortcut
-![Ui](images/use_new_alias.png)
-*Figure 10. Usage of new alias*
-
+![Ui](images/shortcut/use_new_alias.png)
 
 And it works!
-![Ui](images/new_alias.png)
-*Figure 11. Success confirmation from using new alias command*
+![Ui](images/shortcut/new_alias.png)
 
 <div markdown="block" class="alert alert-info">  
 **:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
@@ -902,9 +1062,9 @@ Outcome:
 * The _Result Display_ will show a success message.
 
 .Outcome of a successful `delete_shortcut` command
-![Ui](images/deletealias.png)
+![Ui](images/shortcut/deletealias.png)
 
-#### 4.5.3 List all shortcuts : `listshortcut`
+#### 4.5.3 List all shortcuts : `list_shortcut`
 
 You can use this command to list all your shortcuts.
 
@@ -912,7 +1072,9 @@ You can use this command to list all your shortcuts.
 
 `list_shortcut`
 
-[Coming soon]
+You can use this command to show all your shortcuts.
+
+![Ui](images/list_shortcut.png)
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)

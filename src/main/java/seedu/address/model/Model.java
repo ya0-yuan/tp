@@ -84,6 +84,11 @@ public interface Model {
     Appointment getAppointmentById(AppointmentId appointmentId);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the hairStyleX.
+     */
+    boolean hasPerson(Person person);
+
+    /**
      * Returns true if a client with the same identity as {@code client} exists in the hairStyleX.
      */
     boolean hasClient(Client client);
