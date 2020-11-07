@@ -21,7 +21,7 @@
         <Region fx:constant="USE_COMPUTED_SIZE"></Region>
     </maxHeight>
     <padding>
-        <Insets bottom="5" left="20" right="20" top="5" />
+        <Insets bottom="5" left="5" right="5" top="5" />
     </padding>
     <left>
         <ImageView fitHeight="64" fitWidth="64" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
