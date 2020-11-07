@@ -1,14 +1,12 @@
 @startuml
-
-
+!include style.puml
 skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Abstract Class Id {
-- id: int
-{static} + MESSAGE_CONSTRAINTS: String
-+ isValidId(): boolean
+Abstract Class "{abstract} \nId" as Id {
+
 }
 
 Package Client {
