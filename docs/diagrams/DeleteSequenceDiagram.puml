@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HairStyleXParser" as HairStyleXParser LOGIC_COLOR
 participant ":DeleteClientCommandParser" as DeleteClientCommandParser LOGIC_COLOR
 participant "d:DeleteClientCommand" as DeleteClientCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("delete_client 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete_client 1")
-activate AddressBookParser
+LogicManager -> HairStyleXParser : parseCommand("delete_client 1")
+activate HairStyleXParser
 
 create DeleteClientCommandParser
-AddressBookParser -> DeleteClientCommandParser
+HairStyleXParser -> DeleteClientCommandParser
 activate DeleteClientCommandParser
 
-DeleteClientCommandParser --> AddressBookParser
+DeleteClientCommandParser --> HairStyleXParser
 deactivate DeleteClientCommandParser
 
-AddressBookParser -> DeleteClientCommandParser : parse("1")
+HairStyleXParser -> DeleteClientCommandParser : parse("1")
 activate DeleteClientCommandParser
 
 create DeleteClientCommand
@@ -36,14 +36,14 @@ activate DeleteClientCommand
 DeleteClientCommand --> DeleteClientCommandParser : d
 deactivate DeleteClientCommand
 
-DeleteClientCommandParser --> AddressBookParser : d
+DeleteClientCommandParser --> HairStyleXParser : d
 deactivate DeleteClientCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteClientCommandParser -[hidden]-> AddressBookParser
+DeleteClientCommandParser -[hidden]-> HairStyleXParser
 destroy DeleteClientCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+HairStyleXParser --> LogicManager : d
+deactivate HairStyleXParser
 
 LogicManager -> DeleteClientCommand : execute()
 activate DeleteClientCommand

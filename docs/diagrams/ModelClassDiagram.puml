@@ -51,11 +51,11 @@ AddressBook .up.|> ReadOnlyAddressBook
 
 Person .down.|> Entity
 Appointment .down.|> Entity
-Hairdresser ..|> Person
-Client ..|> Person
-UniqueAppointmentList .up.|> UniqueEntityList
-UniqueClientList .up.|> UniqueEntityList
-UniqueHairdresserList .up.|> UniqueEntityList
+Hairdresser --|> Person
+Client --|> Person
+UniqueAppointmentList -up-|> UniqueEntityList
+UniqueClientList -up-|> UniqueEntityList
+UniqueHairdresserList -up-|> UniqueEntityList
 
 
 ModelManager .up.|> Model

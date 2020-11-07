@@ -46,7 +46,7 @@ public class CommandShortcut {
         }
 
         if (shortcut.length() > MAX_LENGTH) {
-            throw new CommandWordException("Shortcut cannot be more than 10 characters!");
+            throw new CommandWordException("Shortcut cannot be more than 20 characters!");
         }
 
         shortcutSet.add(shortcut);
