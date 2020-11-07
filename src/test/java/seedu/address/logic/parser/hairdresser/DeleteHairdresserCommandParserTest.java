@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.hairdresser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.ID_FIRST_HAIRDRESSER;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
-import seedu.address.logic.parser.hairdresser.DeleteHairdresserCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

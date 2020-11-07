@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.hairdresser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_ALISSA;
@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand;
 import seedu.address.logic.commands.hairdresser.EditHairdresserCommand.EditHairdresserDescriptor;
-import seedu.address.logic.parser.hairdresser.EditHairdresserCommandParser;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.hairdresser;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalIndexes.ID_SECOND_HAIRDRESSER;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.hairdresser.DeleteHairdresserCommand;
 import seedu.address.model.IdCounter;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
