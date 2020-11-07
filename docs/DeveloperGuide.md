@@ -216,7 +216,7 @@ From the diagram above:
 ### Appointment feature
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
-#### Current Implementation
+#### Overview of implementation for Appointment
 
 * `Appointment` - This is an entity class to store information regarding an appointment, such as hairdresser, client, hairdresser ID, client ID, date, time and status.
                        
@@ -225,18 +225,36 @@ This feature represents an appointment between a hairdresser and a client. An ap
 * `AppointmentID` - This is a class which represents the unique ID of an appointment.
 * `UniqueAppointmentList` - This is a `UniqueEntityList` which represents all appointments. It implements features including ensuring that no duplicate appointments can be added. It allows for clients or hairdressers to be replaced or deleted, and updates the relevant appointments.
 *`JsonAdaptedAppointment` - This class functions as an adapter between Appointment and the Storage layer. It specifies how to convert from an appointment object to a JSON representation and vice versa. It also serves as validation for correct data format when the save file is loaded.
+
 *`AddAppointmentCommandParser` - This class parses a user input string to an AppointmentCommand object. Validation for inputs that do not require access to the model is performed here.                                                                  
 *`AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
+####Add Appointment Feature
+##### Current implementation
 Steps:
 
-1. The user enters an add appointment command, the input is first validated by AddAppointmentCommandParser. Inputs that do not require access to the model is validated, for example validating the format of hairdresser ID, client ID, date, and time. It ensures that the date/time is valid and is in the future, but does not check whether the hairdresser/client ID corresponds to an actual hairdresser/client (this is validated when the command is executed). A new AddAppointmentCommand object is created.
-
-1. The Logic layer then executes the AddAppointmentCommand. This checks if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
-
-1. The model adds the appointment to its internal list `UniqueAppointmentList`. This list is an `javafx.collections.ObservableList` and the UI layer is notified and updated through a `ListChangeListener`. This follows the observer pattern.
 
 1. The Logic layer will be notified that the model has been modified through an `InvalidationListener`. This triggers storing information to non-volatile memory using the Storage layer, and the process is detailed there.
+
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+From the diagram above:
+
+1. When the user enters a command string into the command box,`LogicManager`’s `execute` is called when with the string as an argument. This command string is logged, and then passed to `parseCommand` of `HairStyleXParser` which parses the command.
+
+2. If the command string matches the format for an add appointment command, `HairStyleXParser` will initialize an `AddAppointmentCommandParser` and invoke the method `parse` to further parse the command.
+
+3. `parse` of `AddAppointmentCommandParser` will be invoked, and passed the parameters of the add hairdresser command. Here, validation that does not require access to the model is performed, for example, validating the format of hairdresser ID, client ID, date, and time. It ensures that the date/time is valid and is in the future, but does not check whether the hairdresser/client ID corresponds to an actual hairdresser/client (this is validated when the command is executed). 
+
+4. If the command is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`. Otherwise, a `ParseException` may be thrown.
+
+5. `LogicManger` will then call the `execute` method of `AddAppointmentCommand`, with the `model` as an argument. Here, checks are performed, such as verifying if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
+
+6. If the command is valid `AddAppointmentCommand` will call `addAppointment` of `Model` with the newly created appointment as an argument, then it will return a `CommandResult`. Otherwise, a `CommandException` may be thrown.
+
+7. `LogicManger` will then call `saveHairStyleX` method of `Storage`. This triggers storing information to non-volatile memory using the Storage layer.
+
+8. The `CommandResult` is returned.
 
 #### Proposed improvements
 1. Currently, validation or updating of appointments based on client/hairdresser ID requires iterating through all appointments to check if they involve the relevant client/hairdresser. Hence this process is slow and runs in O(n) time. It can be improved by implementing two `HashMaps` of appointments keyed by `ClientId`/`HairdresserId`  respectively. This will allow for the search to be done in O(1) time. We did not implement this feature as it would introduce unnecessary complexity, and the current solution meets the non-functional requirements regarding performance.
