@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_client 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram of the Logic Component](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -146,7 +146,7 @@ are the command word's shortcuts.
 It is responsible for finding the command word associated with a given input string and to validate whether the 
 new shortcuts are allowed to be saved into the system.
 
-####Add Shortcuts
+#### Add Shortcuts
 Steps: 
 1. User input a command to the system. It is parsed regularly as before, extracting the string.
 2. `AddressBookParser` will pass the string to `CommandShortcutSet` to retrieve the corresponding `CommandWord`.
@@ -259,22 +259,27 @@ To tackle this, we concluded that each entity should be identified by a unique I
 
 ##### ID Class
 
-* The Model package contains an abstract Id class, which is essentially a wrapper for an integer `id` variable, along with a method used to verify the validity of the `id` and error messages to be shown.
-* The classes AppointmentId, ClientId, and HairdresserId extend the abstract Id class, and reside in their respective packages
+* The Model package contains an abstract `Id` class, which is essentially a wrapper for an integer `id` variable.
+* The `Id` class also has a concrete method used to verify the validity of the `id`.
+* The concrete classes `AppointmentId`, `ClientId`, and `HairdresserId` extend the abstract Id class, and reside in their respective packages.
+* These concrete classes contain their unique error messages which will be shown when an instance is created with an invalid id.
 
 ![IDClassDiagram](images/IDClassDiagram.png)
 
 ##### ID Counter Class
 
-* To ensure that the IDs of each entity created are unique, a final class `IDCounter` is implemented. 
+* To ensure that the IDs of each entity created are unique, a final class `IdCounter` is implemented. 
 * This class is a singleton, and only one instance can exist at any one time.
-* It consists of static attributes that keep track of the next ID to be generated for the respective entities, namely, Clients, Hairdressers, and Appointments.
+* It consists of static integer attributes that keep track of the next ID to be generated for the respective entities, namely, Clients, Hairdressers, and Appointments.
+* `IdCounter` has methods to generate the next unique `ClientId`, `HairdresserId` and `AppointmentId`.
+* In order to avoid collisions, whenever a `ClientId` is generated, the next `ClientId` generated will be increased by 1.
+    * Likewise for `HairdresserId` and `AppointmentId`
 
 ![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
 
 #### Design Considerations
 
-* Alternative 1 (current implementation): Use 3 separate counters for `Client`s, `Hairdresser`s, `Appointment`s
+* Alternative 1 (current implementation): Use 3 separate counters in `IdCounter` for `Client`s, `Hairdresser`s, `Appointment`s
   * Pros: Good OOP Design. Error messages can be abstracted out in their respective ID classes
   * Cons: Hassle to keep track of three separate counters, and repetitive to have three separate methods for these counters
 
@@ -290,7 +295,7 @@ Given below is the example usage scenario that highlights the generation of a ne
 
 1. The AddClientCommandParser extracts the relevant fields from the user input and creates a new Client instance using the Client constructor.
 
-1. The Client constructor calls IDCounter to generate a new ClientId instance.
+1. The Client constructor calls IdCounter to generate a new ClientId instance.
 
 1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
 

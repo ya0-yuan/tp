@@ -1,14 +1,28 @@
 @startuml
-
+!include style.puml
 skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class IdCounter {
-{static} - instance: IdCounter
-{static} - clientId: int
-{static} - hairdresserId: int
-{static} - appointmentId: int
-{static} + getInstance(): IdCounter
+
 }
+
+Package Client {
+Class ClientId {
+}
+}
+
+Package Hairdresser {
+Class HairdresserId
+}
+
+Package Appointment {
+Class AppointmentId
+}
+
+IdCounter -.down-> HairdresserId
+IdCounter -.down-> ClientId
+IdCounter -.down-> AppointmentId
 @enduml
