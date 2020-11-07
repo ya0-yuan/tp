@@ -34,7 +34,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
         * The methods used to define equality was also carefully considered, since they will be used to prevent creation of duplicate entities in HairStyleX.
         * In addition, all fields were carefully designed to include regex tests for the most appropriate strings to be accepted.
         
-* **Testing**: Create tests for client commands to increase coverage from ()
+* **Testing**: Create tests for client related commands to increase coverage from 48% to 56% (Pull request [\#280](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/280))
 
 #### Contributions to the User Guide
 
