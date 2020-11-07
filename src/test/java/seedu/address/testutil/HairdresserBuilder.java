@@ -8,6 +8,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.hairdresser.Hairdresser;
+import seedu.address.model.person.hairdresser.HairdresserId;
 import seedu.address.model.person.hairdresser.Title;
 import seedu.address.model.specialisation.Specialisation;
 import seedu.address.model.util.SampleDataUtil;
@@ -105,5 +106,9 @@ public class HairdresserBuilder {
 
     public Hairdresser build() {
         return new Hairdresser(name, phone, email, gender, title, specs);
+    }
+
+    public Hairdresser build(HairdresserId id) {
+        return new Hairdresser(id, name, phone, email, gender, title, specs);
     }
 }
