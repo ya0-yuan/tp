@@ -25,10 +25,9 @@ import seedu.address.model.person.hairdresser.HairdresserId;
  */
 public class DeleteHairdresserCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Hairdresser personToDelete = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(ID_FIRST_HAIRDRESSER);
 
@@ -43,6 +42,7 @@ public class DeleteHairdresserCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         HairdresserId outOfBoundIndex = new HairdresserId(String.valueOf(model
                 .getFilteredHairdresserList().size() + 1));
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(outOfBoundIndex);
@@ -52,6 +52,7 @@ public class DeleteHairdresserCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
         Hairdresser personToDelete = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
@@ -66,7 +67,6 @@ public class DeleteHairdresserCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-
 
     @Test
     public void equals() {

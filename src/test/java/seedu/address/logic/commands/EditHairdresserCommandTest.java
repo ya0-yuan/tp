@@ -34,10 +34,9 @@ import seedu.address.testutil.HairdresserBuilder;
  */
 public class EditHairdresserCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Hairdresser editedHairdresser = new HairdresserBuilder().build();
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder(editedHairdresser).build();
         EditHairdresserCommand editCommand = new EditHairdresserCommand(ID_FIRST_HAIRDRESSER, descriptor);
@@ -53,6 +52,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         HairdresserId indexLastHairdresser = new HairdresserId(String.valueOf(model.getFilteredHairdresserList()
                 .size()));
         Hairdresser lastHairdresser = model.getFilteredHairdresserList().get(indexLastHairdresser.id - 1);
@@ -76,6 +76,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         EditHairdresserCommand editCommand = new EditHairdresserCommand(ID_FIRST_HAIRDRESSER,
                 new EditHairdresserDescriptor());
         Hairdresser editedHairdresser = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
@@ -90,6 +91,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
         Hairdresser personInFilteredList = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
@@ -109,6 +111,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_duplicateHairdresserUnfilteredList_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Hairdresser firstHairdresser = model.getFilteredHairdresserList().get(ID_FIRST_HAIRDRESSER.id - 1);
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder(firstHairdresser).build();
         EditHairdresserCommand editCommand = new EditHairdresserCommand(ID_SECOND_HAIRDRESSER, descriptor);
@@ -118,6 +121,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_duplicateHairdresserFilteredList_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
 
         // edit person in filtered list into a duplicate in address book
@@ -130,6 +134,7 @@ public class EditHairdresserCommandTest {
 
     @Test
     public void execute_invalidHairdresserIndexUnfilteredList_failure() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         HairdresserId outOfBoundIndex = new HairdresserId(String.valueOf(model
                 .getFilteredHairdresserList().size() + 1));
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder()
