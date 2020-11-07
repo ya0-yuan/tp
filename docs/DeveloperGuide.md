@@ -231,10 +231,6 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 ####Add Appointment Feature
 ##### Current implementation
-Steps:
-
-
-1. The Logic layer will be notified that the model has been modified through an `InvalidationListener`. This triggers storing information to non-volatile memory using the Storage layer, and the process is detailed there.
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
