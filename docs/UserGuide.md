@@ -999,7 +999,7 @@ longer commands.
 Parameter Name | Description
 --------|------------------
 `OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
-`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 10 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
+`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
 #### 4.5.2 Add a new shortcut : `add_shortcut`
 
@@ -1070,7 +1070,7 @@ You can use this command to list all your shortcuts.
 
 You can use this command to show all your shortcuts.
 
-![Ui](images/list_shortcut.png)
+![Ui](images/shortcut/list_shortcut.png)
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)
