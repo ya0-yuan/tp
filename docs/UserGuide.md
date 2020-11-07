@@ -1070,7 +1070,7 @@ You can use this command to list all your shortcuts.
 
 You can use this command to show all your shortcuts.
 
-![Ui](images/list_shortcut.png)
+![Ui](images/shortcut/list_shortcut.png)
 
 ## 5. FAQ
 (Contributed by Tan Yu Li, James)
