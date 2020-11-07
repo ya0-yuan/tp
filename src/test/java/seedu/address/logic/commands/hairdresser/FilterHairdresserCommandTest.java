@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalHairdressers.AMELIA;
 import static seedu.address.testutil.TypicalHairdressers.BENEDICT;
 import static seedu.address.testutil.TypicalHairdressers.CALEB;
-import static seedu.address.testutil.TypicalHairdressers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalHairdressers.getTypicalHairStyleX;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,10 +22,10 @@ import seedu.address.model.person.hairdresser.HairdresserNameContainsKeywordsPre
 import seedu.address.testutil.TypicalHairdressers;
 
 
-public class FilterHairdresserTest {
+public class FilterHairdresserCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHairStyleX(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
 
     @Test
     public void equals() {

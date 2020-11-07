@@ -61,7 +61,7 @@ public class AddClientCommandTest {
                 new seedu.address.logic.commands.client.AddClientCommandTest.ModelStubWithClient(validClient);
 
         assertThrows(CommandException.class, AddClientCommand.MESSAGE_DUPLICATE_CLIENT, ()
-                -> addCommand.execute(modelStub));
+            -> addCommand.execute(modelStub));
     }
 
     @Test

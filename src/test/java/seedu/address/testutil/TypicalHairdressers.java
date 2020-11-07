@@ -103,9 +103,9 @@ public class TypicalHairdressers {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical hairdressers.
+     * Returns an {@code HairStyleX} with all the typical hairdressers.
      */
-    public static HairStyleX getTypicalAddressBook() {
+    public static HairStyleX getTypicalHairStyleX() {
         HairStyleX ab = new HairStyleX();
         for (Hairdresser hairdresser : getTypicalHairdressers()) {
             ab.addHairdresser(hairdresser);

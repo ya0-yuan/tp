@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.hairdresser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.hairdresser.Hairdresser;
-import seedu.address.model.person.hairdresser.UniqueHairdresserList;
 import seedu.address.model.person.hairdresser.exception.DuplicateHairdresserException;
 import seedu.address.model.person.hairdresser.exception.HairdresserNotFoundException;
 import seedu.address.testutil.HairdresserBuilder;

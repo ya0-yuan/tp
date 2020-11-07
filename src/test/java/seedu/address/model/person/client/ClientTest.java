@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.client.Client;
 import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
@@ -44,25 +43,25 @@ public class ClientTest {
             .build();
         assertFalse(ALICE.isSame(editedAlice));
 
-        //// same name, same phone, different attributes -> returns true
-        //editedAlice = new ClientBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-        //    .withAddress(VALID_ADDRESS_BOB)
-        //    .withTags(VALID_TAG_HUSBAND)
-        //    .build();
-        //assertTrue(ALICE.isSameClient(editedAlice));
-        //
-        //// same name, same email, different attributes -> returns true
-        //editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-        //    .withAddress(VALID_ADDRESS_BOB)
-        //    .withTags(VALID_TAG_HUSBAND)
-        //    .build();
-        //assertTrue(ALICE.isSameClient(editedAlice));
-        //
-        //// same name, same phone, same email, different attributes -> returns true
-        //editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-        //    .withTags(VALID_TAG_HUSBAND)
-        //    .build();
-        //assertTrue(ALICE.isSameClient(editedAlice));
+        // same name, same phone, different attributes -> returns true
+        editedAlice = new ClientBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND)
+            .build();
+        assertTrue(ALICE.isSame(editedAlice));
+
+        // same name, same email, different attributes -> returns false
+        editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND)
+            .build();
+        assertFalse(ALICE.isSame(editedAlice));
+
+        // same name, same phone, same email, different attributes -> returns true
+        editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND)
+            .build();
+        assertTrue(ALICE.isSame(editedAlice));
     }
 
     @Test
