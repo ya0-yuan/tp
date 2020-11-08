@@ -1126,6 +1126,7 @@ Action | Format, Examples
 **Add Appointment** | `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME` <br> e.g., `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
 **List Appointments** | `list_appt`
 **Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
+**Filter Appointment** | `filter_appt [cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS]` <br> e.g., `filter_appt s/missed`
 
 ### 6.5 Shortcut Commands
 
