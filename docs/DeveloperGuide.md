@@ -652,7 +652,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate hairdresser in the list.
 
    1. Test case: `add_hairdresser n/Mary Ng p/98123732 e/maryn@example.com g/F ti/Senior Stylist s/Perm` <br>
-      Expected: Adds an hairdresser with a unique hairdresser ID, with name `Mary Ng`, phone `98123732`, email `maryn@example.com`, gender `F`, title `Senior Stylist`, specialisation `Perm`. 
+      Expected: Adds a hairdresser with a unique hairdresser ID, with name `Mary Ng`, phone `98123732`, email `maryn@example.com`, gender `F`, title `Senior Stylist`, specialisation `Perm`. 
 
    1. Test case: `add_hairdresser n/Serena Goh`<br>
       Expected: No hairdresser is added. Error details shown in result display.
@@ -672,7 +672,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit_hairdresser ti/Apprentice`<br>
       Expected: No hairdresser is edited. Error details shown in result display.
 
-   1. Other incorrect edit commands to try: `edit_hairdresser`, `edit_hairdresser x s/COMPLETED` (where there are no hairdressers with hairdresser ID of x), `...`<br>
+   1. Other incorrect edit commands to try: `edit_hairdresser`, `edit_hairdresser x s/Perm` (where there are no hairdressers with hairdresser ID of x), `...`<br>
       Expected: Similar to previous test case.
       
 ### Deleting a hairdresser
