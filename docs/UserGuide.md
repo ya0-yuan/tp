@@ -1104,33 +1104,34 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g. `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
 **List Clients** | `list_client`
-**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.,`edit_client 2 n/James Tan p/Female Stylist`
-**Delete Client** | `delete_client ID` <br> e.g., `delete_client 3`
+**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
+**Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
 ### 6.3 Hairdresser Commands
 
 Action | Format, Examples
 --------|------------------
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
-**Edit Hairdresser** | `edit_hairdresser ID ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.,`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
 ### 6.4 Appointment Commands
 
 Action | Format, Examples
 --------|------------------
-**Add Appointment** | `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME` <br> e.g., `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
+**Add Appointment** | `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME` <br> e.g. `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
 **List Appointments** | `list_appt`
-**Delete Appointment** | `delete_appt ID` <br> e.g., `delete_appt 3`
+**Delete Appointment** | `delete_appt ID` <br> e.g. `delete_appt 3`
+**Filter Appointment** | `filter_appt [cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS]` <br> e.g. `filter_appt s/missed`
 
 ### 6.5 Shortcut Commands
 
 Action | Format, Examples
 --------|------------------
-**Add Shortcut** | `add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT` <br> e.g., `add_shortcut old/add_shortcut new/aa`
-**Delete Shortcut** | `delete_shortcut SHORTCUT` <br> e.g., `delete_shortcut aa`
+**Add Shortcut** | `add_shortcut old/OLD_SHORTCUT new/NEW_SHORTCUT` <br> e.g. `add_shortcut old/add_shortcut new/aa`
+**Delete Shortcut** | `delete_shortcut SHORTCUT` <br> e.g. `delete_shortcut aa`
 **List Shortcut** | `list_shortcut`
