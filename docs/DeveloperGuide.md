@@ -794,7 +794,36 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect filter commands to try: `filter_appt d/100000`, `filter_appt cid/one` `...`<br>
       Expected: Similar to previous test case.
+      
+### Adding Command Shortcuts
 
+1. Adding Command Shortcuts in **HairStyleX**
+
+   1. Prerequisites: Shortcut to be added must not already exist in **HairStyleX**. It must also not contian white lines and have a maximum of 20 letters. Parameters must be provided.
+
+   1. Test case: `add_shortcut old/help new/hp`<br>
+      Expected: Shows hp being added as a new shortcut. `hp` should now display the help window.
+
+   1. Test case: `add_shortcut old/help new/exit`<br>
+      Expected: No shortcut is added. Error details shown in result display.
+
+   1. Other incorrect add shortcut commands to try: `add_shortcut old/ne`, `add_shortcut new/sdf` `...`<br>
+      Expected: Similar to previous test case.
+
+### Deleting Command Shortcuts
+
+1. Adding Command Shortcuts in **HairStyleX**
+
+   1. Prerequisites: Shortcut to be delete must already exist in **HairStyleX**. It must not be the default command.
+   1. Test case: `delete_shortcut hp`<br>
+      Expected: Shows hp being deleted.
+
+   1. Test case: `delete_shortcut delete_shortcut`<br>
+      Expected: No shortcut is deleted. Error details shown in result display.
+
+   1. Other incorrect delete shortcut commands to try: `delete_shortcut help`, `delete_shortcut non_existent_shortcut` `...`<br>
+      Expected: Similar to previous test case.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
