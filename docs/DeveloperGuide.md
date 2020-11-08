@@ -619,34 +619,166 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Launch the jar file with `java -jar` command <br> 
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app with `java -jar` command.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a client
 
-### Deleting a person
+1. Adding a client to **HairStyleX**
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate client in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney` <br>
+      Expected: Adds a client with a unique client ID, with name `John Doe`, phone `98765432`, email `johnd@example.com`, gender `M`, address `311, Clementi Ave 2, #02-25` , tags `shortHair` and `owesMoney`. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `add_client n/John Doe`<br>
+      Expected: No client is added. Error details shown in result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect add commands to try: `add_client`, `add_client g/a`, `...`<br>
+      Expected: Similar to previous test case.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Editing a client
 
-1. _{ more test cases …​ }_
+1. Editing a client in **HairStyleX**
 
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The client to be edited must be in **HairStyleX**. A client with client ID 1 must be present in the list. 
+
+   1. Test case: `edit_client 1 t/preferPerm`<br>
+      Expected: Edits the client with ID of 1 in the displayed client panel with tag `preferPerm`.
+
+   1. Test case: `edit_client t/preferPerm`<br>
+      Expected: No client is edited. Error details shown in result display.
+
+   1. Other incorrect edit commands to try: `edit_client`, `edit_client x t/preferPerm` (where there are no clients with client ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Deleting a client
+
+1. Deleting a client in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The client to be deleted must be in **HairStyleX**. A client with client ID 1 must be present in the list. 
+
+   1. Test case: `delete_client 1`<br>
+      Expected: Deletes the client with ID of 1 in the displayed client panel.
+
+   1. Test case: `delete_client -10`<br>
+      Expected: No client is deleted. Error details shown in result display.
+
+   1. Other incorrect delete commands to try: `delete_client`, `delete_client x` (where there are no clients with client ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Filtering clients
+
+1. Filtering clients in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. There exist client in **HairStyleX** with name of `Anna`. No shortcut has been created for `filter_client`.
+
+   1. Test case: `filter_client anna`<br>
+      Expected: Displays all clients with name of `Anna` (case insensitive) in the displayed client list.
+
+   1. Test case: `filter_client`<br>
+      Expected: No filter is applied. Error details shown in result display. Client panel remains unchanged.
+
+   1. Other incorrect filter commands to try: `flter_c`, `filter_c cid/one` `...`<br>
+      Expected: Similar to previous test case.
+
+### Listing all clients
+
+1. Listing all clients in **HairStyleX**
+
+   1. Prerequisites: No arguments are required. There exist some clients currently in **HairStyleX**. No shortcut has been created for `list_client`. A valid `filter_client` command has been called. 
+
+   1. Test case: `list_client`<br>
+      Expected: Lists all clients in the client panel.
+
+   1. Test case: `lst_client`<br>
+      Expected: Application unable to detect command. Error details shown in result display. Clients panel remains unchanged.
+
+   1. Other incorrect list commands to try: `list_c`, `ls_c`, `...`<br>
+      Expected: Similar to previous test case.
+
+### Adding a hairdresser
+
+1. Adding a hairdresser to **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate hairdresser in the list.
+
+   1. Test case: `add_hairdresser n/Mary Ng p/98123732 e/maryn@example.com g/F ti/Senior Stylist s/Perm` <br>
+      Expected: Adds a hairdresser with a unique hairdresser ID, with name `Mary Ng`, phone `98123732`, email `maryn@example.com`, gender `F`, title `Senior Stylist`, specialisation `Perm`. 
+
+   1. Test case: `add_hairdresser n/Serena Goh`<br>
+      Expected: No hairdresser is added. Error details shown in result display.
+
+   1. Other incorrect add commands to try: `add_hairdresser`, `add_hairdresser s/wash`, `...`<br>
+      Expected: Similar to previous test case.
+
+### Editing a hairdresser
+
+1. Editing a hairdresser in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The hairdresser to be edited must be in **HairStyleX**. A hairdresser with hairdresser ID 1 must be present in the list. 
+
+   1. Test case: `edit_hairdresser 1 ti/Apprentice`<br>
+      Expected: Edits the hairdresser with ID of 1 in the displayed hairdresser panel with title `Apprentice`.
+
+   1. Test case: `edit_hairdresser ti/Apprentice`<br>
+      Expected: No hairdresser is edited. Error details shown in result display.
+
+   1. Other incorrect edit commands to try: `edit_hairdresser`, `edit_hairdresser x s/Perm` (where there are no hairdressers with hairdresser ID of x), `...`<br>
+      Expected: Similar to previous test case.
+      
+### Deleting a hairdresser
+
+1. Deleting a hairdresser in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The hairdresser to be deleted must be in **HairStyleX**. A hairdresser with hairdresser ID 1 must be present in the list. 
+
+   1. Test case: `delete_hairdresser 1`<br>
+      Expected: Deletes the hairdresser with ID of 1 in the displayed hairdresser panel.
+
+   1. Test case: `delete_hairdresser -10`<br>
+      Expected: No hairdresser is deleted. Error details shown in result display.
+
+   1. Other incorrect delete commands to try: `delete_hairdresser`, `delete_hairdresser x` (where there are no hairdressers with hairdresser ID of x), `...`<br>
+      Expected: Similar to previous test case.
+      
+### Filtering hairdressers
+
+1. Filtering hairdressers in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. There exist hairdresser in **HairStyleX** with name of `Anna`. No shortcut has been created for `filter_hairdresser`.
+
+   1. Test case: `filter_hairdresser anna`<br>
+      Expected: Displays all hairdressers with name of `Anna` (case insensitive) in the displayed hairdresser list.
+
+   1. Test case: `filter_hairdresser`<br>
+      Expected: No filter is applied. Error details shown in result display. Hairdresser panel remains unchanged.
+
+   1. Other incorrect filter commands to try: `flter_h`, `filter_hr cid/one` `...`<br>
+      Expected: Similar to previous test case.
+
+### Listing all hairdressers
+
+1. Listing all hairdressers in **HairStyleX**
+
+   1. Prerequisites: No arguments are required. There exist some hairdressers currently in **HairStyleX**. No shortcut has been created for `list_hairdresser`. A valid `filter_hairdresser` command has been called. 
+
+   1. Test case: `list_hairdresser`<br>
+      Expected: Lists all hairdressers in the hairdresser panel.
+
+   1. Test case: `lst_hairdresser`<br>
+      Expected: Application unable to detect command. Error details shown in result display. Hairdressers panel remains unchanged.
+
+   1. Other incorrect list commands to try: `list_hr`, `ls_h`, `...`<br>
+      Expected: Similar to previous test case.
+      
 ### Adding an appointment
 
 1. Adding an appointment to **HairStyleX**
@@ -696,7 +828,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all appointments in **HairStyleX**
 
-   1. Prerequisites: No arguments are required. There exist some appointments currently in **HairStyleX**
+   1. Prerequisites: No arguments are required. There exist some appointments currently in **HairStyleX**. No shortcut has been created for `list_appt`.
 
    1. Test case: `list_appt`<br>
       Expected: Lists all appointments in the appointment panel.
@@ -711,7 +843,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Filtering appointments in **HairStyleX**
 
-   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be deleted must be in **HairStyleX**. There exist appointments in **HairStyleX** with status of `MISSED`.
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. There exist appointments in **HairStyleX** with status of `MISSED`.
 
    1. Test case: `filter_appt s/missed`<br>
       Expected: Displays all appointments with status of `MISSED` in the displayed appointment list.
