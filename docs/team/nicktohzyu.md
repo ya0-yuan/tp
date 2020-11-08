@@ -5,7 +5,7 @@ title: Toh Zhen Yu, Nicholas's Project Portfolio Page
 
 ## Project: HairStyleX
 
-HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
@@ -41,7 +41,9 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 * Proposed future improvements which improve the runtime performance of HairStyleX.
 
 #### Review/mentoring contributions
+* Reviewed PRs including [\#55](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/55), [\#85](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/85), [\#161](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/161)
 
+* Reviewed documentation work of other teammates for typos (through informal communication channels such as Telegram)
 
 #### Contributions beyond the project team
 
