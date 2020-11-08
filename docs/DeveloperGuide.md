@@ -671,7 +671,7 @@ HairStyleX has many significant enhancements from AB3. Here are some examples:
 * Filtering functionality for Hairdresser, Client, and Appointment makes use of the app more practical even with a large data set.
 
 ### Challenges and considerations
-Throughout the development of Easy Travel, we faced many challenges. The following points will describe these challenges what how did we deal with them.
+Throughout the development of HairStyleX, we faced many challenges. The following points will describe these challenges what how did we deal with them.
 
 #### Large number of classes/entities
 There was a large increase in the number of entities to implement and manage. We also had to be careful of unwanted interactions between them causing bugs.
