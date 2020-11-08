@@ -13,8 +13,12 @@ public class Tag {
             + "contain at most 20 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}{1,20}";
 
+<<<<<<< HEAD
 
     public final String tagName;
+=======
+    private final String tagName;
+>>>>>>> master
 
     /**
      * Constructs a {@code Tag}.
@@ -32,6 +36,13 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Getter for tag name.
+     */
+    public String getTagName() {
+        return this.tagName;
     }
 
     @Override
