@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Gender {
 
-    enum GenderEnum {
+    public enum GenderEnum {
         Male, Female;
     }
 

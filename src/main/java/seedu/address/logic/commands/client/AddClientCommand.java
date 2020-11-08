@@ -36,8 +36,8 @@ public class AddClientCommand extends AddPersonCommand<Client> {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    private static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    private static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in HairStyleX";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in HairStyleX";
     private static final String MESSAGE_DUPLICATE_HAIRDRESSER = "This person already exists in HairStyleX, "
             + "and is a Hairdresser";
 

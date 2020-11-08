@@ -11,7 +11,7 @@ public abstract class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID must a positive integer.";
-    public final int id;
+    protected final int id;
 
     /**
      * Constructs a {@code PersonId}.
@@ -26,6 +26,14 @@ public abstract class Id {
 
     public Id(int id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for id attribute
+     * @return id
+     */
+    public int getId() {
+        return id;
     }
 
     /**

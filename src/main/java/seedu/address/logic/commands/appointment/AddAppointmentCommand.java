@@ -98,7 +98,7 @@ public class AddAppointmentCommand extends AddCommand {
         List<Appointment> appointments = model.getAppointmentList();
         for (Appointment appt : appointments) {
             if (appointment.isClash(appt)) {
-                throw new CommandException(String.format(MESSAGE_CLASHING_APPOINTMENT, appt.getId().id));
+                throw new CommandException(String.format(MESSAGE_CLASHING_APPOINTMENT, appt.getId().getId()));
             }
         }
         //List<Appointment> sameHairdresser = appointments.stream()

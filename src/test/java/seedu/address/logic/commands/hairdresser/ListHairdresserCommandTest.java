@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.hairdresser;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showHairdresserAtIndex;
-import static seedu.address.testutil.TypicalHairdressers.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.ID_FIRST_HAIRDRESSER;
+import static seedu.address.logic.commands.CommandTestUtil.showHairdresserWithId;
+import static seedu.address.testutil.TypicalHairdressers.getTypicalHairStyleX;
+import static seedu.address.testutil.TypicalIds.ID_FIRST_HAIRDRESSER;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class ListHairdresserCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHairStyleX(), new UserPrefs());
         expectedModel = new ModelManager(model.getHairStyleX(), new UserPrefs());
     }
 
@@ -34,7 +34,7 @@ public class ListHairdresserCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
+        showHairdresserWithId(model, ID_FIRST_HAIRDRESSER);
         assertCommandSuccess(new ListHairdresserCommand(), model,
                 ListHairdresserCommand.MESSAGE_SUCCESS, expectedModel);
     }

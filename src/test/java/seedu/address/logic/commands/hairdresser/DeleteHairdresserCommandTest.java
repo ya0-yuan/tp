@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showHairdresserAtIndex;
-import static seedu.address.testutil.TypicalIndexes.ID_FIRST_HAIRDRESSER;
-import static seedu.address.testutil.TypicalIndexes.ID_SECOND_HAIRDRESSER;
+import static seedu.address.logic.commands.CommandTestUtil.showHairdresserWithId;
+import static seedu.address.testutil.TypicalIds.ID_FIRST_HAIRDRESSER;
+import static seedu.address.testutil.TypicalIds.ID_SECOND_HAIRDRESSER;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class DeleteHairdresserCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         IdCounter.reset();
-        Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
         Hairdresser personToDelete = model.getHairdresserById(ID_FIRST_HAIRDRESSER);
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(ID_FIRST_HAIRDRESSER);
 
@@ -36,7 +36,7 @@ public class DeleteHairdresserCommandTest {
                 personToDelete);
 
         IdCounter.reset();
-        ModelManager expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
         expectedModel.deleteHairdresser(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -45,7 +45,7 @@ public class DeleteHairdresserCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         IdCounter.reset();
-        Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
         HairdresserId outOfBoundIndex = new HairdresserId(String.valueOf(model
                 .getFilteredHairdresserList().size() + 1));
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(outOfBoundIndex);
@@ -56,8 +56,8 @@ public class DeleteHairdresserCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         IdCounter.reset();
-        Model model = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
-        showHairdresserAtIndex(model, ID_FIRST_HAIRDRESSER);
+        Model model = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
+        showHairdresserWithId(model, ID_FIRST_HAIRDRESSER);
 
         Hairdresser personToDelete = model.getHairdresserById(ID_FIRST_HAIRDRESSER);
         DeleteHairdresserCommand deleteCommand = new DeleteHairdresserCommand(ID_FIRST_HAIRDRESSER);
@@ -66,7 +66,7 @@ public class DeleteHairdresserCommandTest {
                 personToDelete);
 
         IdCounter.reset();
-        Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalHairStyleX(), new UserPrefs());
         expectedModel.deleteHairdresser(personToDelete);
         showNoHairdresser(expectedModel);
 
