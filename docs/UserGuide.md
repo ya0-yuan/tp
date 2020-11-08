@@ -1106,7 +1106,6 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
->>>>>>> master
 **List Clients** | `list_client`
 **Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
 **Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
