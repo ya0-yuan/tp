@@ -1,46 +1,48 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Toh Zhen Yu, Nicholas's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: HairStyleX
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+### Summary of Contributions
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+#### Code contributed
 
-* **Code contributed**: [RepoSense link]()
+Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=nicktohzyu) to view the code that I have contributed.
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+#### Enhancements implemented
+* **Create Appointment and UniqueAppointmentList class**: Designed and created `Appointment` and `UniqueAppointmentList` classes to be used in **HairStyleX** (Pull request [\#89](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/89), [\#93](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/93), [\#97](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/97))
+    * What it does: Defines the blueprint and rules of creating appointments in **HairStyleX**
+    * Justification: These classes are fundamental to the entire project, since they define an interaction between a client and hairdresser and what attributes they should have.
+    * Highlights:
+        * Careful consideration of good OOP design was made when creating these classes. The Appointment class was made to be immutable, and encapsulating classes for various attributes such as `AppointmentDate`, `AppointmentTime`, and `AppointmentStatus`.
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Testing for Client class**: Created tests for `Client` class, created testing utilities such as `ClientBuilder`, `TypicalClients` (Pull request [\#131](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/131))
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+* **Refactor Gender representation from String to Enum**: Changed the representation of gender from using `String`s to `Enum`s (Pull request [\#159](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/159))
+    * The enhancement also included a process to convert the gender to a `String` representation for display purposes.
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+* **Added feature to prevent clashing appointments**: Added checks to the "add appointment" process such that no client or hairdresser can be involved in simultaneous appointments. (Pull request [\#178](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/178), [\#198](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/198))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+* **Testing for Appointment class**: Created tests for `Appointment` class, including extensive testing for the clash-avoidance feature (Pull request [\#210](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/210))
 
-* _{you can add/remove categories in the list above}_
+#### Contributions to the User Guide
+* Responsible for the section on [appointments](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#44-appointment-management). 
+* Provided a detailed guide supplemented with screenshots and examples for relevant commands including `add_appt`, `edit_appt`, `delete_appt`, `filter_appt`.
+
+#### Contributions to the Developer Guide
+* Responsible for the section on implementation of the [appointment](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#appointment-feature) feature. 
+* Added a detailed sequence diagram representing the process involved in validating and executing an "add appointment" command.
+* Proposed future improvements which improve the runtime performance of HairStyleX.
+
+#### Review/mentoring contributions
+
+
+#### Contributions beyond the project team
+
+* [Reported 13 bugs](https://github.com/iamjamestan/ped/issues) in group T-17-'s tP during mock PE
