@@ -214,6 +214,7 @@ From the diagram above:
 
 
 ### Appointment feature
+(Contributed by Nicholas)
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
 #### Overview of implementation for Appointment
@@ -653,3 +654,37 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+(Contributed by Nicholas)
+Creating HairStyleX required much effort from all the team members. Due to COVID-19, we did not meet up, and had to work around the limitations of virtual collaboration. We persevered, and honed our communication and teamwork skills through this project. Our members made sacrifices to their schedules in order to attend our weekly online meetings. By the end, we achieved excellent communication as a team. Our final product contained around 20KLoC. This showcases our hard work and dedication in creating HairStyleX.
+
+### Major Enhancements
+HairStyleX has many significant enhancements from AB3. Here are some examples:
+
+* The Person class was extended into Hairdresser and Client classes, each with their own attributes and validations.
+
+* The Appointment feature was created to represent an association between a Hairdresser and Client. It includes complex features such as scheduling, status, and conflict detection.
+
+* Shortcuts were implemented such that users can define their own shortcuts for each command. This feature also supports multiple shortcuts for the same command.
+
+* Filtering functionality for Hairdresser, Client, and Appointment makes use of the app more practical even with a large data set.
+
+### Challenges and considerations
+Throughout the development of Easy Travel, we faced many challenges. The following points will describe these challenges what how did we deal with them.
+
+#### Large number of classes/entities
+There was a large increase in the number of entities to implement and manage. We also had to be careful of unwanted interactions between them causing bugs.
+
+While AB3 deals with only one (Person) model object, HairStyleX deals with multiple (Client, Hairdresser, Appointment, Filtered List, Shortcut). Thus, we had to create much functionality from scratch. In order to avoid unwanted interactions, we followed design patterns and used extensive testing, in addition to communicating well to make sure all team members are aware of how functionality contributed by other teammates works.
+
+#### Revamped UI
+The Ui of AB3 only contains one panel (ListPanel). On the other hand, HairStyleX has 3 panels. This added additional complexity. Beyond just duplicating the panels, each panel also incorporated extended functionality of filtering.
+
+#### Appointment statuses
+In our initial prototype, we included the status "cancelled" for appointments. However, after some deliberation we decided to remove it, as this would cause unnecessary implementation complexity (especially due to appointment clash detection), and since a salon could still use the client tag field to mark if a client had regularly cancelled appointments.
+
+### Working Process
+Our team placed heavy emphasis on communication. and efficient division of workload. With our dedicated members and good team spirit, we were able to produce a great product.
+
+We made use of github's project boards as task trackers, which allowed efficient division and tracking of work, and also helped each team member visualise the tasks remaining.
