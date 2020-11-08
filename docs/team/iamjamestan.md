@@ -46,7 +46,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 
 #### Contributions to the User Guide
 
-* Provided a detailed guide supplemented with screenshots and examples for [general commands](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#41-general-commands) such as `help`, `clear`, `exit` and `print`. [\#265](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/265)
+* Provided a detailed guide supplemented with screenshots and examples for [general commands](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#41-general-commands) such as `help`, `clear`, `exit` and `print`. (Pull request [\#265](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/265))
 * Contributed to [Introduction](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#1-introduction), [Quick Start](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#2-quick-start), and [About](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#3-about) sections to give an overview about **HairStyleX** and guide new users on how to interpret the User Guide. (Pull request [\#192](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/192))
 * Added FAQ and Command Summary Sections to address common questions and give a quick overview of all command syntax. (Pull requests [\#192](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/192), [\#43](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/43))
 

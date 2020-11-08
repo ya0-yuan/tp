@@ -646,6 +646,81 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding an appointment
+
+1. Adding an appointment to **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time. Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments. Appointments should only be created in the future. A client with client ID of 1 and a hairdresser with hairdresser ID of 2 currently exists in **HairStyleX**
+
+   1. Test case: `add_appt cid/1 hid/2 d/2020-12-12 t/17:30`<br>
+      Expected: Adds an appointment with a unique appointment id, involving the client with client ID of 1 and hairdresser with hairdresser ID of 2, with a status of `active`
+
+   1. Test case: `add_appt cid/1 hid/2`<br>
+      Expected: No appointment is added. Error details shown in result display.
+
+   1. Other incorrect add commands to try: `add_appt`, `add_appt cid/1 hid/2 d/2002-12-12 t/17:30`, `...`<br>
+      Expected: Similar to previous test case.
+      
+### Editing an appointment
+
+1. Editing an appointment in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be edited must be in **HairStyleX**. Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one. There exist an appointment in **HairStyleX** with appointment ID of 1, whose appointment date and time is in the past.
+
+   1. Test case: `edit_appt 1 s/COMPLETED`<br>
+      Expected: Edits the appointment with ID of 1 in the displayed appointment panel with the status of `COMPLETED`.
+
+   1. Test case: `edit_appt s/COMPLETED`<br>
+      Expected: No appointment is edited. Error details shown in result display.
+
+   1. Other incorrect edit commands to try: `edit_appt`, `edit_appt x s/COMPLETED` (where there are no appointments with appointment ID of x), `...`<br>
+      Expected: Similar to previous test case.
+      
+### Deleting an appointment
+
+1. Deleting an appointment in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be deleted must be in **HairStyleX**. There exist an appointment in **HairStyleX** with appointment ID of 1.
+
+   1. Test case: `delete_appt 1`<br>
+      Expected: Deletes the appointment with ID of 1 in the displayed appointment panel.
+
+   1. Test case: `delete_appt -10`<br>
+      Expected: No appointment is deleted. Error details shown in result display.
+
+   1. Other incorrect delete commands to try: `delete_appt`, `delete_appt x` (where there are no appointments with appointment ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Listing all appointments
+
+1. Listing all appointments in **HairStyleX**
+
+   1. Prerequisites: No arguments are required. There exist some appointments currently in **HairStyleX**
+
+   1. Test case: `list_appt`<br>
+      Expected: Lists all appointments in the appointment panel.
+
+   1. Test case: `lst_appt`<br>
+      Expected: Application unable to detect command. Error details shown in result display. Appointment panel remains unchanged.
+
+   1. Other incorrect list commands to try: `list_appointment`, `ls_a`, `...`<br>
+      Expected: Similar to previous test case.
+      
+### Filtering appointments
+
+1. Filtering appointments in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be deleted must be in **HairStyleX**. There exist appointments in **HairStyleX** with status of `MISSED`.
+
+   1. Test case: `filter_appt s/missed`<br>
+      Expected: Displays all appointments with status of `MISSED` in the displayed appointment list.
+
+   1. Test case: `filter_appt 10`<br>
+      Expected: No filter is applied. Error details shown in result display. Appointment panel remains unchanged.
+
+   1. Other incorrect filter commands to try: `filter_appt d/100000`, `filter_appt cid/one` `...`<br>
+      Expected: Similar to previous test case.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
