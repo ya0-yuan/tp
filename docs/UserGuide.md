@@ -944,6 +944,7 @@ You can filter the list of appointments in the database by keyword search that m
 * The search is case-insensitive. e.g `active`, `aCtIVe` will match `ACTIVE`.
 * Only full words will be matched e.g. `ACTIV` will not match `ACTIVE`.
 * `DATE_OF_APPT` and `APPT_STATUS` must be valid e.g. `2020-01-1` is not a valid `DATE` because it does not follow the format of `YYYY-MM-DD`.
+* Only one input for each prefix is allowed e.g. `filter_appt cid/1 cid/2` is not a valid input.
 </div>
 
 **Example 1:**
