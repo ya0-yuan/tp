@@ -13,12 +13,7 @@ public class Tag {
             + "contain at most 20 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}{1,20}";
 
-<<<<<<< HEAD
-
     public final String tagName;
-=======
-    private final String tagName;
->>>>>>> master
 
     /**
      * Constructs a {@code Tag}.
