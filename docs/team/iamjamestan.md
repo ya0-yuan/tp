@@ -25,14 +25,22 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
         * This refactor affected all existing commands that previously used `Index`. Furthermore, since every entity now has an `Id` field, it required changes to the existing `Storage` classes in order for each entity to record its own `Id`, and it also required a global counter for the respective `Id`s so that the next `Id` can be generated without collisions.
         * In order for each entity to have a unique `Id` upon instantiation, a final `IdCounter` class was created to keep track of each entity's current `Id` and increment it whenever an `Id` is generated. This class is a singleton, and only one instance can exist at any point in time.
         
-* **Create Client and Hairdresser class**: Designed and created `Client` and `Hairdresser` classes to be used in `HairStyleX`
-    * What it does: Defines the blueprint and rules of creating clients and hairdressers in `HairStyleX`
+* **Create Client and Hairdresser class**: Designed and created `Client` and `Hairdresser` classes to be used in **HairStyleX**
+    * What it does: Defines the blueprint and rules of creating clients and hairdressers in **HairStyleX**
     * Justification: These classes are fundamental to the entire project, since they define how clients and hairdressers are to be stored, and what attributes they should have.
     * Highlights:
         * This was the first change made from the original AddressBook-3, so there was a great importance of these classes as the work of my other team members depended heavily on these.
         * Careful consideration of good OOP design was made when creating these classes. Since `Client`s and `Hairdresser`s are both `Person`s, the `Person` class was made to be an abstract class, with `Client` and `Hairdresser` inheriting from `Person`. `Person` encapsulated fields which will be essential to both entities, while `Client`s and `Hairdresser`s encapsulated other fields which would be important for their own classes.
-        * The methods used to define equality was also carefully considered, since they will be used to prevent creation of duplicate entities in HairStyleX.
+        * The methods used to define equality was also carefully considered, since they will be used to prevent creation of duplicate entities in **HairStyleX**.
         * In addition, all fields were carefully designed to include regex tests for the most appropriate strings to be accepted.
+        
+* **Create CRUD command for Appointments**: Designed and created `Add`, `Edit`, `Delete` and `List`commands for `Appointments`
+    * What it does: Encapsulates the logic that makes changes to the `Model` and `Storage` classes whenever appointments are manipulated in **HairStyleX**.
+    * Justification: These commands are essential to ensuring that appointments are stored and saved correctly in **HairStyleX** whenever a user manipulates them.
+    * Highlights:
+        * The creation of these commands entailed creating and designing many more appointment-related classes and methods in the `model` and `storage` packages to ensure that the data will be handled in the correct manner.
+        * This was the first version of `Appointment` commands that allowed us to complete a minimum viable product by v1.2. As such, it was a very basic implementation that did not account for appointment clashes.
+        * Nonetheless, this basic implementation of appointment commands allowed my fellow teammates [Nicholas](https://ay2021s1-cs2103t-t15-1.github.io/tp/team/nicktohzyu.html), [YiFan](https://ay2021s1-cs2103t-t15-1.github.io/tp/team/theyifan.html) and [Yao Yuan](https://ay2021s1-cs2103t-t15-1.github.io/tp/team/ya0-yuan.html) to implement more advanced features that aids users in scheduling and manipulating appointments.
         
 * **Testing**: Create tests for client related commands to increase coverage from 48% to 56% (Pull request [\#280](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/280))
 
