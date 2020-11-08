@@ -74,6 +74,7 @@ public class AddAppointmentCommand extends AddCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
         requireNonNull(model);
         Client client = model.getClientById(clientId);
         Hairdresser hairdresser = model.getHairdresserById(hairdresserId);

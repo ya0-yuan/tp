@@ -44,6 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
         Command command = hairStyleXParser.parseCommand(commandText);
+        logger.info("executing command" + command.getClass().getSimpleName());
         commandResult = command.execute(model);
 
         try {
