@@ -475,6 +475,7 @@ You can use this command to remove a specific client from the database.
 * The index refers to the index number `cid` shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
+* The purpose of deletion is to remove personal information such as name, phone number, and email. Other information such as the `ID` and associated appointments may still be preserved.
 </div>
 
 **Example:**
@@ -698,6 +699,7 @@ Removes a specific hairdresser from the database.
 * The index refers to the index number `hid` shown in the displayed hairdresser list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
+* The purpose of deletion is to remove personal information such as name, phone number, and email. Other information such as the `ID` and associated appointments may still be preserved.
 </div>
 
 **Example:**
