@@ -214,6 +214,7 @@ From the diagram above:
 
 
 ### Appointment feature
+(Contributed by Nicholas)
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
 #### Overview of implementation for Appointment
@@ -646,6 +647,81 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding an appointment
+
+1. Adding an appointment to **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. All appointments have a duration of 2 hours. Hence the end time of an appointment is implicitly two hours after the start time. Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments. Appointments should only be created in the future. A client with client ID of 1 and a hairdresser with hairdresser ID of 2 currently exists in **HairStyleX**
+
+   1. Test case: `add_appt cid/1 hid/2 d/2020-12-12 t/17:30`<br>
+      Expected: Adds an appointment with a unique appointment id, involving the client with client ID of 1 and hairdresser with hairdresser ID of 2, with a status of `active`
+
+   1. Test case: `add_appt cid/1 hid/2`<br>
+      Expected: No appointment is added. Error details shown in result display.
+
+   1. Other incorrect add commands to try: `add_appt`, `add_appt cid/1 hid/2 d/2002-12-12 t/17:30`, `...`<br>
+      Expected: Similar to previous test case.
+      
+### Editing an appointment
+
+1. Editing an appointment in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be edited must be in **HairStyleX**. Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one. There exist an appointment in **HairStyleX** with appointment ID of 1, whose appointment date and time is in the past.
+
+   1. Test case: `edit_appt 1 s/COMPLETED`<br>
+      Expected: Edits the appointment with ID of 1 in the displayed appointment panel with the status of `COMPLETED`.
+
+   1. Test case: `edit_appt s/COMPLETED`<br>
+      Expected: No appointment is edited. Error details shown in result display.
+
+   1. Other incorrect edit commands to try: `edit_appt`, `edit_appt x s/COMPLETED` (where there are no appointments with appointment ID of x), `...`<br>
+      Expected: Similar to previous test case.
+      
+### Deleting an appointment
+
+1. Deleting an appointment in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be deleted must be in **HairStyleX**. There exist an appointment in **HairStyleX** with appointment ID of 1.
+
+   1. Test case: `delete_appt 1`<br>
+      Expected: Deletes the appointment with ID of 1 in the displayed appointment panel.
+
+   1. Test case: `delete_appt -10`<br>
+      Expected: No appointment is deleted. Error details shown in result display.
+
+   1. Other incorrect delete commands to try: `delete_appt`, `delete_appt x` (where there are no appointments with appointment ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Listing all appointments
+
+1. Listing all appointments in **HairStyleX**
+
+   1. Prerequisites: No arguments are required. There exist some appointments currently in **HairStyleX**
+
+   1. Test case: `list_appt`<br>
+      Expected: Lists all appointments in the appointment panel.
+
+   1. Test case: `lst_appt`<br>
+      Expected: Application unable to detect command. Error details shown in result display. Appointment panel remains unchanged.
+
+   1. Other incorrect list commands to try: `list_appointment`, `ls_a`, `...`<br>
+      Expected: Similar to previous test case.
+      
+### Filtering appointments
+
+1. Filtering appointments in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The appointment to be deleted must be in **HairStyleX**. There exist appointments in **HairStyleX** with status of `MISSED`.
+
+   1. Test case: `filter_appt s/missed`<br>
+      Expected: Displays all appointments with status of `MISSED` in the displayed appointment list.
+
+   1. Test case: `filter_appt 10`<br>
+      Expected: No filter is applied. Error details shown in result display. Appointment panel remains unchanged.
+
+   1. Other incorrect filter commands to try: `filter_appt d/100000`, `filter_appt cid/one` `...`<br>
+      Expected: Similar to previous test case.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -653,3 +729,37 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+(Contributed by Nicholas)
+Creating HairStyleX required much effort from all the team members. Due to COVID-19, we did not meet up, and had to work around the limitations of virtual collaboration. We persevered, and honed our communication and teamwork skills through this project. Our members made sacrifices to their schedules in order to attend our weekly online meetings. By the end, we achieved excellent communication as a team. Our final product contained around 20KLoC. This showcases our hard work and dedication in creating HairStyleX.
+
+### Major Enhancements
+HairStyleX has many significant enhancements from AB3. Here are some examples:
+
+* The Person class was extended into Hairdresser and Client classes, each with their own attributes and validations.
+
+* The Appointment feature was created to represent an association between a Hairdresser and Client. It includes complex features such as scheduling, status, and conflict detection.
+
+* Shortcuts were implemented such that users can define their own shortcuts for each command. This feature also supports multiple shortcuts for the same command.
+
+* Filtering functionality for Hairdresser, Client, and Appointment makes use of the app more practical even with a large data set.
+
+### Challenges and considerations
+Throughout the development of HairStyleX, we faced many challenges. The following points will describe these challenges what how did we deal with them.
+
+#### Large number of classes/entities
+There was a large increase in the number of entities to implement and manage. We also had to be careful of unwanted interactions between them causing bugs.
+
+While AB3 deals with only one (Person) model object, HairStyleX deals with multiple (Client, Hairdresser, Appointment, Filtered List, Shortcut). Thus, we had to create much functionality from scratch. In order to avoid unwanted interactions, we followed design patterns and used extensive testing, in addition to communicating well to make sure all team members are aware of how functionality contributed by other teammates works.
+
+#### Revamped UI
+The Ui of AB3 only contains one panel (ListPanel). On the other hand, HairStyleX has 3 panels. This added additional complexity. Beyond just duplicating the panels, each panel also incorporated extended functionality of filtering.
+
+#### Appointment statuses
+In our initial prototype, we included the status "cancelled" for appointments. However, after some deliberation we decided to remove it, as this would cause unnecessary implementation complexity (especially due to appointment clash detection), and since a salon could still use the client tag field to mark if a client had regularly cancelled appointments.
+
+### Working Process
+Our team placed heavy emphasis on communication. and efficient division of workload. With our dedicated members and good team spirit, we were able to produce a great product.
+
+We made use of github's project boards as task trackers, which allowed efficient division and tracking of work, and also helped each team member visualise the tasks remaining.

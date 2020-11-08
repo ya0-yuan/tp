@@ -5,42 +5,64 @@ title: Zhang Yifan's Project Portfolio Page
 
 ## Project: HairStyleX
 
-HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
-Given below are my contributions to the project.
+### Summary of Contributions
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+#### Code contributed
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=theyifan) to view the code that I have contributed.
 
-* **Code contributed**: [RepoSense link]()
+#### Enhancements implemented
+        
+* **Create CRUD for `Hairdresser` Classes**: Designed and created `Add`, `Edit`, `Delete` and `List` commands for `Hairdresser` (Pull request [\#85](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/85), [\#101](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/101/))
+   * What it does: The CRUD features allows the user to manage the `hairdresser` data. Also Encapsulates the logic that makes changes to the `Model` and `Storage` classes whenever hairdressers are manipulated in **HairStyleX**.
+   * Justification: These commands are essential to ensuring that `hairdressers` are stored and saved correctly in **HairStyleX** whenever a user manipulates them.
+   * Highlights:
+       * CRUD for `hairdresser` was one of the first CRUD operations built for `HairStyleX`. This set a direction for adding features and tweaking `model`, `logic` and `storage` packages while morphing the original *AddressBook-3* into a multi-entity application, to ensure that the data will be handled in the correct and orderly manner. 
+       * Improvements for better OOP are made along the way. For instance, `Specialisation` class was refactored to using `enum` ([\#160](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/160)), as the types of specialisations for hairdressers are rather fixed and abstracting to `enum` removes possibility of duplicates and increases accuracy for `hairdresser` data. 
+       
+* **Create `Print` command for exportation of data**: Designed and created `Print` command. (Pull request [\#202](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/202), [\#261](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/261))
+    * What it does: The `Print` command allows the user to export the data of `hairdresser`, `client` and `appointment` into `.csv` files. 
+    * Justification: The command gives the users an option to save data into an easy-to-read and easy-to-operate format. Users can do their own data analysis on the files later on. 
+    * Highlights:
+        * `Print` command allows the all three lists of `hairdresser`, `client` and `appointment` to be exported into `.csv` format with user input of one single command, together with timestamp of time of creation written inside the files. 
+        * `Print` command allows the concurrent exportation of the three lists using `executer` and multi-thread, thus reducing the overall runtime for potential large list exportation. 
+    * Credit: the idea of `Print` is inspired by Warenager.
+    
+* **Integration and enhancement to `Id`** (Pull request [\#111](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/111), [\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278) (under [IdCounter.java](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/files#diff-ac1519e09f1f6c4cbc50784b7d08641f1cfdc57a59d183aa55268c794958c3ac)), [\#284](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/284))
+    * What is does: Enforces the user to identify `Client`s, `Hairdresser`s and `Appointment`s by their unique `Id` instead of the default list index that is shown in *AddressBook-3*.
+    * Justification: The `Id` classes are designed and created by [James](https://ay2021s1-cs2103t-t15-1.github.io/tp/team/iamjamestan.html). Integration of the `Id` classes into `hairdresser` and `client` and enhancement to `IdCounter` related classes are done later. 
+    * Highlights:
+        * Integrated the `PersonId` and `PersonIdCounter` classes into `hairdresser` and `client` classes and the respective `model` and `storage` packages to ensure that `Id`s are stored and saved correctly in **HairStyleX** whenever a user manipulates them, or opens/reopens the application. ([\#111](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/111))
+        * `IdCounter#reset()` function was designed and implemented so that the stored `instance` for the singleton class `IdCounter` can be cleared and reset, together with the static counters inside the class ([\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278) (under [IdCounter.java](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/files#diff-ac1519e09f1f6c4cbc50784b7d08641f1cfdc57a59d183aa55268c794958c3ac))). This is especially useful for testing purposes, where multiple `Model`s will be created and tested. 
+        * Validation for `IdCounter` is enforced while constructing `HairStyleX`([\#284](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/284)). 
+* **Testing**: Create tests for hairdresser related commands and classes that increased coverage by 19.85%. (Pull request [\#123](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/123), [\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/))
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+#### Contributions to the User Guide
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* Provided a detailed guide supplemented with screenshots and examples for [hairdresser management commands](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#43-hairdresser-management), including `add_hairdresser`, `list_hairdresser`, `edit_hairdresser`, `delete_hairdresser`, `filter_hairdresser`. (Pull request [\#190](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/190))
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+#### Contributions to the Developer Guide
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+* Added implementation details of the [Hairdresser](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#hairdresser-management-features) classes (Pull request [\#168](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/168)) and the [Print](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#print-feature) classes (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/261))
+* Recreated existing diagrams and updated implementation details for [Storage Component](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#storage-component) (Pull request [\#168](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/168))
+* Added [value proposition](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#product-scope) (Pull request [\#65](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/65))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+#### Contributions to the team-based tasks
 
-* _{you can add/remove categories in the list above}_
+* Set up github page and CI for the team repo
+* Set up project boards used by the team in the early stages
+* Created and uploaded releases for v1.2 and v1.4
+* Upload video for v1.2 demo
+* Fixed miscellaneous bugs ([\#211](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/211))
+
+#### Review/mentoring contributions
+
+* PRs reviewed (with non-trivial review comments): [\#255](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/255)
+* Guided team members on the basic git workflow for team collaboration
+
+#### Contributions beyond the project team
+
+* Reported [10 bugs](https://github.com/theyifan/ped/issues) in group W11-4's tP during mock PE
+

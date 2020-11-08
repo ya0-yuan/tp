@@ -553,6 +553,49 @@ class AppointmentTest {
     }
 
     @Test
+    void isClashStatusTest() {
+        // this test is designed on the assumption that appointments are 120 minutes
+        // Only appointments that are active can clash
+        final Appointment activeAppt = new Appointment(
+            ALICE,
+            BENEDICT,
+            new AppointmentDate("2020-01-01"),
+            new AppointmentTime("23:00"),
+            AppointmentStatus.ACTIVE
+        );
+
+        final Appointment completedAppt = new Appointment(
+            ALICE,
+            BENEDICT,
+            new AppointmentDate("2020-01-01"),
+            new AppointmentTime("23:01"),
+            AppointmentStatus.COMPLETED
+        );
+
+        final Appointment missedAppt = new Appointment(
+            ALICE,
+            BENEDICT,
+            new AppointmentDate("2020-01-01"),
+            new AppointmentTime("23:02"),
+            AppointmentStatus.MISSED
+        );
+
+        Assertions.assertEquals(true,
+            activeAppt.isClash(activeAppt));
+
+        Assertions.assertEquals(false,
+            completedAppt.isClash(completedAppt));
+
+        Assertions.assertEquals(false,
+            missedAppt.isClash(missedAppt));
+
+        Assertions.assertEquals(false,
+            completedAppt.isClash(activeAppt));
+
+        Assertions.assertEquals(false,
+            completedAppt.isClash(missedAppt));
+    }
+    @Test
     void testEquals() {
         final Appointment appt = new Appointment(
             ALICE,

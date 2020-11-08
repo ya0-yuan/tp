@@ -111,13 +111,13 @@ The following four points explain how you can use a command with the provided fo
 
 1. Items in square brackets are optional.
 
-    * Format given: `edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
+    * Format given: `edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…`
     
     * Acceptable input: `edit_client 1 n/Aileen e/aileenlam@email.com`
     
-1. Items with `…`​ after them can be used zero or multiple times.
+1. Items with `…` after them can be used zero or multiple times.
 
-    * Format given: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
+    * Format given: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…`
     
     * Acceptable input 1 (no tags): `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
     
@@ -125,7 +125,7 @@ The following four points explain how you can use a command with the provided fo
     
 1. Parameters with prefixes can be supplied in any order.
 
-    * Format given: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
+    * Format given: `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…`
     
     * Acceptable input 1 (same order as given format): `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/friends`
     
@@ -343,7 +343,7 @@ You can use this command to add a client to the database.
 
 **Format:**
 
-`add_client n/NAME p/PHONE e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
+`add_client n/NAME p/PHONE e/EMAIL g/GENDER a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -414,12 +414,12 @@ You can use this command to edit an existing client in the database.
 
 **Format:**
  
-`edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…​`
+`edit_client ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:<br>
-* Edits the client with the specified `ID`. The index refers to the index number `cid` shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client with the specified `ID`. The index refers to the index number `cid` shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -473,8 +473,9 @@ You can use this command to remove a specific client from the database.
 :information_source:<br>
 * Deletes the client with the specified `ID`.
 * The index refers to the index number `cid` shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * All appointments with this corresponding client will now show "DELETED" for the client placeholder
+* The purpose of deletion is to remove personal information such as name, phone number, and email. Other information such as the `ID` and associated appointments may still be preserved.
 </div>
 
 **Example:**
@@ -566,7 +567,7 @@ You can use this command to add a hairdresser to the database.
 
 **Format:**
 
-`add_hairdresser n/NAME p/PHONE e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…​`
+`add_hairdresser n/NAME p/PHONE e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -641,7 +642,7 @@ You can use this command to edit an existing hairdresser in the database.
 <div markdown="block" class="alert alert-info">
 
 :information_source:<br>
-* Edits the hairdresser with the specified `ID`. The index refers to the index number `hid` shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the hairdresser with the specified `ID`. The index refers to the index number `hid` shown in the displayed hairdresser list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing specialisations, the existing specialisations of the hairdresser will be removed i.e adding of specialisations is not cumulative.
@@ -696,8 +697,9 @@ Removes a specific hairdresser from the database.
 :information_source:<br>
 * Deletes the hairdresser with the specified `ID`.
 * The index refers to the index number `hid` shown in the displayed hairdresser list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
+* The purpose of deletion is to remove personal information such as name, phone number, and email. Other information such as the `ID` and associated appointments may still be preserved.
 </div>
 
 **Example:**
@@ -868,7 +870,7 @@ You can use this command to edit an existing appointment in the database.
 <div markdown="block" class="alert alert-info">
 
 :information_source:<br>
-* Edits the appointment with the specified `ID`. This refers to the appointment ID `aid` shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the appointment with the specified `ID`. This refers to the appointment ID `aid` shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …
 * The current status will be updated to reflect the new status.
 </div>
 
@@ -905,7 +907,7 @@ Removes a specific appointment from the database.
 :information_source:<br>
 * Deletes the appointment with the specified `ID`.
 * The ID refers to the appointment ID `aid` shown in the displayed appointment list.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* The ID **must be a positive integer** 1, 2, 3, …
 * All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 </div>
 
@@ -1022,13 +1024,13 @@ Outcome:
 * The _Result Display_ will show a success message.
 * You can now see your new shortcut.
 
-![Ui](images/shortcut/add_alias_success.png)
+![Ui](images/shortcut/add_shortcut_success.PNG)
 
 You can now use the shortcut
-![Ui](images/shortcut/use_new_alias.png)
+![Ui](images/shortcut/use_new_shortcut.PNG)
 
 And it works!
-![Ui](images/shortcut/new_alias.png)
+![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
 **:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
@@ -1057,7 +1059,7 @@ Outcome:
 * The _Result Display_ will show a success message.
 
 .Outcome of a successful `delete_shortcut` command
-![Ui](images/shortcut/deletealias.png)
+![Ui](images/shortcut/delete_shortcut.PNG)
 
 #### 4.5.3 List all shortcuts : `list_shortcut`
 
@@ -1105,9 +1107,9 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
 **List Clients** | `list_client`
-**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
+**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
 **Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
@@ -1115,9 +1117,9 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION] [t/TAG]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
-**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
 ### 6.4 Appointment Commands
