@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.hairdresser;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalHairdressers.BENJAMIN;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.hairdresser.Hairdresser;
 import seedu.address.testutil.HairdresserBuilder;
 
 class HairdresserTest {
@@ -54,7 +53,7 @@ class HairdresserTest {
             .build();
         assertTrue(AMELIA.isSame(editedAmelia));
 
-        // same name, same email, different attributes -> returns False
+        // same name, same email, different attributes -> returns false
         editedAmelia = new HairdresserBuilder(AMELIA).withPhone(VALID_PHONE_BENJAMIN)
             .withTitle(VALID_TITLE_BENJAMIN)
             .withSpecs(VALID_SPECIALISATION_PERM)

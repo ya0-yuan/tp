@@ -30,9 +30,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALISSA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.ID_FIRST_HAIRDRESSER;
-import static seedu.address.testutil.TypicalIndexes.ID_SECOND_HAIRDRESSER;
-import static seedu.address.testutil.TypicalIndexes.ID_THIRD_HAIRDRESSER;
+import static seedu.address.testutil.TypicalIds.ID_FIRST_HAIRDRESSER;
+import static seedu.address.testutil.TypicalIds.ID_SECOND_HAIRDRESSER;
+import static seedu.address.testutil.TypicalIds.ID_THIRD_HAIRDRESSER;
 
 import org.junit.jupiter.api.Test;
 
@@ -116,7 +116,7 @@ public class EditHairdresserCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         HairdresserId targetHairdresserId = ID_SECOND_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + PHONE_DESC_BENJAMIN + SPECIALISATION_DESC_PERM
+        String userInput = targetHairdresserId.getId() + PHONE_DESC_BENJAMIN + SPECIALISATION_DESC_PERM
                 + EMAIL_DESC_ALISSA + GENDER_DESC_ALISSA + TITLE_DESC_ALISSA
                 + NAME_DESC_ALISSA + SPECIALISATION_DESC_COLOR;
 
@@ -132,7 +132,7 @@ public class EditHairdresserCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         HairdresserId targetHairdresserId = ID_FIRST_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + PHONE_DESC_BENJAMIN + EMAIL_DESC_ALISSA;
+        String userInput = targetHairdresserId.getId() + PHONE_DESC_BENJAMIN + EMAIL_DESC_ALISSA;
 
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder().withPhone(VALID_PHONE_BENJAMIN)
                 .withEmail(VALID_EMAIL_ALISSA).build();
@@ -145,38 +145,38 @@ public class EditHairdresserCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         HairdresserId targetHairdresserId = ID_THIRD_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + NAME_DESC_ALISSA;
+        String userInput = targetHairdresserId.getId() + NAME_DESC_ALISSA;
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder()
                 .withName(VALID_NAME_ALISSA).build();
         EditHairdresserCommand expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetHairdresserId.id + PHONE_DESC_ALISSA;
+        userInput = targetHairdresserId.getId() + PHONE_DESC_ALISSA;
         descriptor = new EditHairdresserDescriptorBuilder().withPhone(VALID_PHONE_ALISSA).build();
         expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetHairdresserId.id + EMAIL_DESC_ALISSA;
+        userInput = targetHairdresserId.getId() + EMAIL_DESC_ALISSA;
         descriptor = new EditHairdresserDescriptorBuilder().withEmail(VALID_EMAIL_ALISSA).build();
         expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // gender
-        userInput = targetHairdresserId.id + GENDER_DESC_ALISSA;
+        userInput = targetHairdresserId.getId() + GENDER_DESC_ALISSA;
         descriptor = new EditHairdresserDescriptorBuilder().withGender(VALID_GENDER_ALISSA).build();
         expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // title
-        userInput = targetHairdresserId.id + TITLE_DESC_ALISSA;
+        userInput = targetHairdresserId.getId() + TITLE_DESC_ALISSA;
         descriptor = new EditHairdresserDescriptorBuilder().withTitle(VALID_TITLE_ALISSA).build();
         expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetHairdresserId.id + SPECIALISATION_DESC_COLOR;
+        userInput = targetHairdresserId.getId() + SPECIALISATION_DESC_COLOR;
         descriptor = new EditHairdresserDescriptorBuilder().withSpecs(VALID_SPECIALISATION_COLOR).build();
         expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -185,7 +185,7 @@ public class EditHairdresserCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         HairdresserId targetHairdresserId = ID_FIRST_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + PHONE_DESC_ALISSA + GENDER_DESC_ALISSA + EMAIL_DESC_ALISSA
+        String userInput = targetHairdresserId.getId() + PHONE_DESC_ALISSA + GENDER_DESC_ALISSA + EMAIL_DESC_ALISSA
                 + SPECIALISATION_DESC_COLOR + PHONE_DESC_ALISSA + GENDER_DESC_ALISSA
                 + EMAIL_DESC_ALISSA + SPECIALISATION_DESC_COLOR
                 + PHONE_DESC_BENJAMIN + GENDER_DESC_BENJAMIN + EMAIL_DESC_BENJAMIN + SPECIALISATION_DESC_PERM;
@@ -203,14 +203,14 @@ public class EditHairdresserCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         HairdresserId targetHairdresserId = ID_FIRST_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + INVALID_PHONE_DESC + PHONE_DESC_BENJAMIN;
+        String userInput = targetHairdresserId.getId() + INVALID_PHONE_DESC + PHONE_DESC_BENJAMIN;
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder()
                 .withPhone(VALID_PHONE_BENJAMIN).build();
         EditHairdresserCommand expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetHairdresserId.id + EMAIL_DESC_BENJAMIN + INVALID_PHONE_DESC + GENDER_DESC_BENJAMIN
+        userInput = targetHairdresserId.getId() + EMAIL_DESC_BENJAMIN + INVALID_PHONE_DESC + GENDER_DESC_BENJAMIN
                 + PHONE_DESC_BENJAMIN;
         descriptor = new EditHairdresserDescriptorBuilder().withPhone(VALID_PHONE_BENJAMIN)
                 .withEmail(VALID_EMAIL_BENJAMIN).withGender(VALID_GENDER_BENJAMIN).build();
@@ -221,7 +221,7 @@ public class EditHairdresserCommandParserTest {
     @Test
     public void parse_resetSpecialisations_success() {
         HairdresserId targetHairdresserId = ID_THIRD_HAIRDRESSER;
-        String userInput = targetHairdresserId.id + SPEC_EMPTY;
+        String userInput = targetHairdresserId.getId() + SPEC_EMPTY;
 
         EditHairdresserDescriptor descriptor = new EditHairdresserDescriptorBuilder().withSpecs().build();
         EditHairdresserCommand expectedCommand = new EditHairdresserCommand(targetHairdresserId, descriptor);

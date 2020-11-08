@@ -1,4 +1,4 @@
-package seedu.address.model.person.client.exceptions;
+package seedu.address.model.person.client.exception;
 
 import seedu.address.model.exception.DuplicateEntityException;
 

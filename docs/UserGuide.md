@@ -249,7 +249,7 @@ You can use this command to exit HairStyleX.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: This command will exit the application immediately. All data is saved automatically and will be reloaded upon restart of the application **
+**:information_source: This command will exit the application immediately. All data is saved automatically and will be reloaded upon restart of the application**
 
 </div>
 
@@ -1095,9 +1095,10 @@ You can use this command to show all your shortcuts.
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Clear** | `clear`
-**Exit** | `exit`
+**View user guide** | `help`
+**Clear all entries** | `clear`
+**Exit the application** | `exit`
+**Export to CSV** | `print`
 
 ### 6.2 Client Commands
 
