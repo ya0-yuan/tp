@@ -28,7 +28,7 @@ public class Gender {
     public Gender(String str) {
         requireNonNull(str);
         checkArgument(isValidGender(str), MESSAGE_CONSTRAINTS);
-        switch (str) {
+        switch (str.toUpperCase()) {
         case "M":
             value = GenderEnum.Male;
             break;
