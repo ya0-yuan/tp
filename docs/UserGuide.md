@@ -333,7 +333,7 @@ Parameter Name | Description
 `EMAIL` | The email of the client.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `yaoyuan@example.com`
 `GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
 `ADDRESS` | The address of the client. It should only contain a maximum of 50 characters <br>  E.g. `6 College Avenue East #12-01D`
-`TAG` | The tag of the client. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than 4 tags for each client.  <br>E.g. `shortHair`
+`TAG` | The tag of the client. <br> A tag can only be one word with no space in between. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
 `ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_client`. <br>It should only contain alphanumeric characters. 
 
@@ -944,6 +944,7 @@ You can filter the list of appointments in the database by keyword search that m
 * The search is case-insensitive. e.g `active`, `aCtIVe` will match `ACTIVE`.
 * Only full words will be matched e.g. `ACTIV` will not match `ACTIVE`.
 * `DATE_OF_APPT` and `APPT_STATUS` must be valid e.g. `2020-01-1` is not a valid `DATE` because it does not follow the format of `YYYY-MM-DD`.
+* Only one input for each prefix is allowed e.g. `filter_appt cid/1 cid/2` is not a valid input.
 </div>
 
 **Example 1:**
@@ -1104,7 +1105,8 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g. `add n/Nicholas Toh p/12345678 e/niktoh@example.com a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…​` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+>>>>>>> master
 **List Clients** | `list_client`
 **Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…​`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
 **Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
@@ -1114,7 +1116,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com ti/senior s/colouring t/colleague`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION] [t/TAG]…​` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
 **Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…​`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
