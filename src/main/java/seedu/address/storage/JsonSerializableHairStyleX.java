@@ -77,7 +77,7 @@ class JsonSerializableHairStyleX {
             if (hairStyleX.hasHairdresser(hairdresser)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_HAIRDRESSER);
             }
-            maxOfHairdresser = Math.max(maxOfHairdresser, hairdresser.getId().id);
+            maxOfHairdresser = Math.max(maxOfHairdresser, hairdresser.getId().getId());
             hairStyleX.addHairdresser(hairdresser);
         }
 
@@ -87,7 +87,7 @@ class JsonSerializableHairStyleX {
             if (hairStyleX.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            maxOfClient = Math.max(maxOfClient, client.getId().id);
+            maxOfClient = Math.max(maxOfClient, client.getId().getId());
             hairStyleX.addClient(client);
         }
 
@@ -97,7 +97,7 @@ class JsonSerializableHairStyleX {
             if (hairStyleX.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
-            maxOfAppointment = Math.max(maxOfAppointment, appointment.getId().id);
+            maxOfAppointment = Math.max(maxOfAppointment, appointment.getId().getId());
             hairStyleX.addAppointment(appointment);
         }
         if (idCounter == null) {
