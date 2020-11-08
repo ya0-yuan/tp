@@ -107,7 +107,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the database, which `Person` references. This allows `HairStyleX` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +149,7 @@ new shortcuts are allowed to be saved into the system.
 #### Add Shortcuts
 Steps: 
 1. User input a command to the system. It is parsed regularly as before, extracting the string.
-2. `AddressBookParser` will pass the string to `CommandShortcutSet` to retrieve the corresponding `CommandWord`.
+2. `HairStyleXParser` will pass the string to `CommandShortcutSet` to retrieve the corresponding `CommandWord`.
 3. Then, the `CommandWord` is processed as usual.
 
 Steps when adding a new shortcut:
@@ -169,8 +169,8 @@ Steps when listing all shortcuts
 
 #### Saving the Shortcut
 
-`JsonAdapatedAdressBook` saves `CommandShortcutSet` as a `JsonAdapatedCommandShortcutSet` together with its `JsonAdaptedShortcut`.
-Upon starting the application,  `JsonAdaptedAddressBook` is used to set the singleton `CommandShortcutSet`.
+`JsonHairStyleXStorage` saves `CommandShortcutSet` as a `JsonAdapatedCommandShortcutSet` together with its `JsonAdaptedShortcut`.
+Upon starting the application,  `JsonHairStyleXStorage` is used to set the singleton `CommandShortcutSet`.
 
 ### Hairdresser Management Features
 
@@ -315,13 +315,13 @@ Given below is the example usage scenario that highlights the generation of a ne
 
 ![IDSequenceDiagram](images/IDSequenceDiagram.png)
 
-### Find Feature
+### Filter Feature
 
-Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily find an entity within a class or filter a list of entities.
+Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily filter an entity within a class or filter a list of entities.
 
 #### Reasons for implementation
 
-The find appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
+The filter appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
 or filter out a list of all appointments in a certain day, it avoids creating conflicting appointments and provides a more efficient way of scheduling appointments.
 
 #### Use cases
@@ -334,29 +334,29 @@ or filter out a list of all appointments in a certain day, it avoids creating co
 
 #### Usage Scenario
 
-Given below is the example usage scenario of finding a client:
+Given below is the example usage scenario of filtering a client:
 
-The `find_client` command allows the `LogicManager` to create one or a list of clients. 
+The `filter_client` command allows the `LogicManager` to create one or a list of clients. 
 
-The following sequence shows the sequence when the find command is execute by the `LogicManager`:
+The following sequence shows the sequence when the filter command is execute by the `LogicManager`:
 
-![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+![FilterCommandSequenceDiagram](images/FilterCommandSequenceDiagram.png)
 
 From the diagram above:
 
-1. `LogicManager`’s `execute` is called when `find_client` is entered and it calls upon `parseCommand` of `AddressBookParser` to parse the command.
+1. `LogicManager`’s `execute` is called when `filter_client` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
 
-2. `AddressBookParser` will initialize `FindClientCommandParser` and invoke the method `parse` to further parse find client command
+2. `HairStyleXParser` will initialize `FilterClientCommandParser` and invoke the method `parse` to further parse filter client command
 
-3. `parse` will be invoked and passed the parameters of the find client command.
+3. `parse` will be invoked and passed the parameters of the filter client command.
 
-4. If all the arguments of `find_client` commands are valid, `FindClientCommand` will be returned to the `LogicManager`
+4. If all the arguments of `filter_client` commands are valid, `FilterClientCommand` will be returned to the `LogicManager`
 
-5. `LogicManger` will then call `execute` method of `FindClientCommand`
+5. `LogicManger` will then call `execute` method of `FilterClientCommand`
 
-6. `FindClientCommand` will call `updateFilteredClientList` passing `predicate` as an argument to `Model` and returns a `result` to the `LogicManager`
+6. `FilterClientCommand` will call `updateFilteredClientList` passing `predicate` as an argument to `Model` and returns a `result` to the `LogicManager`
 
-7. `LogicManger` will then call `saveAddressBook` method of `Storage`
+7. `LogicManger` will then call `saveHairStyleX` method of `Storage`
 
 8. A `CommandResult` will be returned at the end.
 

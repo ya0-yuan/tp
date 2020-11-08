@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.HairStyleX;
+import seedu.address.model.IdCounter;
 import seedu.address.model.ReadOnlyHairStyleX;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.client.Client;
@@ -70,33 +71,45 @@ class JsonSerializableHairStyleX {
      */
     public HairStyleX toModelType() throws IllegalValueException {
         HairStyleX hairStyleX = new HairStyleX();
+        int maxOfHairdresser = 0;
         for (JsonAdaptedHairdresser jsonAdaptedHairdresser : hairdressers) {
             Hairdresser hairdresser = jsonAdaptedHairdresser.toModelType();
             if (hairStyleX.hasHairdresser(hairdresser)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_HAIRDRESSER);
             }
+            maxOfHairdresser = Math.max(maxOfHairdresser, hairdresser.getId().getId());
             hairStyleX.addHairdresser(hairdresser);
         }
 
+        int maxOfClient = 0;
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
             if (hairStyleX.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
+            maxOfClient = Math.max(maxOfClient, client.getId().getId());
             hairStyleX.addClient(client);
         }
 
+        int maxOfAppointment = 0;
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
             if (hairStyleX.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
+            maxOfAppointment = Math.max(maxOfAppointment, appointment.getId().getId());
             hairStyleX.addAppointment(appointment);
         }
         if (idCounter == null) {
             throw new IllegalValueException(MISSING_ID_COUNTER_MESSAGE);
         }
 
+        IdCounter idCounterModelType = idCounter.toModelType();
+        if (maxOfHairdresser > idCounterModelType.getCurrentMaxHairdresserId()
+                || maxOfClient > idCounterModelType.getCurrentMaxClientId()
+                || maxOfAppointment > idCounterModelType.getCurrentMaxAppointmentId()) {
+            throw new IllegalValueException(MISSING_ID_COUNTER_MESSAGE);
+        }
         hairStyleX.setIdCounter(idCounter.toModelType());
         hairStyleX.setCommandAliasSet(aliasSet.toModelType());
         return hairStyleX;
