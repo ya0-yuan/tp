@@ -203,18 +203,21 @@ public class ModelManager implements Model {
     public void deleteAppointment(Appointment target) {
         hairStyleX.removeAppointment(target);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        logger.info("Model: Deleted Appointment " + target.getId());
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         hairStyleX.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        logger.info("Model: Added Appointment " + appointment.getId());
     }
 
     @Override
     public void setAppointment(Appointment target, Appointment changedAppointment) {
         requireAllNonNull(target, changedAppointment);
         hairStyleX.setAppointment(target, changedAppointment);
+        logger.info("Model: Edited Appointment " + target.getId());
     }
 
     /**
