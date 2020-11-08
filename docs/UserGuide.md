@@ -1022,13 +1022,13 @@ Outcome:
 * The _Result Display_ will show a success message.
 * You can now see your new shortcut.
 
-![Ui](images/shortcut/add_alias_success.png)
+![Ui](images/shortcut/add_shortcut_success.PNG)
 
 You can now use the shortcut
-![Ui](images/shortcut/use_new_alias.png)
+![Ui](images/shortcut/use_new_shortcut.PNG)
 
 And it works!
-![Ui](images/shortcut/new_alias.png)
+![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
 **:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
@@ -1057,7 +1057,7 @@ Outcome:
 * The _Result Display_ will show a success message.
 
 .Outcome of a successful `delete_shortcut` command
-![Ui](images/shortcut/deletealias.png)
+![Ui](images/shortcut/delete_shortcut.PNG)
 
 #### 4.5.3 List all shortcuts : `list_shortcut`
 
