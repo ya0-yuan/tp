@@ -20,6 +20,9 @@ public class AddShortcutCommand extends AddCommand {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OLD_COMMAND + " add_hairdresser "
             + PREFIX_NEW_COMMAND + " a_h ";
+
+    public static final String MESSAGE_SUCCESS = "Success! Added %1$s as shortcut for %2$s";
+
     private String defaultWord;
     private String newShortcut;
 
@@ -41,7 +44,6 @@ public class AddShortcutCommand extends AddCommand {
         } catch (CommandWordException ex) {
             throw new CommandException(ex.getMessage());
         }
-        return new CommandResult("Success! Added "
-                + newShortcut + " as shortcut for " + defaultWord);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newShortcut, defaultWord));
     }
 }
