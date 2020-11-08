@@ -200,8 +200,13 @@ public class Appointment implements Entity {
      * @return true if the other appointment clashes with this.
      */
     public boolean isClash(Appointment that) {
-        // There is a clash IFF the start time of either is in between the start and end time of the
-        // other, or their start times are the same
+        // There is a clash IFF both are active, and the start time of either is between the start and end
+        // time of the other, or their start times are the same
+        if (!this.appointmentStatus.equals(AppointmentStatus.ACTIVE)
+            || !that.appointmentStatus.equals(AppointmentStatus.ACTIVE)) {
+            // At least one of the appointments are not active
+            return false;
+        }
         if (!that.getHairdresserId().equals(this.hairdresserId)
             && !that.getClientId().equals(this.clientId)) {
             // Neither the hairdresser nor the client are the same
@@ -224,7 +229,7 @@ public class Appointment implements Entity {
      * Defines equality between appointments based on hairdresserID,
      * clientID, date, and time. Does not consider status.
      *
-     * @param o            The object to compare to.
+     * @param o The object to compare to.
      * @return true if the other appointment has the same hairdresserID,
      * clientID, date, and time.
      */

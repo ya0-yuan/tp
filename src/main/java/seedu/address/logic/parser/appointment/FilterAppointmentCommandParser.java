@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.appointment;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MULTIPLE_INPUT_FOR_SAME_PREFIX;
 import static seedu.address.logic.commands.appointment.FilterAppointmentCommand.MESSAGE_NOT_STATED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ID;
@@ -39,6 +40,22 @@ public class FilterAppointmentCommandParser implements Parser<FilterAppointmentC
 
         FilterAppointmentDescriptor descriptors =
                 new FilterAppointmentDescriptor();
+
+        if (argMultimap.getNum(PREFIX_CLIENT_ID) > 1) {
+            throw new ParseException(String.format(MULTIPLE_INPUT_FOR_SAME_PREFIX));
+        }
+
+        if (argMultimap.getNum(PREFIX_HAIRDRESSER_ID) > 1) {
+            throw new ParseException(String.format(MULTIPLE_INPUT_FOR_SAME_PREFIX));
+        }
+
+        if (argMultimap.getNum(PREFIX_DATE_OF_APPT) > 1) {
+            throw new ParseException(String.format(MULTIPLE_INPUT_FOR_SAME_PREFIX));
+        }
+
+        if (argMultimap.getNum(PREFIX_APPT_STATUS) > 1) {
+            throw new ParseException(String.format(MULTIPLE_INPUT_FOR_SAME_PREFIX));
+        }
 
         if (argMultimap.getValue(PREFIX_CLIENT_ID).isPresent()) {
             ClientId pid = ParserUtil
