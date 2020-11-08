@@ -629,21 +629,80 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app with `java -jar` command.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a client
 
-### Deleting a person
+1. Adding a client to **HairStyleX**
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate client in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 t/shortHair t/owesMoney` <br>
+      Expected: Adds a client with a unique client ID, with name `John Doe`, phone `98765432`, email `johnd@example.com`, gender `M`, address `311, Clementi Ave 2, #02-25` , tags `shortHair` and `owesMoney`. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `add_client n/John Doe`<br>
+      Expected: No client is added. Error details shown in result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect add commands to try: `add_client`, `add_client g/a`, `...`<br>
+      Expected: Similar to previous test case.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Editing a client
+
+1. Editing a client in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The client to be edited must be in **HairStyleX**. A client with client ID 1 must be present in the list. 
+
+   1. Test case: `edit_client 1 t/preferPerm`<br>
+      Expected: Edits the client with ID of 1 in the displayed client panel with tag `preferPerm`.
+
+   1. Test case: `edit_client t/preferPerm`<br>
+      Expected: No client is edited. Error details shown in result display.
+
+   1. Other incorrect edit commands to try: `edit_client`, `edit_client x t/preferPerm` (where there are no clients with client ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Deleting a client
+
+1. Deleting a client in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. The client to be deleted must be in **HairStyleX**. A client with client ID 1 must be present in the list. 
+
+   1. Test case: `delete_client 1`<br>
+      Expected: Deletes the client with ID of 1 in the displayed client panel.
+
+   1. Test case: `delete_client -10`<br>
+      Expected: No client is deleted. Error details shown in result display.
+
+   1. Other incorrect delete commands to try: `delete_client`, `delete_client x` (where there are no clients with client ID of x), `...`<br>
+      Expected: Similar to previous test case.
+
+### Filtering clients
+
+1. Filtering clients in **HairStyleX**
+
+   1. Prerequisites: Arguments are valid and compulsory parameters are provided. There exist client in **HairStyleX** with name of `Anna`. No shortcut has been created for `filter_client`.
+
+   1. Test case: `filter_client anna`<br>
+      Expected: Displays all clients with name of `Anna` (case insensitive) in the displayed client list.
+
+   1. Test case: `filter_client`<br>
+      Expected: No filter is applied. Error details shown in result display. Client panel remains unchanged.
+
+   1. Other incorrect filter commands to try: `flter_c`, `filter_c cid/one` `...`<br>
+      Expected: Similar to previous test case.
+
+### Listing all clients
+
+1. Listing all clients in **HairStyleX**
+
+   1. Prerequisites: No arguments are required. There exist some clients currently in **HairStyleX**. No shortcut has been created for `list_client`. A valid `filter_client` command has been called. 
+
+   1. Test case: `list_client`<br>
+      Expected: Lists all clients in the client panel.
+
+   1. Test case: `lst_client`<br>
+      Expected: Application unable to detect command. Error details shown in result display. Clients panel remains unchanged.
+
+   1. Other incorrect list commands to try: `list_c`, `ls_c`, `...`<br>
+      Expected: Similar to previous test case.
 
 ### Adding a hairdresser
 

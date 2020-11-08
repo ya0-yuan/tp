@@ -637,7 +637,7 @@ You can use this command to edit an existing hairdresser in the database.
 
 **Format:** 
 
-`edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [e/GENDER] [ti/TITLE] [s/SPECIALISATION]…`
+`edit_hairdresser ID [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [ti/TITLE] [s/SPECIALISATION]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -798,7 +798,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time.  
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because the maximum time required of for any hair treatment is two hours. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -1128,6 +1128,7 @@ Action | Format, Examples
 --------|------------------
 **Add Appointment** | `add_appt cid/CLIENT_ID hid/HAIRDRESSER_ID d/DATE t/TIME` <br> e.g. `add_appt cid/1 hid/1 d/2020-12-12 t/17:30`
 **List Appointments** | `list_appt`
+**Edit Appointment** | `edit_appt ID s/STATUS` <br> e.g. `edit_appt 1 s/COMPLETED`
 **Delete Appointment** | `delete_appt ID` <br> e.g. `delete_appt 3`
 **Filter Appointment** | `filter_appt [cid/CLIENT_INDEX] [hid/HAIRDRESSER_INDEX] [d/DATE_OF_APPT] [s/APPT_STATUS]` <br> e.g. `filter_appt s/missed`
 
