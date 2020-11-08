@@ -26,7 +26,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
         * The methods used to define equality was also carefully considered, since they will be used to prevent creation of duplicate entities in **HairStyleX**.
         * In addition, all fields were carefully designed to include regex tests for the most appropriate strings to be accepted.
         
-* **Create CRUD command for Appointments**: Designed and created `Add`, `Edit`, `Delete` and `List`commands for `Appointments` (Pull request [\#117](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/117), [\#119](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/119))
+* **Create CRUD command for Appointments**: Designed and created `Add`, `Edit`, `Delete` and `List` commands for `Appointments` (Pull request [\#117](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/117), [\#119](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/119))
     * What it does: Encapsulates the logic that makes changes to the `Model` and `Storage` classes whenever appointments are manipulated in **HairStyleX**.
     * Justification: These commands are essential to ensuring that appointments are stored and saved correctly in **HairStyleX** whenever a user manipulates them.
     * Highlights:
