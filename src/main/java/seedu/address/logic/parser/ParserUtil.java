@@ -27,8 +27,6 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses a {@code String clientId} into a {@code ClientId}.
      * Leading and trailing whitespaces will be trimmed.

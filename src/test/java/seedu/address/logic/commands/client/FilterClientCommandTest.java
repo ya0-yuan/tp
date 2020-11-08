@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,26 +6,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_CLIENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.BOB;
+import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalClients.CARL;
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalClients.getTypicalHairStyleX;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.client.FilterClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.client.ClientNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalClients;
 
-public class FilterClientTest {
+public class FilterClientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalClients.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHairStyleX(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalClients.getTypicalHairStyleX(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -71,7 +70,7 @@ public class FilterClientTest {
         FilterClientCommand command = new FilterClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BOB, CARL), model.getFilteredClientList());
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredClientList());
     }
 
     /**

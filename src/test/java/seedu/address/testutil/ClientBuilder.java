@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.client.Address;
 import seedu.address.model.person.client.Client;
+import seedu.address.model.person.client.ClientId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -40,6 +41,7 @@ public class ClientBuilder {
         gender = new Gender(DEFAULT_GENDER);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        tags.add(new Tag("husband"));
     }
 
     /**
@@ -104,6 +106,10 @@ public class ClientBuilder {
 
     public Client build() {
         return new Client(name, phone, email, gender, address, tags);
+    }
+
+    public Client build(ClientId id) {
+        return new Client(id, name, phone, email, gender, address, tags);
     }
 
 }

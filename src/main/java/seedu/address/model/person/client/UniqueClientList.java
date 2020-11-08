@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.UniqueEntityList;
 import seedu.address.model.person.RecordContainsClientIdPredicate;
-import seedu.address.model.person.client.exceptions.ClientNotFoundException;
-import seedu.address.model.person.client.exceptions.DuplicateClientException;
+import seedu.address.model.person.client.exception.ClientNotFoundException;
+import seedu.address.model.person.client.exception.DuplicateClientException;
 
 
 public class UniqueClientList extends UniqueEntityList<Client> {
