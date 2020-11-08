@@ -4,7 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Entity;
 import seedu.address.model.IdCounter;
 import seedu.address.model.person.client.Client;
@@ -17,6 +19,7 @@ import seedu.address.model.person.hairdresser.HairdresserId;
  */
 public class Appointment implements Entity {
 
+    private static final Logger logger = LogsCenter.getLogger(Appointment.class);
     private final AppointmentId id;
     private final ClientId clientId;
     private final HairdresserId hairdresserId;
@@ -48,6 +51,7 @@ public class Appointment implements Entity {
         this.time = time;
         this.appointmentStatus = appointmentStatus;
         this.duration = new AppointmentDuration();
+        logger.finer("Appointment object constructed");
     }
 
     /**
@@ -66,6 +70,7 @@ public class Appointment implements Entity {
         this.time = time;
         this.appointmentStatus = appointmentStatus;
         this.duration = new AppointmentDuration();
+        logger.finer("Appointment object constructed");
     }
 
     @Override
@@ -102,6 +107,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with client replaced by the new client.
      */
     public Appointment replaceClient(Client newClient) {
+        logger.info("Appointment " + id + " client replaced");
         return new Appointment(
             this.id,
             newClient,
@@ -118,6 +124,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with client replaced by null.
      */
     public Appointment deleteClient() {
+        logger.info("Appointment " + id + " client deleted");
         return replaceClient(this.client.setTombstone());
     }
 
@@ -132,6 +139,8 @@ public class Appointment implements Entity {
      * @return a new Appointment object with Hairdresser replaced by the new Hairdresser.
      */
     public Appointment replaceHairdresser(Hairdresser newHairdresser) {
+
+        logger.info("Appointment " + id + " hairdresser replaced");
         return new Appointment(
             this.id,
             this.client,
@@ -148,6 +157,7 @@ public class Appointment implements Entity {
      * @return a new Appointment object with hairdresser replaced by null.
      */
     public Appointment deleteHairdresser() {
+        logger.info("Appointment " + id + " hairdresser deleted");
         return replaceHairdresser(this.hairdresser.setTombstone());
     }
 
@@ -200,6 +210,7 @@ public class Appointment implements Entity {
      * @return true if the other appointment clashes with this.
      */
     public boolean isClash(Appointment that) {
+        logger.fine("Checking clash between appointments " + id + " and " + that.id);
         // There is a clash IFF both are active, and the start time of either is between the start and end
         // time of the other, or their start times are the same
         if (!this.appointmentStatus.equals(AppointmentStatus.ACTIVE)
