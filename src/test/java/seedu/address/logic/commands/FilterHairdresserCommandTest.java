@@ -23,7 +23,7 @@ import seedu.address.model.person.hairdresser.HairdresserNameContainsKeywordsPre
 import seedu.address.testutil.TypicalHairdressers;
 
 
-public class FilterHairdresserTest {
+public class FilterHairdresserCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalHairdressers.getTypicalAddressBook(), new UserPrefs());

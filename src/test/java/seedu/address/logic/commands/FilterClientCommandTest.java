@@ -22,7 +22,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.client.ClientNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalClients;
 
-public class FilterClientTest {
+public class FilterClientCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalClients.getTypicalAddressBook(), new UserPrefs());
