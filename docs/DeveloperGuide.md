@@ -228,7 +228,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 * `AddAppointmentCommandParser` - This class parses a user input string to an AppointmentCommand object. Validation for inputs that do not require access to the model is performed here.
 
-* `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
+* `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
 #### Add Appointment Feature
 ##### Current implementation
