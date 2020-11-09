@@ -88,7 +88,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      *
      * @param deleted id of the deleted client
      */
-    public void setClientToNull(ClientId deleted) {
+    public void deleteClient(ClientId deleted) {
         requireAllNonNull(deleted);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
@@ -97,6 +97,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
                 internalList.set(i, newAppointment);
             }
         }
+        return;
     }
 
     /**
@@ -104,7 +105,7 @@ public class UniqueAppointmentList extends UniqueEntityList<Appointment> {
      *
      * @param deleted id of the deleted client
      */
-    public void setHairdresserToNull(HairdresserId deleted) {
+    public void deleteHairdresser(HairdresserId deleted) {
         requireAllNonNull(deleted);
         for (int i = 0; i < internalList.size(); i++) {
             Appointment currentAppointment = internalList.get(i);
