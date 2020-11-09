@@ -32,9 +32,8 @@ public class AppointmentTime {
      * Returns true if a given string is a valid appointment time.
      */
     public static boolean isValidAppointmentTime(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         try {
-            LocalTime time = LocalTime.parse(test, formatter);
+            LocalTime time = LocalTime.parse(test);
             return true;
 
         } catch (DateTimeParseException e) {
