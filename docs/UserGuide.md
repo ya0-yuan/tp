@@ -836,6 +836,7 @@ You can use this command to show a list of all hairdressers in the database. Thi
 `list_appt`
 
 Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
+
 **Example:**
 
 <div markdown="block" class="alert alert-white">
