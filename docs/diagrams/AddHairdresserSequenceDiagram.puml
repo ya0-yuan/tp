@@ -16,10 +16,10 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-[-> LogicManager : execute(add_hairdresser)
+[-> LogicManager : execute(str)
 activate LogicManager
 
-LogicManager -> HairStyleXParser : parseCommand(add_hairdresser)
+LogicManager -> HairStyleXParser : parseCommand(str)
 activate HairStyleXParser
 
 create AddHairdresserCommandParser
@@ -38,7 +38,7 @@ activate AddHairdresserCommand
 AddHairdresserCommand --> AddHairdresserCommandParser
 deactivate AddHairdresserCommand
 
-AddHairdresserCommandParser -> AddHairdresserCommand : parse(add_hairdresser)
+AddHairdresserCommandParser -> AddHairdresserCommand : parse(arguments)
 activate AddHairdresserCommand
 
 AddHairdresserCommand -> AddHairdresserCommandParser : a

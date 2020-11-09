@@ -190,11 +190,11 @@ The following sequence shows the sequence when the add command is execute by the
 
 From the diagram above:
 
-1. `LogicManager`’s `execute` is called when `add_hairdresser` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
+1. `LogicManager`’s `execute` is called when the user enters a command string into the command box. The string is passed to `execute` as an argument, and it calls `parseCommand` of `HairStyleXParser` to parse the command string.
 
-2. `HairStyleXParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse add hairdresser command
+2. `HairStyleXParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse the command
 
-3. `parse` will be invoked and passed the parameters of the add hairdresser command.
+3. `parse` of `AddHairdresserCommandParser` will be invoked and passed the parameters of the add hairdresser command. 
 
 4. If all the arguments of `add_hairdresser` commands are valid, `AddHairdresserCommand` will be returned to the `LogicManager`
 
@@ -365,7 +365,7 @@ From the diagram above:
 
 ### Print Feature
 
-`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to `.csv` format.
+`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to be exported to `.csv` format.
 
 #### Current Implementation
 
@@ -375,7 +375,7 @@ Some key methods:
 
 - `ExportType` - a private enum that encapsulates the type of information to be exported. Contains `ExportType.Hairdresser`, `ExportType.Client`, `ExportType.Appointment`.
 - `PrintCommand#writeToCsv()` - initialises a `.csv` file for hairdresser, client or appointment depending on the `ExportType` enum given and then writes to it.
-- `PrintCommand#appendToWriter()` - calls the respective functions that converts data to string and appends the returned string to the `.csv` files.
+- `PrintCommand#appendToWriter()` - calls the respective functions that convert data to string and appends the returned string to the `.csv` files.
 - `PrintCommand#removeCommaConflict()` - escapes the strings containing commas to avoid formatting error when writing to `.csv` files.
 
 #### Steps
@@ -396,7 +396,7 @@ Some key methods:
     - For `ExportType.Client`: `makeFileCreationTime`, `makeClientHeader` are called, and `printClient` is called for each in `clientList`.
     - For `ExportType.Appointment`: `makeFileCreationTime`, `makeAppointmentHeader` are called, and `printAppointment` is called for each in `appointmentList`.
 
-    Each of the methods called by `appendToWriter` returns a string that is one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed.
+    Each of the methods called by `appendToWriter` returns a string that makes up of one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed.
 
 1. A `CommandResult` will be returned at the end.
 
