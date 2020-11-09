@@ -24,7 +24,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
        
 * **Create `Print` command for exportation of data**: Designed and created `Print` command. (Pull request [\#202](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/202), [\#261](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/261))
     * What it does: The `Print` command allows the user to export the data of `hairdresser`, `client` and `appointment` into `.csv` files. 
-    * Justification: The command gives the users an option to save data into an easy-to-read and easy-to-operate format. Users can do their own data analysis on the files later on. 
+    * Justification: The command gives the users an option to save data into an easy-to-read and easy-to-operate format.
     * Highlights:
         * `Print` command allows the all three lists of `hairdresser`, `client` and `appointment` to be exported into `.csv` format with user input of one single command, together with timestamp of time of creation written inside the files. 
         * `Print` command allows the concurrent exportation of the three lists using `executer` and multi-thread, thus reducing the overall runtime for potential large list exportation. 
@@ -34,8 +34,8 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
     * What is does: Enforces the user to identify `Client`s, `Hairdresser`s and `Appointment`s by their unique `Id` instead of the default list index that is shown in *AddressBook-3*.
     * Justification: The `Id` classes are designed and created by [James](https://ay2021s1-cs2103t-t15-1.github.io/tp/team/iamjamestan.html). Integration of the `Id` classes into `hairdresser` and `client` and enhancement to `IdCounter` related classes are done later. 
     * Highlights:
-        * Integrated the `PersonId` and `PersonIdCounter` classes into `hairdresser` and `client` classes and the respective `model` and `storage` packages to ensure that `Id`s are stored and saved correctly in **HairStyleX** whenever a user manipulates them, or opens/reopens the application. ([\#111](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/111))
-        * `IdCounter#reset()` function was designed and implemented so that the stored `instance` for the singleton class `IdCounter` can be cleared and reset, together with the static counters inside the class ([\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278) (under [IdCounter.java](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/files#diff-ac1519e09f1f6c4cbc50784b7d08641f1cfdc57a59d183aa55268c794958c3ac))). This is especially useful for testing purposes, where multiple `Model`s will be created and tested. 
+        * Integrated the `PersonId` and `PersonIdCounter` classes into `hairdresser` and `client` classes and ensured that `Id`s are stored and saved correctly in **HairStyleX** whenever a user manipulates them. ([\#111](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/111))
+        * `IdCounter#reset()` function was designed and implemented so that the stored `instance` for the singleton class `IdCounter` can be cleared and reset ([\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278) (under [IdCounter.java](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/files#diff-ac1519e09f1f6c4cbc50784b7d08641f1cfdc57a59d183aa55268c794958c3ac))). This is especially useful for testing purposes, where multiple `Model`s will be created and tested. 
         * Validation for `IdCounter` is enforced while constructing `HairStyleX`([\#284](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/284)). 
 * **Testing**: Create tests for hairdresser related commands and classes that increased coverage by 19.85%. (Pull request [\#123](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/123), [\#278](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/278/))
 
@@ -53,9 +53,8 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 
 * Set up github page and CI for the team repo
 * Set up project boards used by the team in the early stages
-* Created and uploaded releases for v1.2 and v1.4
-* Upload video for v1.2 demo
-* Fixed miscellaneous bugs ([\#211](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/211))
+* Created and uploaded releases for v1.2 and v1.4, and uploaded video for v1.2 demo
+* Fixed miscellaneous bugs ([\#211](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/211)), updated UI ([\#317](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/317))
 
 #### Review/mentoring contributions
 

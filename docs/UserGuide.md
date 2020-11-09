@@ -13,7 +13,7 @@ title: User Guide
 ## 1. Introduction
 (Contributed by Tan Yu Li, James)
 
-Welcome to the User Guide of HairStyleX.
+Welcome to the User Guide of **HairStyleX**.
  
 Today, many budding hair salons still resort to using pen and paper to keep track of their appointments, clients, and hairdressers due to their tight budget. While suitable for a small client base, this is not sustainable in the long run as their client base increases, since recording and searching for information manually would be slow and prone to human errors. Our salon management application **HairStyleX** is designed to make this process much easier for salon managers who have at least a laptop at their front desk.
 
@@ -57,7 +57,7 @@ There are many things you can do with **HairStyleX**. Thus, we have structured t
 
 * Appointment Management
 
-* Alias Management
+* Shortcut Management
 
 ### 3.2 Reading this document
 
@@ -175,7 +175,7 @@ The commands in this section allow you to perform operations on the entire syste
 
 #### 4.1.1 Viewing help : `help`
 
-You can use this command to view the user guide, which contains information about all the instructions in HairStyleX.
+You can use this command to view the user guide, which contains information about all the instructions in **HairStyleX**.
 
 <div markdown="block" class="alert alert-info">
 
@@ -189,7 +189,7 @@ You can use this command to view the user guide, which contains information abou
 
 **Example:**
 
-In this example, you want to view the user guide to get information about the various commands in HairStyleX.
+In this example, you want to view the user guide to get information about the various commands in **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -197,7 +197,7 @@ Requesting for help:
 
 1. Type `help` into the *Command Box*.
 1. Press `Enter` to execute.
-1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the HairStyleX user guide.
+1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the **HairStyleX** user guide.
 ![HelpOutcome](images/general-command/Help.png)
 1. Open your preferred web browser on your computer and paste the link into the address bar.
 1. Press `Enter` to load the website
@@ -205,17 +205,17 @@ Requesting for help:
 Outcome:
 
 1. Your browser will show the user guide
-1. You can now access information about all commands in HairStyleX via the browser
+1. You can now access information about all commands in **HairStyleX** via the browser
 
 </div>
 
 #### 4.1.2 Clearing all entries : `clear`
 
-You can use this command to clear all entries in HairStyleX.
+You can use this command to clear all entries in **HairStyleX**.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: This command will delete all data in HairStyleX permanently. Please proceed with caution.**
+**:warning: This command will delete all data in **HairStyleX** permanently. Please proceed with caution.**
 
 </div>
 
@@ -225,7 +225,7 @@ You can use this command to clear all entries in HairStyleX.
 
 **Example:**
 
-In this example, you want to clear all current data and start with an empty HairStyleX.
+In this example, you want to clear all current data and start with an empty **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -245,7 +245,7 @@ Outcome:
 
 #### 4.1.3 Exiting from the application: `exit`
 
-You can use this command to exit HairStyleX.
+You can use this command to exit **HairStyleX**.
 
 <div markdown="block" class="alert alert-info">
 
@@ -259,7 +259,7 @@ You can use this command to exit HairStyleX.
 
 **Example:**
 
-In this example, you want to exit HairStyleX.
+In this example, you want to exit **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -303,7 +303,7 @@ Outcome:
 
 1. The `Result Display` will show a success message.
 1. You can now access the CSV files in the folder `data` that is in the same directory with **HairStyleX.jar**.
-1. There should be three CSV files generated. Namely, *appointments.csv*, *client.csv*, *hairdressers.csv*.
+1. There should be three CSV files generated. Namely, *appointments.csv*, *clients.csv*, *hairdressers.csv*.
 1. These files contain the information for `Appointment`s, `Client`s, and `Hairdresser`s respectively. 
 
 </div>
@@ -359,7 +359,7 @@ You can use this command to add a client to the database.
 
 * Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
 
-* You are not allowed to enter duplicates into HairStyleX.
+* You are not allowed to enter duplicates into **HairStyleX**.
 
 </div>
 
@@ -436,7 +436,7 @@ You can use this command to edit an existing client in the database.
 
 * Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
 
-* You are not allowed to edit a client such that their updated information results in duplicates in HairStyleX.
+* You are not allowed to edit a client such that their updated information results in duplicates in **HairStyleX**.
 
 </div>
 
@@ -583,7 +583,7 @@ You can use this command to add a hairdresser to the database.
 
 * Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
 
-* You are not allowed to enter duplicates in HairStyleX.
+* You are not allowed to enter duplicates in **HairStyleX**.
 
 </div>
 
@@ -660,7 +660,7 @@ You can use this command to edit an existing hairdresser in the database.
 
 * Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
 
-* You are not allowed to edit a hairdresser such that their updated information results in duplicates in HairStyleX.
+* You are not allowed to edit a hairdresser such that their updated information results in duplicates in **HairStyleX**.
 
 </div>
 
@@ -776,7 +776,7 @@ This feature allows you to manage appointments between hairdressers and clients.
 Parameter Name | Description
 --------|------------------
 `CLIENT_ID` | The ID of the client `cid`
-`HAIRDRESSER_ID` | The ID of the hairdresser `cid`
+`HAIRDRESSER_ID` | The ID of the hairdresser `hid`
 `DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
 `TIME` | The time of the appointment.<br><br> It must be in the format of `HH:MM`.<br><br> E.g. `17:30` This example means 5.30 pm.
 `STATUS` | The status of the appointment, which can be `ACTIVE`, `COMPLETED`, or `MISSED`
@@ -798,7 +798,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because the maximum time required of for any hair treatment is two hours. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because two hours is a reasonable time period required of for any hair treatment. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -908,7 +908,6 @@ Removes a specific appointment from the database.
 * Deletes the appointment with the specified `ID`.
 * The ID refers to the appointment ID `aid` shown in the displayed appointment list.
 * The ID **must be a positive integer** 1, 2, 3, …
-* All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 </div>
 
 **Example**:
@@ -999,8 +998,8 @@ longer commands.
 
 Parameter Name | Description
 --------|------------------
-`OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
-`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
+`OLD_SHORTCUT` | The name of an original command provided by **HairStyleX**.<br> E.g. `add_client`, `edit_appt`, etc.
+`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_SHORTCUT`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
 #### 4.5.2 Add a new shortcut : `add_shortcut`
 
@@ -1033,7 +1032,8 @@ And it works!
 ![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
-**:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
+
+**:information_source: You cannot add duplicate shortcuts or default command words as shortcuts. You also can still use the original command!**<br>
 
 </div>
 
@@ -1077,7 +1077,7 @@ You can use this command to show all your shortcuts.
 (Contributed by Tan Yu Li, James)
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HairstyleX home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **HairStyleX** home folder.
 
 **Q**: Why aren’t I allowed to edit my date or time for the appointment?<br>
 **A**: Editing the date or time may cause conflicts in your schedule if the change results in two appointments with the same hairdresser occuring concurrently. However, we are working on a feature that will allow you to resolve these conflicts in the upcoming version of **HairStyleX**.
@@ -1107,9 +1107,9 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
 **List Clients** | `list_client`
-**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
+**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
 **Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
@@ -1117,9 +1117,10 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION] [t/TAG]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
-**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Delete Hairdresser** | `delete_hairdresser ID` <br> e.g. `delete_hairdresser 3`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
 ### 6.4 Appointment Commands

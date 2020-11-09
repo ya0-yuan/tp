@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,7 +78,7 @@ The `UI` component,
 <img src="images/LogicClassDiagram.png" width="800">
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `HairStyleXParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -90,14 +90,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <img src="images/DeleteSequenceDiagram.png" width="800">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -107,17 +107,11 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the database, which `Person` references. This allows `HairStyleX` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -196,11 +190,11 @@ The following sequence shows the sequence when the add command is execute by the
 
 From the diagram above:
 
-1. `LogicManager`’s `execute` is called when `add_hairdresser` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
+1. `LogicManager`’s `execute` is called when the user enters a command string into the command box. The string is passed to `execute` as an argument, and it calls `parseCommand` of `HairStyleXParser` to parse the command string.
 
-2. `HairStyleXParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse add hairdresser command
+2. `HairStyleXParser` will initialize `AddHairdresserCommandParser` and invoke the method `parse` to further parse the command
 
-3. `parse` will be invoked and passed the parameters of the add hairdresser command.
+3. `parse` of `AddHairdresserCommandParser` will be invoked and passed the parameters of the add hairdresser command. 
 
 4. If all the arguments of `add_hairdresser` commands are valid, `AddHairdresserCommand` will be returned to the `LogicManager`
 
@@ -215,6 +209,7 @@ From the diagram above:
 
 ### Appointment feature
 (Contributed by Nicholas)
+
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
 #### Overview of implementation for Appointment
@@ -235,7 +230,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 * `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
-####Add Appointment Feature
+#### Add Appointment Feature
 ##### Current implementation
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
@@ -284,7 +279,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * The concrete classes `AppointmentId`, `ClientId`, and `HairdresserId` extend the abstract Id class, and reside in their respective packages.
 * These concrete classes contain their unique error messages which will be shown when an instance is created with an invalid id.
 
-![IDClassDiagram](images/IDClassDiagram.png)
+<img src="images/IDClassDiagram.png" width="200" />
 
 ##### ID Counter Class
 
@@ -295,7 +290,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * In order to avoid collisions, whenever a `ClientId` is generated, the next `ClientId` generated will be increased by 1.
     * Likewise for `HairdresserId` and `AppointmentId`
 
-![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
+<img src="images/IDCounterClassDiagram.png" width="200" />
 
 #### Design Considerations
 
@@ -309,25 +304,27 @@ To tackle this, we concluded that each entity should be identified by a unique I
   
 #### Usage Scenario
 
-Given below is the example usage scenario that highlights the generation of a new ID instance when a new Client is created:
-
-1. The user attempts to create a new client by entering the respective fields in the appropriate format, such as `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
-
-1. The AddClientCommandParser extracts the relevant fields from the user input and creates a new Client instance using the Client constructor.
-
-1. The Client constructor calls IdCounter to generate a new ClientId instance.
-
-1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
+Given below is the example usage scenario that highlights the generation of a new `ClientId` instance when a new `Client` is created:
 
 ![IDSequenceDiagram](images/IDSequenceDiagram.png)
 
+From the diagram above:
+
+1. The user attempts to create a new client by entering the respective fields in the appropriate format, such as `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
+
+1. The `AddClientCommandParser` extracts the relevant fields from the user input and creates a new `Client` instance using the `Client` constructor.
+
+1. The `Client` constructor calls `IdCounter` to generate a new `ClientId` instance.
+
+1. The returned `ClientId` is stored in this client object, which will be used to create AddClientCommand.
+
 ### Filter Feature
 
-Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily filter an entity within a class or filter a list of entities.
+Since now all entities are categorized into different classes, we want to make sure each class can have their own filter method to easily find an entity or a list of entities within a class.
 
 #### Reasons for implementation
 
-The filter appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
+The filter hairdresser/client feature can be useful when a specific client/hairdresser's information is needed at the moment. The filter appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
 or filter out a list of all appointments in a certain day, it avoids creating conflicting appointments and provides a more efficient way of scheduling appointments.
 
 #### Use cases
@@ -336,27 +333,27 @@ or filter out a list of all appointments in a certain day, it avoids creating co
 
 2. a client or a list of clients can be filtered by their name
 
-2. an appointment or a list of appointments can be filtered by either hairdresser included, client included, or date.
+2. an appointment or a list of appointments can be filtered by hairdresser's id, client's id, date of appointment, status of appointment or a combination of any of them.
 
 #### Usage Scenario
 
 Given below is the example usage scenario of filtering a client:
 
-The `filter_client` command allows the `LogicManager` to create one or a list of clients. 
+The `filter_client Anna` command allows the `LogicManager` to create one or a list of clients whose name contains "Anna". 
 
 The following sequence shows the sequence when the filter command is execute by the `LogicManager`:
 
-![FilterCommandSequenceDiagram](images/FilterCommandSequenceDiagram.png)
+![FilterClientCommandSequenceDiagram](images/FilterClientCommandSequenceDiagram.png)
 
 From the diagram above:
 
-1. `LogicManager`’s `execute` is called when `filter_client` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
+1. `LogicManager`’s `execute` is called when `filter_client Anna` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
 
 2. `HairStyleXParser` will initialize `FilterClientCommandParser` and invoke the method `parse` to further parse filter client command
 
 3. `parse` will be invoked and passed the parameters of the filter client command.
 
-4. If all the arguments of `filter_client` commands are valid, `FilterClientCommand` will be returned to the `LogicManager`
+4. If all the arguments of the filter command are valid, `FilterClientCommand` will be returned to the `LogicManager`
 
 5. `LogicManger` will then call `execute` method of `FilterClientCommand`
 
@@ -368,7 +365,7 @@ From the diagram above:
 
 ### Print Feature
 
-`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to `.csv` format.
+`Print` feature is to allow users to export data to an easy-to-read format. It allows the lists of hairdressers, clients and appointments to be exported to `.csv` format.
 
 #### Current Implementation
 
@@ -378,7 +375,7 @@ Some key methods:
 
 - `ExportType` - a private enum that encapsulates the type of information to be exported. Contains `ExportType.Hairdresser`, `ExportType.Client`, `ExportType.Appointment`.
 - `PrintCommand#writeToCsv()` - initialises a `.csv` file for hairdresser, client or appointment depending on the `ExportType` enum given and then writes to it.
-- `PrintCommand#appendToWriter()` - calls the respective functions that converts data to string and appends the returned string to the `.csv` files.
+- `PrintCommand#appendToWriter()` - calls the respective functions that convert data to string and appends the returned string to the `.csv` files.
 - `PrintCommand#removeCommaConflict()` - escapes the strings containing commas to avoid formatting error when writing to `.csv` files.
 
 #### Steps
@@ -399,7 +396,7 @@ Some key methods:
     - For `ExportType.Client`: `makeFileCreationTime`, `makeClientHeader` are called, and `printClient` is called for each in `clientList`.
     - For `ExportType.Appointment`: `makeFileCreationTime`, `makeAppointmentHeader` are called, and `printAppointment` is called for each in `appointmentList`.
 
-    Each of the methods called by `appendToWriter` returns a string that is one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed.
+    Each of the methods called by `appendToWriter` returns a string that makes up of one line of the `.csv` file, and is appended to the file line by line. After the writing operations are done, the writer is closed.
 
 1. A `CommandResult` will be returned at the end.
 
@@ -460,8 +457,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `HairStyleX` application, and the **Actor** is the `user`, unless specified otherwise)
@@ -486,7 +481,7 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given ID is invalid.
 
     * 3a1. HairStyleX shows an error message.
 
@@ -566,7 +561,7 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 
     Use case ends.
     
-**Use case: Add an alias*
+**Use case: Add an alias**
 
 **MSS**
 
@@ -588,7 +583,6 @@ it means that the use case can be performed similarly on both a `hairdresser` an
     * 1b1. HairStyleX shows an error message.
 
       Use case ends.
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -596,8 +590,6 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 2.  Should be able to hold up to 1000 hairdressers and clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  There is no need for internet connection
-
-*{More to be added}*
 
 ### Glossary
 
@@ -887,14 +879,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete shortcut commands to try: `delete_shortcut help`, `delete_shortcut non_existent_shortcut` `...`<br>
       Expected: Similar to previous test case.
-      
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 (Contributed by Nicholas)

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -32,9 +31,8 @@ public class AppointmentTime {
      * Returns true if a given string is a valid appointment time.
      */
     public static boolean isValidAppointmentTime(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         try {
-            LocalTime time = LocalTime.parse(test, formatter);
+            LocalTime time = LocalTime.parse(test);
             return true;
 
         } catch (DateTimeParseException e) {

@@ -5,39 +5,39 @@ title: Yao Yuan's Project Portfolio Page
 
 ## Project: HairStyleX
 
-HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
+HairstyleX helps managers from budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that routine tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 ### Summary of Contributions
 
 #### Code contributed
 
-Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ya0-yuan)
+Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ya0-yuan) to view the code that I have contributed.
 
 #### Enhancements implemented
 
 * **Create `Filter` method for `Client` and `Hairdresser` classes**: (Pull request
-[\#176](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/176)
+[\#176](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/176),
 [\#287](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/287))
-   * What it does: Allows the user to filter the client/hairdresser list with the client/hairdresser’s `name`. Also encapsulates the logic that makes changes to the `Model` classes whenever client/hairdresser list is filtered.
-   * Justification: These commands are essential to the product as the client/hairdresser list can be extremely long especially when the database is large and the app should provide a convenient way for the user to quickly find one or few client(s)/hairdresser(s).
-   * Highlights: Careful consideration of good OOP design was made when creating filter commands for these two classes. `FilterEntityCommand` class is created and `FilterClientCommand` and `FilterHairdresserCommand` classes inherit from it. (Pull request)
+   * What it does: Allows the user to filter the client/hairdresser list with the client/hairdresser’s `name`. Also encapsulates the logic that make changes to the `Model` class whenever client/hairdresser list is filtered.
+   * Justification: These commands are essential to the product as the client/hairdresser list can be extremely long especially when the database is large, and the app should provide a convenient way for the user to quickly find one or few client(s)/hairdresser(s).
+   * Highlights: Careful consideration of good OOP design was made when creating filter commands for these two classes. `FilterEntityCommand` class is created and `FilterClientCommand` and `FilterHairdresserCommand` classes inherit from it.
 
 * **Create `Filter` method for `Appointment` class**: (Pull request
-[\#176](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/176)
+[\#176](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/176),
 [\#287](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/287))
-   * What is does: Allows the user to filter the appointment list with `hairdresser’s id`, `client’s id`, `appointment’s date`, `appointment’s status` or a combination of any of them. Also encapsulates the logic that makes changes to the `Model` classes whenever appointment list is filtered.
-   * Justification: These commands are essential to the product as it contributes to one of the most important feature – appointment management system. By allowing the user to filter appointments by a specific hairdresser/client, a specific date or appointment’s status, it enables the user to track all appointments easily and effectively avoid appointment conflicts.
+   * What it does: Allows the user to filter the appointment list with `hairdresser’s id`, `client’s id`, `appointment’s date`, `appointment’s status` or a combination of any of them. Also encapsulates the logic that makes changes to the `Model` class whenever appointment list is filtered.
+   * Justification: These commands are essential to the product as it contributes to one of the most important features – appointment management system. By allowing the user to filter appointments by a specific hairdresser/client, a specific date or appointment’s status, it enables the user to track all appointments easily and avoid appointment conflicts effectively.
    * Highlights: 
        * Filter command for appointments takes in one or more predicates which allows multi-purpose filtering within just one command line. This is done by appending all predicates to a list and checking them sequentially.
-       * Meanwhile, it ensures the number of user input for same prefix is no more than one which minimise the possibility of unwanted list being returned when the user accidentally input predicates for same prefix but different values.
+       * Meanwhile, it ensures the number of user input for the same prefix is no more than one which minimises the possibility of unwanted list being returned when the user accidentally inputs predicates of different values for the same prefix .
 
 * **Ui enhancement**: Convert the mock-ui into code and link it to be functional code. (Pull request
-[\#95](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/95)
-[\#103](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/103)
-[\#109](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/109)
-[\#121](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/121)
-[\#183](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/183)
-[\#250](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/250)
+[\#95](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/95),
+[\#103](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/103),
+[\#109](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/109),
+[\#121](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/121),
+[\#183](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/183),
+[\#250](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/250),
 [\#264](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/264))
    * Highlights:
        * There were much consideration into designing and implementing the Ui to display the 3 types of data we store. Careful use of generics are required even at the Ui side. As there were quite a number of commands, the Ui have to be carefully implemented to avoid any Ui bugs.
@@ -64,18 +64,19 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 
 #### Contributions to the team-based tasks
 
-* Set up project: checklist for v1.4
-* Check for all commands and UserGuide for possible bugs
+* Set up project board: [checklist for v1.4](https://github.com/AY2021S1-CS2103T-T15-1/tp/projects/6) and managed remaining tasks to be completed
+* Checked for all commands and UserGuide for possible bugs
 * Took down meeting minutes for group meetings
+* Created customised icon for our product
+
 
 #### Review/mentoring contributions
-* Pull requests reviewed (with non-trivial review comments)  
+* Pull requests reviewed (with non-trivial review comments): 
 [\#265](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/265),
 [\#282](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/282),
 [\#307](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/307)
 
-* Contributed to documentation for other teammates and fixed typos 
-    * Pull requests include
+* Contributed to documentation for other teammates and fixed typos:
     [\#57](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/57), 
     [\#287](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/287)
 

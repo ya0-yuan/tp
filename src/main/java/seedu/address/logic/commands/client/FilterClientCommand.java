@@ -29,8 +29,14 @@ public class FilterClientCommand extends FilterEntityCommand<ClientNameContainsK
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_CLIENT_LISTED_OVERVIEW, model.getFilteredClientList().size()));
+
+        if (model.getFilteredClientList().size() == 1) {
+            return new CommandResult(Messages.MESSAGE_CLIENT_LISTED_OVERVIEW_SINGULAR);
+        } else {
+            return new CommandResult(
+                String.format(Messages.MESSAGE_CLIENT_LISTED_OVERVIEW,
+                    model.getFilteredClientList().size()));
+        }
     }
 
     @Override
