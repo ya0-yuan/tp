@@ -3,8 +3,6 @@ package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.format.DateTimeParseException;
-
 import org.junit.jupiter.api.Test;
 
 class AppointmentTimeTest {
