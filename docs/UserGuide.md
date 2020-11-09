@@ -835,9 +835,8 @@ You can use this command to show a list of all hairdressers in the database. Thi
 
 `list_appt`
 
-Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
-
 **Example:**
+Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
@@ -864,7 +863,7 @@ You can use this command to edit an existing appointment in the database.
 
 * Edits the appointment with the specified `ID`. 
 
-* `CLIENT_ID` must be a valid appointment ID (aid)
+* `CLIENT_ID` must be a valid appointment ID (aid).
 
 * Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
 
