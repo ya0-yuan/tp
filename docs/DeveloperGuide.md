@@ -290,7 +290,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * In order to avoid collisions, whenever a `ClientId` is generated, the next `ClientId` generated will be increased by 1.
     * Likewise for `HairdresserId` and `AppointmentId`
 
-<img src="images/IDCounterClassDiagram.png" width="400" />
+<img src="images/IDCounterClassDiagram.png" width="200" />
 
 #### Design Considerations
 
