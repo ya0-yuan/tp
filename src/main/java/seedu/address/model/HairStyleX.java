@@ -285,7 +285,7 @@ public class HairStyleX implements ReadOnlyHairStyleX {
      */
     public void updateAppointmentWhenClientDeleted(ClientId clientId) {
         requireNonNull(clientId);
-        appointments.setClientToNull(clientId);
+        appointments.deleteClient(clientId);
     }
 
     /**
@@ -293,7 +293,7 @@ public class HairStyleX implements ReadOnlyHairStyleX {
      */
     public void updateAppointmentWhenHairdresserDeleted(HairdresserId hairdresserId) {
         requireNonNull(hairdresserId);
-        appointments.setHairdresserToNull(hairdresserId);
+        appointments.deleteHairdresser(hairdresserId);
     }
 
     /**
