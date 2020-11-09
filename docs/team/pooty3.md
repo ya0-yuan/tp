@@ -3,7 +3,6 @@ layout: page
 title: Aloysius's Project Portfolio Page
 ---
 
-
 ## Project: HairStyleX
 
 HairstyleX helps managers for budding neighborhood hair salons to manage clients, hairdressers, and appointments. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
@@ -25,8 +24,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
         * The CommandShortcutSet uses the singleton pattern as there is only one global instance throughout the application
         * CommandWords are enumerations as there are only a set values for them
 
-        
-
+        <div style="page-break-after: always;"></div>
 * **Refactor Appointment, Hairdresser and Client classes**: Made the 3 classes implement a base `Entity` class and `Client` and `Hairdresser` to inherit from `Person` (Pull request [\#99](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/99))
     * What it does: Make Appointment, Hairdresser and Client inherit from Entity class. Also, UniqueEntityList served a similar purpose as well.
     * Justification: Originally, there are a lot of duplicate code within the 3 classes, and their associated UniqueList. As such, I made them inherit from a base class to cut down on duplicate code.
@@ -45,7 +43,7 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 #### Contributions to the User Guide
 
 * Provided a detailed guide supplemented with screenshots and examples for [shortcut](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#45-shortcut-commands). [\#184](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/184)
-
+    <div style="page-break-after: always;"></div>
 #### Contributions to the Developer Guide
 
 * Added implementation details of the [Shortcut](https://ay2021s1-cs2103t-t15-1.github.io/tp/DeveloperGuide.html#command-shortcut-feature) classes (Pull request [\#165](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/165))
