@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.appointment;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE;
 import static seedu.address.testutil.TypicalAppointmentDates.FUTURE_APPOINTMENT_DATE_2;
 import static seedu.address.testutil.TypicalAppointmentDates.PAST_APPOINTMENT_DATE;
