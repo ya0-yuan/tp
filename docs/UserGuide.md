@@ -808,7 +808,7 @@ You can use this command to add an appointment to the database.
 </div>
 
 **Example**:
-In the example below, you will create an appointment between **client 1** and **hairdresser 1** on **12th December 2020** at **5.30pm**. (This assumes that the client and hairdresser currently exist.) You will perform the following steps:
+In the example below, you will create an appointment between **client 1** and **hairdresser 2** on **12th December 2020** at **5.30pm**. (This assumes that the client and hairdresser currently exist.) You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
