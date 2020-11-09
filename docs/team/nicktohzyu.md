@@ -34,8 +34,10 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 [\#198](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/198), 
 [\#301](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/301)).
 
-* **Testing for Appointment class**: Created tests for `Appointment` class, including extensive testing for the clash-avoidance feature (Pull requests [\#210](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/210),
- [\#321](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/321)).
+* **Testing for Appointment class**: Created tests for `Appointment` class, including extensive testing for the clash-avoidance feature (Pull requests 
+[\#210](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/210),
+ [\#322](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/322), 
+ [\#331](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/331)).
 
 #### Contributions to the User Guide
 * Responsible for the section on [appointments](https://ay2021s1-cs2103t-t15-1.github.io/tp/UserGuide.html#44-appointment-management). 
