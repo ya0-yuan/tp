@@ -303,7 +303,7 @@ Outcome:
 
 1. The `Result Display` will show a success message.
 1. You can now access the CSV files in the folder `data` that is in the same directory with **HairStyleX.jar**.
-1. There should be three CSV files generated. Namely, *appointments.csv*, *client.csv*, *hairdressers.csv*.
+1. There should be three CSV files generated. Namely, *appointments.csv*, *clients.csv*, *hairdressers.csv*.
 1. These files contain the information for `Appointment`s, `Client`s, and `Hairdresser`s respectively. 
 
 </div>
@@ -1033,7 +1033,7 @@ And it works!
 ![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
-**:information_source: You cannot add duplicate shortcuts or default command words as aliases**<br>
+**:information_source: You cannot add duplicate shortcuts or default command words as aliases. You also can still use the original command!**<br>
 
 </div>
 
