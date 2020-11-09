@@ -235,7 +235,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 * `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
-####Add Appointment Feature
+#### Add Appointment Feature
 ##### Current implementation
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
