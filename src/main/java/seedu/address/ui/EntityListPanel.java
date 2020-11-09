@@ -10,8 +10,7 @@ import javafx.scene.layout.Region;
 /**
  * Panel containing the list of Hairdressers.
  */
-public abstract class
-EntityListPanel<T> extends UiPart<Region> {
+public abstract class EntityListPanel<T> extends UiPart<Region> {
 
     private static final String FXML = "EntityListPanel.fxml";
 
