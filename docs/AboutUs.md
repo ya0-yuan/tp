@@ -36,7 +36,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/theyifan)] [[portfolio](team/theyifan.md)]
 
 * Role: Team Member
-* Responsibilities: Data, Git
 
 ### Yao Yuan
 
@@ -46,7 +45,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ya0-yuan.md)]
 
 * Role: Team member
-* Responsibilities: Dev Ops + Threading
 
 ### Toh Zhen Yu, Nicholas
 
