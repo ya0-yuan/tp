@@ -215,7 +215,7 @@ You can use this command to clear all entries in **HairStyleX**.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: This command will delete all data in **HairStyleX** permanently. Please proceed with caution.**
+**:warning: This command will delete all data in HairStyleX permanently. Please proceed with caution.**
 
 </div>
 
