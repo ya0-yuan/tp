@@ -499,7 +499,7 @@ Outcome: <br>
 
 #### 4.2.6 Filtering clients : `filter_client`
 
-You can filter the list of clients in the database by keyword search that match their names.
+You can filter the list of clients in the database with a keyword search that match their names.
 
 **Format:**
 
@@ -723,7 +723,7 @@ Outcome: <br>
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
-You can filter the list of hairdressers in the database by keyword search that match their names.
+You can filter the list of hairdressers in the database with a keyword search that match their names.
 
 **Format:**
 
@@ -836,6 +836,7 @@ You can use this command to show a list of all hairdressers in the database. Thi
 `list_appt`
 
 **Example:**
+
 Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
@@ -933,7 +934,7 @@ Outcome: <br>
 
 #### 4.4.6 Filtering appointments : `filter_appt`
 
-You can filter the list of appointments in the database by keyword search that match their names.
+You can filter the list of appointments in the database with a keyword search that match their names.
 
 **Format:**
 

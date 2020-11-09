@@ -218,7 +218,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
                        
 * `FutureAppointment` - This is an entity class which extends Appointment. This class ensures that a newly created appointment is always in the future compared to the system time.
 
-* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `cancelled`, `completed`, or `missed`.
+* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `completed`, or `missed`.
 
 * `AppointmentID` - This is a class which represents the unique ID of an appointment.
 
