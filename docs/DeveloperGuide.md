@@ -457,8 +457,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `HairStyleX` application, and the **Actor** is the `user`, unless specified otherwise)
@@ -592,8 +590,6 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 2.  Should be able to hold up to 1000 hairdressers and clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  There is no need for internet connection
-
-*{More to be added}*
 
 ### Glossary
 
