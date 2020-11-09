@@ -1120,6 +1120,7 @@ Action | Format, Examples
 **Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
 **Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Delete Hairdresser** | `delete_hairdresser ID` <br> e.g. `delete_hairdresser 3`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
 ### 6.4 Appointment Commands
