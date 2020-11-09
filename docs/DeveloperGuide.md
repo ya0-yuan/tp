@@ -208,7 +208,6 @@ From the diagram above:
 
 
 ### Appointment feature
-(Contributed by Nicholas)
 
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
@@ -881,7 +880,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous test case.
 
 ## **Appendix: Effort**
-(Contributed by Nicholas)
+
 Creating HairStyleX required much effort from all the team members. Due to COVID-19, we did not meet up, and had to work around the limitations of virtual collaboration. We persevered, and honed our communication and teamwork skills through this project. Our members made sacrifices to their schedules in order to attend our weekly online meetings. By the end, we achieved excellent communication as a team. Our final product contained around 20KLoC. This showcases our hard work and dedication in creating HairStyleX.
 
 ### Major Enhancements
