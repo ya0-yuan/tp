@@ -1032,7 +1032,8 @@ And it works!
 ![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
-**:information_source: You cannot add duplicate shortcuts or default command words as shortcuts**<br>
+
+**:information_source: You cannot add duplicate shortcuts or default command words as shortcuts. You also can still use the original command!**<br>
 
 </div>
 
