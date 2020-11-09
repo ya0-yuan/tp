@@ -499,7 +499,7 @@ Outcome: <br>
 
 #### 4.2.6 Filtering clients : `filter_client`
 
-You can filter the list of clients in the database with a keyword search that match their names.
+You can filter the list of clients in the database with a keyword search that matches their names.
 
 **Format:**
 
@@ -723,7 +723,7 @@ Outcome: <br>
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
-You can filter the list of hairdressers in the database with a keyword search that match their names.
+You can filter the list of hairdressers in the database with a keyword search that matches their names.
 
 **Format:**
 
@@ -876,6 +876,7 @@ You can use this command to edit an existing appointment in the database.
 </div>
 
 **Example**:
+
 Assume that an appointment with ID `2` was successfully completed. You wish to update the database to reflect this appointment as `COMPLETED`.  You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
@@ -934,7 +935,7 @@ Outcome: <br>
 
 #### 4.4.6 Filtering appointments : `filter_appt`
 
-You can filter the list of appointments in the database with a keyword search that match their names.
+You can filter the list of appointments in the database with a keyword search.
 
 **Format:**
 
