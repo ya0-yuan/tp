@@ -1107,9 +1107,9 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS tr/TREATMENT [p/PREFERENCE] [t/TAG]…` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
+**Add Client** | `add_client n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…` <br> e.g., `add_client n/Nicholas Toh p/12345678 e/niktoh@example.com g/M a/123, Clementi Rd, 1234665 tr/colouring p/female stylist t/frequent`
 **List Clients** | `list_client`
-**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tr/TREATMENT] [p/PREFERENCE] [t/TAG]…`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
+**Edit Client** | `edit_client ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [t/TAG]…`<br> e.g.`edit_client 2 n/James Tan p/Female Stylist`
 **Delete Client** | `delete_client ID` <br> e.g. `delete_client 3`
 **Filter Client** | `filter_client KEYWORD...`
 
@@ -1117,9 +1117,10 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION] [t/TAG]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
+**Add Hairdresser** | `add_hairdresser n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER ti/TITLE [s/SPECIALISATION]…` <br> e.g., `add_hairdresser n/James Ho p/22224444 e/jamesho@example.com g/M ti/senior s/colouring t/colleague`
 **List Hairdressers** | `list_hairdresser`
-**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION] [t/TAG]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Edit Hairdresser** | `edit_hairdresser ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ti/TITLE] [s/SPECIALISATION]…`<br> e.g.`edit_hairdresser 2 n/James Lee ti/senior`
+**Delete Hairdresser** | `delete_hairdresser ID` <br> e.g. `delete_hairdresser 3`
 **Filter Hairdresser** | `filter_hairdresser KEYWORD...`
 
 ### 6.4 Appointment Commands
