@@ -279,7 +279,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * The concrete classes `AppointmentId`, `ClientId`, and `HairdresserId` extend the abstract Id class, and reside in their respective packages.
 * These concrete classes contain their unique error messages which will be shown when an instance is created with an invalid id.
 
-![IDClassDiagram](images/IDClassDiagram.png)
+<img src="images/IDClassDiagram.png" width="400" />
 
 ##### ID Counter Class
 
@@ -290,7 +290,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * In order to avoid collisions, whenever a `ClientId` is generated, the next `ClientId` generated will be increased by 1.
     * Likewise for `HairdresserId` and `AppointmentId`
 
-![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
+<img src="images/IDCounterClassDiagram.png" width="400" />
 
 #### Design Considerations
 
