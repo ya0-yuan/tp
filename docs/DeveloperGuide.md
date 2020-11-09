@@ -323,11 +323,11 @@ Given below is the example usage scenario that highlights the generation of a ne
 
 ### Filter Feature
 
-Since now all entities are categorized into different classes, we want to make sure each class can have their own search method to easily filter an entity within a class or filter a list of entities.
+Since now all entities are categorized into different classes, we want to make sure each class can have their own filter method to easily find an entity or a list of entities within a class.
 
 #### Reasons for implementation
 
-The filter appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
+The filter hairdresser/client feature can be useful when a specific client/hairdresser's information is needed at the moment. The filter appointment feature can be useful when scheduling a new appointment. By allowing the manager to check the availability of a certain hairdresser,
 or filter out a list of all appointments in a certain day, it avoids creating conflicting appointments and provides a more efficient way of scheduling appointments.
 
 #### Use cases
@@ -336,27 +336,27 @@ or filter out a list of all appointments in a certain day, it avoids creating co
 
 2. a client or a list of clients can be filtered by their name
 
-2. an appointment or a list of appointments can be filtered by either hairdresser included, client included, or date.
+2. an appointment or a list of appointments can be filtered by hairdresser's id, client's id, date of appointment, status of appointment or a combination of any of them.
 
 #### Usage Scenario
 
 Given below is the example usage scenario of filtering a client:
 
-The `filter_client` command allows the `LogicManager` to create one or a list of clients. 
+The `filter_client Anna` command allows the `LogicManager` to create one or a list of clients whose name contains "Anna". 
 
 The following sequence shows the sequence when the filter command is execute by the `LogicManager`:
 
-![FilterCommandSequenceDiagram](images/FilterCommandSequenceDiagram.png)
+![FilterClientCommandSequenceDiagram](images/FilterClientCommandSequenceDiagram.png)
 
 From the diagram above:
 
-1. `LogicManager`’s `execute` is called when `filter_client` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
+1. `LogicManager`’s `execute` is called when `filter_client Anna` is entered and it calls upon `parseCommand` of `HairStyleXParser` to parse the command.
 
 2. `HairStyleXParser` will initialize `FilterClientCommandParser` and invoke the method `parse` to further parse filter client command
 
 3. `parse` will be invoked and passed the parameters of the filter client command.
 
-4. If all the arguments of `filter_client` commands are valid, `FilterClientCommand` will be returned to the `LogicManager`
+4. If all the arguments of the filter command are valid, `FilterClientCommand` will be returned to the `LogicManager`
 
 5. `LogicManger` will then call `execute` method of `FilterClientCommand`
 
