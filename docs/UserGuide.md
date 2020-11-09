@@ -57,7 +57,7 @@ There are many things you can do with **HairStyleX**. Thus, we have structured t
 
 * Appointment Management
 
-* Alias Management
+* Shortcut Management
 
 ### 3.2 Reading this document
 
@@ -776,7 +776,7 @@ This feature allows you to manage appointments between hairdressers and clients.
 Parameter Name | Description
 --------|------------------
 `CLIENT_ID` | The ID of the client `cid`
-`HAIRDRESSER_ID` | The ID of the hairdresser `cid`
+`HAIRDRESSER_ID` | The ID of the hairdresser `hid`
 `DATE` | The date of the appointment.<br><br> It must be in the format of `YYYY-MM-DD`, following the ISO8601 standard.<br><br> E.g. `2020-12-13` This example means 13th December 2020.
 `TIME` | The time of the appointment.<br><br> It must be in the format of `HH:MM`.<br><br> E.g. `17:30` This example means 5.30 pm.
 `STATUS` | The status of the appointment, which can be `ACTIVE`, `COMPLETED`, or `MISSED`
@@ -798,7 +798,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because the maximum time required of for any hair treatment is two hours. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because two hours is a reasonable time period required of for any hair treatment. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -908,7 +908,6 @@ Removes a specific appointment from the database.
 * Deletes the appointment with the specified `ID`.
 * The ID refers to the appointment ID `aid` shown in the displayed appointment list.
 * The ID **must be a positive integer** 1, 2, 3, …
-* All appointments with this corresponding hairdresser will now show "DELETED" for the hairdresser placeholder
 </div>
 
 **Example**:
@@ -1000,7 +999,7 @@ longer commands.
 Parameter Name | Description
 --------|------------------
 `OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
-`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_ALIAS`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
+`NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_SHORTCUT`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
 #### 4.5.2 Add a new shortcut : `add_shortcut`
 
@@ -1033,7 +1032,8 @@ And it works!
 ![Ui](images/shortcut/new_shortcut.PNG)
 
 <div markdown="block" class="alert alert-info">  
-**:information_source: You cannot add duplicate shortcuts or default command words as aliases. You also can still use the original command!**<br>
+
+**:information_source: You cannot add duplicate shortcuts or default command words as shortcuts. You also can still use the original command!**<br>
 
 </div>
 
