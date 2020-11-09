@@ -247,7 +247,7 @@ From the diagram above:
 
 5. `LogicManger` will then call the `execute` method of `AddAppointmentCommand`, with the `model` as an argument. Here, checks are performed, such as verifying if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
 
-6. If the command is valid `AddAppointmentCommand` will call `addAppointment` of `Model` with the newly created appointment as an argument, then it will return a `CommandResult`. Otherwise, a `CommandException` may be thrown.
+6. If the command is valid, `AddAppointmentCommand` will call `addAppointment` of `Model` with the newly created appointment as an argument, then it will return a `CommandResult`. Otherwise, a `CommandException` may be thrown.
 
 7. `LogicManger` will then call `saveHairStyleX` method of `Storage`. This triggers storing information to non-volatile memory using the Storage layer.
 
