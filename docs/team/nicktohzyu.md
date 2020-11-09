@@ -49,6 +49,9 @@ Access my [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#b
 * Proposed future improvements which improve the runtime performance of HairStyleX.
 * Contributed the appendix section on effort.
 
+#### Contributions to the team-based tasks
+* Maintained the majority of issue trackers and projects.
+
 #### Review/mentoring contributions
 * Reviewed pull requests including 
 [\#55](https://github.com/AY2021S1-CS2103T-T15-1/tp/pull/55), 
