@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,7 +78,7 @@ The `UI` component,
 <img src="images/LogicClassDiagram.png" width="800">
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `HairStyleXParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -90,14 +90,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <img src="images/DeleteSequenceDiagram.png" width="800">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -111,7 +111,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -209,6 +209,7 @@ From the diagram above:
 
 ### Appointment feature
 (Contributed by Nicholas)
+
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
 #### Overview of implementation for Appointment
@@ -229,7 +230,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 * `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
-####Add Appointment Feature
+#### Add Appointment Feature
 ##### Current implementation
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
@@ -278,7 +279,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * The concrete classes `AppointmentId`, `ClientId`, and `HairdresserId` extend the abstract Id class, and reside in their respective packages.
 * These concrete classes contain their unique error messages which will be shown when an instance is created with an invalid id.
 
-![IDClassDiagram](images/IDClassDiagram.png)
+<img src="images/IDClassDiagram.png" width="200" />
 
 ##### ID Counter Class
 
@@ -289,7 +290,7 @@ To tackle this, we concluded that each entity should be identified by a unique I
 * In order to avoid collisions, whenever a `ClientId` is generated, the next `ClientId` generated will be increased by 1.
     * Likewise for `HairdresserId` and `AppointmentId`
 
-![IDCounterClassDiagram](images/IDCounterClassDiagram.png)
+<img src="images/IDCounterClassDiagram.png" width="200" />
 
 #### Design Considerations
 
@@ -303,17 +304,19 @@ To tackle this, we concluded that each entity should be identified by a unique I
   
 #### Usage Scenario
 
-Given below is the example usage scenario that highlights the generation of a new ID instance when a new Client is created:
+Given below is the example usage scenario that highlights the generation of a new `ClientId` instance when a new `Client` is created:
+
+![IDSequenceDiagram](images/IDSequenceDiagram.png)
+
+From the diagram above:
 
 1. The user attempts to create a new client by entering the respective fields in the appropriate format, such as `add_client n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25`
 
-1. The AddClientCommandParser extracts the relevant fields from the user input and creates a new Client instance using the Client constructor.
+1. The `AddClientCommandParser` extracts the relevant fields from the user input and creates a new `Client` instance using the `Client` constructor.
 
-1. The Client constructor calls IdCounter to generate a new ClientId instance.
+1. The `Client` constructor calls `IdCounter` to generate a new `ClientId` instance.
 
-1. The returned ClientId is stored in this client object, which will be used to create AddClientCommand.
-
-![IDSequenceDiagram](images/IDSequenceDiagram.png)
+1. The returned `ClientId` is stored in this client object, which will be used to create AddClientCommand.
 
 ### Filter Feature
 
@@ -480,7 +483,7 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given ID is invalid.
 
     * 3a1. HairStyleX shows an error message.
 
@@ -560,7 +563,7 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 
     Use case ends.
     
-**Use case: Add an alias*
+**Use case: Add an alias**
 
 **MSS**
 
@@ -582,7 +585,6 @@ it means that the use case can be performed similarly on both a `hairdresser` an
     * 1b1. HairStyleX shows an error message.
 
       Use case ends.
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -881,14 +883,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete shortcut commands to try: `delete_shortcut help`, `delete_shortcut non_existent_shortcut` `...`<br>
       Expected: Similar to previous test case.
-      
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 (Contributed by Nicholas)
