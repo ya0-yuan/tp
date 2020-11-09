@@ -40,6 +40,8 @@ Class HiddenModel #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
+note "XYZ represents types of commands such as\nAdd, Edit, Delete, Find, etc\n\nABC represents \nentities such as Client, Hairdresser and Appointment" as N1
+
 LogicManager .up.|> Logic
 LogicManager -->"1" AddressBookParser
 AddressBookParser ..> XYZ_ABC_CommandParser: creates >
@@ -59,13 +61,12 @@ ArgumentTokenizer .down.> Prefix
 XYZ_Command -up-|> Command
 XYZ_ABC_Command -up-|> XYZ_Command
 LogicManager .left.> Command : executes >
-note top of XYZ_ABC_CommandParser: Eg, AddClientCommandParser
+note left of XYZ_ABC_CommandParser: Eg, AddClientCommandParser
 
 LogicManager --> Model
-Command .right.> Model
-note right of XYZ_Command: XYZ_Command = AddCommand, \nFindCommand, etc
+Command .up.> Model
+note left of XYZ_Command: XYZ_Command = AddCommand, \nFindCommand, etc
 note right of XYZ_ABC_Command: Assuming XYZ = Add, \nXYZ_ABC_Command = AddClientCommand, \nAddHairdresserCommand, \nAddAppointmentCommand, etc
-note "XYZ represents types of commands such as Add, Edit, Delete, Find, etc \nABC represents entities such as Client, Hairdresser and Appointment" as N1
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
