@@ -13,7 +13,7 @@ title: User Guide
 ## 1. Introduction
 (Contributed by Tan Yu Li, James)
 
-Welcome to the User Guide of HairStyleX.
+Welcome to the User Guide of **HairStyleX**.
  
 Today, many budding hair salons still resort to using pen and paper to keep track of their appointments, clients, and hairdressers due to their tight budget. While suitable for a small client base, this is not sustainable in the long run as their client base increases, since recording and searching for information manually would be slow and prone to human errors. Our salon management application **HairStyleX** is designed to make this process much easier for salon managers who have at least a laptop at their front desk.
 
@@ -175,7 +175,7 @@ The commands in this section allow you to perform operations on the entire syste
 
 #### 4.1.1 Viewing help : `help`
 
-You can use this command to view the user guide, which contains information about all the instructions in HairStyleX.
+You can use this command to view the user guide, which contains information about all the instructions in **HairStyleX**.
 
 <div markdown="block" class="alert alert-info">
 
@@ -189,7 +189,7 @@ You can use this command to view the user guide, which contains information abou
 
 **Example:**
 
-In this example, you want to view the user guide to get information about the various commands in HairStyleX.
+In this example, you want to view the user guide to get information about the various commands in **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -197,7 +197,7 @@ Requesting for help:
 
 1. Type `help` into the *Command Box*.
 1. Press `Enter` to execute.
-1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the HairStyleX user guide.
+1. A new window will appear. Click on the `Copy URL` button to copy the URL containing the **HairStyleX** user guide.
 ![HelpOutcome](images/general-command/Help.png)
 1. Open your preferred web browser on your computer and paste the link into the address bar.
 1. Press `Enter` to load the website
@@ -205,13 +205,13 @@ Requesting for help:
 Outcome:
 
 1. Your browser will show the user guide
-1. You can now access information about all commands in HairStyleX via the browser
+1. You can now access information about all commands in **HairStyleX** via the browser
 
 </div>
 
 #### 4.1.2 Clearing all entries : `clear`
 
-You can use this command to clear all entries in HairStyleX.
+You can use this command to clear all entries in **HairStyleX**.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -225,7 +225,7 @@ You can use this command to clear all entries in HairStyleX.
 
 **Example:**
 
-In this example, you want to clear all current data and start with an empty HairStyleX.
+In this example, you want to clear all current data and start with an empty **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -245,7 +245,7 @@ Outcome:
 
 #### 4.1.3 Exiting from the application: `exit`
 
-You can use this command to exit HairStyleX.
+You can use this command to exit **HairStyleX**.
 
 <div markdown="block" class="alert alert-info">
 
@@ -259,7 +259,7 @@ You can use this command to exit HairStyleX.
 
 **Example:**
 
-In this example, you want to exit HairStyleX.
+In this example, you want to exit **HairStyleX**.
 
 <div markdown="block" class="alert alert-white">
 
@@ -334,7 +334,7 @@ Parameter Name | Description
 `GENDER` | The gender of the client. <br> Gender should be either F or M or f or m. <br> E.g. `F`
 `ADDRESS` | The address of the client. It should only contain a maximum of 50 characters <br>  E.g. `6 College Avenue East #12-01D`
 `TAG` | The tag of the client. <br> A tag can only be one word with no space in between. <br> It should only contain at most 20 alphanumeric characters. <br> It is optional. <br> There can be more than one tag for each client.  <br>E.g. `shortHair`
-`ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
+`ID` | The unique client ID `cid` that is assigned to each client. <br>The ID is unique to each client, and the ID will not be assigned to another client even if one is deleted from the database. <br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_client`. <br>It should only contain alphanumeric characters. 
 
 #### 4.2.2 Adding a client: `add_client`
@@ -359,7 +359,7 @@ You can use this command to add a client to the database.
 
 * Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
 
-* You are not allowed to enter duplicates into HairStyleX.
+* You are not allowed to enter duplicates into **HairStyleX**.
 
 </div>
 
@@ -442,7 +442,7 @@ You can use this command to edit an existing client in the database.
 
 * Likewise, a client with the same name and phone number as an existing hairdresser is also considered as a duplicate.
 
-* You are not allowed to edit a client such that their updated information results in duplicates in HairStyleX.
+* You are not allowed to edit a client such that their updated information results in duplicates in **HairStyleX**.
 
 </div>
 
@@ -509,7 +509,7 @@ Outcome: <br>
 
 #### 4.2.6 Filtering clients : `filter_client`
 
-You can filter the list of clients in the database by keyword search that match their names.
+You can filter the list of clients in the database with a keyword search that matches their names.
 
 **Format:**
 
@@ -570,7 +570,7 @@ Parameter Name | Description
 `PHONE` | The phone number of the hairdresser.<br>Phone numbers should only contain numbers, should be at least 3 digits long, and should be at most 15 digits long.<br>E.g. `81526354`
 `EMAIL` | The email of the hairdresser.<br>Emails should be of the format local-part@domain and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{}~^.-` .<br>2. This is followed by a '@' and then a domain name. The domain name must be at least 2 characters long, start and end with alphanumeric characters, consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. The entire email should be at most 50 characters long. <br>E.g. `johnd@example.com`
 `SPECIALISATION` | The specialisation of the hairdresser.<br>Specialisations should be one of the following options and are case-sensitive: <br>`Color`, `Perm`, `HairExtension`, `Styling`, `HairConditioning`, `Straightening`, `ScalpTreatment`, `HairLossTreatment`.<br>E.g. `Color`
-`ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. </br>Thus, the ID displayed in the list may not be sequential. 
+`ID` | The unique hairdresser ID `hid` that is assigned to each hairdresser. <br>The ID is unique to each hairdresser, and the ID will not be assigned to another hairdresser even if one is deleted from the database. <br>Thus, the ID displayed in the list may not be sequential. 
 `KEYWORD` | Keyword for `filter_hairdresser`. <br>It should only contain alphanumeric characters. 
 
 #### 4.3.2 Adding a hairdresser : `add_hairdresser`
@@ -595,7 +595,7 @@ You can use this command to add a hairdresser to the database.
 
 * Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
 
-* You are not allowed to enter duplicates in HairStyleX.
+* You are not allowed to enter duplicates in **HairStyleX**.
 
 </div>
 
@@ -672,7 +672,7 @@ You can use this command to edit an existing hairdresser in the database.
 
 * Likewise, a hairdresser with the same name and phone number as an existing client is also considered as a duplicate.
 
-* You are not allowed to edit a hairdresser such that their updated information results in duplicates in HairStyleX.
+* You are not allowed to edit a hairdresser such that their updated information results in duplicates in **HairStyleX**.
 
 </div>
 
@@ -735,7 +735,7 @@ Outcome: <br>
 
 #### 4.3.6 Filtering hairdressers : `filter_hairdresser`
 
-You can filter the list of hairdressers in the database by keyword search that match their names.
+You can filter the list of hairdressers in the database with a keyword search that matches their names.
 
 **Format:**
 
@@ -810,7 +810,7 @@ You can use this command to add an appointment to the database.
 
 * All appointments are active by default.  
 
-* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because two hours is a reasonable time period required of for any hair treatment. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
+* All appointments have a duration of **2 hours**. Hence the end time of an appointment is implicitly two hours after the start time. This is because two hours is a reasonable time period required for any hair treatment. If an appointment is completed earlier, the hairdresser can take charge of walk in customers. 
 
 * Appointments involving the same persons (hairdresser or client) should not overlap in time. Equivalently, no person should be simultaneously involved in two appointments.  
 
@@ -820,7 +820,7 @@ You can use this command to add an appointment to the database.
 </div>
 
 **Example**:
-In the example below, you will create an appointment between **client 1** and **hairdresser 1** on **12th December 2020** at **5.30pm**. (This assumes that the client and hairdresser currently exist.) You will perform the following steps:
+In the example below, you will create an appointment between **client 1** and **hairdresser 2** on **12th December 2020** at **5.30pm**. (This assumes that the client and hairdresser currently exist.) You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
@@ -847,8 +847,9 @@ You can use this command to show a list of all hairdressers in the database. Thi
 
 `list_appt`
 
-Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
 **Example:**
+
+Assume that you have previously filtered the list of appointments, and now wish to view all appointments. You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
 
@@ -875,7 +876,7 @@ You can use this command to edit an existing appointment in the database.
 
 * Edits the appointment with the specified `ID`. 
 
-* `CLIENT_ID` must be a valid appointment ID (aid)
+* `CLIENT_ID` must be a valid appointment ID (aid).
 
 * Only the status of the appointment can be updated. If you wish to change other aspects of an appointment, such as the client/hairdresser/time, simply delete the appointment and create a new one.
 
@@ -887,6 +888,7 @@ You can use this command to edit an existing appointment in the database.
 </div>
 
 **Example**:
+
 Assume that an appointment with ID `2` was successfully completed. You wish to update the database to reflect this appointment as `COMPLETED`.  You will perform the following steps:
 
 <div markdown="block" class="alert alert-white">
@@ -945,7 +947,7 @@ Outcome: <br>
 
 #### 4.4.6 Filtering appointments : `filter_appt`
 
-You can filter the list of appointments in the database by keyword search that match their names.
+You can filter the list of appointments in the database with a keyword search.
 
 **Format:**
 
@@ -1010,7 +1012,7 @@ longer commands.
 
 Parameter Name | Description
 --------|------------------
-`OLD_SHORTCUT` | The name of an original command provided by HairStyleX.<br> E.g. `add_client`, `edit_appt`, etc.
+`OLD_SHORTCUT` | The name of an original command provided by **HairStyleX**.<br> E.g. `add_client`, `edit_appt`, etc.
 `NEW_SHORTCUT` | Your preferred shortcut name for the `OLD_SHORTCUT`. It should only contain at most 20 alphanumeric characters, hyphens `-`, or underscores `_`.<br> E.g. `a_c`, `ea`, `a-h`, etc.
 
 #### 4.5.2 Add a new shortcut : `add_shortcut`
@@ -1089,7 +1091,7 @@ You can use this command to show all your shortcuts.
 (Contributed by Tan Yu Li, James)
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HairstyleX home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **HairStyleX** home folder.
 
 **Q**: Why aren’t I allowed to edit my date or time for the appointment?<br>
 **A**: Editing the date or time may cause conflicts in your schedule if the change results in two appointments with the same hairdresser occuring concurrently. However, we are working on a feature that will allow you to resolve these conflicts in the upcoming version of **HairStyleX**.

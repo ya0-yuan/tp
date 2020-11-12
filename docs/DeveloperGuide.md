@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the **HairStyleX** data.
 * exposes an unmodifiable `ObservableList<Client>`, `ObservableList<Hairdresser>`, `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -208,7 +208,6 @@ From the diagram above:
 
 
 ### Appointment feature
-(Contributed by Nicholas)
 
 This feature represents an appointment between a hairdresser and a client. An appointment consists of a client and a hairdresser. If one of these persons are deleted, the reference will be replaced with a tombstone value indicating a deleted hairdresser/client. A client can have multiple appointments that do not clash, similarly for hairdressers. An appointment must also have a date, time, and status.
 
@@ -218,7 +217,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
                        
 * `FutureAppointment` - This is an entity class which extends Appointment. This class ensures that a newly created appointment is always in the future compared to the system time.
 
-* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `cancelled`, `completed`, or `missed`.
+* `AppointmentStatus` - This is an enum which represents the status of an appointment, which can be `active`, `completed`, or `missed`.
 
 * `AppointmentID` - This is a class which represents the unique ID of an appointment.
 
@@ -228,7 +227,7 @@ This feature represents an appointment between a hairdresser and a client. An ap
 
 * `AddAppointmentCommandParser` - This class parses a user input string to an AppointmentCommand object. Validation for inputs that do not require access to the model is performed here.
 
-* `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed, when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
+* `AddAppointmentCommand` - This is where majority of the logic of the add appointment command is performed when the `execute` method is called. It will access the model to ensure there is no duplicate appointment before adding the appointment to the model.
 
 #### Add Appointment Feature
 ##### Current implementation
@@ -247,7 +246,7 @@ From the diagram above:
 
 5. `LogicManger` will then call the `execute` method of `AddAppointmentCommand`, with the `model` as an argument. Here, checks are performed, such as verifying if the hairdresser/client ID corresponds to an actual hairdresser/client, and the appointment is checked against existing appointments in the model to ensure that there are no duplicates or clashes. The appointment object is then added to the model.
 
-6. If the command is valid `AddAppointmentCommand` will call `addAppointment` of `Model` with the newly created appointment as an argument, then it will return a `CommandResult`. Otherwise, a `CommandException` may be thrown.
+6. If the command is valid, `AddAppointmentCommand` will call `addAppointment` of `Model` with the newly created appointment as an argument, then it will return a `CommandResult`. Otherwise, a `CommandException` may be thrown.
 
 7. `LogicManger` will then call `saveHairStyleX` method of `Storage`. This triggers storing information to non-volatile memory using the Storage layer.
 
@@ -457,8 +456,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | navigate the UI easily         | learn how to use the app quickly                                             |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `HairStyleX` application, and the **Actor** is the `user`, unless specified otherwise)
@@ -592,8 +589,6 @@ it means that the use case can be performed similarly on both a `hairdresser` an
 2.  Should be able to hold up to 1000 hairdressers and clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  There is no need for internet connection
-
-*{More to be added}*
 
 ### Glossary
 
@@ -885,7 +880,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous test case.
 
 ## **Appendix: Effort**
-(Contributed by Nicholas)
+
 Creating HairStyleX required much effort from all the team members. Due to COVID-19, we did not meet up, and had to work around the limitations of virtual collaboration. We persevered, and honed our communication and teamwork skills through this project. Our members made sacrifices to their schedules in order to attend our weekly online meetings. By the end, we achieved excellent communication as a team. Our final product contained around 20KLoC. This showcases our hard work and dedication in creating HairStyleX.
 
 ### Major Enhancements

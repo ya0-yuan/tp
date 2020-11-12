@@ -36,16 +36,17 @@ public class FilterAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "filter_appt";
     public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " "
-            + PREFIX_HAIRDRESSER_ID + "1 "
-            + PREFIX_CLIENT_ID + "1 "
-            + PREFIX_DATE_OF_APPT + "2019-06-01 "
-            + PREFIX_APPT_STATUS + "active ";;
+        + PREFIX_HAIRDRESSER_ID + "1 "
+        + PREFIX_CLIENT_ID + "1 "
+        + PREFIX_DATE_OF_APPT + "2019-06-01 "
+        + PREFIX_APPT_STATUS + "active ";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + "[" + PREFIX_CLIENT_ID + PLACEHOLDER_CLIENT_INDEX + "] "
-            + "[" + PREFIX_HAIRDRESSER_ID + PLACEHOLDER_HAIRDRESSER_INDEX + "] "
-            + "[" + PREFIX_DATE_OF_APPT + PLACEHOLDER_DATE_OF_APPT + "] "
-            + "[" + PREFIX_APPT_STATUS + PLACEHOLDER_APPT_STATUS + "] "
-            + COMMAND_EXAMPLE;
+        + "[" + PREFIX_CLIENT_ID + PLACEHOLDER_CLIENT_INDEX + "] "
+        + "[" + PREFIX_HAIRDRESSER_ID + PLACEHOLDER_HAIRDRESSER_INDEX + "] "
+        + "[" + PREFIX_DATE_OF_APPT + PLACEHOLDER_DATE_OF_APPT + "] "
+        + "[" + PREFIX_APPT_STATUS + PLACEHOLDER_APPT_STATUS + "] "
+        + COMMAND_EXAMPLE;
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments";
     public static final String MESSAGE_SUCCESS_FILTERED_CLIENT = ", filtered by client ID";
@@ -109,11 +110,16 @@ public class FilterAppointmentCommand extends Command {
         });
 
         // reduce predicate list to a single predicate
-        Predicate<Appointment> combinedPredicate = predicates.stream().reduce(x-> true, Predicate::and);
+        Predicate<Appointment> combinedPredicate = predicates.stream().reduce(x -> true, Predicate::and);
         model.updateFilteredAppointmentList((PREDICATE_SHOW_ALL_APPOINTMENTS.and(combinedPredicate)));
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
+        if (model.getFilteredAppointmentList().size() == 1) {
+            return new CommandResult(Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR);
+        } else {
+            return new CommandResult(
+                String.format(Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW,
+                    model.getFilteredAppointmentList().size()));
+        }
     }
 
     @Override
@@ -192,7 +198,7 @@ public class FilterAppointmentCommand extends Command {
          */
         public boolean noFieldStated() {
             return clientId.isEmpty() && hairdresserId.isEmpty()
-                    && date.isEmpty() && status.isEmpty();
+                && date.isEmpty() && status.isEmpty();
         }
 
 
@@ -206,9 +212,9 @@ public class FilterAppointmentCommand extends Command {
             }
             FilterAppointmentDescriptor that = (FilterAppointmentDescriptor) o;
             return Objects.equals(clientId, that.clientId)
-                    && Objects.equals(hairdresserId, that.hairdresserId)
-                    && Objects.equals(date, that.date)
-                    && Objects.equals(status, that.status);
+                && Objects.equals(hairdresserId, that.hairdresserId)
+                && Objects.equals(date, that.date)
+                && Objects.equals(status, that.status);
         }
 
         @Override
